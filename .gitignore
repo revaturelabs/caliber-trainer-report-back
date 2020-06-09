@@ -9,3 +9,17 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+
+# ~~~~~ADDED to block IDE/OS specific files~~~~~
+# MacOS users
+.DS_Store
+
+# intelliJ files to ignore
+/.idea/
+.idea/*
+*.iml
+
+# eclipse files to ignore
+*.project
+*.classpath

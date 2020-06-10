@@ -38,11 +38,12 @@ public class Batch {
 	//private String type; // always Revature?
 	@Column
 	private int trainerId;
+	
 	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="",
-			joinColumns=@JoinColumn(name=""),
-			inverseJoinColumns=@JoinColumn(name=""))//need column names----------------------
-	private Set<Week> weeks = new HashSet<Week>();
+	@JoinTable(name="batch_week",
+				joinColumns=@JoinColumn(name="batch_id"),
+				inverseJoinColumns=@JoinColumn(name="week_id"))//need column names----------------------
+	private Set<Week> weeks;
 
 	public Batch() {
 		id = 0;

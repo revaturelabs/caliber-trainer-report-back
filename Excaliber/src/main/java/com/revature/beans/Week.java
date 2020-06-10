@@ -8,16 +8,20 @@ public class Week {
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
 	private String batchId;
 	private String technicalStatus;
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "",
-			joinColumns = @JoinColumn(name = ""),
-			inverseJoinColumns = @JoinColumn(name = ""))//need column names----------------------
+
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="week_category",
+			joinColumns=@JoinColumn(name="week_id"),
+			inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Set<Category> categories;
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "",
-			joinColumns = @JoinColumn(name = ""),
-			inverseJoinColumns = @JoinColumn(name = ""))//need column names----------------------
-	private Set<Assessment> assessments;
+	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="week_assessment",
+			joinColumns=@JoinColumn(name="week_id"),
+			inverseJoinColumns=@JoinColumn(name="assessment_id"))
+	private Set<Assessment> assessments; 
+
 
 	public Week() {
 		weekId = 0;

@@ -21,13 +21,14 @@ public class Assessment {
 	private Integer assessmentId;
 	@Column
 	private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
-	@Column
+	@Column(name="type0")
 	private String type;
 	//private Integer weekId;
 	@Column
 	private Float average;
+	
 	@ManyToOne(fetch=FetchType.EAGER) 
-	@JoinColumn(name="") //need column name------------------------------------------------
+	@JoinColumn(name="category_id") //need column name------------------------------------------------
 	private Category skillCategory;
 
 	public Assessment() {

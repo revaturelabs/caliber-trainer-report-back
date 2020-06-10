@@ -47,27 +47,51 @@ class ParseJSONTest {
     // testing setTrainer
 
     @Test
-    public void testSetTrainerNull() {
+    public void testSetTrainer() {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(setTrainer());
     }
 
+    @Test
+    public void testSetTrainerAssertionError() {
+        assertThrows(AssertionError.class,
+                () -> {
+                    assertNull(setTrainer()); // throws AssertionError because file is not set
+                });
+    }
+
     // testing setWeek
 
     @Test
-    public void testSetWeekNull() {
+    public void testSetWeek() {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(setWeek());
     }
 
+    @Test
+    public void testSetWeekAssertionError() {
+        assertThrows(AssertionError.class,
+                () -> {
+                    assertNull(setWeek()); // throws AssertionError because file is not set
+                });
+    }
+
     // testing setAssessment
 
     @Test
-    public void testSetAssessmentNull() {
+    public void testSetAssessment() {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(setAssessment());
+    }
+
+    @Test
+    public void testSetAssessmentAssertionError() {
+        assertThrows(AssertionError.class,
+                () -> {
+                    assertNull(setAssessment()); // throws AssertionError because file is not set
+                });
     }
 }

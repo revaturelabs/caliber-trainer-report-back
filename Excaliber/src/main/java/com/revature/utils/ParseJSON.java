@@ -18,41 +18,130 @@ public class ParseJSON {
     private static String json;
     private static JSONObject obj;
 
+    /**
+     * Gets all Batch object from the JSON
+     *
+     * @return
+     * @throws JSONException
+     */
+    private static JSONArray getBatchJSONObject() throws JSONException {
+        return new JSONObject(json).getJSONArray("batches");
+    }
 
-    protected static Batch setBatchData() {
+    /**
+     * Loads data from JSON object and creates a set of Batchs
+     *
+     * @return Set<Batch>
+     */
+    protected static Set<Batch> setBatchData() {
         assert json != null;
+        Set<Batch> batchSet = new HashSet();
         try {
-            JSONObject obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0);
-            Batch batch = new Batch(
-                    obj.getString("batchId"),
-                    obj.getString("name"),
-                    obj.getString("startDate"),
-                    obj.getString("endDate"),
-                    obj.getString("skill"),
-                    obj.getString("location"));
+            JSONArray batchsJSON = getBatchJSONObject();
+            for (int i = 0; i < batchsJSON.length(); i++) {
+                JSONObject obj = batchsJSON.getJSONObject(i);
+                Batch batch = new Batch(
+                        obj.getString("batchId"),
+                        obj.getString("name"),
+                        obj.getString("startDate"),
+                        obj.getString("endDate"),
+                        obj.getString("skill"),
+                        obj.getString("location"));
+                batchSet.add(batch);
+            }
 
-
-            System.out.println(batch);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        return batchSet;
     }
 
+    /**
+     * Loads data from JSON object and creates a set of Weeks
+     *
+     * @return
+     */
     protected static Set<Week> setWeek() {
         //TODO change for all batch
         assert json != null;
         Set<Week> weeks = new HashSet();
         try {
-            JSONArray obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0).getJSONArray("qcNotes");
-            for (int i = 0; i < obj.length(); i++) {
-                weeks.add(new Week(obj.getJSONObject(i).getString("week"), obj.getJSONObject(i).getString("technicalStatus")));
+            JSONArray batchsJSON = getBatchJSONObject();
+            for (int i = 0; i < batchsJSON.length(); i++) {
+                // grab the qcNotes object
+                JSONArray obj = batchsJSON.getJSONObject(i).getJSONArray("qcNotes");
+                for (int j = 0; j < obj.length(); j++) {
+                    // for each week in qcNotes object load data
+                    Week week = new Week(
+                            obj.getJSONObject(j).getString("week"),
+                            obj.getJSONObject(j).getString("technicalStatus")
+                    );
+                    week.setBatchId(batchsJSON.getJSONObject(i).getString("batchId"));
+//                    // grab each categories qcNotes object
+//                    JSONArray categories = obj.getJSONObject(j).getJSONArray("categories");
+//                    for (int k = 0; k < categories.length(); k++) {
+//                        week.getCategories().add(categories.getString(i));
+//                    }
+                    Set<Assessment> assessments = setAssessmentByBatch(batchsJSON.getJSONObject(i));
+                    week.setAssessments(assessments);
+
+                    weeks.add(week);
+                    System.out.println(week);
+                }
+
             }
-            System.out.println(weeks);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return weeks;
+    }
+
+    protected static Set<Assessment> setAssessmentByBatch(JSONObject batch) {
+        assert json != null;
+        Set<Assessment> assessments = new HashSet();
+
+        try {
+            JSONArray batchsJSON = getBatchJSONObject();
+
+            JSONArray obj = batch.getJSONArray("assessments");
+            for (int i = 0; i < obj.length(); i++) {
+                assessments.add(new Assessment(
+                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+                        obj.getJSONObject(i).getString("assessmentType"),
+                        Float.valueOf(obj.getJSONObject(i).getString("average"))
+                ));
+            }
+
+
+            System.out.println(assessments);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return assessments;
+    }
+
+    protected static Set<Assessment> setAssessment() {
+        assert json != null;
+        Set<Assessment> assessments = new HashSet();
+
+        try {
+            JSONArray batchsJSON = getBatchJSONObject();
+            for (int j = 0; j < batchsJSON.length(); j++) {
+                JSONArray obj = batchsJSON.getJSONObject(j).getJSONArray("assessments");
+                for (int i = 0; i < obj.length(); i++) {
+                    assessments.add(new Assessment(
+                            Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+                            obj.getJSONObject(i).getString("assessmentType"),
+                            Float.valueOf(obj.getJSONObject(i).getString("average"))
+                    ));
+                }
+            }
+
+            System.out.println(assessments);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return assessments;
     }
 
     protected static Trainer setTrainer() {
@@ -66,27 +155,28 @@ public class ParseJSON {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        return trainer;
     }
 
-    protected static Set<Assessment> setAssessment() {
+    /**
+     * gets all the batch id from the JSON
+     *
+     * @return set of batch ids
+     */
+    public Set<String> getBatchIds() {
         assert json != null;
-        Set<Assessment> assessments = new HashSet();
+        Set<String> out = new HashSet();
+        JSONArray batchsJSON = null;
         try {
-            JSONArray obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0).getJSONArray("assessments");
-            for (int i = 0; i < obj.length(); i++) {
-                assessments.add(new Assessment(
-                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
-                        obj.getJSONObject(i).getString("assessmentType"),
-                        Float.valueOf(obj.getJSONObject(i).getString("average")),
-                        obj.getJSONObject(i).getString("skillCategory")
-                ));
+            batchsJSON = getBatchJSONObject();
+            for (int i = 0; i < batchsJSON.length(); i++) {
+                out.add(batchsJSON.getJSONObject(i).getString("batchId"));
             }
-            System.out.println(assessments);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return assessments;
+
+        return out;
     }
 
 

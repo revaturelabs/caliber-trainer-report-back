@@ -82,14 +82,42 @@ public class ParseJSON {
 //                    for (int k = 0; k < categories.length(); k++) {
 //                        week.getCategories().add(categories.getString(i));
 //                    }
+                    Set<Assessment> assessments = setAssessmentByBatch(batchsJSON.getJSONObject(i));
+                    week.setAssessments(assessments);
+
                     weeks.add(week);
-//                    System.out.println(week);
+                    System.out.println(week);
                 }
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return weeks;
+    }
+
+    protected static Set<Assessment> setAssessmentByBatch(JSONObject batch) {
+        assert json != null;
+        Set<Assessment> assessments = new HashSet();
+
+        try {
+            JSONArray batchsJSON = getBatchJSONObject();
+
+            JSONArray obj = batch.getJSONArray("assessments");
+            for (int i = 0; i < obj.length(); i++) {
+                assessments.add(new Assessment(
+                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+                        obj.getJSONObject(i).getString("assessmentType"),
+                        Float.valueOf(obj.getJSONObject(i).getString("average"))
+                ));
+            }
+
+
+            System.out.println(assessments);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return assessments;
     }
 
     protected static Set<Assessment> setAssessment() {
@@ -104,8 +132,7 @@ public class ParseJSON {
                     assessments.add(new Assessment(
                             Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
                             obj.getJSONObject(i).getString("assessmentType"),
-                            Float.valueOf(obj.getJSONObject(i).getString("average")),
-                            obj.getJSONObject(i).getString("skillCategory")
+                            Float.valueOf(obj.getJSONObject(i).getString("average"))
                     ));
                 }
             }

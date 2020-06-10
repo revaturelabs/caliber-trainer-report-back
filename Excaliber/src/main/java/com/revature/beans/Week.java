@@ -1,28 +1,28 @@
 package com.revature.beans;
 
-import java.util.HashSet;
+import javax.persistence.*;
 import java.util.Set;
 
 public class Week {
 	private Integer weekId;
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
-	private Integer batchId;
+	private String batchId;
 	private String technicalStatus;
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="",
-			joinColumns=@JoinColumn(name=""),
-			inverseJoinColumns=@JoinColumn(name=""))//need column names----------------------
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "",
+			joinColumns = @JoinColumn(name = ""),
+			inverseJoinColumns = @JoinColumn(name = ""))//need column names----------------------
 	private Set<Category> categories;
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="",
-			joinColumns=@JoinColumn(name=""),
-			inverseJoinColumns=@JoinColumn(name=""))//need column names----------------------
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "",
+			joinColumns = @JoinColumn(name = ""),
+			inverseJoinColumns = @JoinColumn(name = ""))//need column names----------------------
 	private Set<Assessment> assessments;
 
 	public Week() {
 		weekId = 0;
 		weekNumber = "";
-		batchId = 0;
+		batchId = "";
 		technicalStatus = "";
 		categories = null;
 		assessments = null;
@@ -49,25 +49,32 @@ public class Week {
 	public String getWeekNumber() {
 		return weekNumber;
 	}
+
 	public void setWeekNumber(String weekNumber) {
 		this.weekNumber = weekNumber;
 	}
-	public Integer getBatchId() {
+
+	public String getBatchId() {
 		return batchId;
 	}
-	public void setBatchId(Integer batchId) {
+
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
+
 	public String getTechnicalStatus() {
 		return technicalStatus;
 	}
+
 	public void setTechnicalStatus(String technicalStatus) {
 		this.technicalStatus = technicalStatus;
 	}
-	public Set<String> getCategories() {
+
+	public Set<Category> getCategories() {
 		return categories;
 	}
-	public void setCategories(Set<String> categories) {
+
+	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
 	}
 

@@ -21,7 +21,7 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column
-	private String category;
+	private String name;
 	
 	
 	
@@ -30,7 +30,7 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", category=" + category + "]";
+		return "Category [id=" + id + ", name=" + name + "]";
 	}
 	public int getId() {
 		return id;
@@ -38,11 +38,11 @@ public class Category {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCategory() {
-		return category;
+	public String getName() {
+		return name;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

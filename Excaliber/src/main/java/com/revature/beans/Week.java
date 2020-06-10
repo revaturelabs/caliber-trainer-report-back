@@ -27,15 +27,17 @@ public class Week {
 	private String batchId;
 	@Column
 	private String technicalStatus;
+	
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="",
-			joinColumns=@JoinColumn(name=""),
-			inverseJoinColumns=@JoinColumn(name=""))//need column names----------------------
+	@JoinTable(name="week_category",
+			joinColumns=@JoinColumn(name="week_id"),
+			inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Set<Category> categories;
+	
 	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="",
-			joinColumns=@JoinColumn(name=""),
-			inverseJoinColumns=@JoinColumn(name=""))//need column names----------------------
+	@JoinTable(name="week_assessment",
+			joinColumns=@JoinColumn(name="week_id"),
+			inverseJoinColumns=@JoinColumn(name="assessment_id"))
 	private Set<Assessment> assessments; 
 
 	public Week() {

@@ -1,4 +1,4 @@
-package com.revature.beans;
+package com.revature.tables;
 
 import java.util.ArrayList;
 import java.util.Date;

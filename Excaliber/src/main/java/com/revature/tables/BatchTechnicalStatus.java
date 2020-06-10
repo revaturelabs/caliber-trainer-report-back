@@ -1,4 +1,4 @@
-package com.revature.beans;
+package com.revature.tables;
 
 /* Batch Technical Status Bean
  	

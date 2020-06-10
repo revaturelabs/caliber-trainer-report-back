@@ -1,30 +1,58 @@
 package com.revature.beans;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
+
+@Entity 
+@Table
 public class Batch {
-	private Integer exBatchId; // our primary key 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id; // our primary key 
+	@Column
 	private String batchId; // key from caliber
+	@Column
 	private String batchName;
+	@Column
 	private Date startDate;
+	@Column
 	private Date endDate;
+	@Column
 	private String skill;
+	@Column
 	private String location;
 	//private String type; // always Revature?
-	private Trainer trainer;
+	@Column
+	private int trainerId;
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="",
+			joinColumns=@JoinColumn(name=""),
+			inverseJoinColumns=@JoinColumn(name=""))//need column names----------------------
 	private Set<Week> weeks = new HashSet<Week>();
 
 	public Batch() {
-		exBatchId = 0;
+		id = 0;
 		this.batchId = "";
 		batchName = "";
 		this.startDate = null;
 		this.endDate = null;
 		this.skill = "";
 		this.location = "";
-		trainer = null;
+		trainerId = 0;
 		weeks = null;
 	}
 
@@ -40,11 +68,11 @@ public class Batch {
 
 
 	public Integer getExBatchId() {
-		return exBatchId;
+		return id;
 	}
 
 	public void setExBatchId(Integer exBatchId) {
-		this.exBatchId = exBatchId;
+		this.id = exBatchId;
 	}
 
 	public String getBatchId() {
@@ -83,11 +111,11 @@ public class Batch {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public Trainer getTrainer() {
-		return trainer;
+	public int getTrainerId() {
+		return trainerId;
 	}
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
+	public void setTrainer(int trainer) {
+		this.trainerId = trainer;
 	}
 
 	public Set<Week> getWeeks() {
@@ -101,14 +129,14 @@ public class Batch {
 	@Override
 	public String toString() {
 		return "Batch{" +
-				"exBatchId=" + exBatchId +
+				"id=" + id +
 				", batchId='" + batchId + '\'' +
 				", batchName='" + batchName + '\'' +
 				", startDate=" + startDate +
 				", endDate=" + endDate +
 				", skill='" + skill + '\'' +
 				", location='" + location + '\'' +
-				", trainer=" + trainer +
+				", trainer=" + trainerId +
 				", weeks=" + weeks +
 				'}';
 	}

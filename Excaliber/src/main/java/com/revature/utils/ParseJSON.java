@@ -1,5 +1,6 @@
 package com.revature.utils;
 
+import com.revature.beans.Assessment;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
@@ -68,17 +69,25 @@ public class ParseJSON {
         return null;
     }
 
-//    protected static Assessment setAssessment(){
-//        assert json != null;
-//        Trainer Assessment = null;
-//        try {
-//            JSONArray obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0).get("batchId");
-//
-//            System.out.println(obj.getJSONObject(0).get("batchId"));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return null;}
+    protected static Set<Assessment> setAssessment() {
+        assert json != null;
+        Set<Assessment> assessments = new HashSet();
+        try {
+            JSONArray obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0).getJSONArray("assessments");
+            for (int i = 0; i < obj.length(); i++) {
+                assessments.add(new Assessment(
+                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+                        obj.getJSONObject(i).getString("assessmentType"),
+                        Float.valueOf(obj.getJSONObject(i).getString("average")),
+                        obj.getJSONObject(i).getString("skillCategory")
+                ));
+            }
+            System.out.println(assessments);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return assessments;
+    }
 
 
     protected static boolean readDataFromFile(String fileName) {

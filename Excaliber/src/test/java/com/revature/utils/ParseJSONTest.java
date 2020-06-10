@@ -64,10 +64,10 @@ class ParseJSONTest {
 
     // testing setAssessment
 
-//    @Test
-//    public void testSetAssessmentNull(){
-//        String fileName = "data.json";
-//        readDataFromFile(fileName);
-//        assertNull(setAssessment());
-//    }
+    @Test
+    public void testSetAssessmentNull() {
+        String fileName = "data.json";
+        readDataFromFile(fileName);
+        assertNotNull(setAssessment());
+    }
 }

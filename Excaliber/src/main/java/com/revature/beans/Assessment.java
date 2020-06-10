@@ -7,9 +7,8 @@ public class Assessment {
 	//private Integer weekId;
 	private Float average;
 	private String skillCategory;
-	
-	public Assessment()
-	{
+
+	public Assessment() {
 		assessmentId = 0;
 		scoreWeight = 0;
 		type = "";
@@ -17,13 +16,23 @@ public class Assessment {
 		average = (float) 0;
 		skillCategory = "";
 	}
-	
+
+	public Assessment(Integer scoreWeight, String type, Float average, String skillCategory) {
+		this.assessmentId = assessmentId;
+		this.scoreWeight = scoreWeight;
+		this.type = type;
+		this.average = average;
+		this.skillCategory = skillCategory;
+	}
+
 	public Integer getAssessmentId() {
 		return assessmentId;
 	}
+
 	public void setAssessmentId(Integer assessmentId) {
 		this.assessmentId = assessmentId;
 	}
+
 	public Integer getScoreWeight() {
 		return scoreWeight;
 	}
@@ -45,15 +54,27 @@ public class Assessment {
 	public Float getAverage() {
 		return average;
 	}
+
 	public void setAverage(Float average) {
 		this.average = average;
 	}
+
 	public String getSkillCategory() {
 		return skillCategory;
 	}
+
 	public void setSkillCategory(String skillCategory) {
 		this.skillCategory = skillCategory;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Assessment{" +
+				"assessmentId=" + assessmentId +
+				", scoreWeight=" + scoreWeight +
+				", type='" + type + '\'' +
+				", average=" + average +
+				", skillCategory='" + skillCategory + '\'' +
+				'}';
+	}
 }

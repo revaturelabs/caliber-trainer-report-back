@@ -1,13 +1,9 @@
 package com.revature.utils;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.revature.utils.ParseJSON.*;
 import static org.junit.jupiter.api.Assertions.*;
-
-import com.revature.utils.ParseJSON;
 
 class ParseJSONTest {
 
@@ -32,6 +28,7 @@ class ParseJSONTest {
 
     }
 
+    // testing setBatchData
     @Test
     public void testSetBatchDataNull(){
         String fileName = "data.json";
@@ -40,11 +37,37 @@ class ParseJSONTest {
     }
 
     @Test
-    public void testSetBatchDataAssertionError(){
+    public void testSetBatchDataAssertionError() {
         assertThrows(AssertionError.class,
-                ()->{
+                () -> {
                     assertNull(setBatchData()); // throws AssertionError because file is not set
                 });
     }
 
+    // testing setTrainer
+
+    @Test
+    public void testSetTrainerNull() {
+        String fileName = "data.json";
+        readDataFromFile(fileName);
+        assertNotNull(setTrainer());
+    }
+
+    // testing setWeek
+
+    @Test
+    public void testSetWeekNull() {
+        String fileName = "data.json";
+        readDataFromFile(fileName);
+        assertNotNull(setWeek());
+    }
+
+    // testing setAssessment
+
+//    @Test
+//    public void testSetAssessmentNull(){
+//        String fileName = "data.json";
+//        readDataFromFile(fileName);
+//        assertNull(setAssessment());
+//    }
 }

@@ -15,27 +15,38 @@ public class Batch {
 	//private String type; // always Revature?
 	private Trainer trainer;
 	private Set<Week> weeks = new HashSet<Week>();
-	
-	public Batch()
-	{
+
+	public Batch() {
 		exBatchId = 0;
-		batchId = "";
+		this.batchId = "";
 		batchName = "";
-		startDate = null;
-		endDate = null;
-		skill = "";
-		location = "";
+		this.startDate = null;
+		this.endDate = null;
+		this.skill = "";
+		this.location = "";
 		trainer = null;
 		weeks = null;
 	}
 
-	
+
+	public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
+		this.batchId = batchId;
+		this.batchName = batchName;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
+		this.skill = skill;
+		this.location = location;
+	}
+
+
 	public Integer getExBatchId() {
 		return exBatchId;
 	}
+
 	public void setExBatchId(Integer exBatchId) {
 		this.exBatchId = exBatchId;
 	}
+
 	public String getBatchId() {
 		return batchId;
 	}
@@ -86,4 +97,20 @@ public class Batch {
 	public void setWeeks(Set<Week> weeks) {
 		this.weeks = weeks;
 	}
+
+	@Override
+	public String toString() {
+		return "Batch{" +
+				"exBatchId=" + exBatchId +
+				", batchId='" + batchId + '\'' +
+				", batchName='" + batchName + '\'' +
+				", startDate=" + startDate +
+				", endDate=" + endDate +
+				", skill='" + skill + '\'' +
+				", location='" + location + '\'' +
+				", trainer=" + trainer +
+				", weeks=" + weeks +
+				'}';
+	}
+
 }

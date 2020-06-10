@@ -10,9 +10,8 @@ public class Week {
 	private String technicalStatus;
 	private Set<String> categories = new HashSet<String>();
 	private Set<Assessment> assessments = new HashSet<Assessment>();
-	
-	public Week()
-	{
+
+	public Week() {
 		weekId = 0;
 		weekNumber = "";
 		batchId = 0;
@@ -20,13 +19,25 @@ public class Week {
 		categories = null;
 		assessments = null;
 	}
-	
+
+	public Week(String weekNumber, String technicalStatus) {
+		this.weekId = weekId;
+		this.weekNumber = weekNumber;
+		this.batchId = batchId;
+		this.technicalStatus = technicalStatus;
+		// TODO categories;
+		// TODO assessments
+		// TODO batchId
+	}
+
 	public Integer getWeekId() {
 		return weekId;
 	}
+
 	public void setWeekId(Integer weekId) {
 		this.weekId = weekId;
 	}
+
 	public String getWeekNumber() {
 		return weekNumber;
 	}
@@ -58,5 +69,17 @@ public class Week {
 
 	public void setAssessments(Set<Assessment> assessments) {
 		this.assessments = assessments;
+	}
+
+	@Override
+	public String toString() {
+		return "Week{" +
+				"weekId=" + weekId +
+				", weekNumber='" + weekNumber + '\'' +
+				", batchId=" + batchId +
+				", technicalStatus='" + technicalStatus + '\'' +
+				", categories=" + categories +
+				", assessments=" + assessments +
+				'}';
 	}
 }

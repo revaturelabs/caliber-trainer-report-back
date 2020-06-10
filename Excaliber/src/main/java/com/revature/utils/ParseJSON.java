@@ -1,22 +1,84 @@
 package com.revature.utils;
 
 import com.revature.beans.Batch;
+import com.revature.beans.Trainer;
+import com.revature.beans.Week;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashSet;
 import java.util.Set;
 
 public class ParseJSON {
     private static String json;
+    private static JSONObject obj;
 
 
-    protected static Batch setBatchData(){
+    protected static Batch setBatchData() {
         assert json != null;
+        try {
+            JSONObject obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0);
+            Batch batch = new Batch(
+                    obj.getString("batchId"),
+                    obj.getString("name"),
+                    obj.getString("startDate"),
+                    obj.getString("endDate"),
+                    obj.getString("skill"),
+                    obj.getString("location"));
+
+
+            System.out.println(batch);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
+    protected static Set<Week> setWeek() {
+        //TODO change for all batch
+        assert json != null;
+        Set<Week> weeks = new HashSet();
+        try {
+            JSONArray obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0).getJSONArray("qcNotes");
+            for (int i = 0; i < obj.length(); i++) {
+                weeks.add(new Week(obj.getJSONObject(i).getString("week"), obj.getJSONObject(i).getString("technicalStatus")));
+            }
+            System.out.println(weeks);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return weeks;
+    }
+
+    protected static Trainer setTrainer() {
+        assert json != null;
+        Trainer trainer = null;
+        try {
+            obj = new JSONObject(json).getJSONObject("employee");
+            trainer = new Trainer(obj.get("firstName").toString(), obj.get("lastName").toString(),
+                    obj.get("email").toString());
+            return trainer;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+//    protected static Assessment setAssessment(){
+//        assert json != null;
+//        Trainer Assessment = null;
+//        try {
+//            JSONArray obj = new JSONObject(json).getJSONArray("batches").getJSONObject(0).get("batchId");
+//
+//            System.out.println(obj.getJSONObject(0).get("batchId"));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return null;}
 
 
     protected static boolean readDataFromFile(String fileName) {

@@ -28,6 +28,7 @@ public class Batch {
 		trainer = null;
 		weeks = null;
 	}
+
 	
 	public Integer getExBatchId() {
 		return exBatchId;

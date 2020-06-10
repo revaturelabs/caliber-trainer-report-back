@@ -33,10 +33,10 @@ public class Trainer {
 	
 	
 	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="",
-			joinColumns=@JoinColumn(name=""),
-			inverseJoinColumns=@JoinColumn(name="")) //needs column names--------------------------
-	private Set<Batch> batches = new HashSet<Batch>();
+	@JoinTable(name="trainer_batch",
+			joinColumns=@JoinColumn(name="trainer_id"),
+			inverseJoinColumns=@JoinColumn(name="batch_id")) //needs column names--------------------------
+	private Set<Batch> batches;
 
 	public Trainer(String firstName, String lastName, String email, String name) {
 		id = 0;
@@ -52,8 +52,8 @@ public class Trainer {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.employeeId = employeeId;
-		this.batches = batches;
+		//this.employeeId = employeeId;
+		//this.batches = batches;
 	}
 
 	public Integer getTrainerId() {

@@ -3,12 +3,37 @@ package com.revature.beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity 
+@Table
 public class Trainer {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer trainerId;
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
+	@Column
 	private String email;
+	@Column
 	private String employeeId; // the trainer's ID from Caliber
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="",
+			joinColumns=@JoinColumn(name=""),
+			inverseJoinColumns=@JoinColumn(name="")) //needs column names--------------------------
 	private Set<Batch> batches = new HashSet<Batch>();
 
 	public Trainer(String firstName, String lastName, String email, String name) {

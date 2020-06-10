@@ -1,6 +1,6 @@
 package com.revature.beans;
 
-/* Weekly Technical Status
+/* Technical Status By Week
 
 User Story:
  •Percent of each QC technical status according to the 
@@ -10,17 +10,17 @@ Objective:
  •Determine trainer consistencies by using QC scores for a week in particular.
   (a group of categories -> i.e. Week 4 is Servlets/Angular).
  
-Note: Using a Set of WeeklyTechnicalStatus objects, 
+Note: Using a Set of TechnicalStatusByWeek objects, 
       a graph could group data points by week
       and display the percentage of each category.
 */
 
-public class WeeklyTechnicalStatus {
+public class TechnicalStatusByWeek {
 	private Double percentage; // percentage of technical status in a category
 	private String category;   // the category the percentage represents
 	private String week;       // the week percentage/category refer to
 
-	public WeeklyTechnicalStatus() {
+	public TechnicalStatusByWeek() {
 		percentage = null;
 		category = "";
 		week = "";
@@ -64,9 +64,9 @@ public class WeeklyTechnicalStatus {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof WeeklyTechnicalStatus))
+		if (!(obj instanceof TechnicalStatusByWeek))
 			return false;
-		WeeklyTechnicalStatus other = (WeeklyTechnicalStatus) obj;
+		TechnicalStatusByWeek other = (TechnicalStatusByWeek) obj;
 		if (category == null) {
 			if (other.category != null)
 				return false;

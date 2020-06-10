@@ -47,7 +47,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            
             <exclusions>
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
@@ -55,29 +54,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        
-        <dependency>
-        
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.3.2</version>
-        <scope>test</scope>
-          
-        </dependency>
-        
-        <dependency>
-        
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.3.2</version>
-        <scope>test</scope>
-        
-        </dependency>
-        
-        
-        
-        
-        
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
@@ -97,12 +73,6 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin.external.google</groupId>
-            <artifactId>android-json</artifactId>
-            <version>0.0.20131108.vaadin1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -137,16 +107,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            
-            <plugin>
-            
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.22.0</version>
-            
-            </plugin>
-            
-            
-            
         </plugins>
     </build>
 

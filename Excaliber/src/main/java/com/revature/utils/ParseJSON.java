@@ -30,9 +30,6 @@ public class ParseJSON {
                     obj.getString("endDate"),
                     obj.getString("skill"),
                     obj.getString("location"));
-
-
-            System.out.println(batch);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -66,7 +63,7 @@ public class ParseJSON {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        return trainer;
     }
 
     protected static Set<Assessment> setAssessment() {

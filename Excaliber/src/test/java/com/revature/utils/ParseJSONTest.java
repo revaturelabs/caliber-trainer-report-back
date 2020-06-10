@@ -33,7 +33,8 @@ class ParseJSONTest {
     public void testSetBatchDataNull(){
         String fileName = "data.json";
         readDataFromFile(fileName);
-        assertNull(setBatchData());
+        assertNotNull(setBatchData());
+        assertEquals(4, setBatchData().size());
     }
 
     @Test
@@ -68,6 +69,7 @@ class ParseJSONTest {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(setWeek());
+        assertEquals(40, setWeek().size());
     }
 
     @Test
@@ -85,6 +87,7 @@ class ParseJSONTest {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(setAssessment());
+        assertEquals(57, setAssessment().size());
     }
 
     @Test

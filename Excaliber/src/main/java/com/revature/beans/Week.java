@@ -6,7 +6,7 @@ import java.util.Set;
 public class Week {
 	private Integer weekId;
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
-	private Integer batchId;
+	private String batchId;
 	private String technicalStatus;
 	private Set<String> categories = new HashSet<String>();
 	private Set<Assessment> assessments = new HashSet<Assessment>();
@@ -14,20 +14,17 @@ public class Week {
 	public Week() {
 		weekId = 0;
 		weekNumber = "";
-		batchId = 0;
+		batchId = "";
 		technicalStatus = "";
-		categories = null;
+		categories = new HashSet();
 		assessments = null;
 	}
 
 	public Week(String weekNumber, String technicalStatus) {
 		this.weekId = weekId;
 		this.weekNumber = weekNumber;
-		this.batchId = batchId;
 		this.technicalStatus = technicalStatus;
-		// TODO categories;
-		// TODO assessments
-		// TODO batchId
+		categories = new HashSet();
 	}
 
 	public Integer getWeekId() {
@@ -41,21 +38,27 @@ public class Week {
 	public String getWeekNumber() {
 		return weekNumber;
 	}
+
 	public void setWeekNumber(String weekNumber) {
 		this.weekNumber = weekNumber;
 	}
-	public Integer getBatchId() {
+
+	public String getBatchId() {
 		return batchId;
 	}
-	public void setBatchId(Integer batchId) {
+
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
+
 	public String getTechnicalStatus() {
 		return technicalStatus;
 	}
+
 	public void setTechnicalStatus(String technicalStatus) {
 		this.technicalStatus = technicalStatus;
 	}
+
 	public Set<String> getCategories() {
 		return categories;
 	}

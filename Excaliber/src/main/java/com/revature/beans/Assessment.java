@@ -1,12 +1,24 @@
 package com.revature.beans;
 
+import javax.persistence.*;
+
+@Entity 
+@Table
 public class Assessment {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer assessmentId;
+	@Column
 	private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
+	@Column(name="type0")
 	private String type;
 	//private Integer weekId;
+	@Column
 	private Float average;
-	private String skillCategory;
+	
+	@ManyToOne(fetch=FetchType.EAGER) 
+	@JoinColumn(name="category_id") //need column name------------------------------------------------
+	private Category skillCategory;
 
 	public Assessment() {
 		assessmentId = 0;
@@ -14,11 +26,11 @@ public class Assessment {
 		type = "";
 		//weekId = 0;
 		average = (float) 0;
-		skillCategory = "";
+		skillCategory = null;
 	}
 
-	public Assessment(Integer scoreWeight, String type, Float average, String skillCategory) {
-		this.assessmentId = assessmentId;
+	public Assessment(Integer scoreWeight, String type, Float average) {
+		//this.assessmentId = assessmentId;
 		this.scoreWeight = scoreWeight;
 		this.type = type;
 		this.average = average;
@@ -59,11 +71,11 @@ public class Assessment {
 		this.average = average;
 	}
 
-	public String getSkillCategory() {
+	public Category getSkillCategory() {
 		return skillCategory;
 	}
 
-	public void setSkillCategory(String skillCategory) {
+	public void setSkillCategory(Category skillCategory) {
 		this.skillCategory = skillCategory;
 	}
 

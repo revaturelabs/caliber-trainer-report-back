@@ -1,20 +1,32 @@
 package com.revature.beans;
 
-import java.util.HashSet;
+import javax.persistence.*;
 import java.util.Set;
 
 public class Week {
 	private Integer weekId;
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
-	private Integer batchId;
+	private String batchId;
 	private String technicalStatus;
-	private Set<String> categories = new HashSet<String>();
-	private Set<Assessment> assessments = new HashSet<Assessment>();
+
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="week_category",
+			joinColumns=@JoinColumn(name="week_id"),
+			inverseJoinColumns=@JoinColumn(name="category_id"))
+	private Set<Category> categories;
+	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="week_assessment",
+			joinColumns=@JoinColumn(name="week_id"),
+			inverseJoinColumns=@JoinColumn(name="assessment_id"))
+	private Set<Assessment> assessments; 
+
 
 	public Week() {
 		weekId = 0;
 		weekNumber = "";
-		batchId = 0;
+		batchId = "";
 		technicalStatus = "";
 		categories = null;
 		assessments = null;
@@ -41,25 +53,32 @@ public class Week {
 	public String getWeekNumber() {
 		return weekNumber;
 	}
+
 	public void setWeekNumber(String weekNumber) {
 		this.weekNumber = weekNumber;
 	}
-	public Integer getBatchId() {
+
+	public String getBatchId() {
 		return batchId;
 	}
-	public void setBatchId(Integer batchId) {
+
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
+
 	public String getTechnicalStatus() {
 		return technicalStatus;
 	}
+
 	public void setTechnicalStatus(String technicalStatus) {
 		this.technicalStatus = technicalStatus;
 	}
-	public Set<String> getCategories() {
+
+	public Set<Category> getCategories() {
 		return categories;
 	}
-	public void setCategories(Set<String> categories) {
+
+	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
 	}
 

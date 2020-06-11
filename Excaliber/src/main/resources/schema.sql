@@ -14,34 +14,37 @@ create table category (
     name varchar not null
 );
 
-create table assessment (
-	assessmentId serial primary key,
-	scoreWeight integer not null,
-	type0 varchar not null,
-	average float not null,
-	category_id integer,
-	foreign key (category_id) references category (id)
+create table assessment(
+                           id          serial primary key,
+                           scoreWeight integer not null,
+                           type0       varchar not null,
+                           average     float   not null,
+                           category_id integer,
+                           foreign key (category_id) references category (id)
 );
 
-create table week (
-	weekId serial primary key,
-	weekNumber varchar not null,
-	batchId varchar not null,
-	technicalStatus varchar not null
+create table week
+(
+    id              serial primary key,
+    weekNumber      varchar not null,
+    batchId         varchar not null,
+    technicalStatus varchar not null
 );
 
-create table week_category(
-	week_id integer not null,
-	category_id integer not null,
-	foreign key (week_id) references week (weekId),
-	foreign key (category_id) references category (id)
+create table week_category
+(
+    week_id     integer not null,
+    category_id integer not null,
+    foreign key (week_id) references week (id),
+    foreign key (category_id) references category (id)
 );
 
-create table week_assessment(
-	week_id integer not null,
-	assessment_id integer not null,
-	foreign key (week_id) references week (weekId),
-	foreign key (assessment_id) references assessment (assessmentId)
+create table week_assessment
+(
+    week_id       integer not null,
+    assessment_id integer not null,
+    foreign key (week_id) references week (id),
+    foreign key (assessment_id) references assessment (id)
 );
 
 create table batch (
@@ -55,19 +58,21 @@ create table batch (
 	trainerId integer not null
 );
 
-create table batch_week (
-	batch_id integer not null,
-	week_id integer not null,
-	foreign key (batch_id) references batch (id),
-	foreign key (week_id) references week (weekId)
+create table batch_week
+(
+    batch_id integer not null,
+    week_id  integer not null,
+    foreign key (batch_id) references batch (id),
+    foreign key (week_id) references week (id)
 );
 
-create table trainer (
-	id serial primary key,
-	firstName varchar not null,
-	lastName varchar not null,
-	email varchar not null,
-	employeeId varchar not null
+create table trainer
+(
+    id         serial primary key,
+    firstName  varchar not null,
+    lastName   varchar not null,
+    email      varchar not null,
+    employeeId varchar
 );
 
 create table trainer_batch (

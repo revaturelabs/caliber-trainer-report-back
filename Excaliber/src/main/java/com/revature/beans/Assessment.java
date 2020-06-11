@@ -7,10 +7,10 @@ import javax.persistence.*;
 public class Assessment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer assessmentId;
-	@Column
+	private Integer id;
+	@Column(name = "scoreWeight")
 	private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
-	@Column(name = "type")
+	@Column(name = "type0")
 	private String type;
 	//private Integer weekId;
 	@Column
@@ -21,7 +21,7 @@ public class Assessment {
 	private Category skillCategory;
 
 	public Assessment() {
-		assessmentId = 0;
+		id = 0;
 		scoreWeight = 0;
 		type = "";
 		//weekId = 0;
@@ -30,27 +30,29 @@ public class Assessment {
 	}
 
 	public Assessment(Integer scoreWeight, String type, Float average) {
-		//this.assessmentId = assessmentId;
+		//this.id = id;
 		this.scoreWeight = scoreWeight;
 		this.type = type;
 		this.average = average;
 		this.skillCategory = skillCategory;
 	}
 
-	public Integer getAssessmentId() {
-		return assessmentId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setAssessmentId(Integer assessmentId) {
-		this.assessmentId = assessmentId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getScoreWeight() {
 		return scoreWeight;
 	}
+
 	public void setScoreWeight(Integer scoreWeight) {
 		this.scoreWeight = scoreWeight;
 	}
+
 	public String getType() {
 		return type;
 	}
@@ -77,7 +79,7 @@ public class Assessment {
 	@Override
 	public String toString() {
 		return "Assessment{" +
-				"assessmentId=" + assessmentId +
+				"id=" + id +
 				", scoreWeight=" + scoreWeight +
 				", type='" + type + '\'' +
 				", average=" + average +

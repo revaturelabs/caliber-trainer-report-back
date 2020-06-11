@@ -3,19 +3,19 @@ package com.revature.beans;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity 
+@Entity
 @Table
 public class Trainer {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column
+	@Column(name = "firstname")
 	private String firstName;
-	@Column
+	@Column(name = "lastname")
 	private String lastName;
 	@Column
 	private String email;
-	@Column
+	@Column(name = "employeeId")
 	private String employeeId; // the trainer's ID from Caliber
 
 

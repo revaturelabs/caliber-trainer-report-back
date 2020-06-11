@@ -1,9 +1,6 @@
 package com.revature.utils;
 
-import com.revature.beans.Assessment;
-import com.revature.beans.Batch;
-import com.revature.beans.Trainer;
-import com.revature.beans.Week;
+import com.revature.beans.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,15 +73,11 @@ public class ParseJSON {
                             obj.getJSONObject(j).getString("week"),
                             obj.getJSONObject(j).getString("technicalStatus")
                     );
+
                     week.setBatchId(batchsJSON.getJSONObject(i).getString("batchId"));
-//                    // grab each categories qcNotes object
-//                    JSONArray categories = obj.getJSONObject(j).getJSONArray("categories");
-//                    for (int k = 0; k < categories.length(); k++) {
-//                        week.getCategories().add(categories.getString(i));
-//                    }
                     Set<Assessment> assessments = setAssessmentByBatch(batchsJSON.getJSONObject(i));
                     week.setAssessments(assessments);
-
+                    week.setCategories(setCategoriesByWeek(obj.getJSONObject(j)));
                     weeks.add(week);
                     System.out.println(week);
                 }
@@ -96,6 +89,16 @@ public class ParseJSON {
         return weeks;
     }
 
+    public static Set<Category> setCategoriesByWeek(JSONObject week) throws JSONException {
+        // grab each categories qcNotes object
+        JSONArray categories = week.getJSONArray("categories");
+        Set<Category> setCategories = new HashSet();
+        for (int k = 0; k < categories.length(); k++) {
+            setCategories.add(new Category(categories.getString(k)));
+        }
+        return setCategories;
+    }
+
     protected static Set<Assessment> setAssessmentByBatch(JSONObject batch) {
         assert json != null;
         Set<Assessment> assessments = new HashSet();
@@ -105,11 +108,14 @@ public class ParseJSON {
 
             JSONArray obj = batch.getJSONArray("assessments");
             for (int i = 0; i < obj.length(); i++) {
-                assessments.add(new Assessment(
+
+                Assessment assessment = new Assessment(
                         Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
                         obj.getJSONObject(i).getString("assessmentType"),
                         Float.valueOf(obj.getJSONObject(i).getString("average"))
-                ));
+                );
+                assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
+                assessments.add(assessment);
             }
 
 
@@ -144,7 +150,7 @@ public class ParseJSON {
         return assessments;
     }
 
-    protected static Trainer setTrainer() {
+    public static Trainer setTrainer() {
         assert json != null;
         Trainer trainer = null;
         try {

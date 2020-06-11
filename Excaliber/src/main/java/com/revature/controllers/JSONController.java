@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.revature.utils.ParseJSON.readDataFromFile;
-import static com.revature.utils.ParseJSON.setTrainer;
+import java.util.Set;
+
+import static com.revature.utils.ParseJSON.*;
 
 @RestController
 @RequestMapping(path = "/JSONController")
@@ -27,10 +29,12 @@ public class JSONController {
 	@GetMapping
 	public ResponseEntity storeTrainer() {
 		Trainer trainer = setTrainer();
-		System.out.println(trainer);
-		SRSserv.addTrainer(
-				trainer);
-		return ResponseEntity.ok(trainer);
+		Set<Batch> batches = setBatchData();
+		trainer.setBatches(batches);
+		trainer.setId(SRSserv.addTrainer(
+				trainer));
+		return ResponseEntity.ok(SRSserv
+				.getTrainerById(trainer.getId()));
 
 	}
 }

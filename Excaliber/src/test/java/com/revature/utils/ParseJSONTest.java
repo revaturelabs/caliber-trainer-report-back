@@ -63,22 +63,22 @@ class ParseJSONTest {
     }
 
     // testing setWeek
-
-    @Test
-    public void testSetWeek() {
-        String fileName = "data.json";
-        readDataFromFile(fileName);
-        assertNotNull(setWeek());
-        assertEquals(40, setWeek().size());
-    }
-
-    @Test
-    public void testSetWeekAssertionError() {
-        assertThrows(AssertionError.class,
-                () -> {
-                    assertNull(setWeek()); // throws AssertionError because file is not set
-                });
-    }
+//
+//    @Test
+//    public void testSetWeek() {
+//        String fileName = "data.json";
+//        readDataFromFile(fileName);
+//        assertNotNull(setWeek());
+//        assertEquals(40, setWeek().size());
+//    }
+//
+//    @Test
+//    public void testSetWeekAssertionError() {
+//        assertThrows(AssertionError.class,
+//                () -> {
+//                    assertNull(setWeek()); // throws AssertionError because file is not set
+//                });
+//    }
 
     // testing setAssessment
 

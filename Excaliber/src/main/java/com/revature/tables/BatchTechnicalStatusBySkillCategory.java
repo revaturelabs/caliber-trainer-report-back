@@ -2,41 +2,38 @@ package com.revature.tables;
 
 /* Batch Technical Status Bean
  	
- 	***Bean to generate graph for Technical Status per batch***
+ 	***Bean to generate graph for Technical Status per batch according to skillCategory***
  	*
  	*User Story: 
  		• To generate graphical representation of QC Technical Status
- 			according to the batch.
+ 			per batch according to skillCategory.
  			
  	*Objective: 
  		•Generate the metrics that allows to see how well a trainer is 
- 			performing per batch.
+ 			performing per batch according to skillCategory.
  			
  	*Data-Points:
  		•Batch ID from Batch
  		•Batch Name from Batch
  		•Technical Status from Batch's QC notes.
- 		•Assessment Score from Batch's Assessment in percentage.
- 		•Raw Score from Batch's Assessment in percentage.
+ 		•SkillCategory from Batch's Assessment.
   */
 
-public class BatchTechnicalStatus {
+public class BatchTechnicalStatusBySkillCategory {
 	private Integer batchId;			// ID number of a batch
 	private String batchName;			// Name of a batch
 	private String technicalStatus;		// GOOD, BAD, etc for batch
-	private Double rawScore;			// Highest score a batch can score in %
-	private Double assessmentScore;		// Actual score scored by a batch in %
+	private String skillCategory;		// skillCategory from Assessment eg: Java, SQL etc.
 	
 	//Constructor
-	public BatchTechnicalStatus() {
+	public BatchTechnicalStatusBySkillCategory() {
 			batchId = null;
 			batchName = "";
 			technicalStatus = "";
-			rawScore = null;
-			assessmentScore = null;
+			skillCategory= "";
 		}
-
-	// getters and setters	
+	
+	//Getters and setters
 	public Integer getBatchId() {
 		return batchId;
 	}
@@ -61,41 +58,24 @@ public class BatchTechnicalStatus {
 		this.technicalStatus = technicalStatus;
 	}
 
-	public Double getRawScore() {
-		return rawScore;
+	public String getSkillCategory() {
+		return skillCategory;
 	}
 
-	public void setRawScore(Double rawScore) {
-		this.rawScore = rawScore;
+	public void setSkillCategory(String skillCategory) {
+		this.skillCategory = skillCategory;
 	}
-
-	public Double getAssessmentScore() {
-		return assessmentScore;
-	}
-
-	public void setAssessmentScore(Double assessmentScore) {
-		this.assessmentScore = assessmentScore;
-	}
-
-		//Generate hascode and equals
 	
+	//HashCode and equals()
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((assessmentScore == null) ? 0 : assessmentScore.hashCode());
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
 		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
-		result = prime * result + ((rawScore == null) ? 0 : rawScore.hashCode());
+		result = prime * result + ((skillCategory == null) ? 0 : skillCategory.hashCode());
 		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
 		return result;
-	}
-	
-	//Generate toString()
-	@Override
-	public String toString() {
-		return "BatchTechnicalStatus [batchId=" + batchId + ", batchName=" + batchName + ", technicalStatus="
-				+ technicalStatus + ", rawScore=" + rawScore + ", assessmentScore=" + assessmentScore + "]";
 	}
 
 	@Override
@@ -106,12 +86,7 @@ public class BatchTechnicalStatus {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BatchTechnicalStatus other = (BatchTechnicalStatus) obj;
-		if (assessmentScore == null) {
-			if (other.assessmentScore != null)
-				return false;
-		} else if (!assessmentScore.equals(other.assessmentScore))
-			return false;
+		BatchTechnicalStatusBySkillCategory other = (BatchTechnicalStatusBySkillCategory) obj;
 		if (batchId == null) {
 			if (other.batchId != null)
 				return false;
@@ -122,10 +97,10 @@ public class BatchTechnicalStatus {
 				return false;
 		} else if (!batchName.equals(other.batchName))
 			return false;
-		if (rawScore == null) {
-			if (other.rawScore != null)
+		if (skillCategory == null) {
+			if (other.skillCategory != null)
 				return false;
-		} else if (!rawScore.equals(other.rawScore))
+		} else if (!skillCategory.equals(other.skillCategory))
 			return false;
 		if (technicalStatus == null) {
 			if (other.technicalStatus != null)
@@ -134,6 +109,17 @@ public class BatchTechnicalStatus {
 			return false;
 		return true;
 	}
+	
+	//toString()
+	@Override
+	public String toString() {
+		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName
+				+ ", technicalStatus=" + technicalStatus + ", skillCategory=" + skillCategory + "]";
+	}
+	
+	
+
+	
 	
 	 
 	

@@ -17,6 +17,10 @@
         <java.version>1.8</java.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+	<sonar.projectKey>revaturelabs_caliber-trainer-report-back</sonar.projectKey>
+  	<sonar.organization>revaturelabs-v2</sonar.organization>
+  	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  	<sonar.login>94f0a35ae179dbb9e540ab29e496462fbfe1964d</sonar.login>
     </properties>
 
     <dependencies>

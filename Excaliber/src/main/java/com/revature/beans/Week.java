@@ -3,10 +3,17 @@ package com.revature.beans;
 import javax.persistence.*;
 import java.util.Set;
 
+@Entity 
+@Table
 public class Week {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer weekId;
+	@Column
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
+	@Column
 	private String batchId;
+	@Column
 	private String technicalStatus;
 
 	

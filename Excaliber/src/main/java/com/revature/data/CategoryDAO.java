@@ -3,9 +3,9 @@ package com.revature.data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.revature.beans.Week;
+import com.revature.beans.Category;
 
 @Repository
-public interface WeekDAO extends JpaRepository<Week, Integer> {
+public interface CategoryDAO extends JpaRepository<Category, Integer>  {
 
 }

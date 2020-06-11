@@ -180,7 +180,7 @@ public class ParseJSON {
     }
 
 
-    protected static boolean readDataFromFile(String fileName) {
+    public static boolean readDataFromFile(String fileName) {
 
         ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();
 

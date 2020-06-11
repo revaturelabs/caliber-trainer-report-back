@@ -1,12 +1,12 @@
-drop table if exists category;
-drop table if exists assessment;
-drop table if exists week;
-drop table if exists week_category;
-drop table if exists week_assessment;
-drop table if exists batch;
-drop table if exists batch_week;
-drop table if exists trainer;
-drop table if exists trainer_batch;
+drop table if exists category CASCADE;
+drop table if exists assessment CASCADE;
+drop table if exists week CASCADE;
+drop table if exists week_category CASCADE;
+drop table if exists week_assessment CASCADE;
+drop table if exists batch CASCADE;
+drop table if exists batch_week CASCADE;
+drop table if exists trainer CASCADE;
+drop table if exists trainer_batch CASCADE;
 
 
 create table category (
@@ -67,7 +67,7 @@ create table trainer (
 	firstName varchar not null,
 	lastName varchar not null,
 	email varchar not null,
-	employeeId varchar not null,
+	employeeId varchar not null
 );
 
 create table trainer_batch (

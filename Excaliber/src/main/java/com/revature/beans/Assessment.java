@@ -2,22 +2,22 @@ package com.revature.beans;
 
 import javax.persistence.*;
 
-@Entity 
+@Entity
 @Table
 public class Assessment {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer assessmentId;
 	@Column
 	private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
-	@Column(name="type0")
+	@Column(name = "type")
 	private String type;
 	//private Integer weekId;
 	@Column
 	private Float average;
-	
-	@ManyToOne(fetch=FetchType.EAGER) 
-	@JoinColumn(name="category_id") //need column name------------------------------------------------
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "category_id") //need column name------------------------------------------------
 	private Category skillCategory;
 
 	public Assessment() {
@@ -57,12 +57,7 @@ public class Assessment {
 	public void setType(String type) {
 		this.type = type;
 	}
-	/*public Integer getWeekId() {
-		return weekId;
-	}
-	public void setWeekId(Integer weekId) {
-		this.weekId = weekId;
-	}*/
+
 	public Float getAverage() {
 		return average;
 	}

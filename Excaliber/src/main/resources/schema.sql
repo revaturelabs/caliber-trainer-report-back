@@ -7,6 +7,7 @@ drop table if exists batch;
 drop table if exists batch_week;
 drop table if exists trainer;
 drop table if exists trainer_batch;
+drop table if exists TechnicalStatusPerBatch;
 
 
 create table category (
@@ -75,4 +76,11 @@ create table trainer_batch (
 	batch_id integer not null,
 	foreign key (trainer_id) references trainer (id),
 	foreign key (batch_id) references batch (id)
+);
+
+create table TechnicalStatusPerBatch(
+	batch_id varchar not null, 
+	batchName varchar not null, 
+	technicalStatus varchar not null
+
 );

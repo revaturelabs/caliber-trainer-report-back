@@ -1,5 +1,7 @@
 package com.revature.tables;
 
+import java.util.ArrayList;
+
 /*
  *  This bean will be used to retrieve the data points necessary
  *
@@ -10,48 +12,72 @@ package com.revature.tables;
  */
 public class TechnicalStatusPerBatch {
 
-    private String batchId; // batch Id to differentiate batches
-    private String batchName; // this will be a human readable name for the batch (ex: id is "Ix2x2UAB", name would be "Batch 1")
-    private String technicalStatus; // consists of "superstar, good, average, poor"
+    private ArrayList<String> batchId; // batch Id to differentiate batches
+
+    private ArrayList<String> batchName; // this will be a human readable name for the batch (ex: id is "Ix2x2UAB",
+    // name would be "Batch 1")
+
+    private ArrayList<int[]> technicalStatus; // consists of "superstar, good, average, poor"
 
     public TechnicalStatusPerBatch() {
-        batchId = "";
-        batchName = "";
-        technicalStatus = "";
+        batchId = new ArrayList<>();
+        batchName = new ArrayList<>();
+        technicalStatus = new ArrayList<>();
     }
 
-    public TechnicalStatusPerBatch(String batchId, String batchName, String technicalStatus) {
-
-        this.batchId = batchId;
-        this.batchName = batchName;
-        this.technicalStatus = technicalStatus;
-    }
-
-
-    public String getBatchId() {
-        return batchId;
-    }
-
-    public void setBatchId(String batchId) {
-        this.batchId = batchId;
-    }
-
-    public String getBatchName() {
+    /**
+     * Gets batchName.
+     *
+     * @return Value of batchName.
+     */
+    public ArrayList<String> getBatchName() {
         return batchName;
     }
 
-    public void setBatchName(String batchName) {
+    /**
+     * Sets new batchName.
+     *
+     * @param batchName New value of batchName.
+     */
+    public void setBatchName(ArrayList<String> batchName) {
         this.batchName = batchName;
     }
 
-    public String getTechnicalStatus() {
+    /**
+     * Gets technicalStatus.
+     *
+     * @return Value of technicalStatus.
+     */
+    public ArrayList<int[]> getTechnicalStatus() {
         return technicalStatus;
     }
 
-    public void setTechnicalStatus(String technicalStatus) {
+    /**
+     * Sets new technicalStatus.
+     *
+     * @param technicalStatus New value of technicalStatus.
+     */
+    public void setTechnicalStatus(ArrayList<int[]> technicalStatus) {
         this.technicalStatus = technicalStatus;
     }
 
+    /**
+     * Gets batchId.
+     *
+     * @return Value of batchId.
+     */
+    public ArrayList<String> getBatchId() {
+        return batchId;
+    }
+
+    /**
+     * Sets new batchId.
+     *
+     * @param batchId New value of batchId.
+     */
+    public void setBatchId(ArrayList<String> batchId) {
+        this.batchId = batchId;
+    }
 
     @Override
     public int hashCode() {
@@ -62,7 +88,6 @@ public class TechnicalStatusPerBatch {
         result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
         return result;
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -94,6 +119,4 @@ public class TechnicalStatusPerBatch {
         return "TechnicalStatusPerBatch [batchId=" + batchId + ", batchName=" + batchName + ", technicalStatus="
                 + technicalStatus + "]";
     }
-
-
 }

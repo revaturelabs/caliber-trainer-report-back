@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
-import static com.revature.utils.ParseJSON.*;
+import static com.revature.utils.ParseJSON.setBatchData;
+import static com.revature.utils.ParseJSON.setTrainer;
 
 @RestController
 @RequestMapping(path = "/JSONController")
@@ -28,6 +29,9 @@ public class JSONController {
 
 	@GetMapping
 	public String storeTrainer() {
+
+//	public ResponseEntity<Trainer> storeTrainer() {
+
 		Trainer trainer = setTrainer();
 		Set<Batch> batches = setBatchData();
 		trainer.setBatches(batches);

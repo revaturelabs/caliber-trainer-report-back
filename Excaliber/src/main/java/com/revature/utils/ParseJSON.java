@@ -1393,8 +1393,7 @@ public class ParseJSON {
     }
 
     /**
-     * Loads data from JSON object and creates a set of Weeks
-     *
+     * @param batch
      * @return
      */
     protected static Set<Week> setWeek(JSONObject batch) {
@@ -1418,7 +1417,6 @@ public class ParseJSON {
                 week.setAssessments(assessments);
                 week.setCategories(setCategoriesByWeek(obj.getJSONObject(j)));
                 weeks.add(week);
-//                    System.out.println(week);
             }
 
         } catch (JSONException e) {
@@ -1427,6 +1425,11 @@ public class ParseJSON {
         return weeks;
     }
 
+    /**
+     * @param week
+     * @return
+     * @throws JSONException
+     */
     public static Set<Category> setCategoriesByWeek(JSONObject week) throws JSONException {
         // grab each categories qcNotes object
         JSONArray categories = week.getJSONArray("categories");
@@ -1437,6 +1440,10 @@ public class ParseJSON {
         return setCategories;
     }
 
+    /**
+     * @param batch
+     * @return
+     */
     protected static Set<Assessment> setAssessmentByBatch(JSONObject batch) {
         assert json != null;
         Set<Assessment> assessments = new HashSet();
@@ -1464,6 +1471,9 @@ public class ParseJSON {
         return assessments;
     }
 
+    /**
+     * @return
+     */
     protected static Set<Assessment> setAssessment() {
         assert json != null;
         Set<Assessment> assessments = new HashSet();
@@ -1488,6 +1498,9 @@ public class ParseJSON {
         return assessments;
     }
 
+    /**
+     * @return
+     */
     public static Trainer setTrainer() {
         assert json != null;
         Trainer trainer = null;
@@ -1500,6 +1513,28 @@ public class ParseJSON {
             e.printStackTrace();
         }
         return trainer;
+    }
+
+    /**
+     * @param fileName
+     * @return
+     */
+    public static boolean readDataFromFile(String fileName) {
+
+        ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();
+
+        File file = new File(classLoader.getResource(fileName).getFile());
+
+        //File is found
+        System.out.println("File Found : " + file.exists());
+
+        try {
+            json = new String(Files.readAllBytes(file.toPath()));
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -1521,25 +1556,6 @@ public class ParseJSON {
         }
 
         return out;
-    }
-
-
-    public static boolean readDataFromFile(String fileName) {
-
-        ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();
-
-        File file = new File(classLoader.getResource(fileName).getFile());
-
-        //File is found
-        System.out.println("File Found : " + file.exists());
-
-        try {
-            json = new String(Files.readAllBytes(file.toPath()));
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 }
 

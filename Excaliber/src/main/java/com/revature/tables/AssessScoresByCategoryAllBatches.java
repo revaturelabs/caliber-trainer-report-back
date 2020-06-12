@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 public class AssessScoresByCategoryAllBatches {
-	private List<Integer> aScores; //assessment scores for each week
+	private List<Double> aScores; //assessment scores for each week
 	private List<String> batchNames; //corresponding batch names
-	private List<Integer> batchId;
+	private List<String> batchId;
 	private String aType; //type of assessment: test, verbal, project etc.
 	
 	//add dates maybe?
@@ -16,16 +16,16 @@ public class AssessScoresByCategoryAllBatches {
 	
 	//two constructors
 	public AssessScoresByCategoryAllBatches() {
-		aScores=new ArrayList<Integer>();
+		aScores=new ArrayList<Double>();
 		batchNames=new ArrayList<String>();
-		batchId=new ArrayList<Integer>();
+		batchId=new ArrayList<String>();
 		aType="";
 	}
 	
 
 
-	public AssessScoresByCategoryAllBatches(ArrayList<Integer> aScores, ArrayList<Integer> batchId, 
-											ArrayList<String> batchNames, String aType) 
+	public AssessScoresByCategoryAllBatches(List<Double> aScores, List<String> batchNames,
+									List<String> batchId,  String aType) 
 	{
 		
 		this.aScores=aScores;
@@ -35,10 +35,10 @@ public class AssessScoresByCategoryAllBatches {
 	}
 	
 	//Getters and Setters
-	public List<Integer> getaScores() {
+	public List<Double> getaScores() {
 		return aScores;
 	}
-	public void setaScores(List<Integer> aScores) {
+	public void setaScores(List<Double> aScores) {
 		this.aScores = aScores;
 	}
 	public List<String> getBatchNames() {
@@ -47,10 +47,10 @@ public class AssessScoresByCategoryAllBatches {
 	public void setBatchNames(List<String> batchNames) {
 		this.batchNames = batchNames;
 	}
-	public List<Integer> getBatchId() {
+	public List<String> getBatchId() {
 		return batchId;
 	}
-	public void setBatchId(List<Integer> batchId) {
+	public void setBatchId(List<String> batchId) {
 		this.batchId = batchId;
 	}
 	public String getaType() {

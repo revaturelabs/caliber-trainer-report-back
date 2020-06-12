@@ -16,31 +16,31 @@ Note: Using a Set of TechnicalStatusByWeek objects,
 */
 
 public class TechnicalStatusByWeek {
-	private String batchId;    // ID of the batch
+	private String batchName;    // Name of the batch
 	private Double percentage; // percentage of technical status in a category
 	private String category;   // the category the percentage represents
 	private String week;       // the week percentage/category refer to
 	
 	public TechnicalStatusByWeek() {
-		batchId = null;
+		batchName = null;
 		percentage = null;
 		category = "";
 		week = "";
 	}
 
-	public TechnicalStatusByWeek(String batchId, Double percentage, String category, String week) {
-		this.batchId = batchId;
+	public TechnicalStatusByWeek(String batchName, Double percentage, String category, String week) {
+		this.batchName = batchName;
 		this.percentage = percentage;
 		this.category = category;
 		this.week = week;
 	}
 
-	public String getBatchId() {
-		return batchId;
+	public String getBatchName() {
+		return batchName;
 	}
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
 	}
 
 	public Double getPercentage() {
@@ -71,7 +71,7 @@ public class TechnicalStatusByWeek {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
+		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((percentage == null) ? 0 : percentage.hashCode());
 		result = prime * result + ((week == null) ? 0 : week.hashCode());
@@ -85,10 +85,10 @@ public class TechnicalStatusByWeek {
 		if (!(obj instanceof TechnicalStatusByWeek))
 			return false;
 		TechnicalStatusByWeek other = (TechnicalStatusByWeek) obj;
-		if (batchId == null) {
-			if (other.batchId != null)
+		if (batchName == null) {
+			if (other.batchName != null)
 				return false;
-		} else if (!batchId.equals(other.batchId))
+		} else if (!batchName.equals(other.batchName))
 			return false;
 		if (category == null) {
 			if (other.category != null)
@@ -110,7 +110,7 @@ public class TechnicalStatusByWeek {
 
 	@Override
 	public String toString() {
-		return "TechnicalStatusByWeek [batchId=" + batchId + ", percentage=" + percentage + ", category=" + category
+		return "TechnicalStatusByWeek [batchName=" + batchName + ", percentage=" + percentage + ", category=" + category
 				+ ", week=" + week + "]";
 	}
 

@@ -16,25 +16,25 @@ import static com.revature.utils.ParseJSON.*;
 @RequestMapping(path = "/JSONController")
 public class JSONController {
 
-	private final StoreRetrieveService SRSserv;
+    private final StoreRetrieveService SRSserv;
 
-	@Autowired
-	public JSONController(StoreRetrieveService s) {
-		SRSserv = s;
-		String fileName = "data.json";
-		readDataFromFile(fileName);
-	}
+    @Autowired
+    public JSONController(StoreRetrieveService s) {
+        SRSserv = s;
+        String fileName = "data.json";
+        readDataFromFile(fileName);
+    }
 
-	@GetMapping
-	public String storeTrainer() {
-		Trainer trainer = setTrainer();
-		Set<Batch> batches = setBatchData();
-		trainer.setBatches(batches);
+    @GetMapping
+    public String storeTrainer() {
+        Trainer trainer = setTrainer();
+        Set<Batch> batches = setBatchData();
+        trainer.setBatches(batches);
 //		return ResponseEntity.ok(SRSserv
 //				.getTrainerById(SRSserv.addEntireTrainer(
 //						trainer).getId()));
-		SRSserv.addEntireTrainer(trainer);
-		return "Works";
+        SRSserv.addEntireTrainer(trainer);
+        return "Works";
 
-	}
+    }
 }

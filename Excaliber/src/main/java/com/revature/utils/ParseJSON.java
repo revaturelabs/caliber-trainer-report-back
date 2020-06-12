@@ -1518,7 +1518,7 @@ public class ParseJSON {
     /**
      * @param fileName
      * @return
-     */
+     
     public static boolean readDataFromFile(String fileName) {
 
         ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();
@@ -1535,7 +1535,7 @@ public class ParseJSON {
             e.printStackTrace();
             return false;
         }
-    }
+    }*/
 
     /**
      * gets all the batch id from the JSON

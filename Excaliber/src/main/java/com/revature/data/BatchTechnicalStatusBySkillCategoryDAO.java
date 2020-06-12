@@ -9,7 +9,7 @@ import com.revature.tables.BatchTechnicalStatusBySkillCategory;
 public class BatchTechnicalStatusBySkillCategoryDAO {
 	public Logger log = Logger.getLogger(BatchTechnicalStatusBySkillCategoryDAO.class);
 	
-	public List<BatchTechnicalStatusBySkillCategory> getTableData(String batchId){
+	public List<BatchTechnicalStatusBySkillCategory> getTableData(){
 		
 		//TODO table data logic here
 		

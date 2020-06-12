@@ -17,7 +17,7 @@ public class BatchTechnicalStatusBySkillCategoryService {
 		dao = v;
 	}
 	
-	public List<BatchTechnicalStatusBySkillCategory> getTableData(String batchId){
-		return dao.getTableData(batchId);
+	public List<BatchTechnicalStatusBySkillCategory> getTableData(){
+		return dao.getTableData();
 	}
 }

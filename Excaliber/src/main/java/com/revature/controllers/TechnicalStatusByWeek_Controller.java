@@ -29,11 +29,11 @@ public class TechnicalStatusByWeek_Controller {
 	
 	// Handles Get request to /TechnicalStatusByWeek/{batch id}
 	// and returns List<TechnicalStatusByWeek> in response body
-	@GetMapping(path = "/{batchId}")
-	public ResponseEntity<List<TechnicalStatusByWeek>> getTableData(@PathVariable("batchId") String batchId){
+	@GetMapping
+	public ResponseEntity<List<TechnicalStatusByWeek>> getTableData(){
 		log.info("TechnicalStatusByWeek_Controller: "
-				+ "Getting table data for TechnicalStatusByWeek/" + batchId);
-		List<TechnicalStatusByWeek> tableObjects = serv.getTableData(batchId);
+				+ "Getting table data for TechnicalStatusByWeek/");
+		List<TechnicalStatusByWeek> tableObjects = serv.getTableData();
 		return ResponseEntity.ok(tableObjects);
 	}
 	

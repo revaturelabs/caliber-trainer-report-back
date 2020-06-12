@@ -3,27 +3,27 @@ package com.revature.beans;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity 
+@Entity
 @Table
 public class Week {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer weekId;
-	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name = "weekNumber")
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
-	@Column
+	@Column(name = "batchId")
 	private String batchId;
-	@Column
+	@Column(name = "technicalStatus")
 	private String technicalStatus;
 
-	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="week_category",
-			joinColumns=@JoinColumn(name="week_id"),
-			inverseJoinColumns=@JoinColumn(name="category_id"))
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "week_category",
+			joinColumns = @JoinColumn(name = "week_id"),
+			inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories;
-	
-	@OneToMany(fetch=FetchType.EAGER)
+
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="week_assessment",
 			joinColumns=@JoinColumn(name="week_id"),
 			inverseJoinColumns=@JoinColumn(name="assessment_id"))
@@ -31,7 +31,7 @@ public class Week {
 
 
 	public Week() {
-		weekId = 0;
+		id = 0;
 		weekNumber = "";
 		batchId = "";
 		technicalStatus = "";
@@ -40,7 +40,7 @@ public class Week {
 	}
 
 	public Week(String weekNumber, String technicalStatus) {
-		this.weekId = weekId;
+		this.id = id;
 		this.weekNumber = weekNumber;
 		this.batchId = batchId;
 		this.technicalStatus = technicalStatus;
@@ -49,12 +49,12 @@ public class Week {
 		// TODO batchId
 	}
 
-	public Integer getWeekId() {
-		return weekId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setWeekId(Integer weekId) {
-		this.weekId = weekId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getWeekNumber() {
@@ -100,7 +100,7 @@ public class Week {
 	@Override
 	public String toString() {
 		return "Week{" +
-				"weekId=" + weekId +
+				"id=" + id +
 				", weekNumber='" + weekNumber + '\'' +
 				", batchId=" + batchId +
 				", technicalStatus='" + technicalStatus + '\'' +

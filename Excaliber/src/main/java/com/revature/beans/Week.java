@@ -9,11 +9,11 @@ public class Week {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "weekNumber")
+	@Column
 	private String weekNumber; // what number week they are in; could be A or B for extended batches
-	@Column(name = "batchId")
+	@Column
 	private String batchId;
-	@Column(name = "technicalStatus")
+	@Column
 	private String technicalStatus;
 
 
@@ -23,11 +23,11 @@ public class Week {
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="week_assessment",
-			joinColumns=@JoinColumn(name="week_id"),
-			inverseJoinColumns=@JoinColumn(name="assessment_id"))
-	private Set<Assessment> assessments; 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "week_assessment",
+			joinColumns = @JoinColumn(name = "week_id"),
+			inverseJoinColumns = @JoinColumn(name = "assessment_id"))
+	private Set<Assessment> assessments;
 
 
 	public Week() {
@@ -40,9 +40,7 @@ public class Week {
 	}
 
 	public Week(String weekNumber, String technicalStatus) {
-		this.id = id;
 		this.weekNumber = weekNumber;
-		this.batchId = batchId;
 		this.technicalStatus = technicalStatus;
 		// TODO categories;
 		// TODO assessments

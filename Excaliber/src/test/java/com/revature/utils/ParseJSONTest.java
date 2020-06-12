@@ -1,5 +1,6 @@
 package com.revature.utils;
 
+import com.revature.beans.Batch;
 import org.junit.jupiter.api.Test;
 
 import static com.revature.utils.ParseJSON.*;
@@ -35,6 +36,13 @@ class ParseJSONTest {
         readDataFromFile(fileName);
         assertNotNull(setBatchData());
         assertEquals(4, setBatchData().size());
+
+        for (Batch o : setBatchData()) {
+            System.out.println(o.getBatchId());
+            System.out.println(o.getWeeks().size());
+//            assertEquals(10, o.getWeeks().size());
+        }
+
     }
 
     @Test

@@ -53,4 +53,48 @@ class AssessmentTest {
     @Test
     void setSkillCategory() {
     }
+
+    @Test
+    void testToString() {
+    }
+
+    @Test
+    void testGetSkillCategory() {
+    }
+
+    @Test
+    void testSetSkillCategory() {
+    }
+
+    @Test
+    void testSetScoreWeight() {
+    }
+
+    @Test
+    void testSetType() {
+    }
+
+    @Test
+    void testSetId() {
+    }
+
+    @Test
+    void testGetId() {
+    }
+
+    @Test
+    void testGetType() {
+    }
+
+    @Test
+    void testGetScoreWeight() {
+    }
+
+    @Test
+    void testGetAverage() {
+    }
+
+    @Test
+    void testSetAverage() {
+    }
 }

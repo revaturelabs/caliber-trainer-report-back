@@ -19,10 +19,7 @@ public class Category {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Category [id=" + id + ", name=" + name + "]";
-    }
+
 
     public int getId() {
         return id;
@@ -40,5 +37,8 @@ public class Category {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Category [id=" + id + ", name=" + name + "]";
+    }
 }

@@ -1383,7 +1383,6 @@ public class ParseJSON {
                         obj.getString("location"));
                 batch.setWeeks(setWeek(obj));
                 batchSet.add(batch);
-                System.out.println(batch);
             }
 
         } catch (JSONException e) {

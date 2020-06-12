@@ -1,13 +1,5 @@
 
---drop table if exists category;
---drop table if exists assessment;
---drop table if exists week;
---drop table if exists week_category;
---drop table if exists week_assessment;
---drop table if exists batch;
---drop table if exists batch_week;
---drop table if exists trainer;
---drop table if exists trainer_batch;
+
 
 
 drop table if exists category CASCADE;
@@ -27,39 +19,26 @@ create table category (
     name varchar not null
 );
 
-<<<<<<< HEAD
-create table assessment(
-    id serial primary key,
- 	scoreWeight integer not null,
-	type0 varchar not null,
-	average float not null,
-	category_id integer,
-	 foreign key (category_id) references category (id)
-=======
+
+
 create table assessment
 (
-    id           serial primary key,
+    id serial primary key,
     score_weight integer not null,
-    type0        varchar not null,
-    average      float   not null,
-    category_id  integer,
+    type0 varchar not null,
+    average float not null,
+    category_id integer,
     foreign key (category_id) references category (id)
->>>>>>> 2de89fccc628a3a17e4ff54b0ae9324514d71a6b
+
 );
 
 create table week
 (
-<<<<<<< HEAD
-    id serial primary key,
-    weekNumber varchar not null,
-    batchId varchar not null,
-    technicalStatus varchar not null
-=======
     id               serial primary key,
     week_number      varchar not null,
     batch_id         varchar not null,
     technical_status varchar not null
->>>>>>> 2de89fccc628a3a17e4ff54b0ae9324514d71a6b
+
 );
 
 create table week_category

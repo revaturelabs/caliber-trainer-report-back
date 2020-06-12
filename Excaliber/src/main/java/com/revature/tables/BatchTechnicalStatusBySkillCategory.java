@@ -134,25 +134,32 @@ public class BatchTechnicalStatus {
 
 =======
 public class BatchTechnicalStatusBySkillCategory {
-	private Integer batchId;			// ID number of a batch
+	private String batchId;			// ID number of a batch
 	private String batchName;			// Name of a batch
 	private String technicalStatus;		// GOOD, BAD, etc for batch
 	private String skillCategory;		// skillCategory from Assessment eg: Java, SQL etc.
 	
 	//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-			batchId = null;
+			batchId = "";
 			batchName = "";
 			technicalStatus = "";
 			skillCategory= "";
 		}
+	//Constructor with parameters
+	public BatchTechnicalStatusBySkillCategory(String batchId, String batchName, String technicalStatus, String skillCategory) {
+			this.batchId = batchId;
+			this.batchName = batchName;
+			this.technicalStatus = technicalStatus;
+			this.skillCategory = skillCategory;
+	}
 	
 	//Getters and setters
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
-	public void setBatchId(Integer batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 

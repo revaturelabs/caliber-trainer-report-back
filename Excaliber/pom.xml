@@ -40,23 +40,18 @@
 			<version>2.3.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency><!-- testNG dependency -->
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency><!-- cucumber dependency -->
 		 	<groupId>io.cucumber</groupId>
 		 	<artifactId>cucumber-testng</artifactId>
 		 	<version>2.3.1</version>
 		 	<scope>test</scope>
-		 </dependency>
-		 <dependency><!-- JUnit to run JUnit test -->
-		     <groupId>org.junit.jupiter</groupId>
-			 <artifactId>junit-jupiter-engine</artifactId>
-			 <version>5.5.2</version>
 		</dependency>
+	  	<dependency>
+	  		<groupId>org.junit.jupiter</groupId>
+	  		<artifactId>junit-jupiter-engine</artifactId>
+	  		<version>5.7.0-M1</version>
+	  		<scope>test</scope>
+	  	</dependency>
 		<dependency><!-- spring boot/starter-data-jdbc -->
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jdbc</artifactId>

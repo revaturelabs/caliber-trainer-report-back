@@ -15,7 +15,7 @@ public class Trainer {
 	private String lastName;
 	@Column
 	private String email;
-	@Column(name = "employeeId")
+	@Column(name = "employee_Id")
 	private String employeeId; // the trainer's ID from Caliber
 
 

@@ -8,7 +8,7 @@ public class Assessment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "scoreWeight")
+	@Column(name = "score_weight")
 	private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
 	@Column(name = "type0")
 	private String type;
@@ -30,11 +30,9 @@ public class Assessment {
 	}
 
 	public Assessment(Integer scoreWeight, String type, Float average) {
-		//this.id = id;
 		this.scoreWeight = scoreWeight;
 		this.type = type;
 		this.average = average;
-		this.skillCategory = skillCategory;
 	}
 
 	public Integer getId() {

@@ -21,7 +21,7 @@ public class JSONController {
 	@Autowired
 	public JSONController(StoreRetrieveService s) {
 		SRSserv = s;
-		String fileName = "data.json";
+		String fileName = "./data.json";
 		readDataFromFile(fileName);
 	}
 

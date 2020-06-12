@@ -30,7 +30,7 @@ public class ParseJSON {
      *
      * @return Set<Batch>
      */
-    protected static Set<Batch> setBatchData() {
+    public static Set<Batch> setBatchData() {
         assert json != null;
         Set<Batch> batchSet = new HashSet();
         try {
@@ -44,7 +44,9 @@ public class ParseJSON {
                         obj.getString("endDate"),
                         obj.getString("skill"),
                         obj.getString("location"));
+                batch.setWeeks(setWeek(obj));
                 batchSet.add(batch);
+                System.out.println(batch);
             }
 
         } catch (JSONException e) {
@@ -58,31 +60,30 @@ public class ParseJSON {
      *
      * @return
      */
-    protected static Set<Week> setWeek() {
+    protected static Set<Week> setWeek(JSONObject batch) {
         //TODO change for all batch
         assert json != null;
         Set<Week> weeks = new HashSet();
         try {
             JSONArray batchsJSON = getBatchJSONObject();
-            for (int i = 0; i < batchsJSON.length(); i++) {
-                // grab the qcNotes object
-                JSONArray obj = batchsJSON.getJSONObject(i).getJSONArray("qcNotes");
-                for (int j = 0; j < obj.length(); j++) {
-                    // for each week in qcNotes object load data
-                    Week week = new Week(
-                            obj.getJSONObject(j).getString("week"),
-                            obj.getJSONObject(j).getString("technicalStatus")
-                    );
 
-                    week.setBatchId(batchsJSON.getJSONObject(i).getString("batchId"));
-                    Set<Assessment> assessments = setAssessmentByBatch(batchsJSON.getJSONObject(i));
-                    week.setAssessments(assessments);
-                    week.setCategories(setCategoriesByWeek(obj.getJSONObject(j)));
-                    weeks.add(week);
-                    System.out.println(week);
-                }
+            // grab the qcNotes object
+            JSONArray obj = batch.getJSONArray("qcNotes");
+            for (int j = 0; j < obj.length(); j++) {
+                // for each week in qcNotes object load data
+                Week week = new Week(
+                        obj.getJSONObject(j).getString("week"),
+                        obj.getJSONObject(j).getString("technicalStatus")
+                );
 
+                week.setBatchId(batch.getString("batchId"));
+                Set<Assessment> assessments = setAssessmentByBatch(batch);
+                week.setAssessments(assessments);
+                week.setCategories(setCategoriesByWeek(obj.getJSONObject(j)));
+                weeks.add(week);
+//                    System.out.println(week);
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -119,7 +120,7 @@ public class ParseJSON {
             }
 
 
-            System.out.println(assessments);
+//            System.out.println(assessments);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -143,7 +144,7 @@ public class ParseJSON {
                 }
             }
 
-            System.out.println(assessments);
+//            System.out.println(assessments);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -24,111 +24,85 @@
     </properties>
 
     <dependencies>
-		<dependency><!-- main selenium dependency -->
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.8.1</version>
-		</dependency>
-		<dependency><!-- selenium chromedriver dependency -->
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>3.8.1</version>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>2.3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency><!-- testNG dependency -->
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency><!-- cucumber dependency -->
-		 	<groupId>io.cucumber</groupId>
-		 	<artifactId>cucumber-testng</artifactId>
-		 	<version>2.3.1</version>
-		 	<scope>test</scope>
-		 </dependency>
-		 <dependency><!-- JUnit to run JUnit test -->
-		     <groupId>org.junit.jupiter</groupId>
-			 <artifactId>junit-jupiter-engine</artifactId>
-			 <version>5.5.2</version>
-		</dependency>
-		<dependency><!-- spring boot/starter-data-jdbc -->
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jdbc</artifactId>
-		</dependency>
-		<dependency> <!-- spring boot/starter-web -->
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency> <!-- spring data/jpa -->
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency> <!-- spring boot/devtools -->
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-devtools</artifactId>
-		    <scope>runtime</scope>
-		    <optional>true</optional>
-		</dependency>
-		<dependency><!-- H2 -->
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		    <scope>runtime</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-test</artifactId>
-		    <scope>test</scope>
-		    <exclusions>
-		        <exclusion>
-		            <groupId>org.junit.vintage</groupId>
-		            <artifactId>junit-vintage-engine</artifactId>
-		        </exclusion>
-		    </exclusions>
-		</dependency>
-		<dependency>
-			 <groupId>org.junit.jupiter</groupId>
-			 <artifactId>junit-jupiter-api</artifactId>
-			 <version>5.3.2</version>
-			 <scope>test</scope>
-		</dependency>
-		<dependency>
-			 <groupId>org.junit.jupiter</groupId>
-			 <artifactId>junit-jupiter-engine</artifactId>
-			 <version>5.3.2</version>
-			 <scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.restdocs</groupId>
-		    <artifactId>spring-restdocs-mockmvc</artifactId>
-		    <scope>test</scope>
-		</dependency>
-		<dependency> <!-- Actuator: creates RESTful endpoints that tell us how our app is doing -->
-		   <!-- /health, /beans, /metrics -->
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency> <!-- jdbc for our spring data to use -->
-		    <groupId>com.oracle.ojdbc</groupId>
-		    <artifactId>ojdbc8</artifactId>
-		    <version>19.3.0.0</version>
-		</dependency>
-		<dependency><!-- log4j to do loging -->
-		    <groupId>log4j</groupId>
-		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.vaadin.external.google</groupId>
-		    <artifactId>android-json</artifactId>
-		    <version>0.0.20131108.vaadin1</version>
-		    <scope>compile</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency> <!-- spring data/jpa -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+        
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.3.2</version>
+        <scope>test</scope>
+          
+        </dependency>
+        
+        <dependency>
+        
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.3.2</version>
+        <scope>test</scope>
+        
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency> <!-- Actuator: creates RESTful endpoints that tell us how our app is doing -->
+            <!-- /health, /beans, /metrics -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency> <!-- jdbc for our spring data to use -->
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -162,10 +136,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            
             <plugin>
-	            <artifactId>maven-surefire-plugin</artifactId>
-	            <version>2.22.0</version>
+            
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.0</version>
+            
             </plugin>
+            
+            
+            
         </plugins>
     </build>
 

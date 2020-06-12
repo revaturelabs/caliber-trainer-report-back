@@ -20,7 +20,7 @@ public class TechnicalStatusByWeek {
 	private Double percentage; // percentage of technical status in a category
 	private String category;   // the category the percentage represents
 	private String week;       // the week percentage/category refer to
-	
+
 	public TechnicalStatusByWeek() {
 		batchName = null;
 		percentage = null;
@@ -101,11 +101,8 @@ public class TechnicalStatusByWeek {
 		} else if (!percentage.equals(other.percentage))
 			return false;
 		if (week == null) {
-			if (other.week != null)
-				return false;
-		} else if (!week.equals(other.week))
-			return false;
-		return true;
+			return other.week == null;
+		} else return week.equals(other.week);
 	}
 
 	@Override

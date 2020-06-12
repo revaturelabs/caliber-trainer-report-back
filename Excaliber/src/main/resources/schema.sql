@@ -9,8 +9,9 @@ drop table if exists trainer CASCADE;
 drop table if exists trainer_batch CASCADE;
 
 
-create table category (
-    id serial primary key,
+create table category
+(
+    id   serial primary key,
     name varchar not null
 );
 
@@ -77,9 +78,10 @@ create table trainer
     employeeId varchar
 );
 
-create table trainer_batch (
-	trainer_id integer not null,
-	batch_id integer not null,
-	foreign key (trainer_id) references trainer (id),
-	foreign key (batch_id) references batch (id)
+create table trainer_batch
+(
+    trainer_id integer not null,
+    batch_id   integer not null,
+    foreign key (trainer_id) references trainer (id),
+    foreign key (batch_id) references batch (id)
 );

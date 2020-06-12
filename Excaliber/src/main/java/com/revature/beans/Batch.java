@@ -11,26 +11,26 @@ public class Batch {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; // our primary key 
-	@Column(name = "batchId")
+	@Column
 	private String batchId; // key from caliber
-	@Column(name = "batchName")
+	@Column
 	private String batchName;
-	@Column(name = "startDate")
+	@Column
 	private Date startDate;
-	@Column(name = "endDate")
+	@Column
 	private Date endDate;
 	@Column
 	private String skill;
 	@Column
 	private String location;
 	//private String type; // always Revature?
-	@Column(name = "trainerId")
+	@Column
 	private int trainerId;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="batch_week",
-				joinColumns=@JoinColumn(name="batch_id"),
-				inverseJoinColumns=@JoinColumn(name="week_id"))//need column names----------------------
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "batch_week",
+			joinColumns = @JoinColumn(name = "batch_id"),
+			inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
 	private Set<Week> weeks;
 
 	public Batch() {

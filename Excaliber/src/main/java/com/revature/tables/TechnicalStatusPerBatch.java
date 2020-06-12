@@ -1,34 +1,43 @@
 package com.revature.tables;
 
+
+/*
+ *  This bean will be used to retrieve the data points necessary 
+ * 
+ *  Description: Percent of each QC technical status per batch
+ * 
+ *  Objective: Determine a trainer's consistency through the historical results of their batch's QC score
+ * 
+ */
+
+
+
 public class TechnicalStatusPerBatch {
 	
-	
-	/*
-	 *  This bean will be used to retrieve the data points necessary 
-	 * 
-	 *  Description: Percent of each QC technical status per batch
-	 * 
-	 *  Objective: Determine a trainer's consistency through the historical results of their batch's QC score
-	 * 
-	 */
-	
-	private Integer batchId; // batch Id to differentiate batches 
+	private String batchId; // batch Id to differentiate batches 
 	private String batchName; // this will be a human readable name for the batch (ex: id is "Ix2x2UAB", name would be "Batch 1")
 	private String technicalStatus; // consists of "superstar, good, average, poor" 
 	
 	public TechnicalStatusPerBatch() {
-		batchId = null;
+		batchId = "";
 		batchName = "";
 		technicalStatus = "";
 	}
 	
+	public TechnicalStatusPerBatch(String batchId, String batchName, String technicalStatus) {
+		
+		this.batchId = batchId;
+		this.batchName = batchName;
+		this.technicalStatus = technicalStatus;
+	}
 	
 	
-	public Integer getBatchId() {
+	
+	public String getBatchId() {
 		return batchId;
 	}
 	
-	public void setBatchId(Integer batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 	

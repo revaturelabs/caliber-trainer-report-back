@@ -17,7 +17,6 @@ import com.revature.tables.BatchTechnicalStatusBySkillCategory;
 @RestController
 @CrossOrigin(origins ="http://localhost:4200", allowCredentials = "true")
 @RequestMapping(path="/BatchTechnicalStatusBySkillCategory")
-
 public class BatchTechnicalStatusBySkillCategoryController {
 	private BatchTechnicalStatusBySkillCategoryService tsbscServ;
 	
@@ -28,10 +27,10 @@ public class BatchTechnicalStatusBySkillCategoryController {
 		tsbscServ = serv;
 	}
 	
-	@GetMapping(path = "/{batchId}")
-	public ResponseEntity<List<BatchTechnicalStatusBySkillCategory>> getTableDataByBatchId(@PathVariable("batchId") String batchId){
-		log.info("Retriving graph table data for getMapping by batchId: " + batchId );
-		List<BatchTechnicalStatusBySkillCategory> graphTableObjects = tsbscServ.getTableData(batchId);
+	@GetMapping
+	public ResponseEntity<List<BatchTechnicalStatusBySkillCategory>> getTableDataObject(){
+		log.info("Retriving graph table data for get request ");
+		List<BatchTechnicalStatusBySkillCategory> graphTableObjects = tsbscServ.getTableData();
 		return ResponseEntity.ok(graphTableObjects);
 	}
 	

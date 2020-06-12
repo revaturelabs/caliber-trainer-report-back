@@ -65,14 +65,28 @@
           
         </dependency>
         
-        <dependency>
-        
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.3.2</version>
-        <scope>test</scope>
-        
-        </dependency>
+<!--        <dependency>-->
+<!--        -->
+<!--        <groupId>org.junit.jupiter</groupId>-->
+<!--        <artifactId>junit-jupiter-engine</artifactId>-->
+<!--        <version>5.3.2</version>-->
+<!--        <scope>test</scope>-->
+<!--        -->
+<!--        </dependency>-->
+<!--      <dependency>-->
+<!--        -->
+<!--        <groupId>org.junit.jupiter</groupId>-->
+<!--        <artifactId>junit-jupiter-engine</artifactId>-->
+<!--        <version>5.4.0</version>-->
+<!--        <scope>test</scope>-->
+<!--        -->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--			<groupId>io.cucumber</groupId>-->
+<!--			<artifactId>cucumber-junit</artifactId>-->
+<!--			<version>6.0.0</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency> -->
         
         
         
@@ -131,6 +145,17 @@
                         <artifactId>spring-restdocs-asciidoctor</artifactId>
                         <version>${spring-restdocs.version}</version>
                     </dependency>
+                      	<dependency>
+  							<groupId>org.seleniumhq.selenium</groupId>
+  							<artifactId>selenium-java</artifactId>
+  							<version>3.8.1</version>
+  						</dependency>
+  	<!-- selenium webdriver -->
+  					<dependency>
+  						<groupId>org.seleniumhq.selenium</groupId>
+  						<artifactId>selenium-chrome-driver</artifactId>
+  						<version>3.8.1</version>
+  					</dependency>
                 </dependencies>
             </plugin>
             <plugin>

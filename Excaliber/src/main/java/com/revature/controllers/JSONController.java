@@ -22,13 +22,11 @@ public class JSONController {
 	@Autowired
 	public JSONController(StoreRetrieveService s) {
 		SRSserv = s;
-<<<<<<< HEAD
-		String fileName = "./data.json";
-		readDataFromFile(fileName);
-=======
+
+
 		//String fileName = "data.json";
 		//readDataFromFile(fileName);
->>>>>>> 55dfaad9693c87b34a9bdc35ae5824c99b63a0b4
+
 	}
 
 	@GetMapping

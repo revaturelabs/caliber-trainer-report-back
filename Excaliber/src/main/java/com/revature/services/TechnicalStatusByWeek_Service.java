@@ -17,8 +17,8 @@ public class TechnicalStatusByWeek_Service {
 		dao = d;	
 	}
 	
-	public List<TechnicalStatusByWeek> getTableData(String batchId) {
-		return dao.getTableData(batchId);
+	public List<TechnicalStatusByWeek> getTableData() {
+		return dao.getTableData();
 	}
 	
 }

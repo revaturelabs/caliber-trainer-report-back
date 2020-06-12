@@ -1,27 +1,15 @@
 package com.revature.beans;
 
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.HashSet;
 import java.util.Set;
 
 
-@Entity 
+@Entity
 @Table
 public class Batch {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; // our primary key 
 	@Column
 	private String batchId; // key from caliber
@@ -38,11 +26,11 @@ public class Batch {
 	//private String type; // always Revature?
 	@Column
 	private int trainerId;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="batch_week",
-				joinColumns=@JoinColumn(name="batch_id"),
-				inverseJoinColumns=@JoinColumn(name="week_id"))//need column names----------------------
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "batch_week",
+			joinColumns = @JoinColumn(name = "batch_id"),
+			inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
 	private Set<Week> weeks;
 
 	public Batch() {
@@ -68,53 +56,66 @@ public class Batch {
 	}
 
 
-	public Integer getExBatchId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setExBatchId(Integer exBatchId) {
+	public void setId(Integer exBatchId) {
 		this.id = exBatchId;
 	}
 
 	public String getBatchId() {
 		return batchId;
 	}
+
 	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
+
 	public String getBatchName() {
 		return batchName;
 	}
+
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
 	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
 	public String getSkill() {
 		return skill;
 	}
+
 	public void setSkill(String skill) {
 		this.skill = skill;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public int getTrainerId() {
 		return trainerId;
 	}
+
 	public void setTrainer(int trainer) {
 		this.trainerId = trainer;
 	}

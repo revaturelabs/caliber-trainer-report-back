@@ -1,44 +1,32 @@
 package com.revature.beans;
 
-import java.util.HashSet;
+import javax.persistence.*;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity 
+@Entity
 @Table
 public class Trainer {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column
+	@Column(name = "firstname")
 	private String firstName;
-	@Column
+	@Column(name = "lastname")
 	private String lastName;
 	@Column
 	private String email;
-	@Column
+	@Column(name = "employee_Id")
 	private String employeeId; // the trainer's ID from Caliber
-	
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="trainer_batch",
-			joinColumns=@JoinColumn(name="trainer_id"),
-			inverseJoinColumns=@JoinColumn(name="batch_id")) //needs column names--------------------------
+
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "trainer_batch",
+			joinColumns = @JoinColumn(name = "trainer_id"),
+			inverseJoinColumns = @JoinColumn(name = "batch_id")) //needs column names--------------------------
 	private Set<Batch> batches;
 
-	public Trainer(String firstName, String lastName, String email, String name) {
+
+	public Trainer() {
 		id = 0;
 		this.firstName = "";
 		this.lastName = "";
@@ -97,6 +85,14 @@ public class Trainer {
 		this.batches = batches;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Trainer(Integer trainerId, String firstName, String lastName, String email, String employeeId, Set<Batch> batches) {
 		this.id = trainerId;
 		this.firstName = firstName;
@@ -104,5 +100,17 @@ public class Trainer {
 		this.email = email;
 		this.employeeId = employeeId;
 		this.batches = batches;
+	}
+
+	@Override
+	public String toString() {
+		return "Trainer{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", employeeId='" + employeeId + '\'' +
+				", batches=" + batches +
+				'}';
 	}
 }

@@ -20,50 +20,60 @@ package com.revature.tables;
 */
 
 public class BatchTechnicalStatusBySkillCategory {
-	
-	private String batchId;			// ID number of a batch
-	private String batchName;			// Name of a batch
-	private String technicalStatus;		// GOOD, BAD, etc for batch
-	private String skillCategory;		// skillCategory from Assessment eg: Java, SQL etc.
-	
+
+	private String batchId;            // ID number of a batch
+	private String batchName;            // Name of a batch
+	private String technicalStatus;        // GOOD, BAD, etc for batch
+	private String skillCategory;        // skillCategory from Assessment eg: Java, SQL etc.
+
 	//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-			batchId = "";
-			batchName = "";
-			technicalStatus = "";
-			skillCategory= "";
-		}
+		batchId = "";
+		batchName = "";
+		technicalStatus = "";
+		skillCategory = "";
+	}
+
 	//Constructor with parameters
 	public BatchTechnicalStatusBySkillCategory(String batchId, String batchName, String technicalStatus, String skillCategory) {
-			this.batchId = batchId;
-			this.batchName = batchName;
-			this.technicalStatus = technicalStatus;
-			this.skillCategory = skillCategory;
+		this.batchId = batchId;
+		this.batchName = batchName;
+		this.technicalStatus = technicalStatus;
+		this.skillCategory = skillCategory;
 	}
+
 	public String getBatchId() {
 		return batchId;
 	}
+
 	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
+
 	public String getBatchName() {
 		return batchName;
 	}
+
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
 	}
+
 	public String getTechnicalStatus() {
 		return technicalStatus;
 	}
+
 	public void setTechnicalStatus(String technicalStatus) {
 		this.technicalStatus = technicalStatus;
 	}
+
 	public String getSkillCategory() {
 		return skillCategory;
 	}
+
 	public void setSkillCategory(String skillCategory) {
 		this.skillCategory = skillCategory;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -74,6 +84,7 @@ public class BatchTechnicalStatusBySkillCategory {
 		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -99,12 +110,10 @@ public class BatchTechnicalStatusBySkillCategory {
 		} else if (!skillCategory.equals(other.skillCategory))
 			return false;
 		if (technicalStatus == null) {
-			if (other.technicalStatus != null)
-				return false;
-		} else if (!technicalStatus.equals(other.technicalStatus))
-			return false;
-		return true;
+			return other.technicalStatus == null;
+		} else return technicalStatus.equals(other.technicalStatus);
 	}
+
 	@Override
 	public String toString() {
 		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName

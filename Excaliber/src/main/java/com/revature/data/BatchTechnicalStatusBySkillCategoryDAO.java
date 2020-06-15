@@ -1,18 +1,28 @@
 package com.revature.data;
 
-import java.util.List;
-
+import com.revature.tables.BatchTechnicalStatusBySkillCategory;
 import org.apache.log4j.Logger;
 
-import com.revature.tables.BatchTechnicalStatusBySkillCategory;
+import java.util.List;
 
+/**
+ * The type Batch technical status by skill category dao.
+ */
 public class BatchTechnicalStatusBySkillCategoryDAO {
-	public Logger log = Logger.getLogger(BatchTechnicalStatusBySkillCategoryDAO.class);
-	
-	public List<BatchTechnicalStatusBySkillCategory> getTableData(){
-		
-		//TODO table data logic here
-		
-		return null;
-	}
+    /**
+     * The Log.
+     */
+    public Logger log = Logger.getLogger(BatchTechnicalStatusBySkillCategoryDAO.class);
+
+    /**
+     * Get table data list.
+     *
+     * @return the list
+     */
+    public List<BatchTechnicalStatusBySkillCategory> getTableData() {
+
+        //TODO table data logic here
+
+        return null;
+    }
 }

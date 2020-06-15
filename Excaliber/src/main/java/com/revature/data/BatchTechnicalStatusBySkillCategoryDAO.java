@@ -2,12 +2,15 @@ package com.revature.data;
 
 import com.revature.tables.BatchTechnicalStatusBySkillCategory;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * The type Batch technical status by skill category dao.
  */
+
+@Repository
 public class BatchTechnicalStatusBySkillCategoryDAO {
     /**
      * The Log.

@@ -21,7 +21,6 @@ public class Excaliber {
         return "Greetings from Spring Boot!";
     }
 
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

@@ -4,6 +4,7 @@ import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class JSONController {
 	}
 
 	@GetMapping
-	public String storeTrainer() {
+	public ResponseEntity<String> storeTrainer() {
 
 //	public ResponseEntity<Trainer> storeTrainer() {
 
@@ -42,7 +43,7 @@ public class JSONController {
 //				.getTrainerById(SRSserv.addEntireTrainer(
 //						trainer).getId()));
 		SRSserv.addEntireTrainer(trainer);
-		return "Works";
+		return ResponseEntity.ok().build();
 
 	}
 }

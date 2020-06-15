@@ -1,7 +1,7 @@
 package com.revature.beans;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * The type Trainer.
@@ -26,7 +26,7 @@ public class Trainer {
     @JoinTable(name = "trainer_batch",
             joinColumns = @JoinColumn(name = "trainer_id"),
             inverseJoinColumns = @JoinColumn(name = "batch_id")) //needs column names--------------------------
-    private Set<Batch> batches;
+    private List<Batch> batches;
 
 
     /**
@@ -65,7 +65,7 @@ public class Trainer {
      * @param employeeId the employee id
      * @param batches    the batches
      */
-    public Trainer(Integer trainerId, String firstName, String lastName, String email, String employeeId, Set<Batch> batches) {
+    public Trainer(Integer trainerId, String firstName, String lastName, String email, String employeeId, List<Batch> batches) {
         this.id = trainerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -115,7 +115,7 @@ public class Trainer {
      *
      * @return Value of batches.
      */
-    public Set<Batch> getBatches() {
+    public List<Batch> getBatches() {
         return batches;
     }
 
@@ -124,7 +124,7 @@ public class Trainer {
      *
      * @param batches New value of batches.
      */
-    public void setBatches(Set<Batch> batches) {
+    public void setBatches(List<Batch> batches) {
         this.batches = batches;
     }
 

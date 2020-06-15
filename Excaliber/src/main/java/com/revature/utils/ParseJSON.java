@@ -8,8 +8,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+
+import java.util.List;
+
 
 /**
  * The type Parse json.
@@ -1370,9 +1372,9 @@ public class ParseJSON {
      *
      * @return Set<Batch>   batch data
      */
-    public static Set<Batch> getBatch() {
+    public static List<Batch> getBatch() {
         assert json != null;
-        Set<Batch> batchSet = new HashSet();
+        List<Batch> batchSet = new ArrayList<Batch>();
         try {
             JSONArray batchsJSON = getBatchJSONObject();
             for (int i = 0; i < batchsJSON.length(); i++) {
@@ -1400,9 +1402,9 @@ public class ParseJSON {
      * @param batch the batch
      * @return week week
      */
-    protected static Set<Week> getWeek(JSONObject batch) {
+    protected static List<Week> getWeek(JSONObject batch) {
         assert json != null;
-        Set<Week> weeks = new HashSet();
+        List<Week> weeks = new ArrayList<Week>();
         try {
             JSONArray batchsJSON = getBatchJSONObject();
 
@@ -1416,7 +1418,7 @@ public class ParseJSON {
                 );
 
                 week.setBatchId(batch.getString("batchId"));
-                Set<Assessment> assessments = getAssessmentByBatch(batch);
+                List<Assessment> assessments = getAssessmentByBatch(batch);
                 week.setAssessments(assessments);
                 week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
                 weeks.add(week);
@@ -1435,10 +1437,10 @@ public class ParseJSON {
      * @return categories by week
      * @throws JSONException the json exception
      */
-    public static Set<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
+    public static List<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
         // grab each categories qcNotes object
         JSONArray categories = week.getJSONArray("categories");
-        Set<Category> setCategories = new HashSet();
+        List<Category> setCategories = new ArrayList<Category>();
         for (int k = 0; k < categories.length(); k++) {
             setCategories.add(new Category(categories.getString(k)));
         }
@@ -1451,9 +1453,9 @@ public class ParseJSON {
      * @param batch the batch
      * @return assessment by batch
      */
-    protected static Set<Assessment> getAssessmentByBatch(JSONObject batch) {
+    protected static List<Assessment> getAssessmentByBatch(JSONObject batch) {
         assert json != null;
-        Set<Assessment> assessments = new HashSet();
+        List<Assessment> assessments = new ArrayList<Assessment>();
 
         try {
             JSONArray batchsJSON = getBatchJSONObject();
@@ -1480,9 +1482,9 @@ public class ParseJSON {
      *
      * @return assessment assessment
      */
-    protected static Set<Assessment> getAssessment() {
+    protected static List<Assessment> getAssessment() {
         assert json != null;
-        Set<Assessment> assessments = new HashSet();
+        List<Assessment> assessments = new ArrayList<Assessment>();
 
         try {
             JSONArray batchsJSON = getBatchJSONObject();
@@ -1552,9 +1554,9 @@ public class ParseJSON {
      *
      * @return set of batch ids
      */
-    public Set<String> getBatchIds() {
+    public List<String> getBatchIds() {
         assert json != null;
-        Set<String> out = new HashSet();
+        List<String> out = new ArrayList<String>();
         JSONArray batchsJSON = null;
         try {
             batchsJSON = getBatchJSONObject();

@@ -1,6 +1,8 @@
 package com.revature.beans;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,17 +22,17 @@ public class Week {
     private String technicalStatus;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "week_category",
             joinColumns = @JoinColumn(name = "week_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private List<Category> categories;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "week_assessment",
             joinColumns = @JoinColumn(name = "week_id"),
             inverseJoinColumns = @JoinColumn(name = "assessment_id"))
-    private Set<Assessment> assessments;
+    private List<Assessment> assessments;
 
 
     /**
@@ -115,7 +117,7 @@ public class Week {
      *
      * @return Value of assessments.
      */
-    public Set<Assessment> getAssessments() {
+    public List<Assessment> getAssessments() {
         return assessments;
     }
 
@@ -124,7 +126,7 @@ public class Week {
      *
      * @param assessments New value of assessments.
      */
-    public void setAssessments(Set<Assessment> assessments) {
+    public void setAssessments(List<Assessment> assessments) {
         this.assessments = assessments;
     }
 
@@ -151,7 +153,7 @@ public class Week {
      *
      * @return Value of categories.
      */
-    public Set<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
@@ -160,7 +162,7 @@ public class Week {
      *
      * @param categories New value of categories.
      */
-    public void setCategories(Set<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 

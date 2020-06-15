@@ -1,31 +1,18 @@
 package com.revature.data;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.revature.tables.TechnicalStatusPerBatch;
+import org.apache.log4j.Logger;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
-
-
-import com.revature.tables.TechnicalStatusPerBatch;
 
 
 
 @ExtendWith(MockitoExtension.class)
 class TechnicalStatusPerBatchDAOTest {
-private Logger logger = Logger.getLogger(TechnicalStatusPerBatchDAOTest.class);
+	private final Logger logger = Logger.getLogger(TechnicalStatusPerBatchDAOTest.class);
 
 TechnicalStatusPerBatch techStatCLASS;
 

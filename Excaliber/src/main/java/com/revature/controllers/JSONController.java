@@ -15,6 +15,7 @@ import java.util.List;
 
 
 import static com.revature.utils.ParseJSON.getBatch;
+import static com.revature.utils.ParseJSON.getTrainer;
 
 /**
  * The type Json controller.
@@ -46,7 +47,7 @@ public class JSONController {
 	 * @return string response entity
 	 */
 	@GetMapping
-	public ResponseEntity<String> getTrainer() {
+	public ResponseEntity<String> getTrainer2() {
 
 //	public ResponseEntity<Trainer> storeTrainer() {
 

@@ -1,5 +1,7 @@
 package com.revature.tables;
 
+import java.util.Arrays;
+
 /* Technical Status By Week
 
 User Story:
@@ -19,104 +21,89 @@ Note: Using a Set of TechnicalStatusByWeek objects,
  * The type Technical status by week.
  */
 public class TechnicalStatusByWeek {
-	private String batchName;    // Name of the batch
-	private Double percentage; // percentage of technical status in a category
-	private String category;   // the category the percentage represents
-	private String week;       // the week percentage/category refer to
-
+	private String batchName;         // Name of the batch
+	private Integer goodPercent;      // percentage of good technical status
+	private Integer averagePercent;   // percentage of average technical status
+	private Integer poorPercent;      // percentage of poor technical status
+	private Integer superstarPercent; // percentage of super-star technical status
+	private Integer nullPercent;      // percentage of null technical status
+	private String[] categories;      // the categories the percentages represent
+	private String week;              // the week evaluated
+	
 	/**
 	 * Instantiates a new Technical status by week.
 	 */
 	public TechnicalStatusByWeek() {
 		batchName = null;
-		percentage = null;
-		category = "";
-		week = "";
+		goodPercent = null;
+		averagePercent = null;
+		poorPercent = null;
+		superstarPercent = null;
+		nullPercent = null;
+		categories = null;
+		week = null;
 	}
 
-	/**
-	 * Instantiates a new Technical status by week.
-	 *
-	 * @param batchName  the batch name
-	 * @param percentage the percentage
-	 * @param category   the category
-	 * @param week       the week
-	 */
-	public TechnicalStatusByWeek(String batchName, Double percentage, String category, String week) {
-		this.batchName = batchName;
-		this.percentage = percentage;
-		this.category = category;
-		this.week = week;
-	}
-
-	/**
-	 * Gets batch name.
-	 *
-	 * @return the batch name
-	 */
 	public String getBatchName() {
 		return batchName;
 	}
 
-	/**
-	 * Sets batch name.
-	 *
-	 * @param batchName the batch name
-	 */
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
 	}
 
-	/**
-	 * Gets percentage.
-	 *
-	 * @return the percentage
-	 */
-	public Double getPercentage() {
-		return percentage;
+	public Integer getGoodPercent() {
+		return goodPercent;
 	}
 
-	/**
-	 * Sets percentage.
-	 *
-	 * @param percentage the percentage
-	 */
-	public void setPercentage(Double percentage) {
-		this.percentage = percentage;
+	public void setGoodPercent(Integer goodPercent) {
+		this.goodPercent = goodPercent;
 	}
 
-	/**
-	 * Gets category.
-	 *
-	 * @return the category
-	 */
-	public String getCategory() {
-		return category;
+	public Integer getAveragePercent() {
+		return averagePercent;
 	}
 
-	/**
-	 * Sets category.
-	 *
-	 * @param category the category
-	 */
-	public void setCategory(String category) {
-		this.category = category;
+	public void setAveragePercent(Integer averagePercent) {
+		this.averagePercent = averagePercent;
 	}
 
-	/**
-	 * Gets week.
-	 *
-	 * @return the week
-	 */
+	public Integer getPoorPercent() {
+		return poorPercent;
+	}
+
+	public void setPoorPercent(Integer poorPercent) {
+		this.poorPercent = poorPercent;
+	}
+
+	public Integer getSuperstarPercent() {
+		return superstarPercent;
+	}
+
+	public void setSuperstarPercent(Integer superstarPercent) {
+		this.superstarPercent = superstarPercent;
+	}
+
+	public Integer getNullPercent() {
+		return nullPercent;
+	}
+
+	public void setNullPercent(Integer nullPercent) {
+		this.nullPercent = nullPercent;
+	}
+
+	public String[] getCategories() {
+		return categories;
+	}
+
+	public void setCategories(String[] categories) {
+		this.categories = categories;
+	}
+
 	public String getWeek() {
 		return week;
 	}
 
-	/**
-	 * Sets week.
-	 *
-	 * @param week the week
-	 */
 	public void setWeek(String week) {
 		this.week = week;
 	}
@@ -125,9 +112,13 @@ public class TechnicalStatusByWeek {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((averagePercent == null) ? 0 : averagePercent.hashCode());
 		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((percentage == null) ? 0 : percentage.hashCode());
+		result = prime * result + Arrays.hashCode(categories);
+		result = prime * result + ((goodPercent == null) ? 0 : goodPercent.hashCode());
+		result = prime * result + ((nullPercent == null) ? 0 : nullPercent.hashCode());
+		result = prime * result + ((poorPercent == null) ? 0 : poorPercent.hashCode());
+		result = prime * result + ((superstarPercent == null) ? 0 : superstarPercent.hashCode());
 		result = prime * result + ((week == null) ? 0 : week.hashCode());
 		return result;
 	}
@@ -139,30 +130,52 @@ public class TechnicalStatusByWeek {
 		if (!(obj instanceof TechnicalStatusByWeek))
 			return false;
 		TechnicalStatusByWeek other = (TechnicalStatusByWeek) obj;
+		if (averagePercent == null) {
+			if (other.averagePercent != null)
+				return false;
+		} else if (!averagePercent.equals(other.averagePercent))
+			return false;
 		if (batchName == null) {
 			if (other.batchName != null)
 				return false;
 		} else if (!batchName.equals(other.batchName))
 			return false;
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
+		if (!Arrays.equals(categories, other.categories))
 			return false;
-		if (percentage == null) {
-			if (other.percentage != null)
+		if (goodPercent == null) {
+			if (other.goodPercent != null)
 				return false;
-		} else if (!percentage.equals(other.percentage))
+		} else if (!goodPercent.equals(other.goodPercent))
+			return false;
+		if (nullPercent == null) {
+			if (other.nullPercent != null)
+				return false;
+		} else if (!nullPercent.equals(other.nullPercent))
+			return false;
+		if (poorPercent == null) {
+			if (other.poorPercent != null)
+				return false;
+		} else if (!poorPercent.equals(other.poorPercent))
+			return false;
+		if (superstarPercent == null) {
+			if (other.superstarPercent != null)
+				return false;
+		} else if (!superstarPercent.equals(other.superstarPercent))
 			return false;
 		if (week == null) {
-			return other.week == null;
-		} else return week.equals(other.week);
+			if (other.week != null)
+				return false;
+		} else if (!week.equals(other.week))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "TechnicalStatusByWeek [batchName=" + batchName + ", percentage=" + percentage + ", category=" + category
-				+ ", week=" + week + "]";
+		return "TechnicalStatusByWeek [batchName=" + batchName + ", goodPercent=" + goodPercent + ", averagePercent="
+				+ averagePercent + ", poorPercent=" + poorPercent + ", superstarPercent=" + superstarPercent
+				+ ", nullPercent=" + nullPercent + ", categories=" + Arrays.toString(categories) + ", week=" + week
+				+ "]";
 	}
 
 }

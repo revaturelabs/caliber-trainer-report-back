@@ -12,7 +12,7 @@ class AssessmentTest {
 	
 	Assessment assessment;
 
-    @BeforeAll
+    @BeforeEach
     void setUp() {
     	
     	assessment = new Assessment();
@@ -124,14 +124,9 @@ class AssessmentTest {
     }
     
    
-//    @Nested
-//    @DisplayName("creating a category class to test get and set category methods")
-//    class Category{
-//    	
-//    	
-//    }
+
     
-    @SuppressWarnings("unlikely-arg-type")
+   
 	@Test
     void getSkillCategory() {
     	
@@ -146,16 +141,23 @@ class AssessmentTest {
     	String actualName = category.getName();
     	
     	expected.add(category);
+    
     	
-    	assertTrue(expected.contains(actualName) && expected.contains(actualID));
+    	int expectedID = expected.get(0).getId();
+    	String expectedName = expected.get(0).getName();
+    	
+    	assertTrue(expectedID == actualID && expectedName.equals(actualName),
+    			"ExpectedID = " + expectedID + "ExpectedName = " + actualName);
     	
     }
-
-    @Test
-    void setSkillCategory() {
-    	
-    	
-    }
+//
+//    @Test
+//    void setSkillCategory() {
+//    	
+//    	
+//    	
+//    	
+//    }
 
     
 }

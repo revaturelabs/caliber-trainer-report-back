@@ -1,5 +1,8 @@
 package com.revature.services;
 
+
+
+
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
@@ -62,3 +65,4 @@ public class TechnicalStatusPerBatch_Service {
     }// end of method
 
 } // end class
+

@@ -1,3 +1,7 @@
+
+
+
+
 drop table if exists category CASCADE;
 drop table if exists assessment CASCADE;
 drop table if exists week CASCADE;
@@ -9,19 +13,23 @@ drop table if exists trainer CASCADE;
 drop table if exists trainer_batch CASCADE;
 
 
+
 create table category (
     id serial primary key,
     name varchar not null
 );
 
+
+
 create table assessment
 (
-    id           serial primary key,
+    id serial primary key,
     score_weight integer not null,
-    type0        varchar not null,
-    average      float   not null,
-    category_id  integer,
+    type0 varchar not null,
+    average float not null,
+    category_id integer,
     foreign key (category_id) references category (id)
+
 );
 
 create table week
@@ -30,11 +38,12 @@ create table week
     week_number      varchar not null,
     batch_id         varchar not null,
     technical_status varchar not null
+
 );
 
 create table week_category
 (
-    week_id     integer not null,
+    week_id integer not null,
     category_id integer not null,
     foreign key (week_id) references week (id),
     foreign key (category_id) references category (id)
@@ -42,7 +51,7 @@ create table week_category
 
 create table week_assessment
 (
-    week_id       integer not null,
+    week_id integer not null,
     assessment_id integer not null,
     foreign key (week_id) references week (id),
     foreign key (assessment_id) references assessment (id)
@@ -70,10 +79,10 @@ create table batch_week
 
 create table trainer
 (
-    id         serial primary key,
-    firstName  varchar not null,
-    lastName   varchar not null,
-    email      varchar not null,
+    id  serial primary key,
+    firstName varchar not null,
+    lastName varchar not null,
+    email varchar not null,
     employeeId varchar
 );
 
@@ -83,3 +92,4 @@ create table trainer_batch (
 	foreign key (trainer_id) references trainer (id),
 	foreign key (batch_id) references batch (id)
 );
+

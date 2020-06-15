@@ -1,17 +1,13 @@
 package com.revature.tables;
 
+
+
 import java.util.ArrayList;
 
-/*
- *  This bean will be used to retrieve the data points necessary
- *
- *  Description: Percent of each QC technical status per batch
- *
- *  Objective: Determine a trainer's consistency through the historical results of their batch's QC score
- *
- */
-public class TechnicalStatusPerBatch {
 
+
+public class TechnicalStatusPerBatch {
+	
     private ArrayList<String> batchId; // batch Id to differentiate batches
 
     private ArrayList<String> batchName; // this will be a human readable name for the batch (ex: id is "Ix2x2UAB",

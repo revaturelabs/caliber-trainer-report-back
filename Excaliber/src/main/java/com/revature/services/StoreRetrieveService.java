@@ -2,14 +2,16 @@ package com.revature.services;
 
 import com.revature.beans.*;
 import com.revature.data.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class StoreRetrieveService {
+
     private final AssessmentDAO aDao;
     private final BatchDAO bDao;
     private final CategoryDAO cDao;
@@ -103,4 +105,5 @@ public class StoreRetrieveService {
     private Category getCategoryByName(String name) {
         return cDao.findCategoryByName(name);
     }
+
 }

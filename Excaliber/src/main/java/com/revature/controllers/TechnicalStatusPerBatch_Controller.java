@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+
+
 import com.revature.services.TechnicalStatusPerBatch_Service;
 import com.revature.tables.TechnicalStatusPerBatch;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +26,5 @@ public class TechnicalStatusPerBatch_Controller {
     public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch() {
         return ResponseEntity.ok(this.tServ.returnTable(1));
     }
+
 }

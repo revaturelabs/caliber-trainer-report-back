@@ -14,6 +14,10 @@ public class AssessScoresByCategoryAllBatches_Implement implements AssessScoresB
         mockDAO = a;
     }
 
+    /**
+     * @param category
+     * @return
+     */
     @Override
     public AssessScoresByCategoryAllBatches getAssessScoresByCategoryAllBatches(String category) {
         AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
@@ -21,6 +25,9 @@ public class AssessScoresByCategoryAllBatches_Implement implements AssessScoresB
         return catAll;
     }
 
+    /**
+     * @param catAll
+     */
     @Override
     public void setAssessScoresByCategoryAllBatches(AssessScoresByCategoryAllBatches catAll) {
         // TODO Auto-generated method stub

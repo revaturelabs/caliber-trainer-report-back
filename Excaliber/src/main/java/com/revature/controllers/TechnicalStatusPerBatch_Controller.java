@@ -20,6 +20,11 @@ public class TechnicalStatusPerBatch_Controller {
         this.tServ = t;
     }
 
+    /**
+     * ToDO
+     *
+     * @return
+     */
     @GetMapping
     public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch() {
         return ResponseEntity.ok(this.tServ.returnTable(1));

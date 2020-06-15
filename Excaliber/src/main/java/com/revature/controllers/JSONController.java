@@ -4,7 +4,6 @@ import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +26,11 @@ public class JSONController {
 		//readDataFromFile(fileName);
 	}
 
+	/**
+	 * TODO
+	 *
+	 * @return
+	 */
 	@GetMapping
 	public String storeTrainer() {
 

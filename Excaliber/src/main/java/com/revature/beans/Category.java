@@ -20,21 +20,40 @@ public class Category {
     }
 
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    /**
+     * Gets name.
+     *
+     * @return Value of name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets new name.
+     *
+     * @param name New value of name.
+     */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return Value of id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets new id.
+     *
+     * @param id New value of id.
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

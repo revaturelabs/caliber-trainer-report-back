@@ -25,8 +25,12 @@ public class TechnicalStatusByWeek_Controller {
         serv = s;
     }
 
-    // Handles Get request to /TechnicalStatusByWeek/{batch id}
-    // and returns List<TechnicalStatusByWeek> in response body
+    /**
+     * Handles Get request to /TechnicalStatusByWeek/{batch id}
+     * and returns List<TechnicalStatusByWeek> in response body
+     *
+     * @return
+     */
     @GetMapping
     public ResponseEntity<List<TechnicalStatusByWeek>> getTableData() {
         log.info("TechnicalStatusByWeek_Controller: "

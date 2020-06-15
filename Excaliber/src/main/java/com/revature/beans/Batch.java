@@ -56,8 +56,6 @@ public class Batch {
     }
 
 
-
-
     @Override
     public String toString() {
         return "Batch{" +

@@ -19,6 +19,12 @@ public class AssessScoresByCategoryAllBatches_Controller {
         catAll = a;
     }
 
+    /**
+     * TODO
+     *
+     * @param category
+     * @return
+     */
     @GetMapping(path = "/{category}")
     public ResponseEntity<AssessScoresByCategoryAllBatches> getScoresByCategoryAllBatches(@PathVariable("category") String category) {
         log.trace("Getting table data for AssessScoresByCategoryAllBatches/" + category);

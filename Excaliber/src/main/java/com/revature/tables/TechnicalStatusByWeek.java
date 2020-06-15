@@ -15,12 +15,18 @@ Note: Using a Set of TechnicalStatusByWeek objects,
       and display the percentage of each category.
 */
 
+/**
+ * The type Technical status by week.
+ */
 public class TechnicalStatusByWeek {
 	private String batchName;    // Name of the batch
 	private Double percentage; // percentage of technical status in a category
 	private String category;   // the category the percentage represents
 	private String week;       // the week percentage/category refer to
-	
+
+	/**
+	 * Instantiates a new Technical status by week.
+	 */
 	public TechnicalStatusByWeek() {
 		batchName = null;
 		percentage = null;
@@ -28,6 +34,14 @@ public class TechnicalStatusByWeek {
 		week = "";
 	}
 
+	/**
+	 * Instantiates a new Technical status by week.
+	 *
+	 * @param batchName  the batch name
+	 * @param percentage the percentage
+	 * @param category   the category
+	 * @param week       the week
+	 */
 	public TechnicalStatusByWeek(String batchName, Double percentage, String category, String week) {
 		this.batchName = batchName;
 		this.percentage = percentage;
@@ -35,34 +49,74 @@ public class TechnicalStatusByWeek {
 		this.week = week;
 	}
 
+	/**
+	 * Gets batch name.
+	 *
+	 * @return the batch name
+	 */
 	public String getBatchName() {
 		return batchName;
 	}
 
+	/**
+	 * Sets batch name.
+	 *
+	 * @param batchName the batch name
+	 */
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
 	}
 
+	/**
+	 * Gets percentage.
+	 *
+	 * @return the percentage
+	 */
 	public Double getPercentage() {
 		return percentage;
 	}
 
+	/**
+	 * Sets percentage.
+	 *
+	 * @param percentage the percentage
+	 */
 	public void setPercentage(Double percentage) {
 		this.percentage = percentage;
 	}
 
+	/**
+	 * Gets category.
+	 *
+	 * @return the category
+	 */
 	public String getCategory() {
 		return category;
 	}
 
+	/**
+	 * Sets category.
+	 *
+	 * @param category the category
+	 */
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
+	/**
+	 * Gets week.
+	 *
+	 * @return the week
+	 */
 	public String getWeek() {
 		return week;
 	}
 
+	/**
+	 * Sets week.
+	 *
+	 * @param week the week
+	 */
 	public void setWeek(String week) {
 		this.week = week;
 	}
@@ -101,11 +155,8 @@ public class TechnicalStatusByWeek {
 		} else if (!percentage.equals(other.percentage))
 			return false;
 		if (week == null) {
-			if (other.week != null)
-				return false;
-		} else if (!week.equals(other.week))
-			return false;
-		return true;
+			return other.week == null;
+		} else return week.equals(other.week);
 	}
 
 	@Override

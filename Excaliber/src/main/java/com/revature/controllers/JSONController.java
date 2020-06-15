@@ -5,22 +5,29 @@ import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
-import static com.revature.utils.ParseJSON.setBatchData;
-import static com.revature.utils.ParseJSON.setTrainer;
+import static com.revature.utils.ParseJSON.getBatch;
+import static com.revature.utils.ParseJSON.getTrainer;
 
+/**
+ * The type Json controller.
+ */
 @RestController
 @RequestMapping(path = "/JSONController")
 public class JSONController {
 
 	private final StoreRetrieveService SRSserv;
 
+	/**
+	 * Instantiates a new Json controller.
+	 *
+	 * @param s the s
+	 */
 	@Autowired
 	public JSONController(StoreRetrieveService s) {
 		SRSserv = s;
@@ -31,13 +38,18 @@ public class JSONController {
 
 	}
 
+	/**
+	 * TODO
+	 *
+	 * @return string response entity
+	 */
 	@GetMapping
 	public ResponseEntity<String> storeTrainer() {
 
 //	public ResponseEntity<Trainer> storeTrainer() {
 
-		Trainer trainer = setTrainer();
-		Set<Batch> batches = setBatchData();
+		Trainer trainer = getTrainer();
+		Set<Batch> batches = getBatch();
 		trainer.setBatches(batches);
 //		return ResponseEntity.ok(SRSserv
 //				.getTrainerById(SRSserv.addEntireTrainer(
@@ -45,5 +57,5 @@ public class JSONController {
 		SRSserv.addEntireTrainer(trainer);
 		return ResponseEntity.ok().build();
 
-	}
+    }
 }

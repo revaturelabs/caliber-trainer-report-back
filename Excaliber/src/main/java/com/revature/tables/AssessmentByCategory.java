@@ -2,12 +2,20 @@ package com.revature.tables;
 
 import java.util.Arrays;
 
+/**
+ * The type Assessment by category.
+ */
 public class AssessmentByCategory {
     private Integer batchId;
     private String batchName;
     private String assessmentType;
     private Double[] scores;
 
+    /**
+     * Instantiates a new Assessment by category.
+     *
+     * @param numOfScores the num of scores
+     */
     public AssessmentByCategory(Integer numOfScores) {
         batchId = 0;
         batchName = "";
@@ -15,34 +23,74 @@ public class AssessmentByCategory {
         scores = new Double[numOfScores];
     }
 
+    /**
+     * Gets batch id.
+     *
+     * @return the batch id
+     */
     public Integer getBatchId() {
         return batchId;
     }
 
+    /**
+     * Sets batch id.
+     *
+     * @param batchId the batch id
+     */
     public void setBatchId(Integer batchId) {
         this.batchId = batchId;
     }
 
+    /**
+     * Gets batch name.
+     *
+     * @return the batch name
+     */
     public String getBatchName() {
         return batchName;
     }
 
+    /**
+     * Sets batch name.
+     *
+     * @param batchName the batch name
+     */
     public void setBatchName(String batchName) {
         this.batchName = batchName;
     }
 
+    /**
+     * Gets assessment type.
+     *
+     * @return the assessment type
+     */
     public String getAssessmentType() {
         return assessmentType;
     }
 
+    /**
+     * Sets assessment type.
+     *
+     * @param assessmentType the assessment type
+     */
     public void setAssessmentType(String assessmentType) {
         this.assessmentType = assessmentType;
     }
 
+    /**
+     * Get scores double [ ].
+     *
+     * @return the double [ ]
+     */
     public Double[] getScores() {
         return scores;
     }
 
+    /**
+     * Sets scores.
+     *
+     * @param scores the scores
+     */
     public void setScores(Double[] scores) {
         this.scores = scores;
     }

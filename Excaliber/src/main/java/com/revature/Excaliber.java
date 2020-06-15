@@ -8,19 +8,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * The type Excaliber.
+ */
 @SpringBootApplication
 @RestController
 public class Excaliber {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(Excaliber.class, args);
     }
 
+    /**
+     * Home page used to check if spring is running
+     *
+     * @return the string
+     */
     @RequestMapping("/")
     public String index() {
         return "Greetings from Spring Boot!";
     }
 
+
+    /**
+     * Cors configurer web mvc configurer.
+     *
+     * @return the web mvc configurer
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

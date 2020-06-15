@@ -1,5 +1,27 @@
 package com.revature.tables;
 
+<<<<<<< HEAD
+=======
+/* Batch Technical Status Bean
+ 	
+ 	***Bean to generate graph for Technical Status per batch according to skillCategory***
+ 	*
+ 	*User Story: 
+ 		• To generate graphical representation of QC Technical Status
+ 			per batch according to skillCategory.
+ 			
+ 	*Objective: 
+ 		•Generate the metrics that allows to see how well a trainer is 
+ 			performing per batch according to skillCategory.
+ 			
+ 	*Data-Points:
+ 		•Batch ID from Batch
+ 		•Batch Name from Batch
+ 		•Technical Status from Batch's QC notes.
+ 		•SkillCategory from Batch's Assessment.
+  */
+
+>>>>>>> eeb442111e08a1cee75e01eb27b9e635892f8555
 public class BatchTechnicalStatusBySkillCategory {
 	private String batchId;			// ID number of a batch
 	private String batchName;			// Name of a batch
@@ -20,6 +42,7 @@ public class BatchTechnicalStatusBySkillCategory {
 			this.technicalStatus = technicalStatus;
 			this.skillCategory = skillCategory;
 	}
+<<<<<<< HEAD
 	public String getBatchId() {
 		return batchId;
 	}
@@ -44,6 +67,43 @@ public class BatchTechnicalStatusBySkillCategory {
 	public void setSkillCategory(String skillCategory) {
 		this.skillCategory = skillCategory;
 	}
+=======
+	
+	//Getters and setters
+	public String getBatchId() {
+		return batchId;
+	}
+
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
+	}
+
+	public String getBatchName() {
+		return batchName;
+	}
+
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
+	}
+
+	public String getTechnicalStatus() {
+		return technicalStatus;
+	}
+
+	public void setTechnicalStatus(String technicalStatus) {
+		this.technicalStatus = technicalStatus;
+	}
+
+	public String getSkillCategory() {
+		return skillCategory;
+	}
+
+	public void setSkillCategory(String skillCategory) {
+		this.skillCategory = skillCategory;
+	}
+	
+	//HashCode and equals()
+>>>>>>> eeb442111e08a1cee75e01eb27b9e635892f8555
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +114,10 @@ public class BatchTechnicalStatusBySkillCategory {
 		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
 		return result;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> eeb442111e08a1cee75e01eb27b9e635892f8555
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,10 +149,26 @@ public class BatchTechnicalStatusBySkillCategory {
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
+=======
+	
+	//toString()
+>>>>>>> eeb442111e08a1cee75e01eb27b9e635892f8555
 	@Override
 	public String toString() {
 		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName
 				+ ", technicalStatus=" + technicalStatus + ", skillCategory=" + skillCategory + "]";
 	}
 	
+<<<<<<< HEAD
+=======
+	
+
+	
+	
+	 
+	
+	
+
+>>>>>>> eeb442111e08a1cee75e01eb27b9e635892f8555
 }

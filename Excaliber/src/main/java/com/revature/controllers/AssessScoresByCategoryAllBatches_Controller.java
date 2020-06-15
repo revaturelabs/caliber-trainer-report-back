@@ -7,13 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The type Assess scores by category all batches controller.
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RequestMapping(path = "/assessscoresbycatergoryallbatches")
 public class AssessScoresByCategoryAllBatches_Controller {
     private final AssessScoresByCategoryAllBatches_Service catAll;
+    /**
+     * The Log.
+     */
     public Logger log = Logger.getLogger(TechnicalStatusByWeek_Controller.class);
 
+    /**
+     * Instantiates a new Assess scores by category all batches controller.
+     *
+     * @param a the a
+     */
     @Autowired
     public AssessScoresByCategoryAllBatches_Controller(AssessScoresByCategoryAllBatches_Service a) {
         catAll = a;
@@ -22,8 +33,8 @@ public class AssessScoresByCategoryAllBatches_Controller {
     /**
      * TODO
      *
-     * @param category
-     * @return
+     * @param category the category
+     * @return scores by category all batches
      */
     @GetMapping(path = "/{category}")
     public ResponseEntity<AssessScoresByCategoryAllBatches> getScoresByCategoryAllBatches(@PathVariable("category") String category) {

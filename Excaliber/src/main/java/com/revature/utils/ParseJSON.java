@@ -11,6 +11,9 @@ import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The type Parse json.
+ */
 public class ParseJSON {
     private static String json = "{\r\n" +
             "  \"employee\": {\r\n" +
@@ -1365,9 +1368,9 @@ public class ParseJSON {
     /**
      * Loads data from JSON object and creates a set of Batchs
      *
-     * @return Set<Batch>
+     * @return Set<Batch>   batch data
      */
-    public static Set<Batch> setBatchData() {
+    public static Set<Batch> getBatch() {
         assert json != null;
         Set<Batch> batchSet = new HashSet();
         try {
@@ -1381,7 +1384,7 @@ public class ParseJSON {
                         obj.getString("endDate"),
                         obj.getString("skill"),
                         obj.getString("location"));
-                batch.setWeeks(setWeek(obj));
+                batch.setWeeks(getWeek(obj));
                 batchSet.add(batch);
             }
 
@@ -1392,11 +1395,12 @@ public class ParseJSON {
     }
 
     /**
-     * @param batch
-     * @return
+     * Gets week from JSON.
+     *
+     * @param batch the batch
+     * @return week week
      */
-    protected static Set<Week> setWeek(JSONObject batch) {
-        //TODO change for all batch
+    protected static Set<Week> getWeek(JSONObject batch) {
         assert json != null;
         Set<Week> weeks = new HashSet();
         try {
@@ -1412,9 +1416,9 @@ public class ParseJSON {
                 );
 
                 week.setBatchId(batch.getString("batchId"));
-                Set<Assessment> assessments = setAssessmentByBatch(batch);
+                Set<Assessment> assessments = getAssessmentByBatch(batch);
                 week.setAssessments(assessments);
-                week.setCategories(setCategoriesByWeek(obj.getJSONObject(j)));
+                week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
                 weeks.add(week);
             }
 
@@ -1425,11 +1429,13 @@ public class ParseJSON {
     }
 
     /**
-     * @param week
-     * @return
-     * @throws JSONException
+     * Gets categories by week in JSON.
+     *
+     * @param week the week
+     * @return categories by week
+     * @throws JSONException the json exception
      */
-    public static Set<Category> setCategoriesByWeek(JSONObject week) throws JSONException {
+    public static Set<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
         // grab each categories qcNotes object
         JSONArray categories = week.getJSONArray("categories");
         Set<Category> setCategories = new HashSet();
@@ -1440,10 +1446,12 @@ public class ParseJSON {
     }
 
     /**
-     * @param batch
-     * @return
+     * Sets assessment by batch from JSON
+     *
+     * @param batch the batch
+     * @return assessment by batch
      */
-    protected static Set<Assessment> setAssessmentByBatch(JSONObject batch) {
+    protected static Set<Assessment> getAssessmentByBatch(JSONObject batch) {
         assert json != null;
         Set<Assessment> assessments = new HashSet();
 
@@ -1461,9 +1469,6 @@ public class ParseJSON {
                 assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
                 assessments.add(assessment);
             }
-
-
-//            System.out.println(assessments);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1471,9 +1476,11 @@ public class ParseJSON {
     }
 
     /**
-     * @return
+     * Gets assessment from JSON.
+     *
+     * @return assessment assessment
      */
-    protected static Set<Assessment> setAssessment() {
+    protected static Set<Assessment> getAssessment() {
         assert json != null;
         Set<Assessment> assessments = new HashSet();
 
@@ -1490,7 +1497,6 @@ public class ParseJSON {
                 }
             }
 
-//            System.out.println(assessments);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1498,25 +1504,29 @@ public class ParseJSON {
     }
 
     /**
-     * @return
+     * Gets trainer from JSOn.
+     *
+     * @return trainer trainer
      */
-    public static Trainer setTrainer() {
+    public static Trainer getTrainer() {
         assert json != null;
         Trainer trainer = null;
         try {
             obj = new JSONObject(json).getJSONObject("employee");
             trainer = new Trainer(obj.get("firstName").toString(), obj.get("lastName").toString(),
                     obj.get("email").toString());
-            return trainer;
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return trainer;
     }
 
     /**
-     * @param fileName
-     * @return
+     * Read data from file boolean.
+     *
+     * @param fileName the file name
+     * @return boolean boolean
      */
     public static boolean readDataFromFile(String fileName) {
 
@@ -1535,6 +1545,7 @@ public class ParseJSON {
             return false;
         }
     }
+
 
     /**
      * gets all the batch id from the JSON
@@ -1555,6 +1566,24 @@ public class ParseJSON {
         }
 
         return out;
+    }
+
+    /**
+     * Gets json.
+     *
+     * @return the json
+     */
+    public static String getJson() {
+        return json;
+    }
+
+    /**
+     * Sets json.
+     *
+     * @param json the json
+     */
+    public static void setJson(String json) {
+        ParseJSON.json = json;
     }
 }
 

@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.Set;
 
 
+/**
+ * The type Batch.
+ */
 @Entity
 @Table
 public class Batch {
@@ -33,6 +36,9 @@ public class Batch {
             inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
     private Set<Week> weeks;
 
+    /**
+     * Instantiates a new Batch.
+     */
     public Batch() {
         id = 0;
         this.batchId = "";
@@ -46,6 +52,16 @@ public class Batch {
     }
 
 
+    /**
+     * Instantiates a new Batch.
+     *
+     * @param batchId   the batch id
+     * @param batchName the batch name
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @param skill     the skill
+     * @param location  the location
+     */
     public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
         this.batchId = batchId;
         this.batchName = batchName;

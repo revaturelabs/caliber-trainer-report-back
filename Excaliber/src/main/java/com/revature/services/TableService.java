@@ -9,20 +9,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/**
+ * The type Table service.
+ */
 @Service
 public class TableService {
 
     //load DAO
     private final StoreRetrieveService SRSserv;
 
+    /**
+     * Instantiates a new Table service.
+     *
+     * @param srSserv the sr sserv
+     */
     @Autowired
     public TableService(StoreRetrieveService srSserv) {
         SRSserv = srSserv;
     }
 
     /**
-     * @param id
-     * @return
+     * Technical status per batch table technical status per batch.
+     *
+     * @param id the id
+     * @return technical status per batch
      */
     public TechnicalStatusPerBatch technicalStatusPerBatchTable(int id) {
         Trainer trainer = SRSserv.getTrainerById(id);
@@ -67,40 +77,50 @@ public class TableService {
     }// end of method
 
     /**
-     * @param trainer_id
-     * @return
+     * Technical status by week table technical status by week.
+     *
+     * @param trainer_id the trainer id
+     * @return technical status by week
      */
     public TechnicalStatusByWeek technicalStatusByWeekTable(int trainer_id) {
         return null;
     }
 
     /**
-     * @param trainer_id
-     * @return
+     * Batch technical status table batch technical status.
+     *
+     * @param trainer_id the trainer id
+     * @return batch technical status
      */
     public BatchTechnicalStatus batchTechnicalStatusTable(int trainer_id) {
         return null;
     }
 
     /**
-     * @param trainer_id
-     * @return
+     * Assess scores by category all batches table assess scores by category all batches.
+     *
+     * @param trainer_id the trainer id
+     * @return assess scores by category all batches
      */
     public AssessScoresByCategoryAllBatches assessScoresByCategoryAllBatchesTable(int trainer_id) {
         return null;
     }
 
     /**
-     * @param trainer_id
-     * @return
+     * Assessment by category table assessment by category.
+     *
+     * @param trainer_id the trainer id
+     * @return assessment by category
      */
     public AssessmentByCategory assessmentByCategoryTable(int trainer_id) {
         return null;
     }
 
     /**
-     * @param trainer_id
-     * @return
+     * Assessment by batch table assessment by batch.
+     *
+     * @param trainer_id the trainer id
+     * @return assessment by batch
      */
     public AssessmentByBatch assessmentByBatchTable(int trainer_id) {
         return null;

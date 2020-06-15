@@ -1,25 +1,25 @@
 package com.revature.tables;
 
-/* Batch Technical Status Bean
- 	
- 	***Bean to generate graph for Technical Status per batch***
- 	*
- 	*User Story: 
- 		• To generate graphical representation of QC Technical Status
- 			according to the batch.
- 			
- 	*Objective: 
- 		•Generate the metrics that allows to see how well a trainer is 
- 			performing per batch.
- 			
- 	*Data-Points:
- 		•Batch ID from Batch
- 		•Batch Name from Batch
- 		•Technical Status from Batch's QC notes.
- 		•Assessment Score from Batch's Assessment in percentage.
- 		•Raw Score from Batch's Assessment in percentage.
-  */
-
+/**
+ * Batch Technical Status Bean
+ * <p>
+ * Bean to generate graph for Technical Status per batch***
+ * <p>
+ * User Story:
+ * • To generate graphical representation of QC Technical Status
+ * according to the batch.
+ * <p>
+ * Objective:
+ * •Generate the metrics that allows to see how well a trainer is
+ * performing per batch.
+ * <p>
+ * Data-Points:
+ * •Batch ID from Batch
+ * •Batch Name from Batch
+ * •Technical Status from Batch's QC notes.
+ * •Assessment Score from Batch's Assessment in percentage.
+ * •Raw Score from Batch's Assessment in percentage.
+ */
 public class BatchTechnicalStatus {
     private Integer batchId;            // ID number of a batch
     private String batchName;            // Name of a batch
@@ -27,7 +27,10 @@ public class BatchTechnicalStatus {
     private Double rawScore;            // Highest score a batch can score in %
     private Double assessmentScore;        // Actual score scored by a batch in %
 
-    //Constructor
+    /**
+     * Instantiates a new Batch technical status.
+     */
+//Constructor
     public BatchTechnicalStatus() {
         batchId = null;
         batchName = "";
@@ -36,43 +39,93 @@ public class BatchTechnicalStatus {
         assessmentScore = null;
     }
 
-    // getters and setters
+    /**
+     * Gets batch id.
+     *
+     * @return the batch id
+     */
+// getters and setters
     public Integer getBatchId() {
         return batchId;
     }
 
+    /**
+     * Sets batch id.
+     *
+     * @param batchId the batch id
+     */
     public void setBatchId(Integer batchId) {
         this.batchId = batchId;
     }
 
+    /**
+     * Gets batch name.
+     *
+     * @return the batch name
+     */
     public String getBatchName() {
         return batchName;
     }
 
+    /**
+     * Sets batch name.
+     *
+     * @param batchName the batch name
+     */
     public void setBatchName(String batchName) {
         this.batchName = batchName;
     }
 
+    /**
+     * Gets technical status.
+     *
+     * @return the technical status
+     */
     public String getTechnicalStatus() {
         return technicalStatus;
     }
 
+    /**
+     * Sets technical status.
+     *
+     * @param technicalStatus the technical status
+     */
     public void setTechnicalStatus(String technicalStatus) {
         this.technicalStatus = technicalStatus;
     }
 
+    /**
+     * Gets raw score.
+     *
+     * @return the raw score
+     */
     public Double getRawScore() {
         return rawScore;
     }
 
+    /**
+     * Sets raw score.
+     *
+     * @param rawScore the raw score
+     */
     public void setRawScore(Double rawScore) {
         this.rawScore = rawScore;
     }
 
+    /**
+     * Gets assessment score.
+     *
+     * @return the assessment score
+     */
     public Double getAssessmentScore() {
         return assessmentScore;
     }
 
+    /**
+     * Sets assessment score.
+     *
+     * @param assessmentScore the assessment score
+     */
     public void setAssessmentScore(Double assessmentScore) {
         this.assessmentScore = assessmentScore;
     }

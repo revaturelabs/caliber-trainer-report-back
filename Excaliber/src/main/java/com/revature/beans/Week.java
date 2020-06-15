@@ -3,6 +3,9 @@ package com.revature.beans;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * The type Week.
+ */
 @Entity
 @Table
 public class Week {
@@ -30,6 +33,9 @@ public class Week {
     private Set<Assessment> assessments;
 
 
+    /**
+     * Instantiates a new Week.
+     */
     public Week() {
         id = 0;
         weekNumber = "";
@@ -39,6 +45,12 @@ public class Week {
         assessments = null;
     }
 
+    /**
+     * Instantiates a new Week.
+     *
+     * @param weekNumber      the week number
+     * @param technicalStatus the technical status
+     */
     public Week(String weekNumber, String technicalStatus) {
         this.weekNumber = weekNumber;
         this.technicalStatus = technicalStatus;

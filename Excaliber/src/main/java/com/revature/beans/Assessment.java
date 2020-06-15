@@ -2,6 +2,9 @@ package com.revature.beans;
 
 import javax.persistence.*;
 
+/**
+ * The type Assessment.
+ */
 @Entity
 @Table
 public class Assessment {
@@ -20,6 +23,9 @@ public class Assessment {
     @JoinColumn(name = "category_id") //need column name------------------------------------------------
     private Category skillCategory;
 
+    /**
+     * Instantiates a new Assessment.
+     */
     public Assessment() {
         id = 0;
         scoreWeight = 0;
@@ -29,6 +35,13 @@ public class Assessment {
         skillCategory = null;
     }
 
+    /**
+     * Instantiates a new Assessment.
+     *
+     * @param scoreWeight the score weight
+     * @param type        the type
+     * @param average     the average
+     */
     public Assessment(Integer scoreWeight, String type, Float average) {
         this.scoreWeight = scoreWeight;
         this.type = type;

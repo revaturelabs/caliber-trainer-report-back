@@ -7,10 +7,21 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Technical status by week dao.
+ */
 @Repository
 public class TechnicalStatusByWeekDAO {
+    /**
+     * The Log.
+     */
     public Logger log = Logger.getLogger(TechnicalStatusByWeekDAO.class);
 
+    /**
+     * Gets table data.
+     *
+     * @return the table data
+     */
     public List<TechnicalStatusByWeek> getTableData() {
         log.info("TechnicalStatusByWeekDAO: "
                 + "Getting table data for TechnicalStatusByWeek");

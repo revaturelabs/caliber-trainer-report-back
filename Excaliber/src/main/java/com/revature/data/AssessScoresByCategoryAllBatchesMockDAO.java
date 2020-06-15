@@ -6,9 +6,17 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Assess scores by category all batches mock dao.
+ */
 @Repository
 public class AssessScoresByCategoryAllBatchesMockDAO {
 
+    /**
+     * Gets mock data.
+     *
+     * @return the mock data
+     */
     public AssessScoresByCategoryAllBatches getMockData() {
         List<Double> aScores = new ArrayList<Double>(); //assessment scores for each week
         List<String> batchNames = new ArrayList<String>(); //corresponding batch names

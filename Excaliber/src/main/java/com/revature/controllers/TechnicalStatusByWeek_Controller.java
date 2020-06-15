@@ -12,14 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * The type Technical status by week controller.
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RequestMapping(path = "/TechnicalStatusByWeek")
 
 public class TechnicalStatusByWeek_Controller {
     private final TechnicalStatusByWeek_Service serv;
+    /**
+     * The Log.
+     */
     public Logger log = Logger.getLogger(TechnicalStatusByWeek_Controller.class);
 
+    /**
+     * Instantiates a new Technical status by week controller.
+     *
+     * @param s the s
+     */
     @Autowired
     public TechnicalStatusByWeek_Controller(TechnicalStatusByWeek_Service s) {
         serv = s;
@@ -29,7 +40,7 @@ public class TechnicalStatusByWeek_Controller {
      * Handles Get request to /TechnicalStatusByWeek/{batch id}
      * and returns List<TechnicalStatusByWeek> in response body
      *
-     * @return
+     * @return table data
      */
     @GetMapping
     public ResponseEntity<List<TechnicalStatusByWeek>> getTableData() {

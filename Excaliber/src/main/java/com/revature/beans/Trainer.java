@@ -3,6 +3,9 @@ package com.revature.beans;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * The type Trainer.
+ */
 @Entity
 @Table
 public class Trainer {
@@ -26,6 +29,9 @@ public class Trainer {
     private Set<Batch> batches;
 
 
+    /**
+     * Instantiates a new Trainer.
+     */
     public Trainer() {
         id = 0;
         this.firstName = "";
@@ -35,6 +41,13 @@ public class Trainer {
         batches = null;
     }
 
+    /**
+     * Instantiates a new Trainer.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @param email     the email
+     */
     public Trainer(String firstName, String lastName, String email) {
         this.id = 0;
         this.firstName = firstName;
@@ -42,6 +55,16 @@ public class Trainer {
         this.email = email;
     }
 
+    /**
+     * Instantiates a new Trainer.
+     *
+     * @param trainerId  the trainer id
+     * @param firstName  the first name
+     * @param lastName   the last name
+     * @param email      the email
+     * @param employeeId the employee id
+     * @param batches    the batches
+     */
     public Trainer(Integer trainerId, String firstName, String lastName, String email, String employeeId, Set<Batch> batches) {
         this.id = trainerId;
         this.firstName = firstName;

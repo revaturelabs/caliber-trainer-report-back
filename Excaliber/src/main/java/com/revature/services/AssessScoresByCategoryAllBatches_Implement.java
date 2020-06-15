@@ -5,10 +5,21 @@ import com.revature.tables.AssessScoresByCategoryAllBatches;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Assess scores by category all batches implement.
+ */
 @Service
 public class AssessScoresByCategoryAllBatches_Implement implements AssessScoresByCategoryAllBatches_Service {
+    /**
+     * The Mock dao.
+     */
     AssessScoresByCategoryAllBatchesMockDAO mockDAO;
 
+    /**
+     * Instantiates a new Assess scores by category all batches implement.
+     *
+     * @param a the a
+     */
     @Autowired
     public AssessScoresByCategoryAllBatches_Implement(AssessScoresByCategoryAllBatchesMockDAO a) {
         mockDAO = a;

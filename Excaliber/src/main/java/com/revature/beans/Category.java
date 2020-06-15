@@ -3,6 +3,9 @@ package com.revature.beans;
 import javax.persistence.*;
 
 
+/**
+ * The type Category.
+ */
 @Entity
 @Table
 public class Category {
@@ -12,9 +15,17 @@ public class Category {
     @Column
     private String name;
 
+    /**
+     * Instantiates a new Category.
+     */
     public Category() {
     }
 
+    /**
+     * Instantiates a new Category.
+     *
+     * @param name the name
+     */
     public Category(String name) {
         this.name = name;
     }

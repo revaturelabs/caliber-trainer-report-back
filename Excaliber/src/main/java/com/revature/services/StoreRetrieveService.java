@@ -2,11 +2,18 @@ package com.revature.services;
 
 import com.revature.beans.*;
 import com.revature.data.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+
+/**
+ * The type Store retrieve service.
+ */
+
 
 @Service
 public class StoreRetrieveService {
@@ -16,6 +23,15 @@ public class StoreRetrieveService {
     private final TrainerDAO tDao;
     private final WeekDAO wDao;
 
+    /**
+     * Instantiates a new Store retrieve service.
+     *
+     * @param a the a
+     * @param b the b
+     * @param c the c
+     * @param t the t
+     * @param w the w
+     */
     @Autowired
     public StoreRetrieveService(AssessmentDAO a, BatchDAO b, CategoryDAO c, TrainerDAO t, WeekDAO w) {
         aDao = a;
@@ -26,7 +42,13 @@ public class StoreRetrieveService {
 
     }
 
-    //Store methods-basic
+    /**
+     * Add category integer.
+     *
+     * @param c the c
+     * @return the integer
+     */
+//Store methods-basic
     public Integer addCategory(Category c) {
         Category category = getCategoryByName(c.getName());
         if (category != null) {
@@ -37,37 +59,67 @@ public class StoreRetrieveService {
         return cDao.save(c).getId();
     }
 
+    /**
+     * Add assessment integer.
+     *
+     * @param a the a
+     * @return the integer
+     */
     public Integer addAssessment(Assessment a) {
         return aDao.save(a).getId();
     }
 
+    /**
+     * Add week integer.
+     *
+     * @param w the w
+     * @return the integer
+     */
     public Integer addWeek(Week w) {
         return wDao.save(w).getId();
     }
 
+    /**
+     * Add batch integer.
+     *
+     * @param b the b
+     * @return the integer
+     */
     public Integer addBatch(Batch b) {
         return bDao.save(b).getId();
     }
 
+    /**
+     * Add trainer integer.
+     *
+     * @param t the t
+     * @return the integer
+     */
     public Integer addTrainer(Trainer t) {
         return tDao.save(t).getTrainerId();
     }
 
-    //Store method-entire trainer object
+    /**
+     * Add entire trainer trainer.
+     *
+     * @param t the t
+     * @return the trainer
+     */
+//Store method-entire trainer object
     public Trainer addEntireTrainer(Trainer t) {
-        
-        
-        Set<Batch> batches = new HashSet<Batch>();
+
+
+        List<Batch> batches = new ArrayList<Batch>();
 
         for (Batch batch : t.getBatches()) {
-        	Set<Week> weeks = new HashSet<Week>();
-        	
+            List<Week> weeks = new ArrayList<Week>();
+
             for (Week week : batch.getWeeks()) {
-            	
-            	Set<Assessment> assessments = new HashSet<Assessment>();
-                Set<Category> categories = new HashSet<Category>();
+
+                List<Assessment> assessments = new ArrayList<Assessment>();
+                List<Category> categories = new ArrayList<Category>();
                 for (Assessment a : week.getAssessments()) {
-                	
+
                     Category c = a.getSkillCategory();
                     c.setId(addCategory(c));
                     a.setSkillCategory(c);
@@ -95,7 +147,13 @@ public class StoreRetrieveService {
         return t;
     }
 
-    //Retrieve method
+    /**
+     * Gets trainer by id.
+     *
+     * @param id the id
+     * @return the trainer by id
+     */
+//Retrieve method
     public Trainer getTrainerById(Integer id) {
         return tDao.findById(id).get();
     }

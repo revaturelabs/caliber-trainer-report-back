@@ -1,5 +1,8 @@
 package com.revature.services;
 
+
+
+
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
@@ -9,17 +12,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/**
+ * The type Technical status per batch service.
+ */
 @Service
 public class TechnicalStatusPerBatch_Service {
 
     private final StoreRetrieveService SRSserv;
 
+    /**
+     * Instantiates a new Technical status per batch service.
+     *
+     * @param s the s
+     */
     @Autowired
     public TechnicalStatusPerBatch_Service(StoreRetrieveService s) {
         this.SRSserv = s;
     }
 
-    public TechnicalStatusPerBatch returnTable(int id) {
+    /**
+     * Technical status per batch table technical status per batch.
+     *
+     * @param id the id
+     * @return technical status per batch
+     */
+    public TechnicalStatusPerBatch technicalStatusPerBatchTable(int id) {
         Trainer trainer = SRSserv.getTrainerById(id);
         TechnicalStatusPerBatch table = new TechnicalStatusPerBatch();
         ArrayList<String> batchIds = new ArrayList<String>();
@@ -46,10 +63,10 @@ public class TechnicalStatusPerBatch_Service {
 
                         superstar++;
                     } else if (w.getTechnicalStatus().contains("null")) {
-                    	n++;
+                        n++;
                     }
                 }// end if
-                
+
             }// end week for loop
             int[] counts = {poor, average, good, superstar, n};
             techStatus.add(counts);
@@ -62,3 +79,4 @@ public class TechnicalStatusPerBatch_Service {
     }// end of method
 
 } // end class
+

@@ -1,11 +1,22 @@
 package com.revature.tables;
 
+/**
+ * The type Assessment by batch.
+ */
 public class AssessmentByBatch {
     private Integer batchId;
     private String batchName;
     private String type;
     private Integer score;
 
+    /**
+     * Instantiates a new Assessment by batch.
+     *
+     * @param batchId   the batch id
+     * @param batchName the batch name
+     * @param type      the type
+     * @param score     the score
+     */
     public AssessmentByBatch(Integer batchId, String batchName, String type, Integer score) {
         super();
         this.batchId = batchId;
@@ -14,34 +25,74 @@ public class AssessmentByBatch {
         this.score = score;
     }
 
+    /**
+     * Gets batch id.
+     *
+     * @return the batch id
+     */
     public Integer getBatchId() {
         return batchId;
     }
 
+    /**
+     * Sets batch id.
+     *
+     * @param batchId the batch id
+     */
     public void setBatchId(Integer batchId) {
         this.batchId = batchId;
     }
 
+    /**
+     * Gets batch name.
+     *
+     * @return the batch name
+     */
     public String getBatchName() {
         return batchName;
     }
 
+    /**
+     * Sets batch name.
+     *
+     * @param batchName the batch name
+     */
     public void setBatchName(String batchName) {
         this.batchName = batchName;
     }
 
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * Gets score.
+     *
+     * @return the score
+     */
     public Integer getScore() {
         return score;
     }
 
+    /**
+     * Sets score.
+     *
+     * @param score the score
+     */
     public void setScore(Integer score) {
         this.score = score;
     }

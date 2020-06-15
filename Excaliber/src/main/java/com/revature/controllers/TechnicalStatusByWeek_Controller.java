@@ -29,11 +29,11 @@ public class TechnicalStatusByWeek_Controller {
     /**
      * Instantiates a new Technical status by week controller.
      *
-     * @param s the s
+     * @param t the t
      */
     @Autowired
-    public TechnicalStatusByWeek_Controller(TechnicalStatusByWeek_Service s) {
-        serv = s;
+    public TechnicalStatusByWeek_Controller(TechnicalStatusByWeek_Service t) {
+        serv = t;
     }
 
     /**
@@ -43,11 +43,9 @@ public class TechnicalStatusByWeek_Controller {
      * @return table data
      */
     @GetMapping
-    public ResponseEntity<List<TechnicalStatusByWeek>> getTableData() {
-        log.info("TechnicalStatusByWeek_Controller: "
-                + "Getting table data for TechnicalStatusByWeek/");
-        List<TechnicalStatusByWeek> tableObjects = serv.getTableData();
-        return ResponseEntity.ok(tableObjects);
+    public ResponseEntity<List<TechnicalStatusByWeek>> getTechnicalStatusByWeek() {
+        log.info("TechnicalStatusByWeek_Controller: Getting TechnicalStatusByWeek");
+        return ResponseEntity.ok(serv.technicalStatusByWeekTable(1));
     }
 
 }

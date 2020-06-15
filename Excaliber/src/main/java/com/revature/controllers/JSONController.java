@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
+
 
 import static com.revature.utils.ParseJSON.getBatch;
+import static com.revature.utils.ParseJSON.getTrainer;
 
 /**
  * The type Json controller.
@@ -45,12 +47,14 @@ public class JSONController {
 	 * @return string response entity
 	 */
 	@GetMapping
-	public ResponseEntity<String> getTrainer() {
+	public ResponseEntity<String> getTrainer2() {
 
 //	public ResponseEntity<Trainer> storeTrainer() {
 
-		Trainer trainer = ParseJSON.getTrainer();
-		Set<Batch> batches = getBatch();
+
+		Trainer trainer = getTrainer();
+		List<Batch> batches = getBatch();
+
 		trainer.setBatches(batches);
 //		return ResponseEntity.ok(SRSserv
 //				.getTrainerById(SRSserv.addEntireTrainer(

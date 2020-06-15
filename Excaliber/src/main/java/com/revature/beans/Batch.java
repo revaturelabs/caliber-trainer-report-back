@@ -2,6 +2,7 @@ package com.revature.beans;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -30,11 +31,11 @@ public class Batch {
     @Column
     private int trainerId;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "batch_week",
             joinColumns = @JoinColumn(name = "batch_id"),
             inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
-    private Set<Week> weeks;
+    private List<Week> weeks;
 
     /**
      * Instantiates a new Batch.
@@ -128,7 +129,7 @@ public class Batch {
      *
      * @return Value of weeks.
      */
-    public Set<Week> getWeeks() {
+    public List<Week> getWeeks() {
         return weeks;
     }
 
@@ -137,7 +138,7 @@ public class Batch {
      *
      * @param weeks New value of weeks.
      */
-    public void setWeeks(Set<Week> weeks) {
+    public void setWeeks(List<Week> weeks) {
         this.weeks = weeks;
     }
 

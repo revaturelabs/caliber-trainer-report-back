@@ -2,11 +2,13 @@ package com.revature.services;
 
 import com.revature.beans.*;
 import com.revature.data.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * The type Store retrieve service.
@@ -107,15 +109,15 @@ public class StoreRetrieveService {
     public Trainer addEntireTrainer(Trainer t) {
 
 
-        Set<Batch> batches = new HashSet<Batch>();
+        List<Batch> batches = new ArrayList<Batch>();
 
         for (Batch batch : t.getBatches()) {
-            Set<Week> weeks = new HashSet<Week>();
+            List<Week> weeks = new ArrayList<Week>();
 
             for (Week week : batch.getWeeks()) {
 
-                Set<Assessment> assessments = new HashSet<Assessment>();
-                Set<Category> categories = new HashSet<Category>();
+                List<Assessment> assessments = new ArrayList<Assessment>();
+                List<Category> categories = new ArrayList<Category>();
                 for (Assessment a : week.getAssessments()) {
 
                     Category c = a.getSkillCategory();
@@ -158,5 +160,9 @@ public class StoreRetrieveService {
 
     private Category getCategoryByName(String name) {
         return cDao.findCategoryByName(name);
+    }
+    
+    public List<Category> getAll(){
+    	return cDao.findAll();
     }
 }

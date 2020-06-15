@@ -9,7 +9,7 @@ class ParseJSONTest {
 
 
     @Test
-    public void testReadDataFromFileTrue(){
+    public void testReadDataFromFileTrue() {
         // file is there should return true
         String fileName = "data.json";
         assertTrue(readDataFromFile(fileName));
@@ -17,12 +17,12 @@ class ParseJSONTest {
 
 
     @Test
-    public void testReadDataFromFileFalse(){
+    public void testReadDataFromFileFalse() {
         // should return false because file is not there
         String fileName = "noFile.json";
 
         assertThrows(NullPointerException.class,
-                ()->{
+                () -> {
                     assertFalse(readDataFromFile(fileName)); // throws NullPointerException
                 });
 
@@ -30,7 +30,7 @@ class ParseJSONTest {
 
     // testing setBatchData
     @Test
-    public void testSetBatchDataNull(){
+    public void testSetBatchDataNull() {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(setBatchData());

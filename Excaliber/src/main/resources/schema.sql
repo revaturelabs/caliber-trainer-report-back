@@ -14,21 +14,22 @@ create table category (
     name varchar not null
 );
 
-create table assessment(
-                           id          serial primary key,
-                           scoreWeight integer not null,
-                           type0       varchar not null,
-                           average     float   not null,
-                           category_id integer,
-                           foreign key (category_id) references category (id)
+create table assessment
+(
+    id           serial primary key,
+    score_weight integer not null,
+    type0        varchar not null,
+    average      float   not null,
+    category_id  integer,
+    foreign key (category_id) references category (id)
 );
 
 create table week
 (
-    id              serial primary key,
-    weekNumber      varchar not null,
-    batchId         varchar not null,
-    technicalStatus varchar not null
+    id               serial primary key,
+    week_number      varchar not null,
+    batch_id         varchar not null,
+    technical_status varchar not null
 );
 
 create table week_category
@@ -47,15 +48,16 @@ create table week_assessment
     foreign key (assessment_id) references assessment (id)
 );
 
-create table batch (
-	id serial primary key,
-	batchId varchar not null,
-	batchName varchar not null,
-	startDate date not null,
-	endDate date not null,
-	skill varchar not null,
-	location varchar not null,
-	trainerId integer not null
+create table batch
+(
+    id         serial primary key,
+    batch_id   varchar not null,
+    batch_name varchar not null,
+    start_date date,
+    end_date   date,
+    skill      varchar not null,
+    location   varchar not null,
+    trainer_id integer not null
 );
 
 create table batch_week

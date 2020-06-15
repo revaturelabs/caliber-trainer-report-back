@@ -48,11 +48,11 @@ public class TechnicalStatusPerBatch_Service {
                     } else if (w.getTechnicalStatus().contains("Superstar")) {
 
                         superstar++;
+                    } else if (w.getTechnicalStatus().contains("null")) {
+                    	n++;
                     }
                 }// end if
-                else {
-                    n++;
-                }
+                
             }// end week for loop
             int[] counts = {poor, average, good, superstar, n};
             techStatus.add(counts);

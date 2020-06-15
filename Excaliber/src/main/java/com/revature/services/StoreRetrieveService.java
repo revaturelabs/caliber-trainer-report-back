@@ -57,15 +57,19 @@ public class StoreRetrieveService {
 
     //Store method-entire trainer object
     public Trainer addEntireTrainer(Trainer t) {
-        Set<Assessment> assessments = new HashSet();
-        Set<Category> categories = new HashSet();
-        Set<Week> weeks = new HashSet();
-        Set<Batch> batches = new HashSet();
+        
+        
+        Set<Batch> batches = new HashSet<Batch>();
 
         for (Batch batch : t.getBatches()) {
-
+        	Set<Week> weeks = new HashSet<Week>();
+        	
             for (Week week : batch.getWeeks()) {
+            	
+            	Set<Assessment> assessments = new HashSet<Assessment>();
+                Set<Category> categories = new HashSet<Category>();
                 for (Assessment a : week.getAssessments()) {
+                	
                     Category c = a.getSkillCategory();
                     c.setId(addCategory(c));
                     a.setSkillCategory(c);

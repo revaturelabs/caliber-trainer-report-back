@@ -19,7 +19,7 @@ public class Assessment {
     @Column
     private Float average;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id") //need column name------------------------------------------------
     private Category skillCategory;
 

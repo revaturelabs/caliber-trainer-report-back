@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
+
 
 import static com.revature.utils.ParseJSON.getBatch;
 import static com.revature.utils.ParseJSON.getTrainer;
@@ -49,7 +50,7 @@ public class JSONController {
 //	public ResponseEntity<Trainer> storeTrainer() {
 
 		Trainer trainer = getTrainer();
-		Set<Batch> batches = getBatch();
+		List<Batch> batches = getBatch();
 		trainer.setBatches(batches);
 //		return ResponseEntity.ok(SRSserv
 //				.getTrainerById(SRSserv.addEntireTrainer(

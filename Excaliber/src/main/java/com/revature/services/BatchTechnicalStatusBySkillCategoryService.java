@@ -44,19 +44,26 @@ public class BatchTechnicalStatusBySkillCategoryService {
 			ArrayList<String> techStatus = new ArrayList<String>();
 			
 			ArrayList<String> batchName = new ArrayList<String>();
+			
+			ArrayList<int[]> techStatusScore = new ArrayList<int[]>();
 					
 			for(Batch b: trainer.getBatches()) {
 				batchIds.add(b.getBatchId());
 				batchName.add(b.getBatchName());
 				for(Week w : b.getWeeks()) {
-					
+					int Java = 0;
 					for(Category c : w.getCategories()) {
-						categoryName.add(c.getName());
+						if(categoryName.contains("Java")) {
+							Java++;
+						} else {
+							categoryName.add(c.getName());
+						}
 						
 						techStatus.add(w.getTechnicalStatus());
 					}
 					
-					
+					int[] scores = {Java};
+					techStatusScore.add(scores);
 				}
 				categoryName.add(" ");
 				
@@ -65,10 +72,13 @@ public class BatchTechnicalStatusBySkillCategoryService {
 				
 				
 			}
+			 
 			tableObject.setSkillCategory(categoryName);
 			tableObject.setBatchId(batchIds);
 			tableObject.settSName(techStatus);
 			tableObject.setBatchName(batchName);
+			tableObject.setTechnicalStatus(techStatusScore);
+			
 			
 		return tableObject;
 	}

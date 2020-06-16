@@ -28,21 +28,18 @@ public class BatchTechnicalStatusBySkillCategory {
 	private ArrayList<int[]> technicalStatus;		// GOOD, BAD, etc for batch
 	private ArrayList<String> skillCategory;		// skillCategory from Assessment eg: Java, SQL etc.
 	private ArrayList<String> tSName;
-	public ArrayList<String> gettSName() {
-		return tSName;
-	}
-
-	public void settSName(ArrayList<String> tSName) {
-		this.tSName = tSName;
-	}
-
+	
+	
 	//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
 			batchId = new ArrayList<>();
 			batchName = new ArrayList<>();
 			technicalStatus = new ArrayList<>();
 			skillCategory= new ArrayList<>();
+			tSName = new ArrayList<>();
 		}
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -92,7 +89,15 @@ public class BatchTechnicalStatusBySkillCategory {
 			return false;
 		return true;
 	}
+	
+	public ArrayList<String> gettSName() {
+		return tSName;
+	}
 
+	public void settSName(ArrayList<String> tSName) {
+		this.tSName = tSName;
+	}
+	
 	public ArrayList<String> getBatchId() {
 		return batchId;
 	}

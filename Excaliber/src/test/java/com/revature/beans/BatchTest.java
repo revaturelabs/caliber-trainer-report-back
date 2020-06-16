@@ -112,16 +112,22 @@ class BatchTest {
     	String actualTechnicalStatus = weeks.get(0).getTechnicalStatus();
     	String actualWeekNumber = weeks.get(0).getWeekNumber();
     	
-    	assertTrue(
+//    	assertTrue(
+//    			
+//    			expectedId == actualId &&
+//    			expectedBatchId.equals(actualBatchId) &&
+//    			expectedTechnicalStatus.equals(actualTechnicalStatus) &&
+//    			expectedWeekNumber.equals(actualWeekNumber),
+//    			
+//    			"ExpectedId = " + expectedId + " ActualId = " + actualId + "/n" +
+//    			 " ExpectedBatchId = " + expectedBatchId + " ActualBatchId = " + actualBatchId + "/n" +
+//    			 " ExpectedTechnicalStatus - " + expectedTechnicalStatus + " ActualTechnicalStatus = " + actualTechnicalStatus + "/n"
+//    			);
+    	
+    	assertAll(
     			
-    			expectedId == actualId &&
-    			expectedBatchId.equals(actualBatchId) &&
-    			expectedTechnicalStatus.equals(actualTechnicalStatus) &&
-    			expectedWeekNumber.equals(actualWeekNumber),
+    			()->{assertEquals(expectedId, actualId, "ExpectedId = " + expectedId + " ActualId = " + actualId );}
     			
-    			"ExpectedId = " + expectedId + " ActualId = " + actualId + "/n" +
-    			 " ExpectedBatchId = " + expectedBatchId + " ActualBatchId = " + actualBatchId + "/n" +
-    			 " ExpectedTechnicalStatus - " + expectedTechnicalStatus + " ActualTechnicalStatus = " + actualTechnicalStatus + "/n"
     			);
     	
     }

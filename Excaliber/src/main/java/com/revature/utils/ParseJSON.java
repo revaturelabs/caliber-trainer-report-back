@@ -9,8 +9,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-
 import java.util.List;
+
+import static com.revature.utils.LoggerSingleton.getLogger;
 
 
 /**
@@ -1511,16 +1512,22 @@ public class ParseJSON {
      * @return trainer trainer
      */
     public static Trainer getTrainer() {
+        getLogger(ParseJSON.class).debug("New JSON file set");
+        // check if json is null
         assert json != null;
+
         Trainer trainer = null;
         try {
             obj = new JSONObject(json).getJSONObject("employee");
+            getLogger(ParseJSON.class).trace("Trainer object found in JSON");
             trainer = new Trainer(obj.get("firstName").toString(), obj.get("lastName").toString(),
                     obj.get("email").toString());
+            getLogger(ParseJSON.class).trace("Trainer object is now created");
         } catch (JSONException e) {
+            getLogger(ParseJSON.class).error("Couldn't create Trainer object");
             e.printStackTrace();
         }
-
+        getLogger(ParseJSON.class).debug("Trainer -> " + trainer);
         return trainer;
     }
 
@@ -1548,6 +1555,15 @@ public class ParseJSON {
         }
     }
 
+    /**
+     * Sets json to be parsed.
+     *
+     * @param json the json
+     */
+    public static void setJson(String json) {
+        getLogger(ParseJSON.class).debug("New JSON file set");
+        ParseJSON.json = json;
+    }
 
     /**
      * gets all the batch id from the JSON
@@ -1555,8 +1571,9 @@ public class ParseJSON {
      * @return set of batch ids
      */
     public List<String> getBatchIds() {
+        getLogger(ParseJSON.class).debug("Calling getBatchIds");
         assert json != null;
-        List<String> out = new ArrayList<String>();
+        List<String> out = new ArrayList<>();
         JSONArray batchsJSON = null;
         try {
             batchsJSON = getBatchJSONObject();
@@ -1568,24 +1585,6 @@ public class ParseJSON {
         }
 
         return out;
-    }
-
-    /**
-     * Gets json.
-     *
-     * @return the json
-     */
-    public static String getJson() {
-        return json;
-    }
-
-    /**
-     * Sets json.
-     *
-     * @param json the json
-     */
-    public static void setJson(String json) {
-        ParseJSON.json = json;
     }
 }
 

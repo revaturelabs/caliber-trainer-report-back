@@ -2,6 +2,7 @@ package com.revature.beans;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The type Trainer.
@@ -33,7 +34,7 @@ public class Trainer {
      * Instantiates a new Trainer.
      */
     public Trainer() {
-        id = 0;
+        id = -1;
         this.firstName = "";
         this.lastName = "";
         this.email = "";
@@ -49,7 +50,7 @@ public class Trainer {
      * @param email     the email
      */
     public Trainer(String firstName, String lastName, String email) {
-        this.id = 0;
+        this.id = -1;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -192,5 +193,22 @@ public class Trainer {
                 ", employeeId='" + employeeId + '\'' +
                 ", batches=" + batches +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trainer)) return false;
+        Trainer trainer = (Trainer) o;
+        return firstName.equals(trainer.firstName) &&
+                lastName.equals(trainer.lastName) &&
+                email.equals(trainer.email) &&
+                employeeId.equals(trainer.employeeId) &&
+                batches.equals(trainer.batches);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email, employeeId, batches);
     }
 }

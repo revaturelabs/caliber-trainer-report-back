@@ -1407,8 +1407,7 @@ public class ParseJSON {
         assert json != null;
         List<Week> weeks = new ArrayList<Week>();
         try {
-            JSONArray batchsJSON = getBatchJSONObject();
-
+            getLogger(ParseJSON.class).trace("Getting Week for Batch: " + batch.getString("batchId"));
             // grab the qcNotes object
             JSONArray obj = batch.getJSONArray("qcNotes");
             for (int j = 0; j < obj.length(); j++) {
@@ -1419,7 +1418,7 @@ public class ParseJSON {
                 );
 
                 week.setBatchId(batch.getString("batchId"));
-                List<Assessment> assessments = getAssessmentByBatch(batch);
+                List<Assessment> assessments = getAssessmentByBatch(batch, week);
                 week.setAssessments(assessments);
                 week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
                 weeks.add(week);
@@ -1452,9 +1451,10 @@ public class ParseJSON {
      * Sets assessment by batch from JSON
      *
      * @param batch the batch
+     * @param week
      * @return assessment by batch
      */
-    protected static List<Assessment> getAssessmentByBatch(JSONObject batch) {
+    protected static List<Assessment> getAssessmentByBatch(JSONObject batch, Week week) {
         assert json != null;
         List<Assessment> assessments = new ArrayList<Assessment>();
 
@@ -1463,14 +1463,15 @@ public class ParseJSON {
 
             JSONArray obj = batch.getJSONArray("assessments");
             for (int i = 0; i < obj.length(); i++) {
-
-                Assessment assessment = new Assessment(
-                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
-                        obj.getJSONObject(i).getString("assessmentType"),
-                        Float.valueOf(obj.getJSONObject(i).getString("average"))
-                );
-                assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
-                assessments.add(assessment);
+                if (Integer.parseInt(week.getWeekNumber()) == Integer.valueOf(obj.getJSONObject(i).getString("weekNumber"))) {
+                    Assessment assessment = new Assessment(
+                            Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+                            obj.getJSONObject(i).getString("assessmentType"),
+                            Float.valueOf(obj.getJSONObject(i).getString("average"))
+                    );
+                    assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
+                    assessments.add(assessment);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1544,8 +1545,7 @@ public class ParseJSON {
         File file = new File(classLoader.getResource(fileName).getFile());
 
         //File is found
-        System.out.println("File Found : " + file.exists());
-
+        getLogger(ParseJSON.class).debug("File Found: " + file.exists());
         try {
             json = new String(Files.readAllBytes(file.toPath()));
             return true;

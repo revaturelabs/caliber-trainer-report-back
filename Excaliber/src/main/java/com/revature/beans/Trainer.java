@@ -202,13 +202,11 @@ public class Trainer {
         Trainer trainer = (Trainer) o;
         return firstName.equals(trainer.firstName) &&
                 lastName.equals(trainer.lastName) &&
-                email.equals(trainer.email) &&
-                employeeId.equals(trainer.employeeId) &&
-                batches.equals(trainer.batches);
+                email.equals(trainer.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, employeeId, batches);
+        return Objects.hash(firstName, lastName, email);
     }
 }

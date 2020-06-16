@@ -9,8 +9,8 @@ import com.revature.beans.BatchAssessment;
  * The type Assess scores by category all batches.
  */
 public class AssessScoresByCategoryAllBatches {
+	private String category; //type of assessment: test, verbal, project etc.
 	private List<BatchAssessment> batches; //the list of all of the batches with their assessment scores
-    private String aType; //type of assessment: test, verbal, project etc.
 
     //add dates maybe?
     //private List<Date> startDates; //corresponding start dates
@@ -21,8 +21,8 @@ public class AssessScoresByCategoryAllBatches {
      */
 //two constructors
     public AssessScoresByCategoryAllBatches() {
+    	category = "";
     	batches = new ArrayList<BatchAssessment>();
-        aType = "";
     }
 
 
@@ -30,11 +30,11 @@ public class AssessScoresByCategoryAllBatches {
      * Instantiates a new Assess scores by category all batches.
      *
      * @param batches	 the batches with scores attached
-     * @param aType      the a type
+     * @param category      the category
      */
-    public AssessScoresByCategoryAllBatches(List<BatchAssessment> batches, String aType) {
+    public AssessScoresByCategoryAllBatches(List<BatchAssessment> batches, String category) {
+    	this.category = category;
     	this.batches = batches;
-    	this.aType = aType;
     }
 
 //Getters and Setters
@@ -43,8 +43,8 @@ public class AssessScoresByCategoryAllBatches {
      *
      * @return the type
      */
-    public String getaType() {
-        return aType;
+    public String getCategory() {
+        return category;
     }
 
     /**
@@ -52,8 +52,8 @@ public class AssessScoresByCategoryAllBatches {
      *
      * @param aType the a type
      */
-    public void setaType(String aType) {
-        this.aType = aType;
+    public void setCategory(String category) {
+        this.category = category;
     }
     
 	public List<BatchAssessment> getBatches() {
@@ -66,6 +66,6 @@ public class AssessScoresByCategoryAllBatches {
 
 	@Override
 	public String toString() {
-		return "AssessScoresByCategoryAllBatches [batches=" + batches + ", aType=" + aType + "]";
+		return "AssessScoresByCategoryAllBatches [category=" + category + ", batches=" + batches + "]";
 	}
 }

@@ -16,8 +16,9 @@ buildNumber.properties
 .DS_Store
 
 # intelliJ files to ignore
-/.idea/
-.idea/*
+
+\.idea/*
+\.idea/
 *.iml
 
 # eclipse files to ignore

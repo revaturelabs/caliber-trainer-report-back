@@ -4,7 +4,6 @@ import com.revature.tables.TechnicalStatusByWeek;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

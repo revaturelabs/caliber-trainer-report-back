@@ -44,6 +44,10 @@ public class TechnicalStatusByWeek {
 		week = null;
 	}
 
+	public TechnicalStatusByWeek(String string, double d, String string2, String string3) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getBatchName() {
 		return batchName;
 	}

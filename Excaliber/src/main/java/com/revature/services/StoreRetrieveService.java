@@ -172,7 +172,7 @@ public class StoreRetrieveService {
      *
      * @return
      */
-    public List<Category> getAll() {
+    public List<Category> getAllCategories() {
         return cDao.findAll();
     }
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * The type Assess scores by category all batches controller.
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/assessscoresbycatergoryallbatches")
 public class AssessScoresByCategoryAllBatches_Controller {
     private final AssessScoresByCategoryAllBatches_Service catAll;
@@ -40,7 +40,7 @@ public class AssessScoresByCategoryAllBatches_Controller {
     public ResponseEntity<AssessScoresByCategoryAllBatches> getScoresByCategoryAllBatches(@PathVariable("category") String category) {
         log.trace("Getting table data for AssessScoresByCategoryAllBatches/" + category);
         AssessScoresByCategoryAllBatches batches = new AssessScoresByCategoryAllBatches();
-        batches = catAll.getAssessScoresByCategoryAllBatches(category);
+        batches = catAll.getAssessScoresByCategoryAllBatches(1, category);
         return ResponseEntity.ok(batches);
     }
 }

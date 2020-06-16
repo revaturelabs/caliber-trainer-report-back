@@ -1364,7 +1364,7 @@ public class ParseJSON {
      * @return
      * @throws JSONException
      */
-    private static JSONArray getBatchJSONObject() throws JSONException {
+    protected static JSONArray getBatchJSONObject() throws JSONException {
         return new JSONObject(json).getJSONArray("batches");
     }
 
@@ -1459,7 +1459,7 @@ public class ParseJSON {
         List<Assessment> assessments = new ArrayList<Assessment>();
 
         try {
-            JSONArray batchsJSON = getBatchJSONObject();
+
 
             JSONArray obj = batch.getJSONArray("assessments");
             for (int i = 0; i < obj.length(); i++) {

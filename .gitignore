@@ -6,20 +6,20 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-.mvn/timing.properties
+\.mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+\.mvn/wrapper/maven-wrapper.jar
 
 
 # ~~~~~ADDED to block IDE/OS specific files~~~~~
 # MacOS users
-.DS_Store
+\.DS_Store
 
 # intelliJ files to ignore
-/.idea/
-.idea/*
-*.iml
+./Excaliber/\.idea/
+./Excaliber\.idea/*
+*\.iml
 
 # eclipse files to ignore
-*.project
-*.classpath
+*\.project
+*\.classpath

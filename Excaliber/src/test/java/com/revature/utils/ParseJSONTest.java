@@ -1,3 +1,5 @@
+
+
 package com.revature.utils;
 
 import com.revature.beans.Batch;
@@ -154,3 +156,4 @@ class ParseJSONTest {
 //    void setJson() {
 //    }
 }
+

@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * The type Batch technical status by skill category dao.
  */
+
 @Repository
 public class BatchTechnicalStatusBySkillCategoryDAO {
     /**

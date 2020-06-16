@@ -1418,7 +1418,7 @@ public class ParseJSON {
                 );
 
                 week.setBatchId(batch.getString("batchId"));
-                List<Assessment> assessments = getAssessmentByBatch(batch);
+                List<Assessment> assessments = getAssessmentByBatch(batch, week);
                 week.setAssessments(assessments);
                 week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
                 weeks.add(week);
@@ -1453,7 +1453,7 @@ public class ParseJSON {
      * @param batch the batch
      * @return assessment by batch
      */
-    protected static List<Assessment> getAssessmentByBatch(JSONObject batch) {
+    protected static List<Assessment> getAssessmentByBatch(JSONObject batch, Week week) {
         assert json != null;
         List<Assessment> assessments = new ArrayList<Assessment>();
 
@@ -1462,14 +1462,16 @@ public class ParseJSON {
 
             JSONArray obj = batch.getJSONArray("assessments");
             for (int i = 0; i < obj.length(); i++) {
-
-                Assessment assessment = new Assessment(
-                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
-                        obj.getJSONObject(i).getString("assessmentType"),
-                        Float.valueOf(obj.getJSONObject(i).getString("average"))
-                );
-                assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
-                assessments.add(assessment);
+            	if(Integer.parseInt(week.getWeekNumber()) == Integer.valueOf(obj.getJSONObject(i).getString("weekNumber")))
+            	{
+	                Assessment assessment = new Assessment(
+	                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+	                        obj.getJSONObject(i).getString("assessmentType"),
+	                        Float.valueOf(obj.getJSONObject(i).getString("average"))
+	                );
+	                assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
+	                assessments.add(assessment);
+            	}
             }
         } catch (JSONException e) {
             e.printStackTrace();

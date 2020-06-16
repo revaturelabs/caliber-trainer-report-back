@@ -12,12 +12,5 @@ public interface AssessScoresByCategoryAllBatches_Service {
      * @param category the category
      * @return the assess scores by category all batches
      */
-    AssessScoresByCategoryAllBatches getAssessScoresByCategoryAllBatches(String category);
-
-    /**
-     * TODO
-     *
-     * @param catAll the cat all
-     */
-    void setAssessScoresByCategoryAllBatches(AssessScoresByCategoryAllBatches catAll);
+    AssessScoresByCategoryAllBatches getAssessScoresByCategoryAllBatches(Integer id, String category);
 }

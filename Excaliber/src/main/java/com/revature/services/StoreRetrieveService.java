@@ -161,4 +161,8 @@ public class StoreRetrieveService {
     private Category getCategoryByName(String name) {
         return cDao.findCategoryByName(name);
     }
+    
+    public List<Category> getAllCategories(){
+    	return cDao.findAll();
+    }
 }

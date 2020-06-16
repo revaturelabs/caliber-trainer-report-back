@@ -2,12 +2,11 @@ package com.revature.services;
 
 import com.revature.beans.*;
 import com.revature.data.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 
 /**
@@ -153,16 +152,34 @@ public class StoreRetrieveService {
      * @param id the id
      * @return the trainer by id
      */
-//Retrieve method
+
     public Trainer getTrainerById(Integer id) {
         return tDao.findById(id).get();
     }
 
+    /**
+     * get Category By Name
+     *
+     * @param name
+     * @return Category
+     */
     private Category getCategoryByName(String name) {
         return cDao.findCategoryByName(name);
     }
-    
-    public List<Category> getAllCategories(){
-    	return cDao.findAll();
+
+    /**
+     * Gets all category
+     *
+     * @return
+     */
+    public List<Category> getAllCategories() {
+        return cDao.findAll();
+    }
+
+    class NotFoundException extends RuntimeException {
+
+        NotFoundException(String data, String what) {
+            super("Could not find " + what + data);
+        }
     }
 }

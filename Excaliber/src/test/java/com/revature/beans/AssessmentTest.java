@@ -4,6 +4,7 @@ package com.revature.beans;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.*;

@@ -49,9 +49,9 @@ public class AssessScoresByCategoryAllBatches_Implement implements AssessScoresB
         for (Batch b : trainer.getBatches())
         {
         	ArrayList<Float> assessments = new ArrayList<Float>();
-        	ArrayList<Integer> weights = new ArrayList<Integer>();
+        	//ArrayList<Integer> weights = new ArrayList<Integer>();
         	BatchAssessment batch = new BatchAssessment();
-        	batch.setBatchId(b.getBatchId());
+        	//batch.setBatchId(b.getBatchId());
         	batch.setBatchName(b.getBatchName());
         	for (Week w : b.getWeeks())
         	{
@@ -60,17 +60,17 @@ public class AssessScoresByCategoryAllBatches_Implement implements AssessScoresB
 	        			if (a.getSkillCategory().getName().equalsIgnoreCase(cat))
 	        			{
 	        	            assessments.add(a.getAverage());
-	        	            weights.add(a.getScoreWeight());
+	        	            //weights.add(a.getScoreWeight());
 	        			}
         		}
         	}
         	batch.setAssessments(assessments);
-        	batch.setWeights(weights);
+        	//batch.setWeights(weights);
         	batches.add(batch);
         }
         
+        catAll.setCategory(cat);
         catAll.setBatches(batches);
-        catAll.setaType(cat);
         
         return catAll;
     }

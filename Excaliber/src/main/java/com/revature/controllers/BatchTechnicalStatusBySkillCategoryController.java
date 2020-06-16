@@ -38,14 +38,15 @@ public class BatchTechnicalStatusBySkillCategoryController {
 
 	/**
 	 * Get table data object response entity.
-	 *
-	 * @return the response entity
+	 * @param category
+	 * @return BatchTechnicalSocre by category
+	 * 
 	 */
-	@GetMapping
-	public ResponseEntity<List<BatchTechnicalStatusBySkillCategory>> getTableDataObject() {
-		log.info("Retriving graph table data for get request ");
-		List<BatchTechnicalStatusBySkillCategory> graphTableObjects = tsbscServ.getTableData();
-		return ResponseEntity.ok(graphTableObjects);
+	@GetMapping()
+	public ResponseEntity<BatchTechnicalStatusBySkillCategory> getTableDataObject() {
+		log.info("Retriving graph table data for get request for BatchTecnicalStatusByCategory: ");
+		
+		return ResponseEntity.ok(this.tsbscServ.getTableData(1));
 	}
 
 }

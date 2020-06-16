@@ -27,7 +27,15 @@ public class BatchTechnicalStatusBySkillCategory {
 	private ArrayList<String> batchName;			// Name of a batch
 	private ArrayList<int[]> technicalStatus;		// GOOD, BAD, etc for batch
 	private ArrayList<String> skillCategory;		// skillCategory from Assessment eg: Java, SQL etc.
-	
+	private ArrayList<String> tSName;
+	public ArrayList<String> gettSName() {
+		return tSName;
+	}
+
+	public void settSName(ArrayList<String> tSName) {
+		this.tSName = tSName;
+	}
+
 	//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
 			batchId = new ArrayList<>();
@@ -43,6 +51,7 @@ public class BatchTechnicalStatusBySkillCategory {
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
 		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
 		result = prime * result + ((skillCategory == null) ? 0 : skillCategory.hashCode());
+		result = prime * result + ((tSName == null) ? 0 : tSName.hashCode());
 		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
 		return result;
 	}
@@ -70,6 +79,11 @@ public class BatchTechnicalStatusBySkillCategory {
 			if (other.skillCategory != null)
 				return false;
 		} else if (!skillCategory.equals(other.skillCategory))
+			return false;
+		if (tSName == null) {
+			if (other.tSName != null)
+				return false;
+		} else if (!tSName.equals(other.tSName))
 			return false;
 		if (technicalStatus == null) {
 			if (other.technicalStatus != null)
@@ -114,7 +128,8 @@ public class BatchTechnicalStatusBySkillCategory {
 	@Override
 	public String toString() {
 		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName
-				+ ", technicalStatus=" + technicalStatus + ", skillCategory=" + skillCategory + "]";
+				+ ", technicalStatus=" + technicalStatus + ", skillCategory=" + skillCategory + ", tSName=" + tSName
+				+ "]";
 	}
 	
 }

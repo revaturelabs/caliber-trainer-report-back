@@ -8,12 +8,14 @@ public class BatchAssessment {
 	private String batchId; //the batches id
 	private String batchName; //the batches name
 	private ArrayList<Float> assessments; //the assessment score for that batch over all weeks
+	private ArrayList<Integer> weights; //how much an assessment counts towards the average
 	
 	public BatchAssessment()
 	{
 		batchId = "";
 		batchName = "";
 		assessments = new ArrayList<Float>();
+		weights = new ArrayList<Integer>();
 	}
 
 	public String getBatchId() {
@@ -40,9 +42,17 @@ public class BatchAssessment {
 		this.assessments = assessments;
 	}
 
+	public ArrayList<Integer> getWeights() {
+		return weights;
+	}
+
+	public void setWeights(ArrayList<Integer> weights) {
+		this.weights = weights;
+	}
+
 	@Override
 	public String toString() {
 		return "BatchAssessment [batchId=" + batchId + ", batchName=" + batchName + ", assessments=" + assessments
-				+ "]";
+				+ ", weights=" + weights + "]";
 	}
 }

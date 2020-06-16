@@ -1,22 +1,20 @@
+
 package com.revature.beans;
 
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.*;
 
 
 class AssessmentTest {
 	
 	Assessment assessment;
 
-    @BeforeAll
+    @BeforeEach
     void setUp() {
     	
     	assessment = new Assessment();
@@ -128,38 +126,88 @@ class AssessmentTest {
     }
     
    
-//    @Nested
-//    @DisplayName("creating a category class to test get and set category methods")
-//    class Category{
-//    	
-//    	
-//    }
+
     
-    @SuppressWarnings("unlikely-arg-type")
+   
 	@Test
+	@DisplayName("Testing get skill category.")
     void getSkillCategory() {
     	
     	Category category = new Category();
+    	ArrayList<Category> expected = new ArrayList<Category>();
     	
     	category.setId(1);
     	category.setName("JavaScript");
     	
-    	ArrayList<Category> expected = new ArrayList<Category>();
+    	
     	
     	int actualID = category.getId();
     	String actualName = category.getName();
     	
     	expected.add(category);
+    
     	
-    	assertTrue(expected.contains(actualName) && expected.contains(actualID));
+    	int expectedID = expected.get(0).getId();
+    	String expectedName = expected.get(0).getName();
+    	
+    	assertTrue(expectedID == actualID && expectedName.equals(actualName),
+    			"ExpectedID = " + expectedID + "ExpectedName = " + actualName);
     	
     }
+	
+	@Test
+	void setSkillCategory() {
+		
+		Category category1 = new Category();
+		Category category2 = new Category();
+		
+		ArrayList<Category> expectedCategories = new ArrayList<Category>();
+		
+		
+		category1.setId(2);
+		category1.setName("SQL");
+		category2.setId(3);
+		category2.setName("Hibernate");
+		
+		expectedCategories.add(category1);
+		expectedCategories.add(category2);
+		
+		
+		int expectedId_cat1 = 2;
+		String expectedName_cat1 = "SQL";
+		
+		int expectedId_cat2 = 3;
+		String expectedName_cat2 = "Hibernate";
+		
+		int actualId_cat1 = expectedCategories.get(0).getId();
+		String actualName_cat1 = expectedCategories.get(0).getName();
+		
+		int actualId_cat2 = expectedCategories.get(1).getId();
+		String actualName_cat2 = expectedCategories.get(1).getName();
+		
+		
+		// this is gross, I'm sorry. 
+		assertTrue(
+				expectedId_cat1 == actualId_cat1 &&
+				expectedName_cat1.equals(actualName_cat1) &&
+				expectedId_cat2 == actualId_cat2 &&
+				expectedName_cat2.equals(actualName_cat2),
+				"expectedId_cat1 = " + expectedId_cat1 + "actualId_cat1 = " + actualId_cat1 +
+				"expectedName_cat1 = " + expectedName_cat1 + "actualName_cat1 = " + actualName_cat1 +
+				"expectedId_cat2 = " + expectedId_cat2 + "actualId_cat2 = " + actualId_cat2 +
+				"expetedName_cat2 = " + expectedName_cat2 + "actualName_cat2 = " + actualName_cat2
 
-    @Test
-    void setSkillCategory() {
-    	
-    	
-    }
+				);
+		
+		// tests were running and passing in (0.000) seconds. I assume because they are rather trivial, but just to be sure
+		// things were happening, I printed the data to the console. Good news everyone! things were happening. 
+		System.out.println("expectedId_cat1 = " + expectedId_cat1 + " actualId_cat1 = " + actualId_cat1 +
+						" expectedName_cat1 = " + expectedName_cat1 + " actualName_cat1 = " + actualName_cat1 +
+						" expectedId_cat2 = " + expectedId_cat2 + " actualId_cat2 = " + actualId_cat2 +
+						" expetedName_cat2 = " + expectedName_cat2 + " actualName_cat2 = " + actualName_cat2);
+		
+	}
+
 
     
 }

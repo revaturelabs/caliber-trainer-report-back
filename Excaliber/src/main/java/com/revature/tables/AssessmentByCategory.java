@@ -11,15 +11,15 @@ import com.revature.beans.Category;
  */
 public class AssessmentByCategory {
     private List<Category> categories;
-
-    private List<Float> average;
+    // Average is average score for category across all batches
+    private List<Float[]> average;
     
     
     //Constructor
     public AssessmentByCategory() {
     	categories=new ArrayList<Category>();
 
-    	average=new ArrayList<Float>();
+    	average=new ArrayList<Float[]>();
     }
     
     //toString
@@ -36,10 +36,10 @@ public class AssessmentByCategory {
 	}
 
 
-	public List<Float> getAverage() {
+	public List<Float[]> getAverage() {
 		return average;
 	}
-	public void setAverage(List<Float> average) {
+	public void setAverage(List<Float[]> average) {
 		this.average = average;
 	}
     

@@ -1,24 +1,28 @@
 package com.revature.tables;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.beans.BatchTSCategory;
+import com.revature.beans.Category;
 
 /* Batch Technical Status Bean
 	
-	***Bean to generate graph for Technical Status per batch according to skillCategory***
+	***Bean to generate graph for Technical Status per batch according to Category***
 	*
 	*User Story: 
 		• To generate graphical representation of QC Technical Status
-			per batch according to skillCategory.
+			per batch according to Category.
 			
 	*Objective: 
 		•Generate the metrics that allows to see how well a trainer is 
-			performing per batch according to skillCategory.
+			performing per batch according to Category.
 			
 	*Data-Points:
 		•Batch ID from Batch
 		•Batch Name from Batch
 		•Technical Status from Batch's QC notes.
-		•SkillCategory from Batch's Assessment.
+		•Category from Batch's QC notes.
 */
 
 public class BatchTechnicalStatusBySkillCategory {
@@ -26,8 +30,9 @@ public class BatchTechnicalStatusBySkillCategory {
 	private ArrayList<String> batchId;			// ID number of a batch
 	private ArrayList<String> batchName;			// Name of a batch
 	private ArrayList<int[]> technicalStatus;		// GOOD, BAD, etc for batch
-	private ArrayList<String> skillCategory;		// skillCategory from Assessment eg: Java, SQL etc.
-	private ArrayList<String> tSName;
+	private List<Category> categories;		// Category eg: Java, SQL etc.
+	private ArrayList<Float> tSName;
+	private ArrayList<BatchTSCategory> batchByCategory;
 	
 	
 	//Constructor
@@ -35,19 +40,33 @@ public class BatchTechnicalStatusBySkillCategory {
 			batchId = new ArrayList<>();
 			batchName = new ArrayList<>();
 			technicalStatus = new ArrayList<>();
-			skillCategory= new ArrayList<>();
+			categories= new ArrayList<>();
 			tSName = new ArrayList<>();
+			batchByCategory = new ArrayList<BatchTSCategory>();
 		}
 	
 	
+
+	public ArrayList<BatchTSCategory> getBatchByCategory() {
+		return batchByCategory;
+	}
+
+
+
+	public void setBatchByCategory(ArrayList<BatchTSCategory> batchByCategory) {
+		this.batchByCategory = batchByCategory;
+	}
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((batchByCategory == null) ? 0 : batchByCategory.hashCode());
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
 		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
-		result = prime * result + ((skillCategory == null) ? 0 : skillCategory.hashCode());
+		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
 		result = prime * result + ((tSName == null) ? 0 : tSName.hashCode());
 		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
 		return result;
@@ -62,6 +81,11 @@ public class BatchTechnicalStatusBySkillCategory {
 		if (getClass() != obj.getClass())
 			return false;
 		BatchTechnicalStatusBySkillCategory other = (BatchTechnicalStatusBySkillCategory) obj;
+		if (batchByCategory == null) {
+			if (other.batchByCategory != null)
+				return false;
+		} else if (!batchByCategory.equals(other.batchByCategory))
+			return false;
 		if (batchId == null) {
 			if (other.batchId != null)
 				return false;
@@ -72,10 +96,10 @@ public class BatchTechnicalStatusBySkillCategory {
 				return false;
 		} else if (!batchName.equals(other.batchName))
 			return false;
-		if (skillCategory == null) {
-			if (other.skillCategory != null)
+		if (categories == null) {
+			if (other.categories != null)
 				return false;
-		} else if (!skillCategory.equals(other.skillCategory))
+		} else if (!categories.equals(other.categories))
 			return false;
 		if (tSName == null) {
 			if (other.tSName != null)
@@ -90,11 +114,11 @@ public class BatchTechnicalStatusBySkillCategory {
 		return true;
 	}
 	
-	public ArrayList<String> gettSName() {
+	public ArrayList<Float> gettSName() {
 		return tSName;
 	}
 
-	public void settSName(ArrayList<String> tSName) {
+	public void settSName(ArrayList<Float> tSName) {
 		this.tSName = tSName;
 	}
 	
@@ -122,19 +146,19 @@ public class BatchTechnicalStatusBySkillCategory {
 		this.technicalStatus = technicalStatus;
 	}
 
-	public ArrayList<String> getSkillCategory() {
-		return skillCategory;
+	public List<Category> getCategories() {
+		return categories;
 	}
 
-	public void setSkillCategory(ArrayList<String> skillCategory) {
-		this.skillCategory = skillCategory;
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 	@Override
 	public String toString() {
 		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName
-				+ ", technicalStatus=" + technicalStatus + ", skillCategory=" + skillCategory + ", tSName=" + tSName
-				+ "]";
+				+ ", technicalStatus=" + technicalStatus + ", categories=" + categories + ", tSName=" + tSName
+				+ ", batchByCategory=" + batchByCategory + "]";
 	}
 	
 }

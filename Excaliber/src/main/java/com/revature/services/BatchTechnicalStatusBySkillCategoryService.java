@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Batch;
+import com.revature.beans.BatchTSCategory;
 import com.revature.beans.Category;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
@@ -35,51 +36,85 @@ public class BatchTechnicalStatusBySkillCategoryService {
 	
 	public BatchTechnicalStatusBySkillCategory getTableData(int id){
 			Trainer trainer = sRserv.getTrainerById(id);
+			
 			BatchTechnicalStatusBySkillCategory tableObject = new BatchTechnicalStatusBySkillCategory();
 			
-			ArrayList<String> categoryName = new ArrayList<String>();
+			ArrayList<BatchTSCategory> batchCategory = new ArrayList<BatchTSCategory>();
 			
-			ArrayList<String> batchIds = new ArrayList<String>();
 			
-			ArrayList<String> techStatus = new ArrayList<String>();
 			
-			ArrayList<String> batchName = new ArrayList<String>();
+			List<Category> cat = sRserv.getAllCategories();
 			
-			ArrayList<int[]> techStatusScore = new ArrayList<int[]>();
+			for(Category ca: cat) {
+				
+				double good = 0;
+				double poor = 0;
+				double average = 0;
+				double superstar = 0;
+				for(Batch b: trainer.getBatches()) {
+					BatchTSCategory batch = new BatchTSCategory();
+					batch.setCategoryName(ca.getName());
+					batch.setBatchId(b.getBatchId());
 					
-			for(Batch b: trainer.getBatches()) {
-				batchIds.add(b.getBatchId());
-				batchName.add(b.getBatchName());
-				for(Week w : b.getWeeks()) {
-					int Java = 0;
-					for(Category c : w.getCategories()) {
-						if(categoryName.contains("Java")) {
-							Java++;
-						} else {
-							categoryName.add(c.getName());
+					int catGood = 0;
+					int catPoor = 0;
+					int catAverage = 0;
+					int catSuperStar = 0;
+					
+					for(Week w: b.getWeeks()) {
+						for(Category c: w.getCategories()) {
+							if(c.getName().equalsIgnoreCase(ca.getName()) && w.getTechnicalStatus().equalsIgnoreCase("Good")) {
+								catGood++;
+							} else if(c.getName().equalsIgnoreCase(ca.getName()) && w.getTechnicalStatus().equalsIgnoreCase("Average")) {
+								catAverage++;
+							} else if(c.getName().equalsIgnoreCase(ca.getName()) && w.getTechnicalStatus().equalsIgnoreCase("Poor")) {
+								catPoor++;
+							} else if(c.getName().equalsIgnoreCase(ca.getName()) && w.getTechnicalStatus().equalsIgnoreCase("Superstar")) {
+								catSuperStar++;
+							}
 						}
-						
-						techStatus.add(w.getTechnicalStatus());
 					}
 					
-					int[] scores = {Java};
-					techStatusScore.add(scores);
+					good = catGood;
+					average =catAverage;
+					poor = catPoor;
+					superstar = catSuperStar;
+					
+					double[] finalVal = {};
+					double goodAvg = 0;
+					double aveAverage = 0;
+					double poorAvg = 0;
+					double superAvg = 0;
+					double total = good+average+poor+superstar;
+					
+					if(total != 0) {
+					
+					goodAvg = (good/total)*100;
+					aveAverage = (average/total)*100;
+					poorAvg = (poor/total)*100;
+					superAvg = (superstar/total)*100;
+			
+					}
+					
+					ArrayList<Double> finalCount = new ArrayList<Double>();
+					finalCount.add(good);
+					finalCount.add(average);
+					finalCount.add(poor);
+					finalCount.add(superstar);
+					ArrayList<Double> finalAverageVal = new ArrayList<Double>();
+					finalAverageVal.add(goodAvg);
+					finalAverageVal.add(aveAverage);
+					finalAverageVal.add(poorAvg);
+					finalAverageVal.add(superAvg);
+					
+					
+					batch.setTechScore(finalCount);
+					batch.setAvgVal(finalAverageVal);
+					batchCategory.add(batch);
 				}
-				categoryName.add(" ");
 				
-				techStatus.add(" ");
-				
-				
-				
+				tableObject.setBatchByCategory(batchCategory);
 			}
-			 
-			tableObject.setSkillCategory(categoryName);
-			tableObject.setBatchId(batchIds);
-			tableObject.settSName(techStatus);
-			tableObject.setBatchName(batchName);
-			tableObject.setTechnicalStatus(techStatusScore);
-			
-			
-		return tableObject;
+				return tableObject;
 	}
 }

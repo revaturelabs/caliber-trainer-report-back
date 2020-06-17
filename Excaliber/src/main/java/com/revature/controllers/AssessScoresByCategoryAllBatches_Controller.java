@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/assessscoresbycatergoryallbatches")
+@RequestMapping(path = "/assessscoresbycategoryallbatches")
 public class AssessScoresByCategoryAllBatches_Controller {
     private final AssessScoresByCategoryAllBatches_Service catAll;
     /**

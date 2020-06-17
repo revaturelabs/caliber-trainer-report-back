@@ -71,18 +71,12 @@ class WeekTest {
     	Float actual_Average = assessments.get(0).getAverage();
     	
     	
-    	
-    	assertTrue(
+    	assertAll(
     			
-    			(expected_Id == actual_Id) &&
-    			(expected_ScoreWeight == actual_ScoreWeight) &&
-    			(expected_Type.equals(actual_Type)) &&
-    			(expected_Average.compareTo(actual_Average) == 0),
-    			
-    			"Expected_Id = " + expected_Id + " Actual_Id = " + actual_Id + "\n" +
-    			"Expected_ScoreWeight = " + expected_ScoreWeight + " Actual_ScoreWeight = " + actual_ScoreWeight + "\n" +
-    			"Expected_Type = " + expected_Type + " Actual_Type = " + actual_Type + "\n" +
-    			"Expected_Average = " + expected_Average + " Actual_Avereage = " + actual_Average
+    			()-> {assertTrue(expected_Id == actual_Id, "Expected_Id = " + expected_Id + " Actual_Id = " + actual_Id);},
+    			()-> {assertTrue(expected_ScoreWeight == actual_ScoreWeight, "Expected_ScoreWeight = " + expected_ScoreWeight + " Actual_ScoreWeight = " + actual_ScoreWeight);},
+    			()-> {assertTrue(expected_Type.equals(actual_Type), "Expected_Type = " + expected_Type + " Actual_Type = " + actual_Type );},
+    			()-> {assertTrue(expected_Average.compareTo(actual_Average) == 0, "Expected_Average = " + expected_Average + " Actual_Avereage = " + actual_Average );}
     			
     			);
     	
@@ -110,16 +104,14 @@ class WeekTest {
     	String actual_Name = categories.get(0).getName();
     	
     	
-    	assertTrue(
+    	
+    	
+    	assertAll(
     			
-    			expected_Id == actual_Id &&
-    			expected_Name.equals(actual_Name),
-    			"Expected ID = " + expected_Id + " Actual Id = " + actual_Id + "\n" +
-    			"Expected Name = " + expected_Name + " Actual_Name = " + actual_Name
+    			()-> {assertTrue(expected_Id == actual_Id, "Expected ID = " + expected_Id + " Actual Id = " + actual_Id );},
+    			()-> {assertTrue(expected_Name.equals(actual_Name), "Expected Name = " + expected_Name + " Actual_Name = " + actual_Name );}
     			
     			);
-    	
-    	
     }
     
 }

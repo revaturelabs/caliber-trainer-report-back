@@ -186,25 +186,19 @@ class AssessmentTest {
 		String actualName_cat2 = expectedCategories.get(1).getName();
 		
 		
-		// this is gross, I'm sorry. 
-		assertTrue(
-				expectedId_cat1 == actualId_cat1 &&
-				expectedName_cat1.equals(actualName_cat1) &&
-				expectedId_cat2 == actualId_cat2 &&
-				expectedName_cat2.equals(actualName_cat2),
-				"expectedId_cat1 = " + expectedId_cat1 + "actualId_cat1 = " + actualId_cat1 +
-				"expectedName_cat1 = " + expectedName_cat1 + "actualName_cat1 = " + actualName_cat1 +
-				"expectedId_cat2 = " + expectedId_cat2 + "actualId_cat2 = " + actualId_cat2 +
-				"expetedName_cat2 = " + expectedName_cat2 + "actualName_cat2 = " + actualName_cat2
-
+		
+		assertAll(
+				
+				()-> {assertEquals(expectedId_cat1, actualId_cat1, "expectedId_cat1 = " + expectedId_cat1 + "actualId_cat1 = " + actualId_cat1 );},
+				()-> {assertEquals(expectedName_cat1, actualName_cat1, "expectedName_cat1 = " + expectedName_cat1 + "actualName_cat1 = " + actualName_cat1 );},
+				()-> {assertEquals(expectedId_cat2, actualId_cat2, "expectedId_cat2 = " + expectedId_cat2 + "actualId_cat2 = " + actualId_cat2 );}, 
+				()-> {assertEquals(expectedName_cat2, actualName_cat2, "expetedName_cat2 = " + expectedName_cat2 + "actualName_cat2 = " + actualName_cat2 );}
+				
+				
+				
 				);
 		
-		// tests were running and passing in (0.000) seconds. I assume because they are rather trivial, but just to be sure
-		// things were happening, I printed the data to the console. Good news everyone! things were happening. 
-		System.out.println("expectedId_cat1 = " + expectedId_cat1 + " actualId_cat1 = " + actualId_cat1 +
-						" expectedName_cat1 = " + expectedName_cat1 + " actualName_cat1 = " + actualName_cat1 +
-						" expectedId_cat2 = " + expectedId_cat2 + " actualId_cat2 = " + actualId_cat2 +
-						" expetedName_cat2 = " + expectedName_cat2 + " actualName_cat2 = " + actualName_cat2);
+		
 		
 	}
 

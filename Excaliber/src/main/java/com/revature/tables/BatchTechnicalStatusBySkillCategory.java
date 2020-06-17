@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.revature.beans.BatchTSCategory;
 import com.revature.beans.Category;
+import com.revature.beans.QCTSCategory;
 
 /* Batch Technical Status Bean
 	
@@ -27,48 +28,28 @@ import com.revature.beans.Category;
 
 public class BatchTechnicalStatusBySkillCategory {
 	
-	private ArrayList<String> batchId;			// ID number of a batch
-	private ArrayList<String> batchName;			// Name of a batch
-	private ArrayList<int[]> technicalStatus;		// GOOD, BAD, etc for batch
-	private List<Category> categories;		// Category eg: Java, SQL etc.
-	private ArrayList<Float> tSName;
-	private ArrayList<BatchTSCategory> batchByCategory;
+	private ArrayList<QCTSCategory> batchByCategory;
 	
 	
 	//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-			batchId = new ArrayList<>();
-			batchName = new ArrayList<>();
-			technicalStatus = new ArrayList<>();
-			categories= new ArrayList<>();
-			tSName = new ArrayList<>();
-			batchByCategory = new ArrayList<BatchTSCategory>();
+			batchByCategory = new ArrayList<QCTSCategory>();
 		}
-	
-	
 
-	public ArrayList<BatchTSCategory> getBatchByCategory() {
+	public ArrayList<QCTSCategory> getBatchByCategory() {
 		return batchByCategory;
 	}
 
-
-
-	public void setBatchByCategory(ArrayList<BatchTSCategory> batchByCategory) {
+	public void setBatchByCategory(ArrayList<QCTSCategory> batchByCategory) {
 		this.batchByCategory = batchByCategory;
 	}
 
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((batchByCategory == null) ? 0 : batchByCategory.hashCode());
-		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
-		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
-		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
-		result = prime * result + ((tSName == null) ? 0 : tSName.hashCode());
-		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
 		return result;
 	}
 
@@ -86,79 +67,16 @@ public class BatchTechnicalStatusBySkillCategory {
 				return false;
 		} else if (!batchByCategory.equals(other.batchByCategory))
 			return false;
-		if (batchId == null) {
-			if (other.batchId != null)
-				return false;
-		} else if (!batchId.equals(other.batchId))
-			return false;
-		if (batchName == null) {
-			if (other.batchName != null)
-				return false;
-		} else if (!batchName.equals(other.batchName))
-			return false;
-		if (categories == null) {
-			if (other.categories != null)
-				return false;
-		} else if (!categories.equals(other.categories))
-			return false;
-		if (tSName == null) {
-			if (other.tSName != null)
-				return false;
-		} else if (!tSName.equals(other.tSName))
-			return false;
-		if (technicalStatus == null) {
-			if (other.technicalStatus != null)
-				return false;
-		} else if (!technicalStatus.equals(other.technicalStatus))
-			return false;
 		return true;
-	}
-	
-	public ArrayList<Float> gettSName() {
-		return tSName;
-	}
-
-	public void settSName(ArrayList<Float> tSName) {
-		this.tSName = tSName;
-	}
-	
-	public ArrayList<String> getBatchId() {
-		return batchId;
-	}
-
-	public void setBatchId(ArrayList<String> batchId) {
-		this.batchId = batchId;
-	}
-
-	public ArrayList<String> getBatchName() {
-		return batchName;
-	}
-
-	public void setBatchName(ArrayList<String> batchName) {
-		this.batchName = batchName;
-	}
-
-	public ArrayList<int[]> getTechnicalStatus() {
-		return technicalStatus;
-	}
-
-	public void setTechnicalStatus(ArrayList<int[]> technicalStatus) {
-		this.technicalStatus = technicalStatus;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
 	}
 
 	@Override
 	public String toString() {
-		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName
-				+ ", technicalStatus=" + technicalStatus + ", categories=" + categories + ", tSName=" + tSName
-				+ ", batchByCategory=" + batchByCategory + "]";
+		return "BatchTechnicalStatusBySkillCategory [batchByCategory=" + batchByCategory + "]";
 	}
+	
+	
+
+
 	
 }

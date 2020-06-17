@@ -3,65 +3,45 @@ package com.revature.beans;
 import java.util.ArrayList;
 
 public class BatchTSCategory {
-	private String categoryName;
-	private String batchId;
-	private ArrayList<Double> techScore;
-	private ArrayList<Double> avgVal;
+	private String batchName;
+	private QCTSScore score;
+	//private ArrayList<Double> avgVal;
 	
 	public BatchTSCategory() {
-		this.categoryName = categoryName;
-		this.batchId = batchId;
-		this.techScore = new ArrayList<Double>();
-		this.avgVal = new ArrayList<Double>();
+		this.batchName = batchName;
+		this.score = new QCTSScore();
+		//this.avgVal = new ArrayList<Double>();
 	}
 	
-	public BatchTSCategory(String categoryName, String batchId, ArrayList<Double> techScore, ArrayList<Double> avgVal) {
-		this.categoryName = categoryName;
-		this.batchId = batchId;
-		this.techScore = new ArrayList<Double>();
-		this.avgVal = new ArrayList<Double>();
+	public BatchTSCategory(String categoryName, String batchName, ArrayList<Double> techScore, ArrayList<Double> avgVal) {
+		this.batchName = batchName;
+		this.score = new QCTSScore();
+		//this.avgVal = new ArrayList<Double>();
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	
+	public String getBatchName() {
+		return batchName;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
 	}
 
-	public String getBatchId() {
-		return batchId;
+	public void setScore(QCTSScore score) {
+		this.score = score;
 	}
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
-	}
-
-	public ArrayList<Double> getTechScore() {
-		return techScore;
-	}
-
-	public void setTechScore(ArrayList<Double> techScore) {
-		this.techScore = techScore;
-	}
-
-	public ArrayList<Double> getAvgVal() {
-		return avgVal;
-	}
-
-	public void setAvgVal(ArrayList<Double> avgVal) {
-		this.avgVal = avgVal;
+	public QCTSScore getScore() {
+		return score;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((avgVal == null) ? 0 : avgVal.hashCode());
-		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
-		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
-		result = prime * result + ((techScore == null) ? 0 : techScore.hashCode());
+		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
+		result = prime * result + ((score == null) ? 0 : score.hashCode());
 		return result;
 	}
 
@@ -74,33 +54,22 @@ public class BatchTSCategory {
 		if (getClass() != obj.getClass())
 			return false;
 		BatchTSCategory other = (BatchTSCategory) obj;
-		if (avgVal == null) {
-			if (other.avgVal != null)
+		if (batchName == null) {
+			if (other.batchName != null)
 				return false;
-		} else if (!avgVal.equals(other.avgVal))
+		} else if (!batchName.equals(other.batchName))
 			return false;
-		if (batchId == null) {
-			if (other.batchId != null)
+		if (score == null) {
+			if (other.score != null)
 				return false;
-		} else if (!batchId.equals(other.batchId))
-			return false;
-		if (categoryName == null) {
-			if (other.categoryName != null)
-				return false;
-		} else if (!categoryName.equals(other.categoryName))
-			return false;
-		if (techScore == null) {
-			if (other.techScore != null)
-				return false;
-		} else if (!techScore.equals(other.techScore))
+		} else if (!score.equals(other.score))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "BatchTSCategory [categoryName=" + categoryName + ", batchId=" + batchId + ", techScore=" + techScore
-				+ ", avgVal=" + avgVal + "]";
+		return "BatchTSCategory [batchName=" + batchName + ", score=" + score + "]";
 	}
 	
 	

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.revature.beans.Batch;
 import com.revature.beans.BatchTSCategory;
 import com.revature.beans.Category;
+import com.revature.beans.QCTSCategory;
+import com.revature.beans.QCTSScore;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.tables.BatchTechnicalStatusBySkillCategory;
@@ -17,7 +19,7 @@ import com.revature.tables.BatchTechnicalStatusBySkillCategory;
  */
 
 @Service
-public class BatchTechnicalStatusBySkillCategoryService {
+public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnicalStatusByCategory_Service {
 	private final StoreRetrieveService sRserv;
 	/*
 	 * New Instance of BatchTechnicalStatusBySkillCategory.
@@ -33,35 +35,40 @@ public class BatchTechnicalStatusBySkillCategoryService {
 	 * @param id
 	 * @return Batch Techincal Status By Skill Category
 	 */
-	
+	@Override
 	public BatchTechnicalStatusBySkillCategory getTableData(int id){
+		
 			Trainer trainer = sRserv.getTrainerById(id);
 			
 			BatchTechnicalStatusBySkillCategory tableObject = new BatchTechnicalStatusBySkillCategory();
 			
-			ArrayList<BatchTSCategory> batchCategory = new ArrayList<BatchTSCategory>();
-			
-			
+			ArrayList<QCTSCategory> catList = new ArrayList<QCTSCategory>();
 			
 			List<Category> cat = sRserv.getAllCategories();
-			
+			//Category loop started
 			for(Category ca: cat) {
+				QCTSCategory catego = new QCTSCategory();
+				catego.setCategoryName(ca.getName());
 				
+				ArrayList<BatchTSCategory> batchCategory = new ArrayList<BatchTSCategory>();
+
 				double good = 0;
 				double poor = 0;
 				double average = 0;
 				double superstar = 0;
+				//Batch Loop started
 				for(Batch b: trainer.getBatches()) {
 					BatchTSCategory batch = new BatchTSCategory();
-					batch.setCategoryName(ca.getName());
-					batch.setBatchId(b.getBatchId());
+					QCTSScore scores = new QCTSScore();
+					batch.setBatchName(b.getBatchName());
 					
 					int catGood = 0;
 					int catPoor = 0;
 					int catAverage = 0;
 					int catSuperStar = 0;
-					
+					//Week Loop started
 					for(Week w: b.getWeeks()) {
+						//category within week loop started
 						for(Category c: w.getCategories()) {
 							if(c.getName().equalsIgnoreCase(ca.getName()) && w.getTechnicalStatus().equalsIgnoreCase("Good")) {
 								catGood++;
@@ -72,21 +79,20 @@ public class BatchTechnicalStatusBySkillCategoryService {
 							} else if(c.getName().equalsIgnoreCase(ca.getName()) && w.getTechnicalStatus().equalsIgnoreCase("Superstar")) {
 								catSuperStar++;
 							}
-						}
-					}
-					
+						} //Category with in week for loop ends here
+					} // Week for loop ends here 
 					good = catGood;
 					average =catAverage;
 					poor = catPoor;
 					superstar = catSuperStar;
 					
-					double[] finalVal = {};
 					double goodAvg = 0;
 					double aveAverage = 0;
 					double poorAvg = 0;
 					double superAvg = 0;
 					double total = good+average+poor+superstar;
 					
+					//Calculating average for TechnicalStatus counts
 					if(total != 0) {
 					
 					goodAvg = (good/total)*100;
@@ -95,26 +101,29 @@ public class BatchTechnicalStatusBySkillCategoryService {
 					superAvg = (superstar/total)*100;
 			
 					}
+					//Adding TechnicalStatus counts in a Score object
 					
-					ArrayList<Double> finalCount = new ArrayList<Double>();
-					finalCount.add(good);
-					finalCount.add(average);
-					finalCount.add(poor);
-					finalCount.add(superstar);
-					ArrayList<Double> finalAverageVal = new ArrayList<Double>();
-					finalAverageVal.add(goodAvg);
-					finalAverageVal.add(aveAverage);
-					finalAverageVal.add(poorAvg);
-					finalAverageVal.add(superAvg);
+					scores.setGood(good);
+					scores.setAverage(average);;
+					scores.setPoor(poor);
+					scores.setSuperstar(superstar);
+					scores.setAvgGood(goodAvg);
+					scores.setAvgAverage(aveAverage);
+					scores.setAvgPoor(poorAvg);
+					scores.setAvgSuperstar(superAvg);
+
+					batch.setScore(scores);
 					
-					
-					batch.setTechScore(finalCount);
-					batch.setAvgVal(finalAverageVal);
 					batchCategory.add(batch);
-				}
-				
-				tableObject.setBatchByCategory(batchCategory);
-			}
+					
+				} //Batch for loop ends here
+				System.out.println(ca.getName());
+				System.out.println(batchCategory);
+				System.out.println("***************************************************");
+				catego.setBatches(batchCategory);
+				catList.add(catego);
+				tableObject.setBatchByCategory(catList);
+			} //Category for loop ends here 
 				return tableObject;
 	}
 }

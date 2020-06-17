@@ -13,7 +13,7 @@ public class BatchAssessment {
 	{
 		batchId = "";
 		batchName = "";
-		assessments = new ArrayList<Float>();
+		assessments = new ArrayList<>();
 	}
 
 	public String getBatchId() {

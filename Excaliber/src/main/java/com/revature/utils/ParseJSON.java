@@ -1356,7 +1356,7 @@ public class ParseJSON {
             "    }\r\n" +
             "  ]\r\n" +
             "}";
-    private static JSONObject obj;
+
 
     /**
      * Gets all Batch object from the JSON
@@ -1528,6 +1528,7 @@ public class ParseJSON {
      * @return trainer trainer
      */
     public static Trainer getTrainer() {
+        JSONObject obj;
         getLogger(ParseJSON.class).debug("New JSON file set");
         // check if json is null
         assert json != null;
@@ -1555,7 +1556,7 @@ public class ParseJSON {
      */
     public static boolean readDataFromFile(String fileName) {
 
-        ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();
+        ClassLoader classLoader = ParseJSON.class.getClassLoader();
 
         File file = new File(classLoader.getResource(fileName).getFile());
 

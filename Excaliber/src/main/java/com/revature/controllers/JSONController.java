@@ -38,16 +38,10 @@ public class JSONController {
 	@GetMapping
 	public ResponseEntity<String> getTrainer2() {
 
-//	public ResponseEntity<Trainer> storeTrainer() {
-
 
 		Trainer trainer = getTrainer();
 		List<Batch> batches = getBatch();
-
 		trainer.setBatches(batches);
-//		return ResponseEntity.ok(SRSserv
-//				.getTrainerById(SRSserv.addEntireTrainer(
-//						trainer).getId()));
 		SRSserv.addEntireTrainer(trainer);
 		return ResponseEntity.ok().build();
 

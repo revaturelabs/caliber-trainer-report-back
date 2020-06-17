@@ -3,7 +3,6 @@ package com.revature.beans;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -27,14 +26,13 @@ public class Batch {
     private String skill;
     @Column
     private String location;
-    //private String type; // always Revature?
     @Column
     private int trainerId;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "batch_week",
             joinColumns = @JoinColumn(name = "batch_id"),
-            inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
+            inverseJoinColumns = @JoinColumn(name = "week_id"))
     private List<Week> weeks;
 
     /**
@@ -66,8 +64,6 @@ public class Batch {
     public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
         this.batchId = batchId;
         this.batchName = batchName;
-//		this.startDate = startDate;
-//		this.endDate = endDate;
         this.skill = skill;
         this.location = location;
     }

@@ -144,7 +144,6 @@ public class BatchTechnicalStatus {
         return result;
     }
 
-    //Generate toString()
     @Override
     public String toString() {
         return "BatchTechnicalStatus [batchId=" + batchId + ", batchName=" + batchName + ", technicalStatus="

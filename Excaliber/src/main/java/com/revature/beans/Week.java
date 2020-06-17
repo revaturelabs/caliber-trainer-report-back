@@ -3,7 +3,6 @@ package com.revature.beans;
 import javax.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * The type Week.

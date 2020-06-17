@@ -36,11 +36,11 @@ public class AssessScoresByCategoryAllBatches_Controller {
      * @param category the category
      * @return scores by category all batches
      */
-    @GetMapping(path = "/{category}")
-    public ResponseEntity<AssessScoresByCategoryAllBatches> getScoresByCategoryAllBatches(@PathVariable("category") String category) {
-        log.trace("Getting table data for AssessScoresByCategoryAllBatches/" + category);
+    @GetMapping
+    public ResponseEntity<AssessScoresByCategoryAllBatches> getScoresByCategoryAllBatches() {
+        log.trace("Getting table data for AssessScoresByCategoryAllBatches");
         AssessScoresByCategoryAllBatches batches = new AssessScoresByCategoryAllBatches();
-        batches = catAll.getAssessScoresByCategoryAllBatches(1, category);
+        batches = catAll.getAssessScoresByCategoryAllBatches(1);
         return ResponseEntity.ok(batches);
     }
 }

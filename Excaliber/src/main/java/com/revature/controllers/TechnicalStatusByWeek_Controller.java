@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RequestMapping(path = "/TechnicalStatusByWeek")
-
 public class TechnicalStatusByWeek_Controller {
     private final TechnicalStatusByWeek_Service serv;
     /**
@@ -45,7 +44,7 @@ public class TechnicalStatusByWeek_Controller {
     @GetMapping
     public ResponseEntity<List<TechnicalStatusByWeek>> getTechnicalStatusByWeek() {
         log.info("TechnicalStatusByWeek_Controller: Getting TechnicalStatusByWeek");
-        return ResponseEntity.ok(serv.technicalStatusByWeekTable(1));
+        return ResponseEntity.ok(serv.getTechnicalStatusByWeek(1));
     }
 
 }

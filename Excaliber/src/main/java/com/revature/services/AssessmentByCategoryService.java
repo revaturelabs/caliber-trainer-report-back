@@ -63,6 +63,10 @@ public class AssessmentByCategoryService {
 	    	float denominatorVerbal=0;
 	    	float numeratorPresentation=0;
 	    	float denominatorPresentation=0;
+	    	float numeratorProject=0;
+	    	float denominatorProject=0;
+	    	float numeratorOther=0;
+	    	float denominatorOther=0;
 	    	
 	    	for (int j=0;j<assessScores.get(i).size();j++) {
 	    		String type=typeForScore.get(i).get(j);
@@ -75,11 +79,20 @@ public class AssessmentByCategoryService {
 	    		}else if (type.contains("Presentation")) {
 	    			numeratorPresentation+=assessScores.get(i).get(j);
 	    			denominatorPresentation+=rawScores.get(i).get(j);
+	    		}else if (type.contains("Project")) {
+	    			numeratorProject+=assessScores.get(i).get(j);
+	    			denominatorProject+=rawScores.get(i).get(j);
+	    		}else {
+	    			numeratorOther+=assessScores.get(i).get(j);
+	    			denominatorOther+=rawScores.get(i).get(j);
 	    		}
+	    		
 	    	}
 	    	float averageExam=0;
 	    	float averageVerbal=0;
 	    	float averagePresentation=0;
+	    	float averageProject=0;
+	    	float averageOther=0;
 	    	if (denominatorExam!=0) {
 	    		averageExam=(numeratorExam/denominatorExam)*100;
 	    	}
@@ -89,7 +102,13 @@ public class AssessmentByCategoryService {
 	    	if (denominatorPresentation!=0) {
 	    		averagePresentation=(numeratorPresentation/denominatorPresentation)*100;
 	    	}
-	    	Float[] average= {averageExam, averageVerbal, averagePresentation};
+	    	if (denominatorProject!=0) {
+	    		averageProject=(numeratorProject/denominatorProject)*100;
+	    	}
+	    	if (denominatorOther!=0) {
+	    		averageOther=(numeratorOther/denominatorOther)*100;
+	    	}
+	    	Float[] average= {averageExam, averageVerbal, averagePresentation, averageProject, averageOther};
 	    	averageForCat.add(average);
 	    }
 	    

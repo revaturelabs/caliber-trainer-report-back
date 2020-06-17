@@ -15,11 +15,12 @@ public class Assessment {
     private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
     @Column(name = "type0")
     private String type;
+    //private Integer weekId;
     @Column
     private Float average;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id") //need column name------------------------------------------------
     private Category skillCategory;
 
     /**
@@ -29,6 +30,7 @@ public class Assessment {
         id = 0;
         scoreWeight = 0;
         type = "";
+        //weekId = 0;
         average = (float) 0;
         skillCategory = null;
     }

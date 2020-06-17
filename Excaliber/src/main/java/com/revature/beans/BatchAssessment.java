@@ -13,11 +13,8 @@ public class BatchAssessment {
 	{
 		//batchId = "";
 		batchName = "";
-
-		assessments = new ArrayList<>();
-
+		assessments = new ArrayList<Float>();
 		//weights = new ArrayList<Integer>();
-
 	}
 
 //	public String getBatchId() {

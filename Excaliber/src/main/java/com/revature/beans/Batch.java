@@ -1,7 +1,9 @@
 package com.revature.beans;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -18,9 +20,9 @@ public class Batch {
     @Column
     private String batchName;
     @Column
-    private String startDate;
+    private Date startDate;
     @Column
-    private String endDate;
+    private Date endDate;
     @Column
     private String skill;
     @Column
@@ -64,8 +66,8 @@ public class Batch {
     public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
         this.batchId = batchId;
         this.batchName = batchName;
-        this.startDate = startDate;
-        this.endDate = endDate;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
         this.skill = skill;
         this.location = location;
     }
@@ -181,7 +183,7 @@ public class Batch {
      *
      * @return Value of endDate.
      */
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
@@ -190,7 +192,7 @@ public class Batch {
      *
      * @param endDate New value of endDate.
      */
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -217,7 +219,7 @@ public class Batch {
      *
      * @return Value of startDate.
      */
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
@@ -226,7 +228,7 @@ public class Batch {
      *
      * @param startDate New value of startDate.
      */
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

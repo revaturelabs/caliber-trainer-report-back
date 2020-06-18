@@ -64,7 +64,7 @@ public class AssessmentByCategory {
      *
      * @param average the average
      */
-    public void setAverage(List<Float> average) {
+    public void setAverage( ArrayList average) {
         this.average = average;
     }
 

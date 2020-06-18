@@ -1,6 +1,6 @@
 package com.revature.controllers;
 
-import com.revature.services.TechnicalStatusByWeek_Service;
+import com.revature.services.TechnicalStatusByWeekService;
 import com.revature.tables.TechnicalStatusByWeek;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RequestMapping(path = "/TechnicalStatusByWeek")
 public class TechnicalStatusByWeekController {
-    private final TechnicalStatusByWeek_Service serv;
+    private final TechnicalStatusByWeekService serv;
     /**
      * The Log.
      */
@@ -31,7 +31,7 @@ public class TechnicalStatusByWeekController {
      * @param t the t
      */
     @Autowired
-    public TechnicalStatusByWeekController(TechnicalStatusByWeek_Service t) {
+    public TechnicalStatusByWeekController(TechnicalStatusByWeekService t) {
         serv = t;
     }
 

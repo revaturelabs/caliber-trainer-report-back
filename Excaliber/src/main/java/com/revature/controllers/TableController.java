@@ -83,7 +83,7 @@ public class TableController {
      * @return assessment by category
      */
     @GetMapping(path = "/AssessmentByCategory")
-    public ResponseEntity<AssessmentByCategory> getAssessmentByCategory(@PathVariable int trainerId) {
+    public ResponseEntity<List<AssessmentByCategory>> getAssessmentByCategory(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessmentByCategory");
         return ResponseEntity.ok(assessmentByCategoryService.getABCTable(trainerId));
     }

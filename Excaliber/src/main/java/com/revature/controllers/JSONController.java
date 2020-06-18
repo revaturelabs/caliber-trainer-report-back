@@ -64,6 +64,8 @@ public class JSONController {
         //give trainer the batches
         trainer.setBatches(batches);
         //if trainer created
+
         return SRSserv.addEntireTrainer(trainer).getTrainerId() != -1;
     }
+
 }

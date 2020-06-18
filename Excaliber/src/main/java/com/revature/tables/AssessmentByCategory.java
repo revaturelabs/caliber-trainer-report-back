@@ -9,9 +9,9 @@ import java.util.List;
  * The type Assessment by category.
  */
 public class AssessmentByCategory {
-    private List<Category> categories;
+    private String category;
 
-    private List<Float> average;
+    private Float[] average;
 
 
     /**
@@ -19,15 +19,15 @@ public class AssessmentByCategory {
      */
 //Constructor
     public AssessmentByCategory() {
-        categories = new ArrayList<>();
+        category = "";
 
-        average = new ArrayList<>();
+        average = new Float[5];
     }
 
     //toString
     @Override
     public String toString() {
-        return "AssessmentByCategory [categories=" + categories + ", average=" + average + "]";
+        return "AssessmentByCategory [category=" + category+ ", average=" + average + "]";
     }
 
     /**
@@ -36,8 +36,8 @@ public class AssessmentByCategory {
      * @return the categories
      */
 //Getters and Setters
-    public List<Category> getCategories() {
-        return categories;
+    public String getCategory() {
+        return category;
     }
 
     /**
@@ -45,8 +45,8 @@ public class AssessmentByCategory {
      *
      * @param categories the categories
      */
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 
@@ -55,7 +55,7 @@ public class AssessmentByCategory {
      *
      * @return the average
      */
-    public List<Float> getAverage() {
+    public Float[] getAverage() {
         return average;
     }
 
@@ -64,7 +64,7 @@ public class AssessmentByCategory {
      *
      * @param average the average
      */
-    public void setAverage( ArrayList average) {
+    public void setAverage( Float[] average) {
         this.average = average;
     }
 

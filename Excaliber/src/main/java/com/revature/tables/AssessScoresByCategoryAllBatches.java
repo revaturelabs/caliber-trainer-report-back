@@ -11,31 +11,45 @@ import java.util.List;
 public class AssessScoresByCategoryAllBatches {
 	private List<CategoryBatches> categories; //type of assessment: test, verbal, project etc.
 
-    /**
-     * Instantiates a new Assess scores by category all batches.
-     */
+	/**
+	 * Instantiates a new Assess scores by category all batches.
+	 */
 //two constructors
-    public AssessScoresByCategoryAllBatches() {
+	public AssessScoresByCategoryAllBatches() {
 		categories = new ArrayList<>();
 	}
 
 
-    public AssessScoresByCategoryAllBatches(List<CategoryBatches> categories)
-    {
-    	this.categories = categories;
-    }
+	/**
+	 * Instantiates a new Assess scores by category all batches.
+	 *
+	 * @param categories the categories
+	 */
+	public AssessScoresByCategoryAllBatches(List<CategoryBatches> categories) {
+		this.categories = categories;
+	}
 
-public List<CategoryBatches> getCategories() {
+	/**
+	 * Gets categories.
+	 *
+	 * @return the categories
+	 */
+	public List<CategoryBatches> getCategories() {
 		return categories;
 	}
 
 
+	/**
+	 * Sets categories.
+	 *
+	 * @param categories the categories
+	 */
 	public void setCategories(List<CategoryBatches> categories) {
 		this.categories = categories;
 	}
 
 
-@Override
+	@Override
 	public String toString() {
 		return "AssessScoresByCategoryAllBatches [categories=" + categories + "]";
 	}

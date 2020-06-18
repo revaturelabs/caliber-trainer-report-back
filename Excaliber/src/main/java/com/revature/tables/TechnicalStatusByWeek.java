@@ -25,7 +25,7 @@ public class TechnicalStatusByWeek {
 	private Double averageAvg;     // average of average technical status
 	private Double goodAvg;        // average of good technical status
 	private Double superstarAvg;   // average of super-star technical status
-	
+
 	/**
 	 * Instantiates a new Technical status by week.
 	 */
@@ -43,90 +43,200 @@ public class TechnicalStatusByWeek {
 		superstarAvg = 0.0;
 	}
 
+	/**
+	 * Gets category.
+	 *
+	 * @return the category
+	 */
 	public String getCategory() {
 		return category;
 	}
 
+	/**
+	 * Sets category.
+	 *
+	 * @param category the category
+	 */
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
+	/**
+	 * Gets null count.
+	 *
+	 * @return the null count
+	 */
 	public Integer getNullCount() {
 		return nullCount;
 	}
 
+	/**
+	 * Sets null count.
+	 *
+	 * @param nullCount the null count
+	 */
 	public void setNullCount(Integer nullCount) {
 		this.nullCount = nullCount;
 	}
 
+	/**
+	 * Gets poor count.
+	 *
+	 * @return the poor count
+	 */
 	public Integer getPoorCount() {
 		return poorCount;
 	}
 
+	/**
+	 * Sets poor count.
+	 *
+	 * @param poorCount the poor count
+	 */
 	public void setPoorCount(Integer poorCount) {
 		this.poorCount = poorCount;
 	}
 
+	/**
+	 * Gets average count.
+	 *
+	 * @return the average count
+	 */
 	public Integer getAverageCount() {
 		return averageCount;
 	}
 
+	/**
+	 * Sets average count.
+	 *
+	 * @param averageCount the average count
+	 */
 	public void setAverageCount(Integer averageCount) {
 		this.averageCount = averageCount;
 	}
 
+	/**
+	 * Gets good count.
+	 *
+	 * @return the good count
+	 */
 	public Integer getGoodCount() {
 		return goodCount;
 	}
 
+	/**
+	 * Sets good count.
+	 *
+	 * @param goodCount the good count
+	 */
 	public void setGoodCount(Integer goodCount) {
 		this.goodCount = goodCount;
 	}
 
+	/**
+	 * Gets superstar count.
+	 *
+	 * @return the superstar count
+	 */
 	public Integer getSuperstarCount() {
 		return superstarCount;
 	}
 
+	/**
+	 * Sets superstar count.
+	 *
+	 * @param superstarCount the superstar count
+	 */
 	public void setSuperstarCount(Integer superstarCount) {
 		this.superstarCount = superstarCount;
 	}
 
+	/**
+	 * Gets null avg.
+	 *
+	 * @return the null avg
+	 */
 	public Double getNullAvg() {
 		return nullAvg;
 	}
 
+	/**
+	 * Sets null avg.
+	 *
+	 * @param nullAvg the null avg
+	 */
 	public void setNullAvg(Double nullAvg) {
 		this.nullAvg = nullAvg;
 	}
 
+	/**
+	 * Gets poor avg.
+	 *
+	 * @return the poor avg
+	 */
 	public Double getPoorAvg() {
 		return poorAvg;
 	}
 
+	/**
+	 * Sets poor avg.
+	 *
+	 * @param poorAvg the poor avg
+	 */
 	public void setPoorAvg(Double poorAvg) {
 		this.poorAvg = poorAvg;
 	}
 
+	/**
+	 * Gets average avg.
+	 *
+	 * @return the average avg
+	 */
 	public Double getAverageAvg() {
 		return averageAvg;
 	}
 
+	/**
+	 * Sets average avg.
+	 *
+	 * @param averageAvg the average avg
+	 */
 	public void setAverageAvg(Double averageAvg) {
 		this.averageAvg = averageAvg;
 	}
 
+	/**
+	 * Gets good avg.
+	 *
+	 * @return the good avg
+	 */
 	public Double getGoodAvg() {
 		return goodAvg;
 	}
 
+	/**
+	 * Sets good avg.
+	 *
+	 * @param goodAvg the good avg
+	 */
 	public void setGoodAvg(Double goodAvg) {
 		this.goodAvg = goodAvg;
 	}
 
+	/**
+	 * Gets superstar avg.
+	 *
+	 * @return the superstar avg
+	 */
 	public Double getSuperstarAvg() {
 		return superstarAvg;
 	}
 
+	/**
+	 * Sets superstar avg.
+	 *
+	 * @param superstarAvg the superstar avg
+	 */
 	public void setSuperstarAvg(Double superstarAvg) {
 		this.superstarAvg = superstarAvg;
 	}
@@ -207,11 +317,8 @@ public class TechnicalStatusByWeek {
 		} else if (!superstarAvg.equals(other.superstarAvg))
 			return false;
 		if (superstarCount == null) {
-			if (other.superstarCount != null)
-				return false;
-		} else if (!superstarCount.equals(other.superstarCount))
-			return false;
-		return true;
+			return other.superstarCount == null;
+		} else return superstarCount.equals(other.superstarCount);
 	}
 
 	@Override

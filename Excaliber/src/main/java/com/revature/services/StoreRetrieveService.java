@@ -180,4 +180,9 @@ public class StoreRetrieveService {
     public List<Category> getAllCategories() {
         return cDao.findAll();
     }
+
+	public List<Assessment> getAllAssessments() {
+		// TODO Auto-generated method stub
+		return aDao.findAll();
+	}
 }

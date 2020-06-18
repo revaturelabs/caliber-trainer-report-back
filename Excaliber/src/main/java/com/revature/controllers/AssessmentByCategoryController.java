@@ -2,6 +2,9 @@ package com.revature.controllers;
 
 import com.revature.services.AssessmentByCategoryService;
 import com.revature.tables.AssessmentByCategory;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +35,7 @@ public class AssessmentByCategoryController {
 	 * @return the response entity
 	 */
 	@GetMapping
-	public ResponseEntity<AssessmentByCategory> getABCTable() {
+	public ResponseEntity<List<AssessmentByCategory>> getABCTable() {
 		return ResponseEntity.ok(ABCserv.getABCTable(1));
 	}
 

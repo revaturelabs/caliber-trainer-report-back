@@ -39,10 +39,10 @@ public class TechnicalStatusPerBatchService {
     public TechnicalStatusPerBatch technicalStatusPerBatchTable(int id) {
         Trainer trainer = sRSserv.getTrainerById(id);
         TechnicalStatusPerBatch table = new TechnicalStatusPerBatch();
-        ArrayList<String> batchIds = new ArrayList<String>();
+        ArrayList<String> batchIds = new ArrayList<>();
 
-        ArrayList<String> batchName = new ArrayList<String>();
-        ArrayList<int[]> techStatus = new ArrayList<int[]>();
+        ArrayList<String> batchName = new ArrayList<>();
+        ArrayList<int[]> techStatus = new ArrayList<>();
         for (Batch b : trainer.getBatches()) {
             batchIds.add(b.getBatchId());
             batchName.add(b.getBatchName());

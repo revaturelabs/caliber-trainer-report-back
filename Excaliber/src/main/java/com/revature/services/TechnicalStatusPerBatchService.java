@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @Service
 public class TechnicalStatusPerBatchService {
 
-    private final StoreRetrieveService SRSserv;
+    private final StoreRetrieveService sRSserv;
 
     /**
      * Instantiates a new Technical status per batch service.
@@ -27,7 +27,7 @@ public class TechnicalStatusPerBatchService {
      */
     @Autowired
     public TechnicalStatusPerBatchService(StoreRetrieveService s) {
-        this.SRSserv = s;
+        this.sRSserv = s;
     }
 
     /**
@@ -37,7 +37,7 @@ public class TechnicalStatusPerBatchService {
      * @return technical status per batch
      */
     public TechnicalStatusPerBatch technicalStatusPerBatchTable(int id) {
-        Trainer trainer = SRSserv.getTrainerById(id);
+        Trainer trainer = sRSserv.getTrainerById(id);
         TechnicalStatusPerBatch table = new TechnicalStatusPerBatch();
         ArrayList<String> batchIds = new ArrayList<String>();
 

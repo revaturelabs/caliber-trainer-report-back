@@ -36,7 +36,7 @@ public class BatchTechnicalStatusBySkillCategory {
 	 */
 //Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-		batchByCategory = new ArrayList<QCTSCategory>();
+		batchByCategory = new ArrayList<>();
 	}
 
 	/**

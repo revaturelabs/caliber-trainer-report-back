@@ -155,7 +155,7 @@ public class StoreRetrieveService {
      * @return the trainer by id
      */
     public Trainer getTrainerById(Integer id) {
-        Optional<Trainer> trainer = tDao.findById(id);
+    	Optional<Trainer> trainer = tDao.findById(id);
         if (trainer.isPresent())
             return trainer.get();
         else

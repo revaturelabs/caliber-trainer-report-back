@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class AssessmentByCategory {
     private List<Category> categories;
-    // Average is average score for category across all batches
-    private List<Float[]> average;
+
+    private List<Float> average;
 
 
     /**
@@ -55,7 +55,7 @@ public class AssessmentByCategory {
      *
      * @return the average
      */
-    public List<Float[]> getAverage() {
+    public List<Float> getAverage() {
         return average;
     }
 
@@ -64,7 +64,7 @@ public class AssessmentByCategory {
      *
      * @param average the average
      */
-    public void setAverage(List<Float[]> average) {
+    public void setAverage(List<Float> average) {
         this.average = average;
     }
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -153,15 +154,18 @@ public class StoreRetrieveService {
      * @param id the id
      * @return the trainer by id
      */
-
     public Trainer getTrainerById(Integer id) {
-        return tDao.findById(id).get();
+        Optional<Trainer> trainer = tDao.findById(id);
+        if (trainer.isPresent())
+            return trainer.get();
+        else
+            return null;
     }
 
     /**
      * get Category By Name
      *
-     * @param name
+     * @param name name of the Category
      * @return Category
      */
     private Category getCategoryByName(String name) {
@@ -171,7 +175,7 @@ public class StoreRetrieveService {
     /**
      * Gets all category
      *
-     * @return
+     * @return all categories
      */
     public List<Category> getAllCategories() {
         return cDao.findAll();

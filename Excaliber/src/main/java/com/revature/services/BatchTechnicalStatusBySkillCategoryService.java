@@ -34,7 +34,9 @@ public class BatchTechnicalStatusBySkillCategoryService {
 	}
 
 	/**
-	 * @param id
+	 * Gets table data.
+	 *
+	 * @param id the id
 	 * @return Batch Techincal Status By Skill Category
 	 */
 	public BatchTechnicalStatusBySkillCategory getTableData(int id) {
@@ -43,22 +45,22 @@ public class BatchTechnicalStatusBySkillCategoryService {
 
 		BatchTechnicalStatusBySkillCategory tableObject = new BatchTechnicalStatusBySkillCategory();
 
-		ArrayList<QCTSCategory> catList = new ArrayList<QCTSCategory>();
+		ArrayList<QCTSCategory> catList = new ArrayList<>();
 
 		List<Category> cat = sRserv.getAllCategories();
 		//Category loop started
-		for(Category ca: cat) {
+		for (Category ca : cat) {
 			QCTSCategory catego = new QCTSCategory();
 			catego.setCategoryName(ca.getName());
 
-			ArrayList<BatchTSCategory> batchCategory = new ArrayList<BatchTSCategory>();
+			ArrayList<BatchTSCategory> batchCategory = new ArrayList<>();
 
-			double good = 0;
-			double poor = 0;
-			double average = 0;
-			double superstar = 0;
+			double good;
+			double poor;
+			double average;
+			double superstar;
 			//Batch Loop started
-			for(Batch b: trainer.getBatches()) {
+			for (Batch b : trainer.getBatches()) {
 				BatchTSCategory batch = new BatchTSCategory();
 				QCTSScore scores = new QCTSScore();
 				batch.setBatchName(b.getBatchName());

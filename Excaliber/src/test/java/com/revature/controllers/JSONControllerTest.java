@@ -1,13 +1,19 @@
 package com.revature.controllers;
 
+import com.revature.Excaliber;
 import com.revature.services.StoreRetrieveService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
@@ -15,13 +21,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(JSONController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class JSONControllerTest {
-    @Autowired
-    StoreRetrieveService SRSserv;
-    @Autowired
-    private MockMvc mockMvc;
+
+
+
 
     @BeforeEach
     void setUp() {
@@ -36,9 +41,8 @@ class JSONControllerTest {
     }
 
     @Test
-    public void storeTrainerShouldReturnTrainer() throws Exception {
-        this.mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Greetings from Spring Boot!")));
+    public void storeTrainerShouldReturnTrainer(@Autowired MockMvc mvc) throws Exception {
+        mvc.perform(get("/JSONController"))
+                .andExpect(status().isOk());
     }
 }

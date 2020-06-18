@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresByCategoryAllBatchesService {
 
-	public Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesImplement.class);
+	public static final Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesImplement.class);
 
 	private final StoreRetrieveService SRSserv;
 
@@ -39,10 +39,10 @@ public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresBy
 		List<Category> cats;
 		cats = SRSserv.getAllCategories();
 		AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
-		ArrayList<CategoryBatches> categories = new ArrayList<CategoryBatches>();
+		ArrayList<CategoryBatches> categories = new ArrayList<>();
 
 		for (Category c : cats) {
-			ArrayList<BatchAssessment> batches = new ArrayList<BatchAssessment>();
+			ArrayList<BatchAssessment> batches = new ArrayList<>();
 			CategoryBatches catBat = new CategoryBatches();
 			String cat = c.getName();
 			catBat.setCategory(cat);

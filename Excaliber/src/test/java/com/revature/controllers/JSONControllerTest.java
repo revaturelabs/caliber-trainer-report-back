@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.services.StoreRetrieveService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(JSONController.class)
+@Disabled
 class JSONControllerTest {
     @Autowired
     StoreRetrieveService SRSserv;

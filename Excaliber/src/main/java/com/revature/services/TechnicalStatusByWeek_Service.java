@@ -100,7 +100,6 @@ public class TechnicalStatusByWeek_Service {
 		}
 		// calculate and set percentages
 		for (TechnicalStatusByWeek categoryRow : dataTransferObject) {
-			System.out.println("MJM: " + categoryRow.getCategory());
 			// get sum total of data points for current category
 			Double totalDataPoints = 0.0;
 			totalDataPoints += categoryRow.getNullCount();

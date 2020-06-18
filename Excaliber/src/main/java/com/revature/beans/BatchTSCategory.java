@@ -8,15 +8,12 @@ import java.util.ArrayList;
 public class BatchTSCategory {
     private String batchName;
     private QCTSScore score;
-    //private ArrayList<Double> avgVal;
 
     /**
      * Instantiates a new Batch ts category.
      */
     public BatchTSCategory() {
-        this.batchName = batchName;
         this.score = new QCTSScore();
-        //this.avgVal = new ArrayList<Double>();
     }
 
     /**
@@ -30,7 +27,6 @@ public class BatchTSCategory {
     public BatchTSCategory(String categoryName, String batchName, ArrayList<Double> techScore, ArrayList<Double> avgVal) {
         this.batchName = batchName;
         this.score = new QCTSScore();
-        //this.avgVal = new ArrayList<Double>();
     }
 
 

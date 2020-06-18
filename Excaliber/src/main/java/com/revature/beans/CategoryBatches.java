@@ -16,7 +16,7 @@ public class CategoryBatches {
      */
     public CategoryBatches() {
         category = "";
-        batchAssessments = new ArrayList<BatchAssessment>();
+        batchAssessments = new ArrayList<>();
     }
 
     /**

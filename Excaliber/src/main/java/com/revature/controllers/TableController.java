@@ -4,6 +4,7 @@ import com.revature.services.TableService;
 import com.revature.tables.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +35,7 @@ public class TableController {
      * @param trainer_id the trainer id
      * @return technical status per batch
      */
-    @RequestMapping(path = "/TechnicalStatusPerBatch")
+    @GetMapping(path = "/TechnicalStatusPerBatch")
     public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.technicalStatusPerBatchTable(trainer_id));
     }
@@ -45,7 +46,7 @@ public class TableController {
      * @param trainer_id the trainer id
      * @return assessment by batch
      */
-    @RequestMapping(path = "/AssessmentByBatch")
+    @GetMapping(path = "/AssessmentByBatch")
     public ResponseEntity<AssessmentByBatch> getAssessmentByBatch(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.assessmentByBatchTable(trainer_id));
     }
@@ -56,7 +57,7 @@ public class TableController {
      * @param trainer_id the trainer id
      * @return assessment by category
      */
-    @RequestMapping(path = "/AssessmentByCategory")
+    @GetMapping(path = "/AssessmentByCategory")
     public ResponseEntity<AssessmentByCategory> getAssessmentByCategory(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.assessmentByCategoryTable(trainer_id));
     }
@@ -67,7 +68,7 @@ public class TableController {
      * @param trainer_id the trainer id
      * @return assess scores by category all batches
      */
-    @RequestMapping(path = "/AssessScoresByCategoryAllBatches")
+    @GetMapping(path = "/AssessScoresByCategoryAllBatches")
     public ResponseEntity<AssessScoresByCategoryAllBatches> getAssessScoresByCategoryAllBatches(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.assessScoresByCategoryAllBatchesTable(trainer_id));
     }
@@ -78,7 +79,7 @@ public class TableController {
      * @param trainer_id the trainer id
      * @return batch technical status
      */
-    @RequestMapping(path = "/BatchTechnicalStatus")
+    @GetMapping(path = "/BatchTechnicalStatus")
     public ResponseEntity<BatchTechnicalStatus> getBatchTechnicalStatus(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.batchTechnicalStatusTable(trainer_id));
     }
@@ -89,7 +90,7 @@ public class TableController {
      * @param trainer_id the trainer id
      * @return technical status by week
      */
-    @RequestMapping(path = "/TechnicalStatusByWeek")
+    @GetMapping(path = "/TechnicalStatusByWeek")
     public ResponseEntity<TechnicalStatusByWeek> getTechnicalStatusByWeek(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.technicalStatusByWeekTable(trainer_id));
     }

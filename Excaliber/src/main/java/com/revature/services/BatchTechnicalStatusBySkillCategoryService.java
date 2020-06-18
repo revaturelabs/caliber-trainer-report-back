@@ -33,7 +33,7 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 	
 	/*
 	 * @param id
-	 * @return Batch Techincal Status By Skill Category
+	 * @return Batch Techincal Status By Category
 	 */
 	@Override
 	public BatchTechnicalStatusBySkillCategory getTableData(int id){
@@ -117,9 +117,7 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 					batchCategory.add(batch);
 					
 				} //Batch for loop ends here
-				System.out.println(ca.getName());
-				System.out.println(batchCategory);
-				System.out.println("***************************************************");
+				
 				catego.setBatches(batchCategory);
 				catList.add(catego);
 				tableObject.setBatchByCategory(catList);

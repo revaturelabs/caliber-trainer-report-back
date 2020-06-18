@@ -21,8 +21,8 @@ public class TechnicalStatusByWeekService {
 	/**
 	 * The Log.
 	 */
-	public Logger log = Logger.getLogger(TechnicalStatusByWeekService.class);
-	private final StoreRetrieveService SRSserv;
+	private final Logger log = Logger.getLogger(TechnicalStatusByWeekService.class);
+	private final StoreRetrieveService sRSserv;
 
 	/**
 	 * Instantiates a new Technical status by week service.
@@ -31,7 +31,7 @@ public class TechnicalStatusByWeekService {
 	 */
 	@Autowired
 	public TechnicalStatusByWeekService(StoreRetrieveService s) {
-		this.SRSserv = s;
+		this.sRSserv = s;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class TechnicalStatusByWeekService {
 	 * @return the table data
 	 */
 	public List<TechnicalStatusByWeek> getTechnicalStatusByWeek(int id) {
-		Trainer trainer = SRSserv.getTrainerById(id);
+		Trainer trainer = sRSserv.getTrainerById(id);
 		List<TechnicalStatusByWeek> dataTransferObject = new ArrayList<TechnicalStatusByWeek>();
 
 		log.info("TechnicalStatusByWeek_Service: "

@@ -21,7 +21,7 @@ public class AssessScoresByCategoryAllBatchesController {
     /**
      * The Log.
      */
-    public Logger log = Logger.getLogger(TechnicalStatusByWeekController.class);
+    public static final Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesController.class);
 
     /**
      * Instantiates a new Assess scores by category all batches controller.
@@ -34,16 +34,13 @@ public class AssessScoresByCategoryAllBatchesController {
     }
 
     /**
-     * TODO
-     *
      * @param category the category
      * @return scores by category all batches
      */
     @GetMapping
     public ResponseEntity<AssessScoresByCategoryAllBatches> getScoresByCategoryAllBatches() {
         log.trace("Getting table data for AssessScoresByCategoryAllBatches");
-        AssessScoresByCategoryAllBatches batches = new AssessScoresByCategoryAllBatches();
-        batches = catAll.getAssessScoresByCategoryAllBatches(1);
+        AssessScoresByCategoryAllBatches batches = catAll.getAssessScoresByCategoryAllBatches(1);
         return ResponseEntity.ok(batches);
     }
 }

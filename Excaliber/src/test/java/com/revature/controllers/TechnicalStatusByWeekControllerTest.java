@@ -23,15 +23,19 @@ class TechnicalStatusByWeekControllerTest {
 
 	@BeforeEach
 	public void initEach() {
-	    JSONController jc = new JSONController(null);
-	  	jc.getTrainer2();
+		// TODO: this needs something other than null passed in,
+		// whether a mock service or what, because it is a dependency
+	    //JSONController jc = new JSONController(null);
+	  	//jc.getTrainer2();
 	}
 
 
 	@BeforeAll
 	public static void init(){
-	    JSONController jc = new JSONController(null);
-	  	jc.getTrainer2();
+		// TODO: this needs something other than null passed in,
+		// whether a mock service or what, because it is a dependency
+	    //JSONController jc = new JSONController(null);
+	  	//jc.getTrainer2();
 	}
 
 

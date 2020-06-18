@@ -19,9 +19,9 @@ public class AssessmentByCategory {
      */
 //Constructor
     public AssessmentByCategory() {
-        categories = new ArrayList<Category>();
+        categories = new ArrayList<>();
 
-        average = new ArrayList<Float[]>();
+        average = new ArrayList<>();
     }
 
     //toString

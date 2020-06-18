@@ -6,11 +6,21 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * The type Technical status per batch dao.
+ */
 @Repository
 public class TechnicalStatusPerBatchDAO {
+    // TODO DELETE IF NOT NEEDED
 
     private final Logger logger = Logger.getLogger(TechnicalStatusPerBatchDAO.class);
 
+    /**
+     * Gets data points.
+     *
+     * @param batchID the batch id
+     * @return the data points
+     */
     public List<TechnicalStatusPerBatch> getDataPoints(String batchID) {
 
         List<TechnicalStatusPerBatch> dataPoints = null;

@@ -1,30 +1,24 @@
 package com.revature.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.revature.beans.*;
+import com.revature.tables.BatchTechnicalStatusBySkillCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.beans.Batch;
-import com.revature.beans.BatchTSCategory;
-import com.revature.beans.Category;
-import com.revature.beans.QCTSCategory;
-import com.revature.beans.QCTSScore;
-import com.revature.beans.Trainer;
-import com.revature.beans.Week;
-import com.revature.tables.BatchTechnicalStatusBySkillCategory;
+import java.util.ArrayList;
+import java.util.List;
 /*
  * Service for BatchTechnicalStatus by Category.
  */
 
 @Service
-public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnicalStatusByCategory_Service {
+public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnicalStatusByCategoryService {
 	private final StoreRetrieveService sRserv;
+
 	/*
 	 * New Instance of BatchTechnicalStatusBySkillCategory.
-	 * @param v 
-	 * 
+	 * @param v
+	 *
 	 */
 	@Autowired
 	public BatchTechnicalStatusBySkillCategoryService(StoreRetrieveService v) {
@@ -94,17 +88,17 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 					
 					//Calculating average for TechnicalStatus counts
 					if(total != 0) {
-					
-					goodAvg = (good/total)*100;
-					aveAverage = (average/total)*100;
-					poorAvg = (poor/total)*100;
-					superAvg = (superstar/total)*100;
-			
+
+						goodAvg = (good / total) * 100;
+						aveAverage = (average / total) * 100;
+						poorAvg = (poor / total) * 100;
+						superAvg = (superstar / total) * 100;
+
 					}
 					//Adding TechnicalStatus counts in a Score object
-					
+
 					scores.setGood(good);
-					scores.setAverage(average);;
+					scores.setAverage(average);
 					scores.setPoor(poor);
 					scores.setSuperstar(superstar);
 					scores.setAvgGood(goodAvg);
@@ -113,13 +107,10 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 					scores.setAvgSuperstar(superAvg);
 
 					batch.setScore(scores);
-					
+
 					batchCategory.add(batch);
 					
 				} //Batch for loop ends here
-				System.out.println(ca.getName());
-				System.out.println(batchCategory);
-				System.out.println("***************************************************");
 				catego.setBatches(batchCategory);
 				catList.add(catego);
 				tableObject.setBatchByCategory(catList);

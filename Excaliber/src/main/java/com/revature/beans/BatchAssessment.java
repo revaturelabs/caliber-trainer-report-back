@@ -2,58 +2,63 @@ package com.revature.beans;
 
 import java.util.ArrayList;
 
+/**
+ * The type Batch assessment.
+ */
 //This bean does not need to go into the database. It is only used in the Java code.
 public class BatchAssessment {
-	//private String batchId; //the batches id
-	private String batchName; //the batches name
-	private ArrayList<Float> assessments; //the assessment score for that batch over all weeks
-//	private ArrayList<Integer> weights; //how much an assessment counts towards the average
-	
-	public BatchAssessment()
-	{
-		//batchId = "";
-		batchName = "";
 
-		assessments = new ArrayList<>();
+    private String batchName; //the batches name
+    private ArrayList<Float> assessments; //the assessment score for that batch over all weeks
 
-		//weights = new ArrayList<Integer>();
+    /**
+     * Instantiates a new Batch assessment.
+     */
+    public BatchAssessment() {
+        batchName = "";
+        assessments = new ArrayList<>();
+    }
 
-	}
 
-//	public String getBatchId() {
-//		return batchId;
-//	}
-//
-//	public void setBatchId(String batchId) {
-//		this.batchId = batchId;
-//	}
+    /**
+     * Gets batch name.
+     *
+     * @return the batch name
+     */
+    public String getBatchName() {
+        return batchName;
+    }
 
-	public String getBatchName() {
-		return batchName;
-	}
+    /**
+     * Sets batch name.
+     *
+     * @param batchName the batch name
+     */
+    public void setBatchName(String batchName) {
+        this.batchName = batchName;
+    }
 
-	public void setBatchName(String batchName) {
-		this.batchName = batchName;
-	}
+    /**
+     * Gets assessments.
+     *
+     * @return the assessments
+     */
+    public ArrayList<Float> getAssessments() {
+        return assessments;
+    }
 
-	public ArrayList<Float> getAssessments() {
-		return assessments;
-	}
+    /**
+     * Sets assessments.
+     *
+     * @param assessments the assessments
+     */
+    public void setAssessments(ArrayList<Float> assessments) {
+        this.assessments = assessments;
+    }
 
-	public void setAssessments(ArrayList<Float> assessments) {
-		this.assessments = assessments;
-	}
 
-	/*public ArrayList<Integer> getWeights() {
-		return weights;
-	}
-
-	public void setWeights(ArrayList<Integer> weights) {
-		this.weights = weights;
-	}*/
-
-	@Override
-	public String toString() {
-		return "BatchAssessment [batchName=" + batchName + ", assessments=" + assessments + "]";
-	}
+    @Override
+    public String toString() {
+        return "BatchAssessment [batchName=" + batchName + ", assessments=" + assessments + "]";
+    }
 }

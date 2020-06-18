@@ -1,0 +1,1688 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ParseJSON</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.utils</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ParseJSON (com.revature.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ParseJSON</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (10/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    76.1%
+  </span>
+  <span class="absValue">
+    (89/ 117)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.utils;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.*;
+<i>4</i>&nbsp;import org.json.JSONArray;
+<i>5</i>&nbsp;import org.json.JSONException;
+<i>6</i>&nbsp;import org.json.JSONObject;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.io.File;
+<i>9</i>&nbsp;import java.io.IOException;
+<i>10</i>&nbsp;import java.nio.file.Files;
+<i>11</i>&nbsp;import java.util.ArrayList;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import static com.revature.utils.LoggerSingleton.getLogger;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;/**
+<i>18</i>&nbsp; * The type Parse json.
+<i>19</i>&nbsp; */
+<b class="fc"><i>20</i>&nbsp;public class ParseJSON {</b>
+<b class="fc"><i>21</i>&nbsp;    private static String json = &quot;{\r\n&quot; +</b>
+<i>22</i>&nbsp;            &quot;  \&quot;employee\&quot;: {\r\n&quot; +
+<i>23</i>&nbsp;            &quot;    \&quot;email\&quot;: \&quot;james.gosling@revature.com\&quot;,\r\n&quot; +
+<i>24</i>&nbsp;            &quot;    \&quot;firstName\&quot;: \&quot;James\&quot;,\r\n&quot; +
+<i>25</i>&nbsp;            &quot;    \&quot;lastName\&quot;: \&quot;Gosling\&quot;\r\n&quot; +
+<i>26</i>&nbsp;            &quot;  },\r\n&quot; +
+<i>27</i>&nbsp;            &quot;  \&quot;batches\&quot;: [\r\n&quot; +
+<i>28</i>&nbsp;            &quot;    {\r\n&quot; +
+<i>29</i>&nbsp;            &quot;      \&quot;id\&quot;: 121501,\r\n&quot; +
+<i>30</i>&nbsp;            &quot;      \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>31</i>&nbsp;            &quot;      \&quot;name\&quot;: \&quot;1804  Apr16 -2\&quot;,\r\n&quot; +
+<i>32</i>&nbsp;            &quot;      \&quot;startDate\&quot;: \&quot;2018-04-23\&quot;,\r\n&quot; +
+<i>33</i>&nbsp;            &quot;      \&quot;endDate\&quot;: \&quot;2018-06-29\&quot;,\r\n&quot; +
+<i>34</i>&nbsp;            &quot;      \&quot;skill\&quot;: \&quot;JTA\&quot;,\r\n&quot; +
+<i>35</i>&nbsp;            &quot;      \&quot;location\&quot;: \&quot;Revature LLC, Reston VA 20190\&quot;,\r\n&quot; +
+<i>36</i>&nbsp;            &quot;      \&quot;type\&quot;: \&quot;Revature\&quot;,\r\n&quot; +
+<i>37</i>&nbsp;            &quot;      \&quot;qcNotes\&quot;: [\r\n&quot; +
+<i>38</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>39</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 398328,\r\n&quot; +
+<i>40</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>41</i>&nbsp;            &quot;          \&quot;week\&quot;: 1,\r\n&quot; +
+<i>42</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>43</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>44</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>45</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>46</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>47</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>48</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>49</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>50</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>51</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>52</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>53</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>54</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 399329,\r\n&quot; +
+<i>55</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>56</i>&nbsp;            &quot;          \&quot;week\&quot;: 2,\r\n&quot; +
+<i>57</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>58</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>59</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>60</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>61</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>62</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>63</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>64</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>65</i>&nbsp;            &quot;            \&quot;SQL\&quot;\r\n&quot; +
+<i>66</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>67</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>68</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>69</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 401138,\r\n&quot; +
+<i>70</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>71</i>&nbsp;            &quot;          \&quot;week\&quot;: 3,\r\n&quot; +
+<i>72</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>73</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>74</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>75</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>76</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>77</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>78</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>79</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>80</i>&nbsp;            &quot;            \&quot;JavaScript\&quot;\r\n&quot; +
+<i>81</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>82</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>83</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>84</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 404094,\r\n&quot; +
+<i>85</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>86</i>&nbsp;            &quot;          \&quot;week\&quot;: 4,\r\n&quot; +
+<i>87</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>88</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>89</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>90</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>91</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>92</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>93</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>94</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>95</i>&nbsp;            &quot;            \&quot;Servlet\&quot;\r\n&quot; +
+<i>96</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>97</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>98</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>99</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 405119,\r\n&quot; +
+<i>100</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>101</i>&nbsp;            &quot;          \&quot;week\&quot;: 5,\r\n&quot; +
+<i>102</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>103</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>104</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>105</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>106</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>107</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>108</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>109</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>110</i>&nbsp;            &quot;            \&quot;AWS\&quot;,\r\n&quot; +
+<i>111</i>&nbsp;            &quot;            \&quot;Hibernate\&quot;\r\n&quot; +
+<i>112</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>113</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>114</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>115</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 407113,\r\n&quot; +
+<i>116</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>117</i>&nbsp;            &quot;          \&quot;week\&quot;: 6,\r\n&quot; +
+<i>118</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>119</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>120</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>121</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>122</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>123</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>124</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>125</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>126</i>&nbsp;            &quot;            \&quot;Testing\&quot;\r\n&quot; +
+<i>127</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>128</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>129</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>130</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 409140,\r\n&quot; +
+<i>131</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>132</i>&nbsp;            &quot;          \&quot;week\&quot;: 7,\r\n&quot; +
+<i>133</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>134</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>135</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>136</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>137</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>138</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>139</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>140</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>141</i>&nbsp;            &quot;            \&quot;REST\&quot;\r\n&quot; +
+<i>142</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>143</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>144</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>145</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 410118,\r\n&quot; +
+<i>146</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>147</i>&nbsp;            &quot;          \&quot;week\&quot;: 8,\r\n&quot; +
+<i>148</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>149</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>150</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>151</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>152</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>153</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>154</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>155</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>156</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>157</i>&nbsp;            &quot;      ],\r\n&quot; +
+<i>158</i>&nbsp;            &quot;      \&quot;assessments\&quot;: [\r\n&quot; +
+<i>159</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>160</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 177003,\r\n&quot; +
+<i>161</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>162</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>163</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>164</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 1,\r\n&quot; +
+<i>165</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>166</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>167</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>168</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>169</i>&nbsp;            &quot;          \&quot;average\&quot;: 76.10\r\n&quot; +
+<i>170</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>171</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>172</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 177004,\r\n&quot; +
+<i>173</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>174</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>175</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>176</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 1,\r\n&quot; +
+<i>177</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>178</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>179</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>180</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>181</i>&nbsp;            &quot;          \&quot;average\&quot;: 81.35\r\n&quot; +
+<i>182</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>183</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>184</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 177023,\r\n&quot; +
+<i>185</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>186</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>187</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>188</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 2,\r\n&quot; +
+<i>189</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>190</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 2,\r\n&quot; +
+<i>191</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;SQL\&quot;,\r\n&quot; +
+<i>192</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>193</i>&nbsp;            &quot;          \&quot;average\&quot;: 85.83\r\n&quot; +
+<i>194</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>195</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>196</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 177024,\r\n&quot; +
+<i>197</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 50,\r\n&quot; +
+<i>198</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>199</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>200</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 2,\r\n&quot; +
+<i>201</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>202</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 2,\r\n&quot; +
+<i>203</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;SQL\&quot;,\r\n&quot; +
+<i>204</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>205</i>&nbsp;            &quot;          \&quot;average\&quot;: 82.31\r\n&quot; +
+<i>206</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>207</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>208</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 177025,\r\n&quot; +
+<i>209</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 50,\r\n&quot; +
+<i>210</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>211</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Presentation\&quot;,\r\n&quot; +
+<i>212</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 2,\r\n&quot; +
+<i>213</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>214</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 2,\r\n&quot; +
+<i>215</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;SQL\&quot;,\r\n&quot; +
+<i>216</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>217</i>&nbsp;            &quot;          \&quot;average\&quot;: 83.08\r\n&quot; +
+<i>218</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>219</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>220</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 178000,\r\n&quot; +
+<i>221</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>222</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>223</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>224</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>225</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>226</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 12,\r\n&quot; +
+<i>227</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JavaScript\&quot;,\r\n&quot; +
+<i>228</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>229</i>&nbsp;            &quot;          \&quot;average\&quot;: 71.35\r\n&quot; +
+<i>230</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>231</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>232</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 178001,\r\n&quot; +
+<i>233</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>234</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>235</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>236</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>237</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>238</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 12,\r\n&quot; +
+<i>239</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JavaScript\&quot;,\r\n&quot; +
+<i>240</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>241</i>&nbsp;            &quot;          \&quot;average\&quot;: 80.58\r\n&quot; +
+<i>242</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>243</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>244</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 179012,\r\n&quot; +
+<i>245</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>246</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>247</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>248</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>249</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>250</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>251</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>252</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>253</i>&nbsp;            &quot;          \&quot;average\&quot;: 68.81\r\n&quot; +
+<i>254</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>255</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>256</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 179018,\r\n&quot; +
+<i>257</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>258</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>259</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Presentation\&quot;,\r\n&quot; +
+<i>260</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>261</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>262</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>263</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>264</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>265</i>&nbsp;            &quot;          \&quot;average\&quot;: 75.77\r\n&quot; +
+<i>266</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>267</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>268</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 180007,\r\n&quot; +
+<i>269</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>270</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>271</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>272</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>273</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>274</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 18,\r\n&quot; +
+<i>275</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Hibernate\&quot;,\r\n&quot; +
+<i>276</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>277</i>&nbsp;            &quot;          \&quot;average\&quot;: 76.35\r\n&quot; +
+<i>278</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>279</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>280</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 180008,\r\n&quot; +
+<i>281</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>282</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>283</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>284</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>285</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>286</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 16,\r\n&quot; +
+<i>287</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;AWS\&quot;,\r\n&quot; +
+<i>288</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>289</i>&nbsp;            &quot;          \&quot;average\&quot;: 81.65\r\n&quot; +
+<i>290</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>291</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>292</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 180016,\r\n&quot; +
+<i>293</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 200,\r\n&quot; +
+<i>294</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>295</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>296</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>297</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>298</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 18,\r\n&quot; +
+<i>299</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Hibernate\&quot;,\r\n&quot; +
+<i>300</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>301</i>&nbsp;            &quot;          \&quot;average\&quot;: 81.15\r\n&quot; +
+<i>302</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>303</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>304</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 180025,\r\n&quot; +
+<i>305</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>306</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>307</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>308</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 6,\r\n&quot; +
+<i>309</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>310</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 31,\r\n&quot; +
+<i>311</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Testing\&quot;,\r\n&quot; +
+<i>312</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>313</i>&nbsp;            &quot;          \&quot;average\&quot;: 73.38\r\n&quot; +
+<i>314</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>315</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>316</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 180026,\r\n&quot; +
+<i>317</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>318</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>319</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>320</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 6,\r\n&quot; +
+<i>321</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>322</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 31,\r\n&quot; +
+<i>323</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Testing\&quot;,\r\n&quot; +
+<i>324</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>325</i>&nbsp;            &quot;          \&quot;average\&quot;: 77.69\r\n&quot; +
+<i>326</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>327</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>328</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 181002,\r\n&quot; +
+<i>329</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>330</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>331</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>332</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>333</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>334</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 21,\r\n&quot; +
+<i>335</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;REST\&quot;,\r\n&quot; +
+<i>336</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>337</i>&nbsp;            &quot;          \&quot;average\&quot;: 72.52\r\n&quot; +
+<i>338</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>339</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>340</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 181004,\r\n&quot; +
+<i>341</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>342</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>343</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>344</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>345</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;Ix2x2UAB\&quot;,\r\n&quot; +
+<i>346</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 21,\r\n&quot; +
+<i>347</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;REST\&quot;,\r\n&quot; +
+<i>348</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>349</i>&nbsp;            &quot;          \&quot;average\&quot;: 80.38\r\n&quot; +
+<i>350</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>351</i>&nbsp;            &quot;      ]\r\n&quot; +
+<i>352</i>&nbsp;            &quot;    },\r\n&quot; +
+<i>353</i>&nbsp;            &quot;    {\r\n&quot; +
+<i>354</i>&nbsp;            &quot;      \&quot;id\&quot;: 138502,\r\n&quot; +
+<i>355</i>&nbsp;            &quot;      \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>356</i>&nbsp;            &quot;      \&quot;name\&quot;: \&quot;1901 Jan06 Other\&quot;,\r\n&quot; +
+<i>357</i>&nbsp;            &quot;      \&quot;startDate\&quot;: \&quot;2019-01-10\&quot;,\r\n&quot; +
+<i>358</i>&nbsp;            &quot;      \&quot;endDate\&quot;: \&quot;2019-03-18\&quot;,\r\n&quot; +
+<i>359</i>&nbsp;            &quot;      \&quot;skill\&quot;: \&quot;OTHER\&quot;,\r\n&quot; +
+<i>360</i>&nbsp;            &quot;      \&quot;location\&quot;: \&quot;Revature LLC, Reston VA 20190\&quot;,\r\n&quot; +
+<i>361</i>&nbsp;            &quot;      \&quot;type\&quot;: \&quot;Revature\&quot;,\r\n&quot; +
+<i>362</i>&nbsp;            &quot;      \&quot;qcNotes\&quot;: [\r\n&quot; +
+<i>363</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>364</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 447435,\r\n&quot; +
+<i>365</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>366</i>&nbsp;            &quot;          \&quot;week\&quot;: 1,\r\n&quot; +
+<i>367</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>368</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>369</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>370</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>371</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>372</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>373</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>374</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>375</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>376</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>377</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>378</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>379</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 448409,\r\n&quot; +
+<i>380</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>381</i>&nbsp;            &quot;          \&quot;week\&quot;: 2,\r\n&quot; +
+<i>382</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>383</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>384</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>385</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>386</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>387</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>388</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>389</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>390</i>&nbsp;            &quot;            \&quot;SQL\&quot;\r\n&quot; +
+<i>391</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>392</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>393</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>394</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 450431,\r\n&quot; +
+<i>395</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>396</i>&nbsp;            &quot;          \&quot;week\&quot;: 3,\r\n&quot; +
+<i>397</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>398</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>399</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>400</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>401</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: null,\r\n&quot; +
+<i>402</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>403</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>404</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>405</i>&nbsp;            &quot;            \&quot;JavaScript\&quot;\r\n&quot; +
+<i>406</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>407</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>408</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>409</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 450436,\r\n&quot; +
+<i>410</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>411</i>&nbsp;            &quot;          \&quot;week\&quot;: 4,\r\n&quot; +
+<i>412</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>413</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>414</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>415</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>416</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>417</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>418</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>419</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>420</i>&nbsp;            &quot;            \&quot;Servlet\&quot;\r\n&quot; +
+<i>421</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>422</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>423</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>424</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 451465,\r\n&quot; +
+<i>425</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>426</i>&nbsp;            &quot;          \&quot;week\&quot;: 5,\r\n&quot; +
+<i>427</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>428</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>429</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>430</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>431</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>432</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>433</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>434</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>435</i>&nbsp;            &quot;            \&quot;Agile\&quot;\r\n&quot; +
+<i>436</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>437</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>438</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>439</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 451797,\r\n&quot; +
+<i>440</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>441</i>&nbsp;            &quot;          \&quot;week\&quot;: 6,\r\n&quot; +
+<i>442</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>443</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>444</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>445</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>446</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>447</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>448</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>449</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>450</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>451</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>452</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>453</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>454</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 453356,\r\n&quot; +
+<i>455</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>456</i>&nbsp;            &quot;          \&quot;week\&quot;: 7,\r\n&quot; +
+<i>457</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>458</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>459</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>460</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>461</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>462</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>463</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>464</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>465</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>466</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>467</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>468</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>469</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 453777,\r\n&quot; +
+<i>470</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>471</i>&nbsp;            &quot;          \&quot;week\&quot;: 8,\r\n&quot; +
+<i>472</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>473</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>474</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>475</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>476</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>477</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>478</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>479</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>480</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>481</i>&nbsp;            &quot;      ],\r\n&quot; +
+<i>482</i>&nbsp;            &quot;      \&quot;assessments\&quot;: [\r\n&quot; +
+<i>483</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>484</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 202081,\r\n&quot; +
+<i>485</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>486</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;1901 PE Week1\&quot;,\r\n&quot; +
+<i>487</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>488</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 1,\r\n&quot; +
+<i>489</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>490</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>491</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>492</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>493</i>&nbsp;            &quot;          \&quot;average\&quot;: 78.15\r\n&quot; +
+<i>494</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>495</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>496</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 202096,\r\n&quot; +
+<i>497</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>498</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;1901_Jan07_PE_Week2\&quot;,\r\n&quot; +
+<i>499</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>500</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 2,\r\n&quot; +
+<i>501</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>502</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 2,\r\n&quot; +
+<i>503</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;SQL\&quot;,\r\n&quot; +
+<i>504</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>505</i>&nbsp;            &quot;          \&quot;average\&quot;: 82.45\r\n&quot; +
+<i>506</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>507</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>508</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 203074,\r\n&quot; +
+<i>509</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>510</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;1901_Jan07_PE_Week3\&quot;,\r\n&quot; +
+<i>511</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>512</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>513</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>514</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 12,\r\n&quot; +
+<i>515</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JavaScript\&quot;,\r\n&quot; +
+<i>516</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>517</i>&nbsp;            &quot;          \&quot;average\&quot;: 79.52\r\n&quot; +
+<i>518</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>519</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>520</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 203140,\r\n&quot; +
+<i>521</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>522</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>523</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>524</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>525</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>526</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>527</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>528</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>529</i>&nbsp;            &quot;          \&quot;average\&quot;: 76.20\r\n&quot; +
+<i>530</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>531</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>532</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 203148,\r\n&quot; +
+<i>533</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>534</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>535</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Project\&quot;,\r\n&quot; +
+<i>536</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>537</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>538</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>539</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>540</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>541</i>&nbsp;            &quot;          \&quot;average\&quot;: 74.78\r\n&quot; +
+<i>542</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>543</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>544</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 204078,\r\n&quot; +
+<i>545</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>546</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>547</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>548</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>549</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>550</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 30,\r\n&quot; +
+<i>551</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Agile\&quot;,\r\n&quot; +
+<i>552</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>553</i>&nbsp;            &quot;          \&quot;average\&quot;: 79.90\r\n&quot; +
+<i>554</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>555</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>556</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 204079,\r\n&quot; +
+<i>557</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>558</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>559</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>560</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>561</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>562</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 30,\r\n&quot; +
+<i>563</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Agile\&quot;,\r\n&quot; +
+<i>564</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>565</i>&nbsp;            &quot;          \&quot;average\&quot;: 79.13\r\n&quot; +
+<i>566</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>567</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>568</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 205079,\r\n&quot; +
+<i>569</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>570</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>571</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>572</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 6,\r\n&quot; +
+<i>573</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>574</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>575</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>576</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>577</i>&nbsp;            &quot;          \&quot;average\&quot;: 67.53\r\n&quot; +
+<i>578</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>579</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>580</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 206063,\r\n&quot; +
+<i>581</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>582</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>583</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>584</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>585</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>586</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>587</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>588</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>589</i>&nbsp;            &quot;          \&quot;average\&quot;: 80.12\r\n&quot; +
+<i>590</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>591</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>592</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 206064,\r\n&quot; +
+<i>593</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>594</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>595</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Presentation\&quot;,\r\n&quot; +
+<i>596</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>597</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rUNwAAM\&quot;,\r\n&quot; +
+<i>598</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>599</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>600</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>601</i>&nbsp;            &quot;          \&quot;average\&quot;: 80.45\r\n&quot; +
+<i>602</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>603</i>&nbsp;            &quot;      ]\r\n&quot; +
+<i>604</i>&nbsp;            &quot;    },\r\n&quot; +
+<i>605</i>&nbsp;            &quot;    {\r\n&quot; +
+<i>606</i>&nbsp;            &quot;      \&quot;id\&quot;: 138523,\r\n&quot; +
+<i>607</i>&nbsp;            &quot;      \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>608</i>&nbsp;            &quot;      \&quot;name\&quot;: \&quot;1903 Mar04 Full Stack Java/JEE\&quot;,\r\n&quot; +
+<i>609</i>&nbsp;            &quot;      \&quot;startDate\&quot;: \&quot;2019-03-05\&quot;,\r\n&quot; +
+<i>610</i>&nbsp;            &quot;      \&quot;endDate\&quot;: \&quot;2019-06-01\&quot;,\r\n&quot; +
+<i>611</i>&nbsp;            &quot;      \&quot;skill\&quot;: \&quot;J2EE\&quot;,\r\n&quot; +
+<i>612</i>&nbsp;            &quot;      \&quot;location\&quot;: \&quot;Revature LLC, Reston VA 20190\&quot;,\r\n&quot; +
+<i>613</i>&nbsp;            &quot;      \&quot;type\&quot;: \&quot;Revature\&quot;,\r\n&quot; +
+<i>614</i>&nbsp;            &quot;      \&quot;qcNotes\&quot;: [\r\n&quot; +
+<i>615</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>616</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 455491,\r\n&quot; +
+<i>617</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>618</i>&nbsp;            &quot;          \&quot;week\&quot;: 1,\r\n&quot; +
+<i>619</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>620</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>621</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>622</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>623</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>624</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>625</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>626</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>627</i>&nbsp;            &quot;            \&quot;JavaScript\&quot;\r\n&quot; +
+<i>628</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>629</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>630</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>631</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 456593,\r\n&quot; +
+<i>632</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>633</i>&nbsp;            &quot;          \&quot;week\&quot;: 2,\r\n&quot; +
+<i>634</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>635</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>636</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>637</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>638</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>639</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>640</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>641</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>642</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>643</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>644</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 458434,\r\n&quot; +
+<i>645</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>646</i>&nbsp;            &quot;          \&quot;week\&quot;: 3,\r\n&quot; +
+<i>647</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>648</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>649</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>650</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>651</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>652</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>653</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>654</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>655</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>656</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>657</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>658</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>659</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 458631,\r\n&quot; +
+<i>660</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>661</i>&nbsp;            &quot;          \&quot;week\&quot;: 4,\r\n&quot; +
+<i>662</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>663</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>664</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>665</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>666</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Poor\&quot;,\r\n&quot; +
+<i>667</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>668</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>669</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>670</i>&nbsp;            &quot;            \&quot;SQL\&quot;\r\n&quot; +
+<i>671</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>672</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>673</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>674</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 462403,\r\n&quot; +
+<i>675</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>676</i>&nbsp;            &quot;          \&quot;week\&quot;: 5,\r\n&quot; +
+<i>677</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>678</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>679</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>680</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>681</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Poor\&quot;,\r\n&quot; +
+<i>682</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>683</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>684</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>685</i>&nbsp;            &quot;            \&quot;Servlet\&quot;\r\n&quot; +
+<i>686</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>687</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>688</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>689</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 463517,\r\n&quot; +
+<i>690</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>691</i>&nbsp;            &quot;          \&quot;week\&quot;: 6,\r\n&quot; +
+<i>692</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>693</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>694</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>695</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>696</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Poor\&quot;,\r\n&quot; +
+<i>697</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>698</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>699</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>700</i>&nbsp;            &quot;            \&quot;Hibernate\&quot;\r\n&quot; +
+<i>701</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>702</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>703</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>704</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 464408,\r\n&quot; +
+<i>705</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>706</i>&nbsp;            &quot;          \&quot;week\&quot;: 7,\r\n&quot; +
+<i>707</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>708</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>709</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>710</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>711</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>712</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>713</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>714</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>715</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>716</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>717</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>718</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>719</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 464844,\r\n&quot; +
+<i>720</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>721</i>&nbsp;            &quot;          \&quot;week\&quot;: 8,\r\n&quot; +
+<i>722</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>723</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>724</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>725</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>726</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>727</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>728</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>729</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>730</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>731</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>732</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 465642,\r\n&quot; +
+<i>733</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>734</i>&nbsp;            &quot;          \&quot;week\&quot;: 9,\r\n&quot; +
+<i>735</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>736</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>737</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>738</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>739</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Poor\&quot;,\r\n&quot; +
+<i>740</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>741</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>742</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>743</i>&nbsp;            &quot;            \&quot;Spring\&quot;\r\n&quot; +
+<i>744</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>745</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>746</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>747</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 467383,\r\n&quot; +
+<i>748</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>749</i>&nbsp;            &quot;          \&quot;week\&quot;: 10,\r\n&quot; +
+<i>750</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>751</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>752</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>753</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>754</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>755</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>756</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>757</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>758</i>&nbsp;            &quot;            \&quot;Java\&quot;,\r\n&quot; +
+<i>759</i>&nbsp;            &quot;            \&quot;Microservices\&quot;\r\n&quot; +
+<i>760</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>761</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>762</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>763</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 467827,\r\n&quot; +
+<i>764</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>765</i>&nbsp;            &quot;          \&quot;week\&quot;: 11,\r\n&quot; +
+<i>766</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>767</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>768</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>769</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>770</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>771</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>772</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>773</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>774</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>775</i>&nbsp;            &quot;      ],\r\n&quot; +
+<i>776</i>&nbsp;            &quot;      \&quot;assessments\&quot;: [\r\n&quot; +
+<i>777</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>778</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 208060,\r\n&quot; +
+<i>779</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>780</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;1922-W3-HTML,CSS,JS\&quot;,\r\n&quot; +
+<i>781</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>782</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 1,\r\n&quot; +
+<i>783</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>784</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 12,\r\n&quot; +
+<i>785</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JavaScript\&quot;,\r\n&quot; +
+<i>786</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>787</i>&nbsp;            &quot;          \&quot;average\&quot;: 80.38\r\n&quot; +
+<i>788</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>789</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>790</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 212057,\r\n&quot; +
+<i>791</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>792</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;190401_Week1Java\&quot;,\r\n&quot; +
+<i>793</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>794</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>795</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>796</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>797</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>798</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>799</i>&nbsp;            &quot;          \&quot;average\&quot;: 81.62\r\n&quot; +
+<i>800</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>801</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>802</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 212060,\r\n&quot; +
+<i>803</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>804</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;1901 jan28 week sql\&quot;,\r\n&quot; +
+<i>805</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>806</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>807</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>808</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 2,\r\n&quot; +
+<i>809</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;SQL\&quot;,\r\n&quot; +
+<i>810</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>811</i>&nbsp;            &quot;          \&quot;average\&quot;: 82.99\r\n&quot; +
+<i>812</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>813</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>814</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 212062,\r\n&quot; +
+<i>815</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>816</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;0304-Week4-Servlets/Angular\&quot;,\r\n&quot; +
+<i>817</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>818</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>819</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>820</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>821</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>822</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>823</i>&nbsp;            &quot;          \&quot;average\&quot;: 78.97\r\n&quot; +
+<i>824</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>825</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>826</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 212063,\r\n&quot; +
+<i>827</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>828</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;0304-Week5-Hibernate/DevOps/AWS\&quot;,\r\n&quot; +
+<i>829</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>830</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 6,\r\n&quot; +
+<i>831</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>832</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 18,\r\n&quot; +
+<i>833</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Hibernate\&quot;,\r\n&quot; +
+<i>834</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>835</i>&nbsp;            &quot;          \&quot;average\&quot;: 72.58\r\n&quot; +
+<i>836</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>837</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>838</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 212069,\r\n&quot; +
+<i>839</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>840</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>841</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>842</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>843</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>844</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>845</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>846</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>847</i>&nbsp;            &quot;          \&quot;average\&quot;: 73.84\r\n&quot; +
+<i>848</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>849</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>850</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 214082,\r\n&quot; +
+<i>851</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>852</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>853</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>854</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 9,\r\n&quot; +
+<i>855</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>856</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 19,\r\n&quot; +
+<i>857</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Spring\&quot;,\r\n&quot; +
+<i>858</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>859</i>&nbsp;            &quot;          \&quot;average\&quot;: 70.16\r\n&quot; +
+<i>860</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>861</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>862</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 214083,\r\n&quot; +
+<i>863</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>864</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>865</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>866</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 9,\r\n&quot; +
+<i>867</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>868</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 19,\r\n&quot; +
+<i>869</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Spring\&quot;,\r\n&quot; +
+<i>870</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>871</i>&nbsp;            &quot;          \&quot;average\&quot;: 59.44\r\n&quot; +
+<i>872</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>873</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>874</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 215087,\r\n&quot; +
+<i>875</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>876</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>877</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>878</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 10,\r\n&quot; +
+<i>879</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>880</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 38,\r\n&quot; +
+<i>881</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Microservices\&quot;,\r\n&quot; +
+<i>882</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>883</i>&nbsp;            &quot;          \&quot;average\&quot;: 74.21\r\n&quot; +
+<i>884</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>885</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>886</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 215088,\r\n&quot; +
+<i>887</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>888</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>889</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Presentation\&quot;,\r\n&quot; +
+<i>890</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 10,\r\n&quot; +
+<i>891</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2rgIVAAY\&quot;,\r\n&quot; +
+<i>892</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>893</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>894</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>895</i>&nbsp;            &quot;          \&quot;average\&quot;: 83.13\r\n&quot; +
+<i>896</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>897</i>&nbsp;            &quot;      ]\r\n&quot; +
+<i>898</i>&nbsp;            &quot;    },\r\n&quot; +
+<i>899</i>&nbsp;            &quot;    {\r\n&quot; +
+<i>900</i>&nbsp;            &quot;      \&quot;id\&quot;: 141512,\r\n&quot; +
+<i>901</i>&nbsp;            &quot;      \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>902</i>&nbsp;            &quot;      \&quot;name\&quot;: \&quot;1909 Sep30 Other\&quot;,\r\n&quot; +
+<i>903</i>&nbsp;            &quot;      \&quot;startDate\&quot;: \&quot;2019-10-01\&quot;,\r\n&quot; +
+<i>904</i>&nbsp;            &quot;      \&quot;endDate\&quot;: \&quot;2019-12-28\&quot;,\r\n&quot; +
+<i>905</i>&nbsp;            &quot;      \&quot;skill\&quot;: \&quot;OTHER\&quot;,\r\n&quot; +
+<i>906</i>&nbsp;            &quot;      \&quot;location\&quot;: \&quot;Revature LLC, Reston VA 20190\&quot;,\r\n&quot; +
+<i>907</i>&nbsp;            &quot;      \&quot;type\&quot;: \&quot;Revature\&quot;,\r\n&quot; +
+<i>908</i>&nbsp;            &quot;      \&quot;qcNotes\&quot;: [\r\n&quot; +
+<i>909</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>910</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 485015,\r\n&quot; +
+<i>911</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>912</i>&nbsp;            &quot;          \&quot;week\&quot;: 1,\r\n&quot; +
+<i>913</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>914</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>915</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>916</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>917</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>918</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>919</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>920</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>921</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>922</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>923</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>924</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>925</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 485390,\r\n&quot; +
+<i>926</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>927</i>&nbsp;            &quot;          \&quot;week\&quot;: 2,\r\n&quot; +
+<i>928</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>929</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>930</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>931</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>932</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>933</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>934</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>935</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>936</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>937</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>938</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>939</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>940</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 486389,\r\n&quot; +
+<i>941</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>942</i>&nbsp;            &quot;          \&quot;week\&quot;: 3,\r\n&quot; +
+<i>943</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>944</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>945</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>946</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>947</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>948</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>949</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>950</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>951</i>&nbsp;            &quot;            \&quot;Java\&quot;\r\n&quot; +
+<i>952</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>953</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>954</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>955</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 488806,\r\n&quot; +
+<i>956</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>957</i>&nbsp;            &quot;          \&quot;week\&quot;: 4,\r\n&quot; +
+<i>958</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>959</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>960</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>961</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>962</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>963</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>964</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>965</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>966</i>&nbsp;            &quot;            \&quot;Java\&quot;,\r\n&quot; +
+<i>967</i>&nbsp;            &quot;            \&quot;SQL\&quot;\r\n&quot; +
+<i>968</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>969</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>970</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>971</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 489363,\r\n&quot; +
+<i>972</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>973</i>&nbsp;            &quot;          \&quot;week\&quot;: 5,\r\n&quot; +
+<i>974</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>975</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>976</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>977</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>978</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>979</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>980</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>981</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>982</i>&nbsp;            &quot;            \&quot;Java\&quot;,\r\n&quot; +
+<i>983</i>&nbsp;            &quot;            \&quot;JavaScript\&quot;\r\n&quot; +
+<i>984</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>985</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>986</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>987</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 490490,\r\n&quot; +
+<i>988</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>989</i>&nbsp;            &quot;          \&quot;week\&quot;: 6,\r\n&quot; +
+<i>990</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>991</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>992</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>993</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>994</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>995</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>996</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>997</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>998</i>&nbsp;            &quot;            \&quot;Servlet\&quot;\r\n&quot; +
+<i>999</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>1000</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1001</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1002</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 491500,\r\n&quot; +
+<i>1003</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1004</i>&nbsp;            &quot;          \&quot;week\&quot;: 7,\r\n&quot; +
+<i>1005</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1006</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1007</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1008</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1009</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>1010</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1011</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1012</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>1013</i>&nbsp;            &quot;            \&quot;Servlet\&quot;,\r\n&quot; +
+<i>1014</i>&nbsp;            &quot;            \&quot;JVM\&quot;\r\n&quot; +
+<i>1015</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>1016</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1017</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1018</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 491974,\r\n&quot; +
+<i>1019</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1020</i>&nbsp;            &quot;          \&quot;week\&quot;: 8,\r\n&quot; +
+<i>1021</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1022</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1023</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1024</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1025</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>1026</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1027</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1028</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>1029</i>&nbsp;            &quot;            \&quot;JVM\&quot;\r\n&quot; +
+<i>1030</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>1031</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1032</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1033</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 493382,\r\n&quot; +
+<i>1034</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1035</i>&nbsp;            &quot;          \&quot;week\&quot;: 9,\r\n&quot; +
+<i>1036</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1037</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1038</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1039</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1040</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>1041</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1042</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1043</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>1044</i>&nbsp;            &quot;            \&quot;DevOps\&quot;\r\n&quot; +
+<i>1045</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>1046</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1047</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1048</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 493758,\r\n&quot; +
+<i>1049</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1050</i>&nbsp;            &quot;          \&quot;week\&quot;: 10,\r\n&quot; +
+<i>1051</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1052</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1053</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1054</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1055</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Good\&quot;,\r\n&quot; +
+<i>1056</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1057</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1058</i>&nbsp;            &quot;          \&quot;categories\&quot;: [\r\n&quot; +
+<i>1059</i>&nbsp;            &quot;            \&quot;Performance Testing\&quot;\r\n&quot; +
+<i>1060</i>&nbsp;            &quot;          ]\r\n&quot; +
+<i>1061</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1062</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1063</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 494723,\r\n&quot; +
+<i>1064</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1065</i>&nbsp;            &quot;          \&quot;week\&quot;: 11,\r\n&quot; +
+<i>1066</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1067</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1068</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1069</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1070</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>1071</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1072</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1073</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>1074</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1075</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1076</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 500647,\r\n&quot; +
+<i>1077</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1078</i>&nbsp;            &quot;          \&quot;week\&quot;: 12,\r\n&quot; +
+<i>1079</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1080</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1081</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1082</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1083</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Poor\&quot;,\r\n&quot; +
+<i>1084</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1085</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1086</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>1087</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1088</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1089</i>&nbsp;            &quot;          \&quot;noteId\&quot;: 501189,\r\n&quot; +
+<i>1090</i>&nbsp;            &quot;          \&quot;content\&quot;: \&quot;mock content\&quot;,\r\n&quot; +
+<i>1091</i>&nbsp;            &quot;          \&quot;week\&quot;: 13,\r\n&quot; +
+<i>1092</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1093</i>&nbsp;            &quot;          \&quot;associateId\&quot;: null,\r\n&quot; +
+<i>1094</i>&nbsp;            &quot;          \&quot;employeeId\&quot;: null,\r\n&quot; +
+<i>1095</i>&nbsp;            &quot;          \&quot;type\&quot;: \&quot;QC_BATCH\&quot;,\r\n&quot; +
+<i>1096</i>&nbsp;            &quot;          \&quot;technicalStatus\&quot;: \&quot;Average\&quot;,\r\n&quot; +
+<i>1097</i>&nbsp;            &quot;          \&quot;createdOn\&quot;: null,\r\n&quot; +
+<i>1098</i>&nbsp;            &quot;          \&quot;lastUpdated\&quot;: null,\r\n&quot; +
+<i>1099</i>&nbsp;            &quot;          \&quot;categories\&quot;: []\r\n&quot; +
+<i>1100</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>1101</i>&nbsp;            &quot;      ],\r\n&quot; +
+<i>1102</i>&nbsp;            &quot;      \&quot;assessments\&quot;: [\r\n&quot; +
+<i>1103</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1104</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 233060,\r\n&quot; +
+<i>1105</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1106</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;Core Java extended - Blake\&quot;,\r\n&quot; +
+<i>1107</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1108</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 1,\r\n&quot; +
+<i>1109</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1110</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1111</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1112</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1113</i>&nbsp;            &quot;          \&quot;average\&quot;: 79.52\r\n&quot; +
+<i>1114</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1115</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1116</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 233061,\r\n&quot; +
+<i>1117</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1118</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1119</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1120</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 1,\r\n&quot; +
+<i>1121</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1122</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1123</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1124</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1125</i>&nbsp;            &quot;          \&quot;average\&quot;: 83.13\r\n&quot; +
+<i>1126</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1127</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1128</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 233090,\r\n&quot; +
+<i>1129</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 75,\r\n&quot; +
+<i>1130</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;Java Exam\&quot;,\r\n&quot; +
+<i>1131</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1132</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 2,\r\n&quot; +
+<i>1133</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1134</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1135</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1136</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1137</i>&nbsp;            &quot;          \&quot;average\&quot;: 90.29\r\n&quot; +
+<i>1138</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1139</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1140</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 234068,\r\n&quot; +
+<i>1141</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 125,\r\n&quot; +
+<i>1142</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;Java Verbal\&quot;,\r\n&quot; +
+<i>1143</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1144</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 2,\r\n&quot; +
+<i>1145</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1146</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1147</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1148</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1149</i>&nbsp;            &quot;          \&quot;average\&quot;: 76.73\r\n&quot; +
+<i>1150</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1151</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1152</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 234084,\r\n&quot; +
+<i>1153</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1154</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1155</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Other\&quot;,\r\n&quot; +
+<i>1156</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>1157</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1158</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1159</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1160</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1161</i>&nbsp;            &quot;          \&quot;average\&quot;: 91.20\r\n&quot; +
+<i>1162</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1163</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1164</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 235057,\r\n&quot; +
+<i>1165</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1166</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;191007-W1-Core Java\&quot;,\r\n&quot; +
+<i>1167</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1168</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>1169</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1170</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1171</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1172</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1173</i>&nbsp;            &quot;          \&quot;average\&quot;: 77.98\r\n&quot; +
+<i>1174</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1175</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1176</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 235058,\r\n&quot; +
+<i>1177</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1178</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1179</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1180</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 3,\r\n&quot; +
+<i>1181</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1182</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1183</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1184</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1185</i>&nbsp;            &quot;          \&quot;average\&quot;: 83.93\r\n&quot; +
+<i>1186</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1187</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1188</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 235064,\r\n&quot; +
+<i>1189</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1190</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;SQL quiz\&quot;,\r\n&quot; +
+<i>1191</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1192</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>1193</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1194</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 2,\r\n&quot; +
+<i>1195</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;SQL\&quot;,\r\n&quot; +
+<i>1196</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1197</i>&nbsp;            &quot;          \&quot;average\&quot;: 89.02\r\n&quot; +
+<i>1198</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1199</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1200</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 236050,\r\n&quot; +
+<i>1201</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1202</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1203</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Project\&quot;,\r\n&quot; +
+<i>1204</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 4,\r\n&quot; +
+<i>1205</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1206</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1207</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1208</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1209</i>&nbsp;            &quot;          \&quot;average\&quot;: 80.80\r\n&quot; +
+<i>1210</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1211</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1212</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 236051,\r\n&quot; +
+<i>1213</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1214</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: \&quot;blake-client-side--copy\&quot;,\r\n&quot; +
+<i>1215</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1216</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>1217</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1218</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 12,\r\n&quot; +
+<i>1219</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JavaScript\&quot;,\r\n&quot; +
+<i>1220</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1221</i>&nbsp;            &quot;          \&quot;average\&quot;: 83.17\r\n&quot; +
+<i>1222</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1223</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1224</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 236077,\r\n&quot; +
+<i>1225</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1226</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1227</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1228</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 5,\r\n&quot; +
+<i>1229</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1230</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 1,\r\n&quot; +
+<i>1231</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Java\&quot;,\r\n&quot; +
+<i>1232</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1233</i>&nbsp;            &quot;          \&quot;average\&quot;: 79.73\r\n&quot; +
+<i>1234</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1235</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1236</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 236099,\r\n&quot; +
+<i>1237</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1238</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1239</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1240</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 6,\r\n&quot; +
+<i>1241</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1242</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>1243</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>1244</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1245</i>&nbsp;            &quot;          \&quot;average\&quot;: 73.04\r\n&quot; +
+<i>1246</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1247</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1248</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 237050,\r\n&quot; +
+<i>1249</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1250</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1251</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1252</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 6,\r\n&quot; +
+<i>1253</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1254</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>1255</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>1256</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1257</i>&nbsp;            &quot;          \&quot;average\&quot;: 76.03\r\n&quot; +
+<i>1258</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1259</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1260</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 238061,\r\n&quot; +
+<i>1261</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1262</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1263</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1264</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>1265</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1266</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15081,\r\n&quot; +
+<i>1267</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JVM\&quot;,\r\n&quot; +
+<i>1268</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1269</i>&nbsp;            &quot;          \&quot;average\&quot;: 72.32\r\n&quot; +
+<i>1270</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1271</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1272</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 238062,\r\n&quot; +
+<i>1273</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1274</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1275</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Project\&quot;,\r\n&quot; +
+<i>1276</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 7,\r\n&quot; +
+<i>1277</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1278</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 3,\r\n&quot; +
+<i>1279</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Servlet\&quot;,\r\n&quot; +
+<i>1280</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1281</i>&nbsp;            &quot;          \&quot;average\&quot;: 79.00\r\n&quot; +
+<i>1282</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1283</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1284</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 238075,\r\n&quot; +
+<i>1285</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1286</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1287</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1288</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 8,\r\n&quot; +
+<i>1289</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1290</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15081,\r\n&quot; +
+<i>1291</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JVM\&quot;,\r\n&quot; +
+<i>1292</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1293</i>&nbsp;            &quot;          \&quot;average\&quot;: 72.56\r\n&quot; +
+<i>1294</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1295</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1296</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 241053,\r\n&quot; +
+<i>1297</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1298</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1299</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1300</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 8,\r\n&quot; +
+<i>1301</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1302</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15081,\r\n&quot; +
+<i>1303</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;JVM\&quot;,\r\n&quot; +
+<i>1304</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1305</i>&nbsp;            &quot;          \&quot;average\&quot;: 72.06\r\n&quot; +
+<i>1306</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1307</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1308</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 239059,\r\n&quot; +
+<i>1309</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1310</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1311</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1312</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 9,\r\n&quot; +
+<i>1313</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1314</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15071,\r\n&quot; +
+<i>1315</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;DevOps\&quot;,\r\n&quot; +
+<i>1316</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1317</i>&nbsp;            &quot;          \&quot;average\&quot;: 70.81\r\n&quot; +
+<i>1318</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1319</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1320</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 241054,\r\n&quot; +
+<i>1321</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1322</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1323</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1324</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 9,\r\n&quot; +
+<i>1325</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1326</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15071,\r\n&quot; +
+<i>1327</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;DevOps\&quot;,\r\n&quot; +
+<i>1328</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1329</i>&nbsp;            &quot;          \&quot;average\&quot;: 77.94\r\n&quot; +
+<i>1330</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1331</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1332</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 239098,\r\n&quot; +
+<i>1333</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1334</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1335</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Exam\&quot;,\r\n&quot; +
+<i>1336</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 10,\r\n&quot; +
+<i>1337</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1338</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15082,\r\n&quot; +
+<i>1339</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Performance Testing\&quot;,\r\n&quot; +
+<i>1340</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1341</i>&nbsp;            &quot;          \&quot;average\&quot;: 73.47\r\n&quot; +
+<i>1342</i>&nbsp;            &quot;        },\r\n&quot; +
+<i>1343</i>&nbsp;            &quot;        {\r\n&quot; +
+<i>1344</i>&nbsp;            &quot;          \&quot;assessmentId\&quot;: 239099,\r\n&quot; +
+<i>1345</i>&nbsp;            &quot;          \&quot;rawScore\&quot;: 100,\r\n&quot; +
+<i>1346</i>&nbsp;            &quot;          \&quot;assessmentTitle\&quot;: null,\r\n&quot; +
+<i>1347</i>&nbsp;            &quot;          \&quot;assessmentType\&quot;: \&quot;Verbal\&quot;,\r\n&quot; +
+<i>1348</i>&nbsp;            &quot;          \&quot;weekNumber\&quot;: 10,\r\n&quot; +
+<i>1349</i>&nbsp;            &quot;          \&quot;batchId\&quot;: \&quot;2ehKRAAY\&quot;,\r\n&quot; +
+<i>1350</i>&nbsp;            &quot;          \&quot;assessmentCategory\&quot;: 15082,\r\n&quot; +
+<i>1351</i>&nbsp;            &quot;          \&quot;skillCategory\&quot;: \&quot;Performance Testing\&quot;,\r\n&quot; +
+<i>1352</i>&nbsp;            &quot;          \&quot;assignmentDate\&quot;: null,\r\n&quot; +
+<i>1353</i>&nbsp;            &quot;          \&quot;average\&quot;: 76.47\r\n&quot; +
+<i>1354</i>&nbsp;            &quot;        }\r\n&quot; +
+<i>1355</i>&nbsp;            &quot;      ]\r\n&quot; +
+<i>1356</i>&nbsp;            &quot;    }\r\n&quot; +
+<i>1357</i>&nbsp;            &quot;  ]\r\n&quot; +
+<i>1358</i>&nbsp;            &quot;}&quot;;
+<i>1359</i>&nbsp;    private static JSONObject obj;
+<i>1360</i>&nbsp;
+<i>1361</i>&nbsp;    /**
+<i>1362</i>&nbsp;     * Gets all Batch object from the JSON
+<i>1363</i>&nbsp;     *
+<i>1364</i>&nbsp;     * @return
+<i>1365</i>&nbsp;     * @throws JSONException
+<i>1366</i>&nbsp;     */
+<i>1367</i>&nbsp;    protected static JSONArray getBatchJSONObject() throws JSONException {
+<b class="fc"><i>1368</i>&nbsp;        return new JSONObject(json).getJSONArray(&quot;batches&quot;);</b>
+<i>1369</i>&nbsp;    }
+<i>1370</i>&nbsp;
+<i>1371</i>&nbsp;    /**
+<i>1372</i>&nbsp;     * Loads data from JSON object and creates a set of Batchs
+<i>1373</i>&nbsp;     *
+<i>1374</i>&nbsp;     * @return Set&lt;Batch&gt;   batch data
+<i>1375</i>&nbsp;     */
+<i>1376</i>&nbsp;    public static List&lt;Batch&gt; getBatch() {
+<b class="fc"><i>1377</i>&nbsp;        assert json != null;</b>
+<b class="fc"><i>1378</i>&nbsp;        List&lt;Batch&gt; batchSet = new ArrayList&lt;Batch&gt;();</b>
+<i>1379</i>&nbsp;        try {
+<b class="fc"><i>1380</i>&nbsp;            JSONArray batchsJSON = getBatchJSONObject();</b>
+<b class="fc"><i>1381</i>&nbsp;            for (int i = 0; i &lt; batchsJSON.length(); i++) {</b>
+<b class="fc"><i>1382</i>&nbsp;                JSONObject obj = batchsJSON.getJSONObject(i);</b>
+<b class="fc"><i>1383</i>&nbsp;                Batch batch = new Batch(</b>
+<b class="fc"><i>1384</i>&nbsp;                        obj.getString(&quot;batchId&quot;),</b>
+<b class="fc"><i>1385</i>&nbsp;                        obj.getString(&quot;name&quot;),</b>
+<b class="fc"><i>1386</i>&nbsp;                        obj.getString(&quot;startDate&quot;),</b>
+<b class="fc"><i>1387</i>&nbsp;                        obj.getString(&quot;endDate&quot;),</b>
+<b class="fc"><i>1388</i>&nbsp;                        obj.getString(&quot;skill&quot;),</b>
+<b class="fc"><i>1389</i>&nbsp;                        obj.getString(&quot;location&quot;));</b>
+<b class="fc"><i>1390</i>&nbsp;                batch.setWeeks(getWeeks(obj));</b>
+<b class="fc"><i>1391</i>&nbsp;                batchSet.add(batch);</b>
+<i>1392</i>&nbsp;            }
+<i>1393</i>&nbsp;
+<b class="nc"><i>1394</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>1395</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>1396</i>&nbsp;        }</b>
+<b class="fc"><i>1397</i>&nbsp;        return batchSet;</b>
+<i>1398</i>&nbsp;    }
+<i>1399</i>&nbsp;
+<i>1400</i>&nbsp;    /**
+<i>1401</i>&nbsp;     * Gets week from JSON.
+<i>1402</i>&nbsp;     *
+<i>1403</i>&nbsp;     * @param batch the batch JSONObject
+<i>1404</i>&nbsp;     * @return week weeks in the batch
+<i>1405</i>&nbsp;     */
+<i>1406</i>&nbsp;    protected static List&lt;Week&gt; getWeeks (JSONObject batch) {
+<b class="fc"><i>1407</i>&nbsp;        assert json != null;</b>
+<b class="fc"><i>1408</i>&nbsp;        List&lt;Week&gt; weeks = new ArrayList&lt;Week&gt;();</b>
+<i>1409</i>&nbsp;        try {
+<b class="fc"><i>1410</i>&nbsp;            getLogger(ParseJSON.class).trace(&quot;Getting Week for Batch: &quot; + batch.getString(&quot;batchId&quot;));</b>
+<i>1411</i>&nbsp;            // grab the qcNotes object
+<b class="fc"><i>1412</i>&nbsp;            JSONArray obj = batch.getJSONArray(&quot;qcNotes&quot;);</b>
+<b class="fc"><i>1413</i>&nbsp;            for (int j = 0; j &lt; obj.length(); j++) {</b>
+<i>1414</i>&nbsp;                // for each week in qcNotes object load data
+<i>1415</i>&nbsp;                //create a new week
+<i>1416</i>&nbsp;                // Week(String weekNumber, String technicalStatus)
+<b class="fc"><i>1417</i>&nbsp;                Week week = new Week(</b>
+<b class="fc"><i>1418</i>&nbsp;                        obj.getJSONObject(j).getString(&quot;week&quot;),</b>
+<b class="fc"><i>1419</i>&nbsp;                        obj.getJSONObject(j).getString(&quot;technicalStatus&quot;)</b>
+<i>1420</i>&nbsp;                );
+<i>1421</i>&nbsp;
+<b class="fc"><i>1422</i>&nbsp;                week.setBatchId(batch.getString(&quot;batchId&quot;));</b>
+<b class="fc"><i>1423</i>&nbsp;                getLogger(ParseJSON.class).trace(&quot;Week from JSON: &quot; + week);</b>
+<i>1424</i>&nbsp;                // add assessments to the week
+<b class="fc"><i>1425</i>&nbsp;                List&lt;Assessment&gt; assessments = getAssessmentByBatch(batch, week);</b>
+<b class="fc"><i>1426</i>&nbsp;                getLogger(ParseJSON.class).trace(&quot;Adding assessments to the week ... &quot;);</b>
+<b class="fc"><i>1427</i>&nbsp;                week.setAssessments(assessments);</b>
+<b class="fc"><i>1428</i>&nbsp;                getLogger(ParseJSON.class).trace(&quot;Assessments adding to the week &quot;);</b>
+<b class="fc"><i>1429</i>&nbsp;                getLogger(ParseJSON.class).trace(&quot;Adding categories to the week ... &quot;);</b>
+<b class="fc"><i>1430</i>&nbsp;                week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));</b>
+<b class="fc"><i>1431</i>&nbsp;                getLogger(ParseJSON.class).trace(&quot;Categories adding to the week &quot;);</b>
+<b class="fc"><i>1432</i>&nbsp;                weeks.add(week);</b>
+<b class="fc"><i>1433</i>&nbsp;                getLogger(ParseJSON.class).trace(&quot;___________________________________&quot;);</b>
+<i>1434</i>&nbsp;            }
+<i>1435</i>&nbsp;
+<b class="nc"><i>1436</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>1437</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>1438</i>&nbsp;        }</b>
+<b class="fc"><i>1439</i>&nbsp;        return weeks;</b>
+<i>1440</i>&nbsp;    }
+<i>1441</i>&nbsp;
+<i>1442</i>&nbsp;    /**
+<i>1443</i>&nbsp;     * Gets categories by week in JSON.
+<i>1444</i>&nbsp;     *
+<i>1445</i>&nbsp;     * @param week a week from JSONObject
+<i>1446</i>&nbsp;     * @return categories list of categories in a week
+<i>1447</i>&nbsp;     * @throws JSONException the json exception
+<i>1448</i>&nbsp;     */
+<i>1449</i>&nbsp;    protected static List&lt;Category&gt; getCategoriesByWeek(JSONObject week) throws JSONException {
+<i>1450</i>&nbsp;        // grab each categories from qcNotes object
+<b class="fc"><i>1451</i>&nbsp;        getLogger(ParseJSON.class).trace(&quot;Getting categories for week number:  &quot;+  week.getString(&quot;week&quot;));</b>
+<i>1452</i>&nbsp;        // grab each categories from qcNotes object
+<b class="fc"><i>1453</i>&nbsp;        JSONArray categories = week.getJSONArray(&quot;categories&quot;);</b>
+<b class="fc"><i>1454</i>&nbsp;        List&lt;Category&gt; setCategories = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>1455</i>&nbsp;        for (int k = 0; k &lt; categories.length(); k++) {</b>
+<i>1456</i>&nbsp;            //Category(String name)
+<b class="fc"><i>1457</i>&nbsp;            Category category = new Category(categories.getString(k));</b>
+<b class="fc"><i>1458</i>&nbsp;            setCategories.add(category);</b>
+<b class="fc"><i>1459</i>&nbsp;            getLogger(ParseJSON.class).trace(&quot;Adding Category =&gt; &quot; + category);</b>
+<i>1460</i>&nbsp;        }
+<b class="fc"><i>1461</i>&nbsp;        return setCategories;</b>
+<i>1462</i>&nbsp;    }
+<i>1463</i>&nbsp;
+<i>1464</i>&nbsp;    /**
+<i>1465</i>&nbsp;     * Sets assessment by batch from JSON
+<i>1466</i>&nbsp;     *
+<i>1467</i>&nbsp;     * @param batch the batch
+<i>1468</i>&nbsp;     * @param week
+<i>1469</i>&nbsp;     * @return assessment by batch
+<i>1470</i>&nbsp;     */
+<i>1471</i>&nbsp;    protected static List&lt;Assessment&gt; getAssessmentByBatch(JSONObject batch, Week week) {
+<b class="fc"><i>1472</i>&nbsp;        assert json != null;</b>
+<b class="fc"><i>1473</i>&nbsp;        List&lt;Assessment&gt; assessments = new ArrayList&lt;Assessment&gt;();</b>
+<i>1474</i>&nbsp;
+<i>1475</i>&nbsp;        try {
+<i>1476</i>&nbsp;
+<i>1477</i>&nbsp;
+<b class="fc"><i>1478</i>&nbsp;            JSONArray obj = batch.getJSONArray(&quot;assessments&quot;);</b>
+<b class="fc"><i>1479</i>&nbsp;            for (int i = 0; i &lt; obj.length(); i++) {</b>
+<b class="fc"><i>1480</i>&nbsp;            	if(Integer.parseInt(week.getWeekNumber()) == Integer.valueOf(obj.getJSONObject(i).getString(&quot;weekNumber&quot;)))</b>
+<i>1481</i>&nbsp;            	{
+<b class="fc"><i>1482</i>&nbsp;	                Assessment assessment = new Assessment(</b>
+<b class="fc"><i>1483</i>&nbsp;	                        Integer.valueOf(obj.getJSONObject(i).getString(&quot;rawScore&quot;)),</b>
+<b class="fc"><i>1484</i>&nbsp;	                        obj.getJSONObject(i).getString(&quot;assessmentType&quot;),</b>
+<b class="fc"><i>1485</i>&nbsp;	                        Float.valueOf(obj.getJSONObject(i).getString(&quot;average&quot;))</b>
+<i>1486</i>&nbsp;	                );
+<b class="fc"><i>1487</i>&nbsp;	                assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString(&quot;skillCategory&quot;)));</b>
+<b class="fc"><i>1488</i>&nbsp;	                assessments.add(assessment);</b>
+<i>1489</i>&nbsp;            	}
+<i>1490</i>&nbsp;            }
+<b class="nc"><i>1491</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>1492</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>1493</i>&nbsp;        }</b>
+<b class="fc"><i>1494</i>&nbsp;        return assessments;</b>
+<i>1495</i>&nbsp;    }
+<i>1496</i>&nbsp;
+<i>1497</i>&nbsp;    /**
+<i>1498</i>&nbsp;     * Gets assessment from JSON.
+<i>1499</i>&nbsp;     *
+<i>1500</i>&nbsp;     * @return assessment assessment
+<i>1501</i>&nbsp;     */
+<i>1502</i>&nbsp;    protected static List&lt;Assessment&gt; getAssessment() {
+<b class="fc"><i>1503</i>&nbsp;        assert json != null;</b>
+<b class="fc"><i>1504</i>&nbsp;        List&lt;Assessment&gt; assessments = new ArrayList&lt;Assessment&gt;();</b>
+<i>1505</i>&nbsp;
+<i>1506</i>&nbsp;        try {
+<b class="fc"><i>1507</i>&nbsp;            JSONArray batchsJSON = getBatchJSONObject();</b>
+<b class="fc"><i>1508</i>&nbsp;            for (int j = 0; j &lt; batchsJSON.length(); j++) {</b>
+<b class="fc"><i>1509</i>&nbsp;                JSONArray obj = batchsJSON.getJSONObject(j).getJSONArray(&quot;assessments&quot;);</b>
+<b class="fc"><i>1510</i>&nbsp;                for (int i = 0; i &lt; obj.length(); i++) {</b>
+<b class="fc"><i>1511</i>&nbsp;                    assessments.add(new Assessment(</b>
+<b class="fc"><i>1512</i>&nbsp;                            Integer.valueOf(obj.getJSONObject(i).getString(&quot;rawScore&quot;)),</b>
+<b class="fc"><i>1513</i>&nbsp;                            obj.getJSONObject(i).getString(&quot;assessmentType&quot;),</b>
+<b class="fc"><i>1514</i>&nbsp;                            Float.valueOf(obj.getJSONObject(i).getString(&quot;average&quot;))</b>
+<i>1515</i>&nbsp;                    ));
+<i>1516</i>&nbsp;                }
+<i>1517</i>&nbsp;            }
+<i>1518</i>&nbsp;
+<b class="nc"><i>1519</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>1520</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>1521</i>&nbsp;        }</b>
+<b class="fc"><i>1522</i>&nbsp;        return assessments;</b>
+<i>1523</i>&nbsp;    }
+<i>1524</i>&nbsp;
+<i>1525</i>&nbsp;    /**
+<i>1526</i>&nbsp;     * Gets trainer from JSOn.
+<i>1527</i>&nbsp;     *
+<i>1528</i>&nbsp;     * @return trainer trainer
+<i>1529</i>&nbsp;     */
+<i>1530</i>&nbsp;    public static Trainer getTrainer() {
+<b class="fc"><i>1531</i>&nbsp;        getLogger(ParseJSON.class).debug(&quot;New JSON file set&quot;);</b>
+<i>1532</i>&nbsp;        // check if json is null
+<b class="fc"><i>1533</i>&nbsp;        assert json != null;</b>
+<i>1534</i>&nbsp;
+<b class="fc"><i>1535</i>&nbsp;        Trainer trainer = null;</b>
+<i>1536</i>&nbsp;        try {
+<b class="fc"><i>1537</i>&nbsp;            obj = new JSONObject(json).getJSONObject(&quot;employee&quot;);</b>
+<b class="fc"><i>1538</i>&nbsp;            getLogger(ParseJSON.class).trace(&quot;Trainer object found in JSON&quot;);</b>
+<b class="fc"><i>1539</i>&nbsp;            trainer = new Trainer(obj.get(&quot;firstName&quot;).toString(), obj.get(&quot;lastName&quot;).toString(),</b>
+<b class="fc"><i>1540</i>&nbsp;                    obj.get(&quot;email&quot;).toString());</b>
+<b class="fc"><i>1541</i>&nbsp;            getLogger(ParseJSON.class).trace(&quot;Trainer object is now created&quot;);</b>
+<b class="nc"><i>1542</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>1543</i>&nbsp;            getLogger(ParseJSON.class).error(&quot;Couldn&#39;t create Trainer object&quot;);</b>
+<b class="nc"><i>1544</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>1545</i>&nbsp;        }</b>
+<b class="fc"><i>1546</i>&nbsp;        getLogger(ParseJSON.class).debug(&quot;Trainer -&gt; &quot; + trainer);</b>
+<b class="fc"><i>1547</i>&nbsp;        return trainer;</b>
+<i>1548</i>&nbsp;    }
+<i>1549</i>&nbsp;
+<i>1550</i>&nbsp;    /**
+<i>1551</i>&nbsp;     * Read data from file boolean.
+<i>1552</i>&nbsp;     *
+<i>1553</i>&nbsp;     * @param fileName the file name
+<i>1554</i>&nbsp;     * @return boolean boolean
+<i>1555</i>&nbsp;     */
+<i>1556</i>&nbsp;    public static boolean readDataFromFile(String fileName) {
+<i>1557</i>&nbsp;
+<b class="fc"><i>1558</i>&nbsp;        ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();</b>
+<i>1559</i>&nbsp;
+<b class="fc"><i>1560</i>&nbsp;        File file = new File(classLoader.getResource(fileName).getFile());</b>
+<i>1561</i>&nbsp;
+<i>1562</i>&nbsp;        //File is found
+<b class="fc"><i>1563</i>&nbsp;        getLogger(ParseJSON.class).debug(&quot;File Found: &quot; + file.exists());</b>
+<i>1564</i>&nbsp;        try {
+<b class="fc"><i>1565</i>&nbsp;            json = new String(Files.readAllBytes(file.toPath()));</b>
+<b class="fc"><i>1566</i>&nbsp;            return true;</b>
+<b class="nc"><i>1567</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>1568</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>1569</i>&nbsp;            return false;</b>
+<i>1570</i>&nbsp;        }
+<i>1571</i>&nbsp;    }
+<i>1572</i>&nbsp;
+<i>1573</i>&nbsp;    /**
+<i>1574</i>&nbsp;     * Sets json to be parsed.
+<i>1575</i>&nbsp;     *
+<i>1576</i>&nbsp;     * @param json the json
+<i>1577</i>&nbsp;     */
+<i>1578</i>&nbsp;    public static void setJson(String json) {
+<b class="nc"><i>1579</i>&nbsp;        getLogger(ParseJSON.class).debug(&quot;New JSON file set&quot;);</b>
+<b class="nc"><i>1580</i>&nbsp;        ParseJSON.json = json;</b>
+<b class="nc"><i>1581</i>&nbsp;    }</b>
+<i>1582</i>&nbsp;
+<i>1583</i>&nbsp;    /**
+<i>1584</i>&nbsp;     * gets all the batch id from the JSON
+<i>1585</i>&nbsp;     *
+<i>1586</i>&nbsp;     * @return set of batch ids
+<i>1587</i>&nbsp;     */
+<i>1588</i>&nbsp;    public List&lt;String&gt; getBatchIds() {
+<b class="nc"><i>1589</i>&nbsp;        getLogger(ParseJSON.class).debug(&quot;Calling getBatchIds&quot;);</b>
+<b class="nc"><i>1590</i>&nbsp;        assert json != null;</b>
+<b class="nc"><i>1591</i>&nbsp;        List&lt;String&gt; out = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>1592</i>&nbsp;        JSONArray batchsJSON = null;</b>
+<i>1593</i>&nbsp;        try {
+<b class="nc"><i>1594</i>&nbsp;            batchsJSON = getBatchJSONObject();</b>
+<b class="nc"><i>1595</i>&nbsp;            for (int i = 0; i &lt; batchsJSON.length(); i++) {</b>
+<b class="nc"><i>1596</i>&nbsp;                out.add(batchsJSON.getJSONObject(i).getString(&quot;batchId&quot;));</b>
+<i>1597</i>&nbsp;            }
+<b class="nc"><i>1598</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>1599</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>1600</i>&nbsp;        }</b>
+<i>1601</i>&nbsp;
+<b class="nc"><i>1602</i>&nbsp;        return out;</b>
+<i>1603</i>&nbsp;    }
+<i>1604</i>&nbsp;}
+<i>1605</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-17 15:17</div>
+</div>
+</body>
+</html>

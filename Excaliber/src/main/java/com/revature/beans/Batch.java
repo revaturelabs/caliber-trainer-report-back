@@ -34,7 +34,7 @@ public class Batch {
             joinColumns = @JoinColumn(name = "batch_id"),
             inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
     private List<Week> weeks;
-    
+
     /**
      * Instantiates a new Batch.
      */

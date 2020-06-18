@@ -42,7 +42,7 @@ public class TechnicalStatusByWeekService {
 	 */
 	public List<TechnicalStatusByWeek> getTechnicalStatusByWeek(int id) {
 		Trainer trainer = sRSserv.getTrainerById(id);
-		List<TechnicalStatusByWeek> dataTransferObject = new ArrayList<TechnicalStatusByWeek>();
+		List<TechnicalStatusByWeek> dataTransferObject = new ArrayList<>();
 
 		log.info("TechnicalStatusByWeek_Service: "
 				+ "Getting table data for TechnicalStatusByWeek");
@@ -69,27 +69,27 @@ public class TechnicalStatusByWeekService {
 			                    	categoryRow.setPoorCount(categoryRow.getPoorCount() + 1);
 			                    } else if (w.getTechnicalStatus().contains("Average")) {
 			                    	categoryRow.setAverageCount(categoryRow.getAverageCount() + 1);
-			                    } else if (w.getTechnicalStatus().contains("Good")) {
-			                    	categoryRow.setGoodCount(categoryRow.getGoodCount() + 1);
-			                    } else if (w.getTechnicalStatus().contains("Superstar")) {
-			                    	categoryRow.setSuperstarCount(categoryRow.getSuperstarCount() + 1);
-			                    }
-			                }
+								} else if (w.getTechnicalStatus().contains("Good")) {
+									categoryRow.setGoodCount(categoryRow.getGoodCount() + 1);
+								} else if (w.getTechnicalStatus().contains("Superstar")) {
+									categoryRow.setSuperstarCount(categoryRow.getSuperstarCount() + 1);
+								}
+							}
 							break;
 						}
 					}
 					// check if category match was not found in table
-					if (match == false) {
+					if (!match) {
 						TechnicalStatusByWeek newCategoryRow = new TechnicalStatusByWeek();
 						newCategoryRow.setCategory(category.getName());
 						// increment technical status count
 						if (w.getTechnicalStatus() != null) {
 							if (w.getTechnicalStatus().contains("null")) {
-		                        newCategoryRow.setNullCount(newCategoryRow.getNullCount() + 1);
-		                    } else if (w.getTechnicalStatus().contains("Poor")) {
-		                    	newCategoryRow.setPoorCount(newCategoryRow.getPoorCount() + 1);
-		                    } else if (w.getTechnicalStatus().contains("Average")) {
-		                    	newCategoryRow.setAverageCount(newCategoryRow.getAverageCount() + 1);
+								newCategoryRow.setNullCount(newCategoryRow.getNullCount() + 1);
+							} else if (w.getTechnicalStatus().contains("Poor")) {
+								newCategoryRow.setPoorCount(newCategoryRow.getPoorCount() + 1);
+							} else if (w.getTechnicalStatus().contains("Average")) {
+								newCategoryRow.setAverageCount(newCategoryRow.getAverageCount() + 1);
 		                    } else if (w.getTechnicalStatus().contains("Good")) {
 		                    	newCategoryRow.setGoodCount(newCategoryRow.getGoodCount() + 1);
 		                    } else if (w.getTechnicalStatus().contains("Superstar")) {

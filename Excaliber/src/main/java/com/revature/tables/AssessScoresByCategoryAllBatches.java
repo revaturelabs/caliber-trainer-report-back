@@ -1,71 +1,42 @@
 package com.revature.tables;
 
+import com.revature.beans.CategoryBatches;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Assess scores by category all batches.
+ */
 public class AssessScoresByCategoryAllBatches {
-	private List<Integer> aScores; //assessment scores for each week
-	private List<String> batchNames; //corresponding batch names
-	private List<Integer> batchId;
-	private String aType; //type of assessment: test, verbal, project etc.
-	
-	//add dates maybe?
-	//private List<Date> startDates; //corresponding start dates
-	
-	
-	//two constructors
-	public AssessScoresByCategoryAllBatches() {
-		aScores=new ArrayList<Integer>();
-		batchNames=new ArrayList<String>();
-		batchId=new ArrayList<Integer>();
-		aType="";
+	private List<CategoryBatches> categories; //type of assessment: test, verbal, project etc.
+
+    /**
+     * Instantiates a new Assess scores by category all batches.
+     */
+//two constructors
+    public AssessScoresByCategoryAllBatches() {
+		categories = new ArrayList<>();
 	}
-	
 
 
-	public AssessScoresByCategoryAllBatches(ArrayList<Integer> aScores, ArrayList<Integer> batchId, 
-											ArrayList<String> batchNames, String aType) 
-	{
-		
-		this.aScores=aScores;
-		this.batchNames=batchNames;
-		this.batchId=batchId;
-		this.aType=aType;
+    public AssessScoresByCategoryAllBatches(List<CategoryBatches> categories)
+    {
+    	this.categories = categories;
+    }
+
+public List<CategoryBatches> getCategories() {
+		return categories;
 	}
-	
-	//Getters and Setters
-	public List<Integer> getaScores() {
-		return aScores;
+
+
+	public void setCategories(List<CategoryBatches> categories) {
+		this.categories = categories;
 	}
-	public void setaScores(List<Integer> aScores) {
-		this.aScores = aScores;
-	}
-	public List<String> getBatchNames() {
-		return batchNames;
-	}
-	public void setBatchNames(List<String> batchNames) {
-		this.batchNames = batchNames;
-	}
-	public List<Integer> getBatchId() {
-		return batchId;
-	}
-	public void setBatchId(List<Integer> batchId) {
-		this.batchId = batchId;
-	}
-	public String getaType() {
-		return aType;
-	}
-	public void setaType(String aType) {
-		this.aType = aType;
-	}
-	
-	
-	@Override
+
+
+@Override
 	public String toString() {
-		return "AssessScoresByCategoryAllBatches [aScores=" + aScores + ", batchNames=" + batchNames + ", batchId="
-				+ batchId + ", aType=" + aType + "]";
+		return "AssessScoresByCategoryAllBatches [categories=" + categories + "]";
 	}
-	
-	
 }

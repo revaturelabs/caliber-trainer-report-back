@@ -1,10 +1,12 @@
 package com.revature.data;
 
+import com.revature.beans.Assessment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.revature.beans.Assessment;
-
+/**
+ * The interface Assessment dao.
+ */
 @Repository
 public interface AssessmentDAO extends JpaRepository<Assessment, Integer> {
 

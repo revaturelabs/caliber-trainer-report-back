@@ -1356,13 +1356,13 @@ public class ParseJSON {
             "    }\r\n" +
             "  ]\r\n" +
             "}";
-    private static JSONObject obj;
+
 
     /**
      * Gets all Batch object from the JSON
      *
-     * @return
-     * @throws JSONException
+     * @return JSONObject of the batchs
+     * @throws JSONException if parsing ERORR
      */
     protected static JSONArray getBatchJSONObject() throws JSONException {
         return new JSONObject(json).getJSONArray("batches");
@@ -1375,7 +1375,7 @@ public class ParseJSON {
      */
     public static List<Batch> getBatch() {
         assert json != null;
-        List<Batch> batchSet = new ArrayList<Batch>();
+        List<Batch> batchSet = new ArrayList<>();
         try {
             JSONArray batchsJSON = getBatchJSONObject();
             for (int i = 0; i < batchsJSON.length(); i++) {
@@ -1387,7 +1387,7 @@ public class ParseJSON {
                         obj.getString("endDate"),
                         obj.getString("skill"),
                         obj.getString("location"));
-                batch.setWeeks(getWeek(obj));
+                batch.setWeeks(getWeeks(obj));
                 batchSet.add(batch);
             }
 
@@ -1400,28 +1400,37 @@ public class ParseJSON {
     /**
      * Gets week from JSON.
      *
-     * @param batch the batch
-     * @return week week
+     * @param batch the batch JSONObject
+     * @return week weeks in the batch
      */
-    protected static List<Week> getWeek(JSONObject batch) {
+    protected static List<Week> getWeeks(JSONObject batch) {
         assert json != null;
-        List<Week> weeks = new ArrayList<Week>();
+        List<Week> weeks = new ArrayList<>();
         try {
             getLogger(ParseJSON.class).trace("Getting Week for Batch: " + batch.getString("batchId"));
             // grab the qcNotes object
             JSONArray obj = batch.getJSONArray("qcNotes");
             for (int j = 0; j < obj.length(); j++) {
                 // for each week in qcNotes object load data
+                //create a new week
+                // Week(String weekNumber, String technicalStatus)
                 Week week = new Week(
                         obj.getJSONObject(j).getString("week"),
                         obj.getJSONObject(j).getString("technicalStatus")
                 );
 
                 week.setBatchId(batch.getString("batchId"));
+                getLogger(ParseJSON.class).trace("Week from JSON: " + week);
+                // add assessments to the week
                 List<Assessment> assessments = getAssessmentByBatch(batch, week);
+                getLogger(ParseJSON.class).trace("Adding assessments to the week ... ");
                 week.setAssessments(assessments);
+                getLogger(ParseJSON.class).trace("Assessments adding to the week ");
+                getLogger(ParseJSON.class).trace("Adding categories to the week ... ");
                 week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
+                getLogger(ParseJSON.class).trace("Categories adding to the week ");
                 weeks.add(week);
+                getLogger(ParseJSON.class).trace("___________________________________");
             }
 
         } catch (JSONException e) {
@@ -1433,16 +1442,21 @@ public class ParseJSON {
     /**
      * Gets categories by week in JSON.
      *
-     * @param week the week
-     * @return categories by week
+     * @param week a week from JSONObject
+     * @return categories list of categories in a week
      * @throws JSONException the json exception
      */
-    public static List<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
-        // grab each categories qcNotes object
+    protected static List<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
+        // grab each categories from qcNotes object
+        getLogger(ParseJSON.class).trace("Getting categories for week number:  " + week.getString("week"));
+        // grab each categories from qcNotes object
         JSONArray categories = week.getJSONArray("categories");
-        List<Category> setCategories = new ArrayList<Category>();
+        List<Category> setCategories = new ArrayList<>();
         for (int k = 0; k < categories.length(); k++) {
-            setCategories.add(new Category(categories.getString(k)));
+            //Category(String name)
+            Category category = new Category(categories.getString(k));
+            setCategories.add(category);
+            getLogger(ParseJSON.class).trace("Adding Category => " + category);
         }
         return setCategories;
     }
@@ -1451,12 +1465,12 @@ public class ParseJSON {
      * Sets assessment by batch from JSON
      *
      * @param batch the batch
-     * @param week
+     * @param week week object
      * @return assessment by batch
      */
     protected static List<Assessment> getAssessmentByBatch(JSONObject batch, Week week) {
         assert json != null;
-        List<Assessment> assessments = new ArrayList<Assessment>();
+        List<Assessment> assessments = new ArrayList<>();
 
         try {
 
@@ -1487,7 +1501,7 @@ public class ParseJSON {
      */
     protected static List<Assessment> getAssessment() {
         assert json != null;
-        List<Assessment> assessments = new ArrayList<Assessment>();
+        List<Assessment> assessments = new ArrayList<>();
 
         try {
             JSONArray batchsJSON = getBatchJSONObject();
@@ -1514,6 +1528,7 @@ public class ParseJSON {
      * @return trainer trainer
      */
     public static Trainer getTrainer() {
+        JSONObject obj;
         getLogger(ParseJSON.class).debug("New JSON file set");
         // check if json is null
         assert json != null;
@@ -1541,7 +1556,7 @@ public class ParseJSON {
      */
     public static boolean readDataFromFile(String fileName) {
 
-        ClassLoader classLoader = new ParseJSON().getClass().getClassLoader();
+        ClassLoader classLoader = ParseJSON.class.getClassLoader();
 
         File file = new File(classLoader.getResource(fileName).getFile());
 
@@ -1575,7 +1590,7 @@ public class ParseJSON {
         getLogger(ParseJSON.class).debug("Calling getBatchIds");
         assert json != null;
         List<String> out = new ArrayList<>();
-        JSONArray batchsJSON = null;
+        JSONArray batchsJSON;
         try {
             batchsJSON = getBatchJSONObject();
             for (int i = 0; i < batchsJSON.length(); i++) {

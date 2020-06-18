@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BatchAssessment</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.beans</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BatchAssessment (com.revature.beans)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BatchAssessment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.beans;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.List;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;//This bean does not need to go into the database. It is only used in the Java code.
+<i>7</i>&nbsp;public class BatchAssessment {
+<i>8</i>&nbsp;	private String batchId; //the batches id
+<i>9</i>&nbsp;	private String batchName; //the batches name
+<i>10</i>&nbsp;	private ArrayList&lt;Float&gt; assessments; //the assessment score for that batch over all weeks
+<i>11</i>&nbsp;	
+<i>12</i>&nbsp;	public BatchAssessment()
+<b class="nc"><i>13</i>&nbsp;	{</b>
+<b class="nc"><i>14</i>&nbsp;		batchId = &quot;&quot;;</b>
+<b class="nc"><i>15</i>&nbsp;		batchName = &quot;&quot;;</b>
+<b class="nc"><i>16</i>&nbsp;		assessments = new ArrayList&lt;Float&gt;();</b>
+<b class="nc"><i>17</i>&nbsp;	}</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;	public String getBatchId() {
+<b class="nc"><i>20</i>&nbsp;		return batchId;</b>
+<i>21</i>&nbsp;	}
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;	public void setBatchId(String batchId) {
+<b class="nc"><i>24</i>&nbsp;		this.batchId = batchId;</b>
+<b class="nc"><i>25</i>&nbsp;	}</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;	public String getBatchName() {
+<b class="nc"><i>28</i>&nbsp;		return batchName;</b>
+<i>29</i>&nbsp;	}
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;	public void setBatchName(String batchName) {
+<b class="nc"><i>32</i>&nbsp;		this.batchName = batchName;</b>
+<b class="nc"><i>33</i>&nbsp;	}</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;	public List&lt;Float&gt; getAssessments() {
+<b class="nc"><i>36</i>&nbsp;		return assessments;</b>
+<i>37</i>&nbsp;	}
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;	public void setAssessments(ArrayList&lt;Float&gt; assessments) {
+<b class="nc"><i>40</i>&nbsp;		this.assessments = assessments;</b>
+<b class="nc"><i>41</i>&nbsp;	}</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;	@Override
+<i>44</i>&nbsp;	public String toString() {
+<b class="nc"><i>45</i>&nbsp;		return &quot;BatchAssessment [batchId=&quot; + batchId + &quot;, batchName=&quot; + batchName + &quot;, assessments=&quot; + assessments</b>
+<i>46</i>&nbsp;				+ &quot;]&quot;;
+<i>47</i>&nbsp;	}
+<i>48</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-17 15:17</div>
+</div>
+</body>
+</html>

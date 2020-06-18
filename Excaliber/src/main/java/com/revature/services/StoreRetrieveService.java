@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -154,7 +155,11 @@ public class StoreRetrieveService {
      */
 
     public Trainer getTrainerById(Integer id) {
-        return tDao.findById(id).get();
+    	Optional<Trainer> trainer = tDao.findById(id);
+        if (trainer.isPresent())
+        	return trainer.get();
+        else
+        	return null;
     }
 
     /**

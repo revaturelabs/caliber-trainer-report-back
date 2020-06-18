@@ -1,7 +1,6 @@
 package com.revature.beans;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 
@@ -19,9 +18,9 @@ public class Batch {
     @Column
     private String batchName;
     @Column
-    private Date startDate;
+    private String startDate;
     @Column
-    private Date endDate;
+    private String endDate;
     @Column
     private String skill;
     @Column
@@ -34,7 +33,7 @@ public class Batch {
             joinColumns = @JoinColumn(name = "batch_id"),
             inverseJoinColumns = @JoinColumn(name = "week_id"))
     private List<Week> weeks;
-    
+
     /**
      * Instantiates a new Batch.
      */
@@ -64,6 +63,11 @@ public class Batch {
     public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
         this.batchId = batchId;
         this.batchName = batchName;
+<<<<<<< HEAD
+=======
+        this.startDate = startDate;
+        this.endDate = endDate;
+>>>>>>> 6ea30659a3f86d739c5c05fecccb2fe2d7705d7f
         this.skill = skill;
         this.location = location;
     }
@@ -179,7 +183,7 @@ public class Batch {
      *
      * @return Value of endDate.
      */
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -188,7 +192,7 @@ public class Batch {
      *
      * @param endDate New value of endDate.
      */
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -215,7 +219,7 @@ public class Batch {
      *
      * @return Value of startDate.
      */
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
@@ -224,7 +228,7 @@ public class Batch {
      *
      * @param startDate New value of startDate.
      */
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 

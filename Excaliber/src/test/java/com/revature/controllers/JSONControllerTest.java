@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -17,7 +16,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -46,11 +44,7 @@ class JSONControllerTest {
     void storeTrainer() {
     }
 
-    @Test
-    public void storeTrainerShouldReturnTrainer() throws Exception {
-        mvc.perform(get("/JSONController"))
-                .andExpect(status().isOk());
-    }
+
     @Test
     public void storeTrainerShouldReturnTrainerNotNull() throws Exception {
         this.mvc.perform(RestDocumentationRequestBuilders.get("/JSONController"))

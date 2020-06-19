@@ -42,7 +42,7 @@ public class AssessmentByCategoryService {
 		    			Float assessScore=a.getAverage();
 		    			Float rawScore=Float.valueOf(a.getScoreWeight());
 		    			String type=a.getType();
-		    			assessScore=(assessScore/100)*rawScore; //Convert AssessScore into suitable form
+		    			
 		    			singleCatAScores.add(assessScore);
 		    			singleCatRawScores.add(rawScore);
 		    			singleCatTypeForScore.add(type);
@@ -84,19 +84,19 @@ public class AssessmentByCategoryService {
     	for (int j=0;j<assessScores.get(i).size();j++) {
     		String type=typeForScore.get(i).get(j);
     		if (type.contains("Exam")) {
-    			numeratorExam+=assessScores.get(i).get(j);
+    			numeratorExam+=(assessScores.get(i).get(j)/100)*rawScores.get(i).get(j);
     			denominatorExam+=rawScores.get(i).get(j);
     		}else if (type.contains("Verbal")) {
-    			numeratorVerbal+=assessScores.get(i).get(j);
+    			numeratorVerbal+=(assessScores.get(i).get(j)/100)*rawScores.get(i).get(j);
     			denominatorVerbal+=rawScores.get(i).get(j);
     		}else if (type.contains("Presentation")) {
-    			numeratorPresentation+=assessScores.get(i).get(j);
+    			numeratorPresentation+=(assessScores.get(i).get(j)/100)*rawScores.get(i).get(j);
     			denominatorPresentation+=rawScores.get(i).get(j);
     		}else if (type.contains("Project")) {
-    			numeratorProject+=assessScores.get(i).get(j);
+    			numeratorProject+=(assessScores.get(i).get(j)/100)*rawScores.get(i).get(j);
     			denominatorProject+=rawScores.get(i).get(j);
     		}else {
-    			numeratorOther+=assessScores.get(i).get(j);
+    			numeratorOther+=(assessScores.get(i).get(j)/100)*rawScores.get(i).get(j);
     			denominatorOther+=rawScores.get(i).get(j);
     		}
     		
@@ -128,7 +128,7 @@ public class AssessmentByCategoryService {
 		
 	}
 	
-	public ArrayList<AssessmentByCategory> createABCList(List<Category> categories,ArrayList<Float[]> averageForCat){
+	public List<AssessmentByCategory> createABCList(List<Category> categories, List<Float[]> averageForCat){
 		ArrayList<AssessmentByCategory> ABCList=new ArrayList<AssessmentByCategory>();
 		for (int i=0;i<categories.size();i++) {
 			AssessmentByCategory aBC=new AssessmentByCategory();

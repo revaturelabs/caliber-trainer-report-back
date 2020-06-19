@@ -4,6 +4,9 @@ package com.revature.controllers;
 
 import com.revature.services.TechnicalStatusPerBatchService;
 import com.revature.tables.TechnicalStatusPerBatch;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +39,7 @@ public class TechnicalStatusPerBatchController {
      * @return technical status per batch
      */
     @GetMapping
-    public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch() {
+    public ResponseEntity<List<TechnicalStatusPerBatch>> getTechnicalStatusPerBatch() {
         return ResponseEntity.ok(this.tServ.technicalStatusPerBatchTable(1));
     }
 

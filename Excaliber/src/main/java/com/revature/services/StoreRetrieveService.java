@@ -52,19 +52,13 @@ public class StoreRetrieveService {
 //Store methods-basic
     public Integer addCategory(Category c) {
         Category category = getCategoryByName(c.getName());
-<<<<<<< HEAD
-        if (category != null) { 							
-            System.out.println("Found" + c.getName() + category);
-            return category.getId();
-        }
-        System.out.println("Did not Find" + c.getName()); 
-=======
+
+
         if (category != null) {
             log.debug("Found" + c.getName() + category);
             return category.getId();
         }
         log.error("Did not Find" + c.getName());
->>>>>>> aa20b9835e2fc307297e4e7774c2521096e83e89
         return cDao.save(c).getId();
     }
 

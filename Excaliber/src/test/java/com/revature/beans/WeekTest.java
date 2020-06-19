@@ -1,13 +1,14 @@
 package com.revature.beans;
 
-<<<<<<< HEAD
+
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-=======
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +19,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
->>>>>>> aa20b9835e2fc307297e4e7774c2521096e83e89
+
 
 class WeekTest {
 	

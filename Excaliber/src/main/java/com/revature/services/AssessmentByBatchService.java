@@ -42,7 +42,7 @@ public class AssessmentByBatchService {
 	    			Float assessScore=a.getAverage();
     				Float rawScore=Float.valueOf(a.getScoreWeight());
     				String type=a.getType();
-    				assessScore=(assessScore/100)*rawScore; //Convert AssessScore into suitable form
+    				
     				aScores.add(assessScore);
     				rawScores.add(rawScore);
     				typeForScore.add(type);
@@ -74,19 +74,19 @@ public class AssessmentByBatchService {
     		
 	  		String type=typeForScore.get(i);
     		if (type.contains("Exam")) {
-    			numeratorExam+=aScores.get(i);
+    			numeratorExam+=(aScores.get(i)/100)*rawScores.get(i);
     			denominatorExam+=rawScores.get(i);
     		}else if (type.contains("Verbal")) {
-    			numeratorVerbal+=aScores.get(i);
+    			numeratorVerbal+=(aScores.get(i)/100)*rawScores.get(i);
     			denominatorVerbal+=rawScores.get(i);
     		}else if (type.contains("Presentation")) {
-    			numeratorPresentation+=aScores.get(i);
+    			numeratorPresentation+=(aScores.get(i)/100)*rawScores.get(i);
     			denominatorPresentation+=rawScores.get(i);
     		}else if (type.contains("Project")) {
-    			numeratorProject+=aScores.get(i);
+    			numeratorProject+=(aScores.get(i)/100)*rawScores.get(i);
     			denominatorProject+=rawScores.get(i);
     		}else {
-    			numeratorOther+=aScores.get(i);
+    			numeratorOther+=(aScores.get(i)/100)*rawScores.get(i);
     			denominatorOther+=rawScores.get(i);
     		}
     	}

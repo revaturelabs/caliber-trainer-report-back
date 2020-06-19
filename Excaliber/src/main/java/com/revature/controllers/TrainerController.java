@@ -32,7 +32,7 @@ public class TrainerController {
     }
 
     @GetMapping(path = "/{trainerId}")
-    public ResponseEntity<List<Trainer>> getTrainers(@PathVariable String trainerId) {
-        return ResponseEntity.ok(SRSserv.getTrainers());
+    public ResponseEntity<Trainer> getTrainers(@PathVariable int trainerId) {
+        return ResponseEntity.ok(SRSserv.getTrainerById(trainerId));
     }
 }

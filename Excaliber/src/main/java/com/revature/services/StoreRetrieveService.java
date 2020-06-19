@@ -50,11 +50,11 @@ public class StoreRetrieveService {
 //Store methods-basic
     public Integer addCategory(Category c) {
         Category category = getCategoryByName(c.getName());
-        if (category != null) { //							<-- This null check seems misguided. 
+        if (category != null) { 							
             System.out.println("Found" + c.getName() + category);
             return category.getId();
         }
-        System.out.println("Did not Find" + c.getName()); //  <--- so this runs regardless?
+        System.out.println("Did not Find" + c.getName()); 
         return cDao.save(c).getId();
     }
 

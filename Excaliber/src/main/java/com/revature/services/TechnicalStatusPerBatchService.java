@@ -38,6 +38,8 @@ public class TechnicalStatusPerBatchService {
      */
     public TechnicalStatusPerBatch technicalStatusPerBatchTable(int id) {
         Trainer trainer = sRSserv.getTrainerById(id);
+        if(trainer == null)
+            return null;
         TechnicalStatusPerBatch table = new TechnicalStatusPerBatch();
         ArrayList<String> batchIds = new ArrayList<>();
 

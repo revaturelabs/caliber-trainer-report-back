@@ -4,11 +4,9 @@ import com.revature.services.*;
 import com.revature.tables.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,16 +50,21 @@ public class TableController {
         this.assessmentByBatchService = assessmentByBatchService;
     }
 
+
     /**
      * sends TechnicalStatusPerBatch table data
      *
      * @param trainerId the trainer id
      * @return technical status per batch
      */
+
     @GetMapping(path = "/TechnicalStatusPerBatch")
     public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessmentByBatch");
-        return ResponseEntity.ok(this.statusPerBatchService.technicalStatusPerBatchTable(trainerId));
+        TechnicalStatusPerBatch table = this.statusPerBatchService.technicalStatusPerBatchTable(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
     }
 
     /**
@@ -73,7 +76,11 @@ public class TableController {
     @GetMapping(path = "/AssessmentByBatch")
     public ResponseEntity<List<AssessmentByBatch>> getAssessmentByBatch(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessmentByBatch");
-        return ResponseEntity.ok(assessmentByBatchService.getABBTable(trainerId));
+        List<AssessmentByBatch> table = assessmentByBatchService.getABBTable(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
+
     }
 
     /**
@@ -85,7 +92,10 @@ public class TableController {
     @GetMapping(path = "/AssessmentByCategory")
     public ResponseEntity<List<AssessmentByCategory>> getAssessmentByCategory(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessmentByCategory");
-        return ResponseEntity.ok(assessmentByCategoryService.getABCTable(trainerId));
+        List<AssessmentByCategory> table = assessmentByCategoryService.getABCTable(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
     }
 
     /**
@@ -97,8 +107,9 @@ public class TableController {
     @GetMapping(path = "/AssessScoresByCategoryAllBatches")
     public ResponseEntity<AssessScoresByCategoryAllBatches> getAssessScoresByCategoryAllBatches(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessScoresByCategoryAllBatches");
-        AssessScoresByCategoryAllBatches batches =
-                scoresByCategoryService.getAssessScoresByCategoryAllBatches(trainerId);
+        AssessScoresByCategoryAllBatches batches = scoresByCategoryService.getAssessScoresByCategoryAllBatches(trainerId);
+        if(batches == null)
+            return ResponseEntity.notFound().build();
         return ResponseEntity.ok(batches);
     }
 
@@ -111,7 +122,10 @@ public class TableController {
     @GetMapping(path = "/TechnicalStatusByWeek")
     public ResponseEntity<List<TechnicalStatusByWeek>> getTechnicalStatusByWeek(@PathVariable int trainerId) {
         log.info("Getting TechnicalStatusByWeek");
-        return ResponseEntity.ok(statusByWeekService.getTechnicalStatusByWeek(trainerId));
+        List<TechnicalStatusByWeek> table = statusByWeekService.getTechnicalStatusByWeek(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
     }
 
     /**
@@ -123,7 +137,10 @@ public class TableController {
     @GetMapping(path = "/BatchTechnicalStatusBySkillCategory")
     public ResponseEntity<BatchTechnicalStatusBySkillCategory> getTableDataObject(@PathVariable int trainerId) {
         log.trace("Getting table data for BatchTechnicalStatusBySkillCategory");
-        return ResponseEntity.ok(this.technicalStatusBySkillCategoryService.getTableData(1));
+        BatchTechnicalStatusBySkillCategory table = this.technicalStatusBySkillCategoryService.getTableData(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
     }
 
 }

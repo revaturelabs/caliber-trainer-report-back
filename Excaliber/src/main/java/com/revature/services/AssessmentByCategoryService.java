@@ -12,14 +12,29 @@ import com.revature.beans.Category;
 
 import com.revature.tables.AssessmentByCategory;
 
+/**
+ * The type Assessment by category service.
+ */
 @Service
 public class AssessmentByCategoryService {
-	private StoreRetrieveService SRSserv;
+	private final StoreRetrieveService SRSserv;
+
+	/**
+	 * Instantiates a new Assessment by category service.
+	 *
+	 * @param s the s
+	 */
 	@Autowired
 	public AssessmentByCategoryService(StoreRetrieveService s) {
 		SRSserv=s;
 	}
-	
+
+	/**
+	 * Gets abc table.
+	 *
+	 * @param id the id
+	 * @return the abc table
+	 */
 	public List<AssessmentByCategory> getABCTable(int id) {
 		
 		
@@ -27,8 +42,8 @@ public class AssessmentByCategoryService {
 		List<Category> categories=SRSserv.getAllCategories();
 		List<Assessment> assessments=SRSserv.getAllAssessments();
 		
-	    ArrayList<ArrayList<Float>> assessScores=new ArrayList<ArrayList<Float>>(); ;
-	    ArrayList<ArrayList<Float>> rawScores=new ArrayList<ArrayList<Float>>();
+	    ArrayList<ArrayList<Float>> assessScores=new ArrayList<ArrayList<Float>>();
+		ArrayList<ArrayList<Float>> rawScores=new ArrayList<ArrayList<Float>>();
 	    ArrayList<Float[]> averageForCat=new ArrayList<Float[]>();
 	    ArrayList<ArrayList<String>> typeForScore=new ArrayList<ArrayList<String>>();
 	    //Get rawScores and AssessmentScores for each category
@@ -65,10 +80,17 @@ public class AssessmentByCategoryService {
 	    
 		return createABCList( categories, averageForCat);
 	}
-	
-	
-	
-	
+
+
+	/**
+	 * Calculate average float [ ].
+	 *
+	 * @param i            the
+	 * @param assessScores the assess scores
+	 * @param rawScores    the raw scores
+	 * @param typeForScore the type for score
+	 * @return the float [ ]
+	 */
 	public Float[] calculateAverage(int i,ArrayList<ArrayList<Float>> assessScores,ArrayList<ArrayList<Float>> rawScores,ArrayList<ArrayList<String>> typeForScore) {
     	float numeratorExam=0;
     	float denominatorExam=0;
@@ -127,7 +149,14 @@ public class AssessmentByCategoryService {
 		
 		
 	}
-	
+
+	/**
+	 * Create abc list array list.
+	 *
+	 * @param categories    the categories
+	 * @param averageForCat the average for cat
+	 * @return the array list
+	 */
 	public ArrayList<AssessmentByCategory> createABCList(List<Category> categories,ArrayList<Float[]> averageForCat){
 		ArrayList<AssessmentByCategory> ABCList=new ArrayList<AssessmentByCategory>();
 		for (int i=0;i<categories.size();i++) {

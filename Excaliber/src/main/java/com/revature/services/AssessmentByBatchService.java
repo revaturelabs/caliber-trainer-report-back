@@ -12,21 +12,41 @@ import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.tables.AssessmentByBatch;
 
+/**
+ * The type Assessment by batch service.
+ */
 @Service
 public class AssessmentByBatchService {
-	private StoreRetrieveService SRSserv;
-	
+	private final StoreRetrieveService SRSserv;
+
+	/**
+	 * Instantiates a new Assessment by batch service.
+	 *
+	 * @param s the s
+	 */
 	@Autowired
 	public AssessmentByBatchService(StoreRetrieveService s) {
 		SRSserv=s;
 	}
-	
+
+	/**
+	 * Get abb table list.
+	 *
+	 * @param id the id
+	 * @return the list
+	 */
 	public List<AssessmentByBatch> getABBTable (int id){
 		Trainer t=SRSserv.getTrainerById(id);
 			
 		return loopBatches(t.getBatches());
 	}
-	
+
+	/**
+	 * Loop batches list.
+	 *
+	 * @param batches the batches
+	 * @return the list
+	 */
 	public List<AssessmentByBatch> loopBatches(List<Batch> batches){
 		ArrayList<AssessmentByBatch> aBBList=new ArrayList<AssessmentByBatch>();
 		for (Batch b:batches) {
@@ -57,7 +77,15 @@ public class AssessmentByBatchService {
 		return aBBList;
 		
 	}
-	
+
+	/**
+	 * Calculate averages float [ ].
+	 *
+	 * @param aScores      the a scores
+	 * @param rawScores    the raw scores
+	 * @param typeForScore the type for score
+	 * @return the float [ ]
+	 */
 	public float[] calculateAverages(ArrayList<Float> aScores, ArrayList<Float> rawScores, ArrayList<String> typeForScore ) {
     	float numeratorExam=0;
     	float denominatorExam=0;

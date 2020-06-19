@@ -12,20 +12,20 @@ import java.util.ArrayList;
  */
 public class TechnicalStatusPerBatch {
 
-    private ArrayList<String> batchId; // batch Id to differentiate batches
+    private String batchId; // batch Id to differentiate batches
 
-    private ArrayList<String> batchName; // this will be a human readable name for the batch (ex: id is "Ix2x2UAB",
+    private String batchName; // this will be a human readable name for the batch (ex: id is "Ix2x2UAB",
     // name would be "Batch 1")
 
-    private ArrayList<int[]> technicalStatus; // consists of "superstar, good, average, poor"
+    private int[] technicalStatus; // consists of "superstar, good, average, poor"
 
     /**
      * Instantiates a new Technical status per batch.
      */
     public TechnicalStatusPerBatch() {
-        batchId = new ArrayList<>();
-        batchName = new ArrayList<>();
-        technicalStatus = new ArrayList<>();
+        batchId ="";
+        batchName = "";
+        technicalStatus = new int[5];
     }
 
     /**
@@ -33,7 +33,7 @@ public class TechnicalStatusPerBatch {
      *
      * @return Value of batchName.
      */
-    public ArrayList<String> getBatchName() {
+    public String getBatchName() {
         return batchName;
     }
 
@@ -42,7 +42,7 @@ public class TechnicalStatusPerBatch {
      *
      * @param batchName New value of batchName.
      */
-    public void setBatchName(ArrayList<String> batchName) {
+    public void setBatchName(String batchName) {
         this.batchName = batchName;
     }
 
@@ -51,7 +51,7 @@ public class TechnicalStatusPerBatch {
      *
      * @return Value of technicalStatus.
      */
-    public ArrayList<int[]> getTechnicalStatus() {
+    public int[] getTechnicalStatus() {
         return technicalStatus;
     }
 
@@ -60,7 +60,7 @@ public class TechnicalStatusPerBatch {
      *
      * @param technicalStatus New value of technicalStatus.
      */
-    public void setTechnicalStatus(ArrayList<int[]> technicalStatus) {
+    public void setTechnicalStatus(int[] technicalStatus) {
         this.technicalStatus = technicalStatus;
     }
 
@@ -69,7 +69,7 @@ public class TechnicalStatusPerBatch {
      *
      * @return Value of batchId.
      */
-    public ArrayList<String> getBatchId() {
+    public String getBatchId() {
         return batchId;
     }
 
@@ -78,7 +78,7 @@ public class TechnicalStatusPerBatch {
      *
      * @param batchId New value of batchId.
      */
-    public void setBatchId(ArrayList<String> batchId) {
+    public void setBatchId(String batchId) {
         this.batchId = batchId;
     }
 

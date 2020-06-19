@@ -59,7 +59,7 @@ public class TableController {
      * @return technical status per batch
      */
     @GetMapping(path = "/TechnicalStatusPerBatch")
-    public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch(@PathVariable int trainerId) {
+    public ResponseEntity<List<TechnicalStatusPerBatch>> getTechnicalStatusPerBatch(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessmentByBatch");
         return ResponseEntity.ok(this.statusPerBatchService.technicalStatusPerBatchTable(trainerId));
     }

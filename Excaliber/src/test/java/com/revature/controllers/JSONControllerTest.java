@@ -6,9 +6,12 @@ import com.revature.beans.Category;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.services.StoreRetrieveService;
+import com.revature.utils.ParseJSON;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,6 +23,8 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,6 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertNotNull;
+
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.*;
@@ -51,6 +57,8 @@ class JSONControllerTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
+	
+
 
 	Trainer trainer;
 	Trainer trainer2;
@@ -63,6 +71,52 @@ class JSONControllerTest {
 	List<Week> weeks;
 	List<Assessment> assessments;
 	List<Category> categories;
+	
+	String samplePayload =  " \"employee\": {\r\n" + 
+			"    \"email\": \"james.gosling@revature.com\",\r\n" + 
+			"    \"firstName\": \"James\",\r\n" + 
+			"    \"lastName\": \"Gosling\"\r\n" + 
+			 "  },\r\n" +
+			 "  \"batches\": [\r\n" +
+			"    {\r\n" + 
+			"      \"id\": 121501,\r\n" + 
+			"      \"batchId\": \"Ix2x2UAB\",\r\n" + 
+			"      \"name\": \"1804  Apr16 -2\",\r\n" + 
+			"      \"startDate\": \"2018-04-23\",\r\n" + 
+			"      \"endDate\": \"2018-06-29\",\r\n" + 
+			"      \"skill\": \"JTA\",\r\n" + 
+			"      \"location\": \"Revature LLC, Reston VA 20190\",\r\n" + 
+			"      \"type\": \"Revature\",\r\n" + 
+			"      \"qcNotes\": [\r\n" + 
+			"        {\r\n" + 
+			"          \"noteId\": 398328,\r\n" + 
+			"          \"content\": \"mock content\",\r\n" + 
+			"          \"week\": 1,\r\n" + 
+			"          \"batchId\": \"Ix2x2UAB\",\r\n" + 
+			"          \"associateId\": null,\r\n" + 
+			"          \"employeeId\": null,\r\n" + 
+			"          \"type\": \"QC_BATCH\",\r\n" + 
+			"          \"technicalStatus\": \"Good\",\r\n" + 
+			"          \"createdOn\": null,\r\n" + 
+			"          \"lastUpdated\": null,\r\n" + 
+			"          \"categories\": [\r\n" + 
+			"            \"Java\"\r\n" + 
+			"          ]\r\n" + 
+			"          ]\r\n" + 
+			"        },\r\n " +
+			" 		\"assessments\": [\r\n" + 
+			"        {\r\n" + 
+			"          \"assessmentId\": 177003,\r\n" + 
+			"          \"rawScore\": 100,\r\n" + 
+			"          \"assessmentTitle\": null,\r\n" + 
+			"          \"assessmentType\": \"Exam\",\r\n" + 
+			"          \"weekNumber\": 1,\r\n" + 
+			"          \"batchId\": \"Ix2x2UAB\",\r\n" + 
+			"          \"assessmentCategory\": 1,\r\n" + 
+			"          \"skillCategory\": \"Java\",\r\n" + 
+			"          \"assignmentDate\": null,\r\n" + 
+			"          \"average\": 76.1\r\n" + 
+			"        },";
 	
 	
     @BeforeEach
@@ -133,14 +187,14 @@ class JSONControllerTest {
     void testNotNull() throws Exception {
     	when(service.getTrainerById(anyInt())).thenReturn(trainer);
     	
-    	ResponseEntity trainerObject = jsonController.getTrainer2();
+    	ResponseEntity<String> trainerObject = jsonController.getTrainer2();
     	
     	assertNotNull(trainerObject);
     }
     @Test
-    @DisplayName("Test on JSONController")
+    @DisplayName("Test on JSONController status code, should return 200-ok")
     void testGetTrainerById() {
-    	//when(service.getTrainerById(anyInt())).thenReturn(trainer2);
+    	when(service.getTrainerById(anyInt())).thenReturn(trainer2);
     	
     	ResponseEntity<String> trainerObject = jsonController.getTrainer2();
     	
@@ -149,13 +203,28 @@ class JSONControllerTest {
     	assertNotNull(trainerObject);
     	assertTrue(trainerObject.getStatusCode().is2xxSuccessful());
     	
-    	System.out.println("Trainer object = " + trainer);
+    	System.out.println("Trainer object = " + trainerObject);
     	
     }
+    
+    
+   
 //    @Test
-//    public void storeTrainerShouldReturnTrainer() throws Exception {
-//        this.mockMvc.perform(get("/"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("Greetings from Spring Boot!")));
+//    @DisplayName("test on addTrainer method, should not be equal to -1")
+//    
+//    void testAddTrainerReturnValue() {
+//    	
+//    	ParseJSON parseJson = new ParseJSON();
+//    	
+//    	ParseJSON.setJson(samplePayload); 
+//    	
+//    Boolean returnValue = jsonController.addTrainer();
+//    
+//    System.out.println("Sample Payload = " + samplePayload);
+//    System.out.println("Return Value of Method = " + returnValue);
+//    
+//   assertTrue(returnValue);
+//    	
 //    }
+
 }

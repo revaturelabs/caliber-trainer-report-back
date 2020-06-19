@@ -1,5 +1,6 @@
 package com.revature.beans;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class BatchAssessment {
 
     private String batchName; //the batches name
-    private ArrayList<Float> assessments; //the assessment score for that batch over all weeks
+    private List<Float> assessments; //the assessment score for that batch over all weeks
 
     /**
      * Instantiates a new Batch assessment.
@@ -43,7 +44,7 @@ public class BatchAssessment {
      *
      * @return the assessments
      */
-    public ArrayList<Float> getAssessments() {
+    public List<Float> getAssessments() {
         return assessments;
     }
 
@@ -52,7 +53,7 @@ public class BatchAssessment {
      *
      * @param assessments the assessments
      */
-    public void setAssessments(ArrayList<Float> assessments) {
+    public void setAssessments(List<Float> assessments) {
         this.assessments = assessments;
     }
 

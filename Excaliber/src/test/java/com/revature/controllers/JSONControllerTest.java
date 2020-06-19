@@ -6,13 +6,12 @@ import com.revature.beans.Category;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.services.StoreRetrieveService;
-
+import com.revature.utils.ParseJSON;
 
 import org.junit.jupiter.api.AfterEach;
 
 import org.junit.jupiter.api.BeforeEach;
-
-
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 
 import org.junit.jupiter.api.Test;
@@ -201,22 +200,23 @@ class JSONControllerTest {
     
     
    
-//    @Test
-//    @DisplayName("test on addTrainer method, should not be equal to -1")
-//    
-//    void testAddTrainerReturnValue() {
-//    	
-//    	ParseJSON parseJson = new ParseJSON();
-//    	
-//    	ParseJSON.setJson(samplePayload); 
-//    	
-//    Boolean returnValue = jsonController.addTrainer();
-//    
-//    System.out.println("Sample Payload = " + samplePayload);
-//    System.out.println("Return Value of Method = " + returnValue);
-//    
-//   assertTrue(returnValue);
-//    	
-//    }
+    @Disabled
+    @DisplayName("test on addTrainer method, should not be equal to -1")
+    
+    // not working. My sample JSON object may be formatted incorrectly? But I dont think so...
+    void testAddTrainerReturnValue() {
+    	
+    	ParseJSON parseJson = new ParseJSON();
+    	
+    	ParseJSON.setJson(samplePayload); 
+    	
+    Boolean returnValue = jsonController.addTrainer(samplePayload);
+    
+    System.out.println("Sample Payload = " + samplePayload);
+    System.out.println("Return Value of Method = " + returnValue);
+    
+   assertTrue(returnValue);
+    	
+    }
 
 }

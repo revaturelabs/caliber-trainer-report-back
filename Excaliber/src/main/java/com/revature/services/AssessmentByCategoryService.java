@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Assessment;
-
+import com.revature.beans.Batch;
 import com.revature.beans.Category;
-
+import com.revature.beans.Trainer;
+import com.revature.beans.Week;
 import com.revature.tables.AssessmentByCategory;
 
 @Service
@@ -22,10 +23,10 @@ public class AssessmentByCategoryService {
 	
 	public List<AssessmentByCategory> getABCTable(int id) {
 		
-		
+		Trainer t=SRSserv.getTrainerById(id);
 		
 		List<Category> categories=SRSserv.getAllCategories();
-		List<Assessment> assessments=SRSserv.getAllAssessments();
+		List<Assessment> assessments=getTrainerAssessments(t);
 		
 	    ArrayList<ArrayList<Float>> assessScores=new ArrayList<ArrayList<Float>>(); ;
 	    ArrayList<ArrayList<Float>> rawScores=new ArrayList<ArrayList<Float>>();
@@ -137,6 +138,18 @@ public class AssessmentByCategoryService {
 			ABCList.add(aBC);
 		}
 		return ABCList;
+	}
+	
+	public List<Assessment> getTrainerAssessments(Trainer t){
+		List<Assessment> aList=new ArrayList<Assessment>();
+		for (Batch b:t.getBatches()) {
+			for (Week w:b.getWeeks()) {
+				for (Assessment a:w.getAssessments()) {
+					aList.add(a);
+				}
+			}
+		}
+		return aList;
 	}
 }
 

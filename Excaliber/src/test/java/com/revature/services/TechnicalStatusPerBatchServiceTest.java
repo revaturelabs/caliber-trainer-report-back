@@ -1,32 +1,46 @@
 package com.revature.services;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * The type Technical status per batch service test.
- */
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.revature.controllers.JSONController;
+import com.revature.tables.TechnicalStatusPerBatch;
+
+@SpringBootTest
+@Transactional // to manage the session
 class TechnicalStatusPerBatchServiceTest {
 
-    /**
-     * Sets up.
-     */
-    @BeforeEach
-    void setUp() {
-    }
-
-    /**
-     * Tear down.
-     */
-    @AfterEach
-    void tearDown() {
-    }
-
-    /**
-     * Return table.
-     */
+	private final TechnicalStatusPerBatchService tspbServ; // class being tested 
+	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
+	
+	@Autowired
+	public TechnicalStatusPerBatchServiceTest(TechnicalStatusPerBatchService t, JSONController c) {
+		tspbServ = t;
+		jCtrl = c;
+	}
+	
+	/*
+	 *  Integration Test:
+	 *    -Method being Tested: TechnicalStatusPerBatchService.technicalStatusPerBatchTable()
+	 *      -Should return a List of TechnicalStatusPerBatch objects
+	 *    -Dependency: JSONController.getTrainer2()
+	 *      -Initializes Trainer data to be processed by the method
+	 */
     @Test
-    void returnTable() {
+    void technicalStatusPerBatchTableTest() throws Exception{
+    	
+    	jCtrl.getTrainer2(); // initialize data
+		
+		// call technicalStatusPerBatchTable() and get returned list
+		List<TechnicalStatusPerBatch> result = tspbServ.technicalStatusPerBatchTable(1);
+		
+		// check if returned list contains TechnicalStatusPerBatch objects
+		assertTrue(result.get(0) instanceof TechnicalStatusPerBatch);
     }
 }

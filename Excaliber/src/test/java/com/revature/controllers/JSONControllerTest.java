@@ -51,4 +51,9 @@ class JSONControllerTest {
                 .andExpect(status().isOk())
                 .andDo(document("JSONController/"));
 
-    }}
+    }
+
+    @Test
+    void addTEST() {
+    }
+}

@@ -67,7 +67,7 @@ public class JSONController {
             trainer.setBatches(batches);
             //if trainer created
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Not a valid data");
+            return ResponseEntity.badRequest().body("NOT VALID JSON");
         }
         return ResponseEntity.ok().build();
 

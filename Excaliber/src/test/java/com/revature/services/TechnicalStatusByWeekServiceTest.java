@@ -1,47 +1,46 @@
-package com.revature.controllers;
+package com.revature.services;
 
+import com.revature.controllers.JSONController;
 import com.revature.tables.TechnicalStatusByWeek;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;;
+import java.util.List;
 
 @SpringBootTest
 @Transactional // to manage the session
-class TechnicalStatusByWeekControllerTest {
+class TechnicalStatusByWeekServiceTest {
 	
-	private final TechnicalStatusByWeekController tsbwCtrl; // class being tested 
+	private final TechnicalStatusByWeekService tsbwServ; // class being tested 
 	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 	
 	@Autowired
-	public TechnicalStatusByWeekControllerTest(TechnicalStatusByWeekController t, JSONController c) {
-		tsbwCtrl = t;
+	public TechnicalStatusByWeekServiceTest(TechnicalStatusByWeekService t, JSONController c) {
+		tsbwServ = t;
 		jCtrl = c;
 	}
 	
 	/*
 	 *  Integration Test:
-	 *    -Method being Tested: TechnicalStatusByWeekController.getTechnicalStatusByWeek()
-	 *      -Should return ResponseEntity<List<TechnicalStatusByWeek>>
+	 *    -Method being Tested: TechnicalStatusByWeekService.getTechnicalStatusByWeek()
+	 *      -Should return a List of TechnicalStatusByWeek objects
 	 *    -Dependency: JSONController.getTrainer2()
 	 *      -Initializes Trainer data to be processed by the method
 	 */
 	@Test
-    public void getTechnicalStatusByWeekControllerTest() throws Exception {
+	void getTechnicalStatusByWeekSreviceTest() throws Exception{
 		
 		jCtrl.getTrainer2(); // initialize data
 		
 		// call getTechnicalStatusByWeek() and get returned list
-		ResponseEntity<List<TechnicalStatusByWeek>> result = tsbwCtrl.getTechnicalStatusByWeek();
+		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(1);
 		
-		// check if result returned a ResponseEntity
-		assertTrue(result instanceof ResponseEntity);
-    }
-	
+		// check if returned list contains TechnicalStatusByWeek objects
+		assertTrue(result.get(0) instanceof TechnicalStatusByWeek);
+	}
 
 }

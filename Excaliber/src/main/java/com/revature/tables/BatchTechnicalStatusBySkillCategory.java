@@ -1,87 +1,68 @@
 package com.revature.tables;
 
+import com.revature.beans.QCTSCategory;
+
+import java.util.ArrayList;
+
 /* Batch Technical Status Bean
 	
-	***Bean to generate graph for Technical Status per batch according to skillCategory***
+	***Bean to generate graph for Technical Status per batch according to Category***
 	*
 	*User Story: 
 		• To generate graphical representation of QC Technical Status
-			per batch according to skillCategory.
+			per batch according to Category.
 			
 	*Objective: 
 		•Generate the metrics that allows to see how well a trainer is 
-			performing per batch according to skillCategory.
+			performing per batch according to Category.
 			
 	*Data-Points:
 		•Batch ID from Batch
 		•Batch Name from Batch
 		•Technical Status from Batch's QC notes.
-		•SkillCategory from Batch's Assessment.
+		•Category from Batch's QC notes.
 */
 
+/**
+ * The type Batch technical status by skill category.
+ */
 public class BatchTechnicalStatusBySkillCategory {
 
-	private String batchId;            // ID number of a batch
-	private String batchName;            // Name of a batch
-	private String technicalStatus;        // GOOD, BAD, etc for batch
-	private String skillCategory;        // skillCategory from Assessment eg: Java, SQL etc.
+	private ArrayList<QCTSCategory> batchByCategory;
 
-	//Constructor
+
+	/**
+	 * Instantiates a new Batch technical status by skill category.
+	 */
+//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-		batchId = "";
-		batchName = "";
-		technicalStatus = "";
-		skillCategory = "";
+		batchByCategory = new ArrayList<>();
 	}
 
-	//Constructor with parameters
-	public BatchTechnicalStatusBySkillCategory(String batchId, String batchName, String technicalStatus, String skillCategory) {
-		this.batchId = batchId;
-		this.batchName = batchName;
-		this.technicalStatus = technicalStatus;
-		this.skillCategory = skillCategory;
+	/**
+	 * Gets batch by category.
+	 *
+	 * @return the batch by category
+	 */
+	public ArrayList<QCTSCategory> getBatchByCategory() {
+		return batchByCategory;
 	}
 
-	public String getBatchId() {
-		return batchId;
+	/**
+	 * Sets batch by category.
+	 *
+	 * @param batchByCategory the batch by category
+	 */
+	public void setBatchByCategory(ArrayList<QCTSCategory> batchByCategory) {
+		this.batchByCategory = batchByCategory;
 	}
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
-	}
-
-	public String getBatchName() {
-		return batchName;
-	}
-
-	public void setBatchName(String batchName) {
-		this.batchName = batchName;
-	}
-
-	public String getTechnicalStatus() {
-		return technicalStatus;
-	}
-
-	public void setTechnicalStatus(String technicalStatus) {
-		this.technicalStatus = technicalStatus;
-	}
-
-	public String getSkillCategory() {
-		return skillCategory;
-	}
-
-	public void setSkillCategory(String skillCategory) {
-		this.skillCategory = skillCategory;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
-		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
-		result = prime * result + ((skillCategory == null) ? 0 : skillCategory.hashCode());
-		result = prime * result + ((technicalStatus == null) ? 0 : technicalStatus.hashCode());
+		result = prime * result + ((batchByCategory == null) ? 0 : batchByCategory.hashCode());
 		return result;
 	}
 
@@ -94,29 +75,15 @@ public class BatchTechnicalStatusBySkillCategory {
 		if (getClass() != obj.getClass())
 			return false;
 		BatchTechnicalStatusBySkillCategory other = (BatchTechnicalStatusBySkillCategory) obj;
-		if (batchId == null) {
-			if (other.batchId != null)
-				return false;
-		} else if (!batchId.equals(other.batchId))
-			return false;
-		if (batchName == null) {
-			if (other.batchName != null)
-				return false;
-		} else if (!batchName.equals(other.batchName))
-			return false;
-		if (skillCategory == null) {
-			if (other.skillCategory != null)
-				return false;
-		} else if (!skillCategory.equals(other.skillCategory))
-			return false;
-		if (technicalStatus == null) {
-			return other.technicalStatus == null;
-		} else return technicalStatus.equals(other.technicalStatus);
+		if (batchByCategory == null) {
+			return other.batchByCategory == null;
+		} else return batchByCategory.equals(other.batchByCategory);
 	}
 
 	@Override
 	public String toString() {
-		return "BatchTechnicalStatusBySkillCategory [batchId=" + batchId + ", batchName=" + batchName
-				+ ", technicalStatus=" + technicalStatus + ", skillCategory=" + skillCategory + "]";
+		return "BatchTechnicalStatusBySkillCategory [batchByCategory=" + batchByCategory + "]";
 	}
+
+
 }

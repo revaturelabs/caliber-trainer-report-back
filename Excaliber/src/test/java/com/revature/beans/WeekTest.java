@@ -1,11 +1,24 @@
 package com.revature.beans;
 
+<<<<<<< HEAD
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
+=======
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+>>>>>>> aa20b9835e2fc307297e4e7774c2521096e83e89
 
 class WeekTest {
 	
@@ -49,19 +62,19 @@ class WeekTest {
     @Test
     @DisplayName("testing set and get funtions with  Assessment List ")
     void setAssessments() {
-    	
-    	Assessment assessment = new Assessment();
-    	List<Assessment> assessments = new ArrayList<Assessment>();
-    	
-    	assessment.setId(2);
-    	assessment.setScoreWeight(6);
-    	assessment.setType("Exam");
-    	assessment.setAverage(85.6f);
-    	
-    	assessments.add(assessment);
-    	
-    	int expected_Id = 2;
-    	int expected_ScoreWeight = 6;
+
+		Assessment assessment = new Assessment();
+		List<Assessment> assessments = new ArrayList<>();
+
+		assessment.setId(2);
+		assessment.setScoreWeight(6);
+		assessment.setType("Exam");
+		assessment.setAverage(85.6f);
+
+		assessments.add(assessment);
+
+		int expected_Id = 2;
+		int expected_ScoreWeight = 6;
     	String expected_Type = "Exam";
     	Float expected_Average = 85.6f;
     	
@@ -86,19 +99,19 @@ class WeekTest {
     @Test
     @DisplayName("testing set and get functions with Category List")
     void setCategory() {
-    	
-    	Category category = new Category();
-    	
-    	List<Category> categories = new ArrayList<Category>();
-    	
-    	category.setId(7);
-    	category.setName("SQL");
-    	
-    	categories.add(category);
-    	
-    	
-    	int expected_Id = 7;
-    	String expected_Name = "SQL";
+
+		Category category = new Category();
+
+		List<Category> categories = new ArrayList<>();
+
+		category.setId(7);
+		category.setName("SQL");
+
+		categories.add(category);
+
+
+		int expected_Id = 7;
+		String expected_Name = "SQL";
     	
     	int actual_Id = categories.get(0).getId();
     	String actual_Name = categories.get(0).getName();

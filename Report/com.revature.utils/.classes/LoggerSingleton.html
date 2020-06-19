@@ -1,0 +1,116 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LoggerSingleton</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.utils</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LoggerSingleton (com.revature.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoggerSingleton</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.utils;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.controllers.BatchTechnicalStatusBySkillCategoryController;
+<i>4</i>&nbsp;import org.apache.log4j.Logger;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;public class LoggerSingleton {
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;    private static Logger logger;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    private static LoggerSingleton loggerSingleton;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    private LoggerSingleton() {</b>
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    /**
+<i>20</i>&nbsp;     * Gets logger.
+<i>21</i>&nbsp;     *
+<i>22</i>&nbsp;     * @param c
+<i>23</i>&nbsp;     * @return Value of logger.
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public static Logger getLogger(Class c) {
+<b class="fc"><i>26</i>&nbsp;        logger = Logger.getLogger(c);</b>
+<b class="fc"><i>27</i>&nbsp;        if (loggerSingleton == null) {</b>
+<b class="fc"><i>28</i>&nbsp;            loggerSingleton = new LoggerSingleton();</b>
+<b class="fc"><i>29</i>&nbsp;            logger.info(&quot;created singleton: Logger&quot;);</b>
+<i>30</i>&nbsp;        }
+<b class="fc"><i>31</i>&nbsp;        return logger;</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-17 15:17</div>
+</div>
+</body>
+</html>

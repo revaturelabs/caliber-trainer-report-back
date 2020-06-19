@@ -1,71 +1,56 @@
 package com.revature.tables;
 
+import com.revature.beans.CategoryBatches;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.revature.beans.BatchAssessment;
 
 /**
  * The type Assess scores by category all batches.
  */
 public class AssessScoresByCategoryAllBatches {
-	private String category; //type of assessment: test, verbal, project etc.
-	private List<BatchAssessment> batches; //the list of all of the batches with their assessment scores
+	private List<CategoryBatches> categories; //type of assessment: test, verbal, project etc.
 
-    //add dates maybe?
-    //private List<Date> startDates; //corresponding start dates
-
-
-    /**
-     * Instantiates a new Assess scores by category all batches.
-     */
+	/**
+	 * Instantiates a new Assess scores by category all batches.
+	 */
 //two constructors
-    public AssessScoresByCategoryAllBatches() {
-    	category = "";
-    	batches = new ArrayList<BatchAssessment>();
-    }
-
-
-    /**
-     * Instantiates a new Assess scores by category all batches.
-     *
-     * @param batches	 the batches with scores attached
-     * @param category      the category
-     */
-    public AssessScoresByCategoryAllBatches(List<BatchAssessment> batches, String category) {
-    	this.category = category;
-    	this.batches = batches;
-    }
-
-//Getters and Setters
-    /**
-     * Gets type.
-     *
-     * @return the type
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * Sets type.
-     *
-     * @param aType the a type
-     */
-    public void setCategory(String category) {
-        this.category = category;
-    }
-    
-	public List<BatchAssessment> getBatches() {
-		return batches;
+	public AssessScoresByCategoryAllBatches() {
+		categories = new ArrayList<>();
 	}
 
-	public void setBatches(List<BatchAssessment> batches) {
-		this.batches = batches;
+
+	/**
+	 * Instantiates a new Assess scores by category all batches.
+	 *
+	 * @param categories the categories
+	 */
+	public AssessScoresByCategoryAllBatches(List<CategoryBatches> categories) {
+		this.categories = categories;
 	}
+
+	/**
+	 * Gets categories.
+	 *
+	 * @return the categories
+	 */
+	public List<CategoryBatches> getCategories() {
+		return categories;
+	}
+
+
+	/**
+	 * Sets categories.
+	 *
+	 * @param categories the categories
+	 */
+	public void setCategories(List<CategoryBatches> categories) {
+		this.categories = categories;
+	}
+
 
 	@Override
 	public String toString() {
-		return "AssessScoresByCategoryAllBatches [category=" + category + ", batches=" + batches + "]";
+		return "AssessScoresByCategoryAllBatches [categories=" + categories + "]";
 	}
 }

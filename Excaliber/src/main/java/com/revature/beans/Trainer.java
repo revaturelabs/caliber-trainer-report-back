@@ -2,7 +2,6 @@ package com.revature.beans;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The type Trainer.
@@ -26,7 +25,7 @@ public class Trainer {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "trainer_batch",
             joinColumns = @JoinColumn(name = "trainer_id"),
-            inverseJoinColumns = @JoinColumn(name = "batch_id")) //needs column names--------------------------
+            inverseJoinColumns = @JoinColumn(name = "batch_id"))
     private List<Batch> batches;
 
 
@@ -34,7 +33,7 @@ public class Trainer {
      * Instantiates a new Trainer.
      */
     public Trainer() {
-        id = -1;
+        id = 0;
         this.firstName = "";
         this.lastName = "";
         this.email = "";
@@ -50,7 +49,7 @@ public class Trainer {
      * @param email     the email
      */
     public Trainer(String firstName, String lastName, String email) {
-        this.id = -1;
+        this.id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -193,20 +192,5 @@ public class Trainer {
                 ", employeeId='" + employeeId + '\'' +
                 ", batches=" + batches +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Trainer)) return false;
-        Trainer trainer = (Trainer) o;
-        return firstName.equals(trainer.firstName) &&
-                lastName.equals(trainer.lastName) &&
-                email.equals(trainer.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, email);
     }
 }

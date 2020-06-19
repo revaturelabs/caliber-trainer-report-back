@@ -39,7 +39,6 @@ public class TechnicalStatusPerBatchService {
      */
     public List<TechnicalStatusPerBatch> technicalStatusPerBatchTable(int id) {
         Trainer trainer = sRSserv.getTrainerById(id);
-        //TechnicalStatusPerBatch table = new TechnicalStatusPerBatch();
         ArrayList<String> batchIds = new ArrayList<>();
 
         ArrayList<String> batchName = new ArrayList<>();
@@ -73,9 +72,7 @@ public class TechnicalStatusPerBatchService {
             techStatus.add(counts);
         } // end batch for loop
 
-//        table.setBatchId(batchIds);
-//        table.setBatchName(batchName);
-//        table.setTechnicalStatus(techStatus);
+
         List<TechnicalStatusPerBatch> table=generateTSPBTable(batchIds, batchName, techStatus);
         return table;
     }// end of method

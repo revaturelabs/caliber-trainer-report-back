@@ -11,9 +11,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 
+import com.revature.beans.Assessment;
+import com.revature.beans.Batch;
 import com.revature.beans.Category;
+import com.revature.beans.Trainer;
+import com.revature.beans.Week;
 import com.revature.tables.AssessmentByCategory;
 
 class AssessmentByCategoryServiceTest {
@@ -74,5 +79,78 @@ class AssessmentByCategoryServiceTest {
     	assertEquals(1,arr.size());
     	assertTrue(arr.get(0).getCategory().contains("test"));
     	assertArrayEquals(arr.get(0).getAverage(),f);
+    }
+    
+    @Test
+    void getABCTableTest() {
+    	//Setting up mock data		
+    	Trainer t=new Trainer();
+		Batch b=new Batch();
+		Week w=new Week();
+		Assessment a1=new Assessment(100,"Exam",(float)70);
+    	Category c=new Category();
+    	
+    	c.setId(1);
+    	c.setName("test");
+    	a1.setSkillCategory(c);
+    	
+    	ArrayList<Assessment> aList=new ArrayList<Assessment>();
+    	ArrayList<Category> cList=new ArrayList<Category>();
+    	ArrayList<Week> wList=new ArrayList<Week>();
+    	ArrayList<Batch> bList=new ArrayList<Batch>();
+		
+    	aList.add(a1);
+		w.setAssessments(aList);
+		wList.add(w);
+		b.setWeeks(wList);
+		bList.add(b);
+		t.setBatches(bList);
+    	
+    	cList.add(c);
+    	
+    	Float[] f= {(float)70,(float)0 ,(float)0 ,(float)0 ,(float)0};
+    	//
+    	
+    	when(mockserv.getAllCategories()).thenReturn(cList);
+    	when(mockserv.getTrainerById(1)).thenReturn(t);
+    	List<AssessmentByCategory> testT=aBCServ.getABCTable(1);
+    	
+    	
+    	verify(mockserv).getTrainerById(1);
+    	verify(mockserv).getAllCategories();
+    	assertEquals(1,testT.size());
+    	assertEquals("test",testT.get(0).getCategory());
+    	assertArrayEquals(f,testT.get(0).getAverage());
+    }
+    
+    @Test
+    public void getTrainerAssessmentsTest() {
+    	//
+    	Trainer t=new Trainer();
+		Batch b=new Batch();
+		Week w=new Week();
+		Assessment a1=new Assessment(100,"Exam",(float)70);
+    	Category c=new Category();
+    	
+    	c.setId(1);
+    	c.setName("test");
+    	a1.setSkillCategory(c);
+    	
+    	ArrayList<Assessment> aList=new ArrayList<Assessment>();
+    	ArrayList<Week> wList=new ArrayList<Week>();
+    	ArrayList<Batch> bList=new ArrayList<Batch>();
+		
+    	aList.add(a1);
+		w.setAssessments(aList);
+		wList.add(w);
+		b.setWeeks(wList);
+		bList.add(b);
+		t.setBatches(bList);
+		//
+		List<Assessment> tAList=aBCServ.getTrainerAssessments(t);
+		
+		assertEquals(1,tAList.size());
+		assertEquals("test",tAList.get(0).getSkillCategory().getName());
+		assertEquals(100,tAList.get(0).getScoreWeight());
     }
 }

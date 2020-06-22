@@ -39,42 +39,48 @@ public class TechnicalStatusPerBatchService {
      */
     public List<TechnicalStatusPerBatch> technicalStatusPerBatchTable(int id) {
         Trainer trainer = sRSserv.getTrainerById(id);
-        ArrayList<String> batchIds = new ArrayList<>();
-
-        ArrayList<String> batchName = new ArrayList<>();
-        ArrayList<int[]> techStatus = new ArrayList<>();
-        for (Batch b : trainer.getBatches()) {
-            batchIds.add(b.getBatchId());
-            batchName.add(b.getBatchName());
-            int poor = 0;
-            int good = 0;
-            int average = 0;
-            int superstar = 0;
-            int n = 0;
-            for (Week w : b.getWeeks()) {
-                if (w.getTechnicalStatus() != null) {
-                    if (w.getTechnicalStatus().contains("Good")) {
-                        good++;
-                    } else if (w.getTechnicalStatus().contains("Average")) {
-                        average++;
-                    } else if (w.getTechnicalStatus().contains("Poor")) {
-                        poor++;
-                    } else if (w.getTechnicalStatus().contains("Superstar")) {
-
-                        superstar++;
-                    } else if (w.getTechnicalStatus().contains("null")) {
-                        n++;
-                    }
-                }// end if
-
-            }// end week for loop
-            int[] counts = {poor, average, good, superstar, n};
-            techStatus.add(counts);
-        } // end batch for loop
-
-
-        List<TechnicalStatusPerBatch> table = generateTSPBTable(batchIds, batchName, techStatus);
-        return table;
+        
+        if (trainer!=null) {
+	        ArrayList<String> batchIds = new ArrayList<>();
+	
+	        ArrayList<String> batchName = new ArrayList<>();
+	        ArrayList<int[]> techStatus = new ArrayList<>();
+	        for (Batch b : trainer.getBatches()) {
+	            batchIds.add(b.getBatchId());
+	            batchName.add(b.getBatchName());
+	            int poor = 0;
+	            int good = 0;
+	            int average = 0;
+	            int superstar = 0;
+	            int n = 0;
+	            for (Week w : b.getWeeks()) {
+	                if (w.getTechnicalStatus() != null) {
+	                    if (w.getTechnicalStatus().contains("Good")) {
+	                        good++;
+	                    } else if (w.getTechnicalStatus().contains("Average")) {
+	                        average++;
+	                    } else if (w.getTechnicalStatus().contains("Poor")) {
+	                        poor++;
+	                    } else if (w.getTechnicalStatus().contains("Superstar")) {
+	
+	                        superstar++;
+	                    } else if (w.getTechnicalStatus().contains("null")) {
+	                        n++;
+	                    }
+	                }// end if
+	
+	            }// end week for loop
+	            int[] counts = {poor, average, good, superstar, n};
+	            techStatus.add(counts);
+	        } // end batch for loop
+	
+	
+	        List<TechnicalStatusPerBatch> table = generateTSPBTable(batchIds, batchName, techStatus);
+	        return table;
+	        
+        }else {
+        	return new ArrayList<TechnicalStatusPerBatch>();
+        }
     }// end of method
 
     public List<TechnicalStatusPerBatch> generateTSPBTable(ArrayList<String> batchIds, ArrayList<String> batchName, ArrayList<int[]> techStatus) {

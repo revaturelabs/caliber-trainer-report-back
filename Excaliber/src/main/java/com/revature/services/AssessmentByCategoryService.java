@@ -19,47 +19,52 @@ public class AssessmentByCategoryService {
 	public List<AssessmentByCategory> getABCTable(int id) {
 
 		Trainer t = SRSserv.getTrainerById(id);
-
-		List<Category> categories = SRSserv.getAllCategories();
-		List<Assessment> assessments = getTrainerAssessments(t);
-
-		ArrayList<ArrayList<Float>> assessScores = new ArrayList<ArrayList<Float>>();
-		ArrayList<ArrayList<Float>> rawScores = new ArrayList<ArrayList<Float>>();
-		ArrayList<Float[]> averageForCat = new ArrayList<Float[]>();
-		ArrayList<ArrayList<String>> typeForScore = new ArrayList<ArrayList<String>>();
-		//Get rawScores and AssessmentScores for each category
-		for (Category cat : categories) {
-			ArrayList<Float> singleCatAScores = new ArrayList<Float>();
-			ArrayList<Float> singleCatRawScores = new ArrayList<Float>();
-			ArrayList<String> singleCatTypeForScore = new ArrayList<String>();
-		    
-		    	for (Assessment a:assessments) {
-		    		if (a.getSkillCategory().getId()==cat.getId()) {
-		    			Float assessScore=a.getAverage();
-		    			Float rawScore=Float.valueOf(a.getScoreWeight());
-		    			String type=a.getType();
-
-						singleCatAScores.add(assessScore);
-		    			singleCatRawScores.add(rawScore);
-		    			singleCatTypeForScore.add(type);
-		    		}
-		    			
-		    		
-		    	
+		
+		if (t!=null) {
+			List<Category> categories = SRSserv.getAllCategories();
+			List<Assessment> assessments = getTrainerAssessments(t);
+	
+			ArrayList<ArrayList<Float>> assessScores = new ArrayList<ArrayList<Float>>();
+			ArrayList<ArrayList<Float>> rawScores = new ArrayList<ArrayList<Float>>();
+			ArrayList<Float[]> averageForCat = new ArrayList<Float[]>();
+			ArrayList<ArrayList<String>> typeForScore = new ArrayList<ArrayList<String>>();
+			//Get rawScores and AssessmentScores for each category
+			for (Category cat : categories) {
+				ArrayList<Float> singleCatAScores = new ArrayList<Float>();
+				ArrayList<Float> singleCatRawScores = new ArrayList<Float>();
+				ArrayList<String> singleCatTypeForScore = new ArrayList<String>();
+			    
+			    	for (Assessment a:assessments) {
+			    		if (a.getSkillCategory().getId()==cat.getId()) {
+			    			Float assessScore=a.getAverage();
+			    			Float rawScore=Float.valueOf(a.getScoreWeight());
+			    			String type=a.getType();
+	
+							singleCatAScores.add(assessScore);
+			    			singleCatRawScores.add(rawScore);
+			    			singleCatTypeForScore.add(type);
+			    		}
+			    			
+			    		
+			    	
+			    }
+			    assessScores.add(singleCatAScores); //Add scores for single category to list
+			    rawScores.add(singleCatRawScores);
+			    typeForScore.add(singleCatTypeForScore);
 		    }
-		    assessScores.add(singleCatAScores); //Add scores for single category to list
-		    rawScores.add(singleCatRawScores);
-		    typeForScore.add(singleCatTypeForScore);
-	    }
-	    //Find average overall score for each category
-	    for (int i=0;i<assessScores.size();i++) {
-	    	
-	    	averageForCat.add(calculateAverage(i,assessScores,rawScores,typeForScore));
-	    }
-	    
-	    
-	    
-		return createABCList( categories, averageForCat);
+		    //Find average overall score for each category
+		    for (int i=0;i<assessScores.size();i++) {
+		    	
+		    	averageForCat.add(calculateAverage(i,assessScores,rawScores,typeForScore));
+		    }
+		    
+		    
+		    
+			return createABCList( categories, averageForCat);
+		
+		}else {
+			return new ArrayList<AssessmentByCategory>();
+		}
 	}
 
 

@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.services.BatchTechnicalStatusBySkillCategoryService;
 import com.revature.services.TableService;
 import com.revature.tables.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class TableController {
      * @return batch technical status
      */
     @RequestMapping(path = "/BatchTechnicalStatus")
-    public ResponseEntity<BatchTechnicalStatus> getBatchTechnicalStatus(@PathVariable int trainer_id) {
+    public ResponseEntity<BatchTechnicalStatusBySkillCategoryService> getBatchTechnicalStatus(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.batchTechnicalStatusTable(trainer_id));
     }
 

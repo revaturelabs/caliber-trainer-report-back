@@ -36,7 +36,7 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 			
 			BatchTechnicalStatusBySkillCategory tableObject = new BatchTechnicalStatusBySkillCategory();
 			
-			ArrayList<QCTSCategory> catList = new ArrayList<QCTSCategory>();
+			ArrayList<QCTSCategory> catList = new ArrayList<>();
 			
 			List<Category> cat = sRserv.getAllCategories();
 			//Category loop started
@@ -44,7 +44,7 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 				QCTSCategory catego = new QCTSCategory();
 				catego.setCategoryName(ca.getName());
 				
-				ArrayList<BatchTSCategory> batchCategory = new ArrayList<BatchTSCategory>();
+				ArrayList<BatchTSCategory> batchCategory = new ArrayList<>();
 
 				double good = 0;
 				double poor = 0;
@@ -111,10 +111,7 @@ public class BatchTechnicalStatusBySkillCategoryService implements BatchTechnica
 					batchCategory.add(batch);
 					
 				} //Batch for loop ends here
-<<<<<<< HEAD
 				
-=======
->>>>>>> e83e624adccad89b3bc24dfa15045a48610e173b
 				catego.setBatches(batchCategory);
 				catList.add(catego);
 				tableObject.setBatchByCategory(catList);

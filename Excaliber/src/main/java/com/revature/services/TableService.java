@@ -92,7 +92,7 @@ public class TableService {
      * @param trainer_id the trainer id
      * @return batch technical status
      */
-    public BatchTechnicalStatus batchTechnicalStatusTable(int trainer_id) {
+    public BatchTechnicalStatusBySkillCategoryService batchTechnicalStatusTable(int trainer_id) {
         return null;
     }
 

@@ -1,10 +1,6 @@
 package com.revature.tables;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.revature.beans.BatchTSCategory;
-import com.revature.beans.Category;
 import com.revature.beans.QCTSCategory;
 
 /* Batch Technical Status Bean
@@ -33,7 +29,7 @@ public class BatchTechnicalStatusBySkillCategory {
 	
 	//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-			batchByCategory = new ArrayList<QCTSCategory>();
+			batchByCategory = new ArrayList<>();
 		}
 
 	public ArrayList<QCTSCategory> getBatchByCategory() {

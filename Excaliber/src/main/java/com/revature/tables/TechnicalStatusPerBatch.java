@@ -1,8 +1,5 @@
 package com.revature.tables;
 
-import java.util.ArrayList;
-
-
 /**
  * This bean will be used to retrieve the data points necessary
  * <p>
@@ -23,7 +20,7 @@ public class TechnicalStatusPerBatch {
      * Instantiates a new Technical status per batch.
      */
     public TechnicalStatusPerBatch() {
-        batchId ="";
+        batchId = "";
         batchName = "";
         technicalStatus = new int[5];
     }

@@ -54,18 +54,25 @@ public class JSONController {
      * @return boolean boolean
      */
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Boolean addTrainer(@RequestBody String payload) {
+    public ResponseEntity add(@RequestBody String payload) {
         //set the JSON to be parsed
         setJson(payload);
-        //create a trainer from the JSON payload
-        Trainer trainer = getTrainer();
-        //get the batch data
-        List<Batch> batches = getBatch();
-        //give trainer the batches
-        trainer.setBatches(batches);
-        //if trainer created
+        Trainer trainer = null;
+        try {
+            //create a trainer from the JSON payload
+            trainer = getTrainer();
+            //get the batch data
+            List<Batch> batches = getBatch();
+            //give trainer the batches
+            trainer.setBatches(batches);
+            //if trainer created
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("NOT VALID JSON");
+        }
+        return ResponseEntity.ok().build();
 
-        return SRSserv.addEntireTrainer(trainer).getTrainerId() != -1;
     }
+
+
 
 }

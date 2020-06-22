@@ -29,6 +29,7 @@ public class Trainer {
     private List<Batch> batches;
 
 
+
     /**
      * Instantiates a new Trainer.
      */
@@ -170,6 +171,10 @@ public class Trainer {
      * @return Value of id.
      */
     public Integer getTrainerId() {
+        return id;
+    }
+
+    public Integer getId() {
         return id;
     }
 

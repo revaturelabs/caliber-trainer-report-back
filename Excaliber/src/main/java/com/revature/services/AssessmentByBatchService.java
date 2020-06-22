@@ -1,32 +1,51 @@
 package com.revature.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.revature.beans.Assessment;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.tables.AssessmentByBatch;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * The type Assessment by batch service.
+ */
 @Service
 public class AssessmentByBatchService {
-	private StoreRetrieveService SRSserv;
-	
+	private final StoreRetrieveService SRSserv;
+
+	/**
+	 * Instantiates a new Assessment by batch service.
+	 *
+	 * @param s the s
+	 */
 	@Autowired
 	public AssessmentByBatchService(StoreRetrieveService s) {
 		SRSserv=s;
 	}
-	
+
+	/**
+	 * Get abb table list.
+	 *
+	 * @param id the id
+	 * @return the list
+	 */
 	public List<AssessmentByBatch> getABBTable (int id){
 		Trainer t=SRSserv.getTrainerById(id);
 			
 		return loopBatches(t.getBatches());
 	}
-	
+
+	/**
+	 * Loop batches list.
+	 *
+	 * @param batches the batches
+	 * @return the list
+	 */
 	public List<AssessmentByBatch> loopBatches(List<Batch> batches){
 		ArrayList<AssessmentByBatch> aBBList=new ArrayList<AssessmentByBatch>();
 		for (Batch b:batches) {
@@ -42,8 +61,8 @@ public class AssessmentByBatchService {
 	    			Float assessScore=a.getAverage();
     				Float rawScore=Float.valueOf(a.getScoreWeight());
     				String type=a.getType();
-    				
-    				aScores.add(assessScore);
+
+					aScores.add(assessScore);
     				rawScores.add(rawScore);
     				typeForScore.add(type);
 	    		}
@@ -57,7 +76,15 @@ public class AssessmentByBatchService {
 		return aBBList;
 		
 	}
-	
+
+	/**
+	 * Calculate averages float [ ].
+	 *
+	 * @param aScores      the a scores
+	 * @param rawScores    the raw scores
+	 * @param typeForScore the type for score
+	 * @return the float [ ]
+	 */
 	public float[] calculateAverages(ArrayList<Float> aScores, ArrayList<Float> rawScores, ArrayList<String> typeForScore ) {
     	float numeratorExam=0;
     	float denominatorExam=0;
@@ -74,21 +101,21 @@ public class AssessmentByBatchService {
     		
 	  		String type=typeForScore.get(i);
     		if (type.contains("Exam")) {
-    			numeratorExam+=(aScores.get(i)/100)*rawScores.get(i);
-    			denominatorExam+=rawScores.get(i);
-    		}else if (type.contains("Verbal")) {
-    			numeratorVerbal+=(aScores.get(i)/100)*rawScores.get(i);
-    			denominatorVerbal+=rawScores.get(i);
-    		}else if (type.contains("Presentation")) {
-    			numeratorPresentation+=(aScores.get(i)/100)*rawScores.get(i);
-    			denominatorPresentation+=rawScores.get(i);
-    		}else if (type.contains("Project")) {
-    			numeratorProject+=(aScores.get(i)/100)*rawScores.get(i);
-    			denominatorProject+=rawScores.get(i);
-    		}else {
-    			numeratorOther+=(aScores.get(i)/100)*rawScores.get(i);
-    			denominatorOther+=rawScores.get(i);
-    		}
+				numeratorExam += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorExam += rawScores.get(i);
+			}else if (type.contains("Verbal")) {
+				numeratorVerbal += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorVerbal += rawScores.get(i);
+			}else if (type.contains("Presentation")) {
+				numeratorPresentation += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorPresentation += rawScores.get(i);
+			}else if (type.contains("Project")) {
+				numeratorProject += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorProject += rawScores.get(i);
+			}else {
+				numeratorOther += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorOther += rawScores.get(i);
+			}
     	}
     	float averageExam=0;
     	float averageVerbal=0;

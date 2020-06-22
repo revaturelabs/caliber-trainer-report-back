@@ -73,22 +73,22 @@ public class TechnicalStatusPerBatchService {
         } // end batch for loop
 
 
-        List<TechnicalStatusPerBatch> table=generateTSPBTable(batchIds, batchName, techStatus);
+        List<TechnicalStatusPerBatch> table = generateTSPBTable(batchIds, batchName, techStatus);
         return table;
     }// end of method
-    
-    public List<TechnicalStatusPerBatch> generateTSPBTable(ArrayList<String> batchIds, ArrayList<String> batchName,ArrayList<int[]> techStatus  ){
-    	ArrayList<TechnicalStatusPerBatch> table=new ArrayList<TechnicalStatusPerBatch>();
-    	
-    	for (int i=0;i<batchIds.size();i++) {
-    		TechnicalStatusPerBatch t=new TechnicalStatusPerBatch();
-    		t.setBatchId(batchIds.get(i));
-    		t.setBatchName(batchName.get(i));
-    		t.setTechnicalStatus(techStatus.get(i));
-    		table.add(t);
-    	}
-    	
-    	return table;
+
+    public List<TechnicalStatusPerBatch> generateTSPBTable(ArrayList<String> batchIds, ArrayList<String> batchName, ArrayList<int[]> techStatus) {
+        ArrayList<TechnicalStatusPerBatch> table = new ArrayList<TechnicalStatusPerBatch>();
+
+        for (int i = 0; i < batchIds.size(); i++) {
+            TechnicalStatusPerBatch t = new TechnicalStatusPerBatch();
+            t.setBatchId(batchIds.get(i));
+            t.setBatchName(batchName.get(i));
+            t.setTechnicalStatus(techStatus.get(i));
+            table.add(t);
+        }
+
+        return table;
     }
 
 } // end class

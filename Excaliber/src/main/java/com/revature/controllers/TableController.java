@@ -1,99 +1,159 @@
 package com.revature.controllers;
 
+<<<<<<< HEAD
 import com.revature.services.BatchTechnicalStatusBySkillCategoryService;
 import com.revature.services.TableService;
+=======
+import com.revature.services.*;
+>>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
 import com.revature.tables.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * The type Table controller.
  */
 @RestController
-@RequestMapping(path = "/{trainer_id}")
+@RequestMapping(path = "/{trainerId}")
 public class TableController {
 
+    private final Logger log = Logger.getLogger(TableController.class);
 
-    private final TableService tServ;
+    private final TechnicalStatusPerBatchService statusPerBatchService;
+    private final TechnicalStatusByWeekService statusByWeekService;
+    private final BatchTechnicalStatusBySkillCategoryService technicalStatusBySkillCategoryService;
+    private final AssessScoresByCategoryAllBatchesService scoresByCategoryService;
+    private final AssessmentByCategoryService assessmentByCategoryService;
+    private final AssessmentByBatchService assessmentByBatchService;
 
     /**
-     * Instantiates a new Table controller.
-     *
-     * @param tServ the t serv
+     * @param statusPerBatchService                 the Service for statusPerBatch
+     * @param statusByWeekService                   the Service for statusByWeek
+     * @param technicalStatusBySkillCategoryService the Service for technicalStatusBySkillCategory
+     * @param scoresByCategoryService               the Service for scoresByCategory
+     * @param assessmentByCategoryService           the Service for assessmentByCategory
+     * @param assessmentByBatchService              the Service for assessmentByBatch
      */
     @Autowired
-    public TableController(TableService tServ) {
-        this.tServ = tServ;
+    public TableController(TechnicalStatusPerBatchService statusPerBatchService,
+                           TechnicalStatusByWeekService statusByWeekService,
+                           BatchTechnicalStatusBySkillCategoryService technicalStatusBySkillCategoryService,
+                           AssessScoresByCategoryAllBatchesService scoresByCategoryService,
+                           AssessmentByCategoryService assessmentByCategoryService,
+                           AssessmentByBatchService assessmentByBatchService) {
+
+        this.statusPerBatchService = statusPerBatchService;
+        this.statusByWeekService = statusByWeekService;
+        this.technicalStatusBySkillCategoryService = technicalStatusBySkillCategoryService;
+        this.scoresByCategoryService = scoresByCategoryService;
+        this.assessmentByCategoryService = assessmentByCategoryService;
+        this.assessmentByBatchService = assessmentByBatchService;
     }
 
+
     /**
-     * ToDO
+     * sends TechnicalStatusPerBatch table data
      *
-     * @param trainer_id the trainer id
+     * @param trainerId the trainer id
      * @return technical status per batch
      */
-    @RequestMapping(path = "/TechnicalStatusPerBatch")
-    public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch(@PathVariable int trainer_id) {
-        return ResponseEntity.ok(this.tServ.technicalStatusPerBatchTable(trainer_id));
+
+    @GetMapping(path = "/TechnicalStatusPerBatch")
+    public ResponseEntity<List<TechnicalStatusPerBatch>> getTechnicalStatusPerBatch(@PathVariable int trainerId) {
+        log.trace("Getting table data for AssessmentByBatch");
+        List<TechnicalStatusPerBatch> table = this.statusPerBatchService.technicalStatusPerBatchTable(trainerId);
+        if (table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(this.statusPerBatchService.technicalStatusPerBatchTable(trainerId));
     }
 
     /**
-     * ToDO
+     * sends AssessmentByBatch table data
      *
-     * @param trainer_id the trainer id
+     * @param trainerId the trainer id
      * @return assessment by batch
      */
-    @RequestMapping(path = "/AssessmentByBatch")
-    public ResponseEntity<AssessmentByBatch> getAssessmentByBatch(@PathVariable int trainer_id) {
-        return ResponseEntity.ok(this.tServ.assessmentByBatchTable(trainer_id));
+    @GetMapping(path = "/AssessmentByBatch")
+    public ResponseEntity<List<AssessmentByBatch>> getAssessmentByBatch(@PathVariable int trainerId) {
+        log.trace("Getting table data for AssessmentByBatch");
+        List<AssessmentByBatch> table = assessmentByBatchService.getABBTable(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
+
     }
 
     /**
-     * ToDO
+     * sends AssessmentByCategory table data
      *
-     * @param trainer_id the trainer id
+     * @param trainerId the trainer id
      * @return assessment by category
      */
-    @RequestMapping(path = "/AssessmentByCategory")
-    public ResponseEntity<AssessmentByCategory> getAssessmentByCategory(@PathVariable int trainer_id) {
-        return ResponseEntity.ok(this.tServ.assessmentByCategoryTable(trainer_id));
+    @GetMapping(path = "/AssessmentByCategory")
+    public ResponseEntity<List<AssessmentByCategory>> getAssessmentByCategory(@PathVariable int trainerId) {
+        log.trace("Getting table data for AssessmentByCategory");
+        List<AssessmentByCategory> table = assessmentByCategoryService.getABCTable(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
     }
 
     /**
-     * ToDO
+     * Sends AssessScoresByCategoryAllBatches table data
      *
-     * @param trainer_id the trainer id
+     * @param trainerId the trainer id
      * @return assess scores by category all batches
      */
-    @RequestMapping(path = "/AssessScoresByCategoryAllBatches")
-    public ResponseEntity<AssessScoresByCategoryAllBatches> getAssessScoresByCategoryAllBatches(@PathVariable int trainer_id) {
-        return ResponseEntity.ok(this.tServ.assessScoresByCategoryAllBatchesTable(trainer_id));
+    @GetMapping(path = "/AssessScoresByCategoryAllBatches")
+    public ResponseEntity<AssessScoresByCategoryAllBatches> getAssessScoresByCategoryAllBatches(@PathVariable int trainerId) {
+        log.trace("Getting table data for AssessScoresByCategoryAllBatches");
+        AssessScoresByCategoryAllBatches batches = scoresByCategoryService.getAssessScoresByCategoryAllBatches(trainerId);
+        if(batches == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(batches);
     }
 
     /**
-     * ToDO
+     * Sends  TechnicalStatusByWeek table data
      *
-     * @param trainer_id the trainer id
-     * @return batch technical status
+     * @param trainerId the trainer id
+     * @return technical status by week table data
      */
+<<<<<<< HEAD
     @RequestMapping(path = "/BatchTechnicalStatus")
     public ResponseEntity<BatchTechnicalStatusBySkillCategoryService> getBatchTechnicalStatus(@PathVariable int trainer_id) {
         return ResponseEntity.ok(this.tServ.batchTechnicalStatusTable(trainer_id));
+=======
+    @GetMapping(path = "/TechnicalStatusByWeek")
+    public ResponseEntity<List<TechnicalStatusByWeek>> getTechnicalStatusByWeek(@PathVariable int trainerId) {
+        log.info("Getting TechnicalStatusByWeek");
+        List<TechnicalStatusByWeek> table = statusByWeekService.getTechnicalStatusByWeek(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
+>>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
     }
 
     /**
-     * ToDO
+     * Sends  BatchTechnicalStatusBySkillCategory table data
      *
-     * @param trainer_id the trainer id
-     * @return technical status by week
+     * @param trainerId the trainer id
+     * @return BatchTechnicalStatusBySkillCategory table data
      */
-    @RequestMapping(path = "/TechnicalStatusByWeek")
-    public ResponseEntity<TechnicalStatusByWeek> getTechnicalStatusByWeek(@PathVariable int trainer_id) {
-        return ResponseEntity.ok(this.tServ.technicalStatusByWeekTable(trainer_id));
+    @GetMapping(path = "/BatchTechnicalStatusBySkillCategory")
+    public ResponseEntity<BatchTechnicalStatusBySkillCategory> getTableDataObject(@PathVariable int trainerId) {
+        log.trace("Getting table data for BatchTechnicalStatusBySkillCategory");
+        BatchTechnicalStatusBySkillCategory table = this.technicalStatusBySkillCategoryService.getTableData(trainerId);
+        if(table == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(table);
     }
-
 
 }

@@ -1,10 +1,10 @@
-package com.revature.controllers;
+package com.revature.services;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AssessScoresByCategoryAllBatchesControllerTest {
+class AssessScoresByCategoryAllBatchesImplementTest {
 
     @BeforeEach
     void setUp() {
@@ -15,6 +15,6 @@ class AssessScoresByCategoryAllBatchesControllerTest {
     }
 
     @Test
-    void getScoresByCategoryAllBatches() {
+    void getAssessScoresByCategoryAllBatches() {
     }
 }

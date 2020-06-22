@@ -1,6 +1,7 @@
 package com.revature.utils;
 
 import com.revature.beans.*;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +12,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.revature.utils.LoggerSingleton.getLogger;
+
 
 
 /**
@@ -1357,6 +1358,7 @@ public class ParseJSON {
             "  ]\r\n" +
             "}";
 
+    private static final Logger log = Logger.getLogger(ParseJSON.class);
 
     /**
      * Gets all Batch object from the JSON
@@ -1392,7 +1394,8 @@ public class ParseJSON {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.toString());
+
         }
         return batchSet;
     }
@@ -1407,7 +1410,7 @@ public class ParseJSON {
         assert json != null;
         List<Week> weeks = new ArrayList<>();
         try {
-            getLogger(ParseJSON.class).trace("Getting Week for Batch: " + batch.getString("batchId"));
+            log.trace("Getting Week for Batch: " + batch.getString("batchId"));
             // grab the qcNotes object
             JSONArray obj = batch.getJSONArray("qcNotes");
             for (int j = 0; j < obj.length(); j++) {
@@ -1420,21 +1423,21 @@ public class ParseJSON {
                 );
 
                 week.setBatchId(batch.getString("batchId"));
-                getLogger(ParseJSON.class).trace("Week from JSON: " + week);
+                log.trace("Week from JSON: " + week);
                 // add assessments to the week
                 List<Assessment> assessments = getAssessmentByBatch(batch, week);
-                getLogger(ParseJSON.class).trace("Adding assessments to the week ... ");
+                log.trace("Adding assessments to the week ... ");
                 week.setAssessments(assessments);
-                getLogger(ParseJSON.class).trace("Assessments adding to the week ");
-                getLogger(ParseJSON.class).trace("Adding categories to the week ... ");
+                log.trace("Assessments adding to the week ");
+                log.trace("Adding categories to the week ... ");
                 week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
-                getLogger(ParseJSON.class).trace("Categories adding to the week ");
+                log.trace("Categories adding to the week ");
                 weeks.add(week);
-                getLogger(ParseJSON.class).trace("___________________________________");
+                log.trace("___________________________________");
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.toString());
         }
         return weeks;
     }
@@ -1448,7 +1451,7 @@ public class ParseJSON {
      */
     protected static List<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
         // grab each categories from qcNotes object
-        getLogger(ParseJSON.class).trace("Getting categories for week number:  " + week.getString("week"));
+        log.trace("Getting categories for week number:  " + week.getString("week"));
         // grab each categories from qcNotes object
         JSONArray categories = week.getJSONArray("categories");
         List<Category> setCategories = new ArrayList<>();
@@ -1456,7 +1459,7 @@ public class ParseJSON {
             //Category(String name)
             Category category = new Category(categories.getString(k));
             setCategories.add(category);
-            getLogger(ParseJSON.class).trace("Adding Category => " + category);
+            log.trace("Adding Category => " + category);
         }
         return setCategories;
     }
@@ -1477,19 +1480,18 @@ public class ParseJSON {
 
             JSONArray obj = batch.getJSONArray("assessments");
             for (int i = 0; i < obj.length(); i++) {
-            	if(Integer.parseInt(week.getWeekNumber()) == Integer.valueOf(obj.getJSONObject(i).getString("weekNumber")))
-            	{
-	                Assessment assessment = new Assessment(
-	                        Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
-	                        obj.getJSONObject(i).getString("assessmentType"),
-	                        Float.valueOf(obj.getJSONObject(i).getString("average"))
-	                );
-	                assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
-	                assessments.add(assessment);
-            	}
+                if (Integer.parseInt(week.getWeekNumber()) == Integer.parseInt(obj.getJSONObject(i).getString("weekNumber"))) {
+                    Assessment assessment = new Assessment(
+                            Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
+                            obj.getJSONObject(i).getString("assessmentType"),
+                            Float.valueOf(obj.getJSONObject(i).getString("average"))
+                    );
+                    assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
+                    assessments.add(assessment);
+                }
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.toString());
         }
         return assessments;
     }
@@ -1517,7 +1519,7 @@ public class ParseJSON {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.toString());
         }
         return assessments;
     }
@@ -1529,22 +1531,22 @@ public class ParseJSON {
      */
     public static Trainer getTrainer() {
         JSONObject obj;
-        getLogger(ParseJSON.class).debug("New JSON file set");
+        log.debug("New JSON file set");
         // check if json is null
         assert json != null;
 
         Trainer trainer = null;
         try {
             obj = new JSONObject(json).getJSONObject("employee");
-            getLogger(ParseJSON.class).trace("Trainer object found in JSON");
+            log.trace("Trainer object found in JSON");
             trainer = new Trainer(obj.get("firstName").toString(), obj.get("lastName").toString(),
                     obj.get("email").toString());
-            getLogger(ParseJSON.class).trace("Trainer object is now created");
+            log.trace("Trainer object is now created");
         } catch (JSONException e) {
-            getLogger(ParseJSON.class).error("Couldn't create Trainer object");
-            e.printStackTrace();
+            log.error("Couldn't create Trainer object");
+            log.error(e.toString());
         }
-        getLogger(ParseJSON.class).debug("Trainer -> " + trainer);
+        log.debug("Trainer -> " + trainer);
         return trainer;
     }
 
@@ -1557,18 +1559,22 @@ public class ParseJSON {
     public static boolean readDataFromFile(String fileName) {
 
         ClassLoader classLoader = ParseJSON.class.getClassLoader();
-
-        File file = new File(classLoader.getResource(fileName).getFile());
-
-        //File is found
-        getLogger(ParseJSON.class).debug("File Found: " + file.exists());
+        File file;
         try {
-            json = new String(Files.readAllBytes(file.toPath()));
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+            file = new File(classLoader.getResource(fileName).getFile());
+            //File is found
+            log.debug("File Found: " + file.exists());
+            try {
+                json = new String(Files.readAllBytes(file.toPath()));
+                return true;
+            } catch (IOException e) {
+                log.error(e.toString());
+            }
+        } catch (NullPointerException e) {
+            log.error(e.toString());
         }
+
+        return false;
     }
 
     /**
@@ -1577,7 +1583,7 @@ public class ParseJSON {
      * @param json the json
      */
     public static void setJson(String json) {
-        getLogger(ParseJSON.class).debug("New JSON file set");
+        log.debug("New JSON file set");
         ParseJSON.json = json;
     }
 
@@ -1587,7 +1593,7 @@ public class ParseJSON {
      * @return set of batch ids
      */
     public List<String> getBatchIds() {
-        getLogger(ParseJSON.class).debug("Calling getBatchIds");
+        log.debug("Calling getBatchIds");
         assert json != null;
         List<String> out = new ArrayList<>();
         JSONArray batchsJSON;
@@ -1597,7 +1603,7 @@ public class ParseJSON {
                 out.add(batchsJSON.getJSONObject(i).getString("batchId"));
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.toString());
         }
 
         return out;

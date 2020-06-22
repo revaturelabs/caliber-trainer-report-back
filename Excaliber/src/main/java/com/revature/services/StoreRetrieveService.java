@@ -2,18 +2,18 @@ package com.revature.services;
 
 import com.revature.beans.*;
 import com.revature.data.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
  * The type Store retrieve service.
  */
-
-
 @Service
 public class StoreRetrieveService {
     private final AssessmentDAO aDao;
@@ -21,6 +21,8 @@ public class StoreRetrieveService {
     private final CategoryDAO cDao;
     private final TrainerDAO tDao;
     private final WeekDAO wDao;
+
+    private final Logger log = Logger.getLogger(StoreRetrieveService.class);
 
     /**
      * Instantiates a new Store retrieve service.
@@ -51,10 +53,10 @@ public class StoreRetrieveService {
     public Integer addCategory(Category c) {
         Category category = getCategoryByName(c.getName());
         if (category != null) {
-            System.out.println("Found" + c.getName() + category);
+            log.debug("Found" + c.getName() + category);
             return category.getId();
         }
-        System.out.println("Did not Find" + c.getName());
+        log.error("Did not Find" + c.getName());
         return cDao.save(c).getId();
     }
 
@@ -108,15 +110,15 @@ public class StoreRetrieveService {
     public Trainer addEntireTrainer(Trainer t) {
 
 
-        List<Batch> batches = new ArrayList<Batch>();
+        List<Batch> batches = new ArrayList<>();
 
         for (Batch batch : t.getBatches()) {
-            List<Week> weeks = new ArrayList<Week>();
+            List<Week> weeks = new ArrayList<>();
 
             for (Week week : batch.getWeeks()) {
 
-                List<Assessment> assessments = new ArrayList<Assessment>();
-                List<Category> categories = new ArrayList<Category>();
+                List<Assessment> assessments = new ArrayList<>();
+                List<Category> categories = new ArrayList<>();
                 for (Assessment a : week.getAssessments()) {
 
                     Category c = a.getSkillCategory();
@@ -152,15 +154,43 @@ public class StoreRetrieveService {
      * @param id the id
      * @return the trainer by id
      */
-
     public Trainer getTrainerById(Integer id) {
-        return tDao.findById(id).get();
+        Optional<Trainer> trainer = tDao.findById(id);
+        if (trainer.isPresent())
+            return trainer.get();
+        else
+            return null;
+    }
+
+    /**
+     * Gets trainer by id.
+     *
+     * @param id the id
+     * @return the trainer by id
+     */
+    public Trainer getJustTrainerById(Integer id) {
+        Optional<Trainer> trainer = tDao.findById(id);
+        if (trainer.isPresent())
+            return trainer.get();
+        else
+            return null;
+    }
+
+    /**
+     * Gets trainer by id.
+     *
+     * @param id the id
+     * @return the trainer by id
+     */
+    public List<Trainer> getTrainers() {
+        List<Trainer> trainers = tDao.findAll();
+        return trainers;
     }
 
     /**
      * get Category By Name
      *
-     * @param name
+     * @param name name of the Category
      * @return Category
      */
     private Category getCategoryByName(String name) {
@@ -170,16 +200,14 @@ public class StoreRetrieveService {
     /**
      * Gets all category
      *
-     * @return
+     * @return all categories
      */
     public List<Category> getAllCategories() {
         return cDao.findAll();
     }
 
-    class NotFoundException extends RuntimeException {
-
-        NotFoundException(String data, String what) {
-            super("Could not find " + what + data);
-        }
-    }
+	public List<Assessment> getAllAssessments() {
+		// TODO Auto-generated method stub
+		return aDao.findAll();
+	}
 }

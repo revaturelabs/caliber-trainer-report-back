@@ -1,11 +1,11 @@
 package com.revature.tests;
 
-import com.revature.services.AssessScoresByCategoryAllBatchesImplement;
+import com.revature.services.AssessScoresByCategoryAllBatchesService;
 import com.revature.tables.AssessScoresByCategoryAllBatches;
 import org.junit.jupiter.api.Test;
 
 public class AssessScoresByCategoryAllBatchesTests {
-    AssessScoresByCategoryAllBatchesImplement catAllImp;
+    AssessScoresByCategoryAllBatchesService allBatchesService;
 
     AssessScoresByCategoryAllBatches catAllMock = new AssessScoresByCategoryAllBatches();
 

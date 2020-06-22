@@ -1,7 +1,12 @@
 package com.revature.tables;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
 import com.revature.beans.QCTSCategory;
+
+import java.util.ArrayList;
 
 /* Batch Technical Status Bean
 	
@@ -22,25 +27,46 @@ import com.revature.beans.QCTSCategory;
 		•Category from Batch's QC notes.
 */
 
+/**
+ * The type Batch technical status by skill category.
+ */
 public class BatchTechnicalStatusBySkillCategory {
-	
+
 	private ArrayList<QCTSCategory> batchByCategory;
-	
-	
-	//Constructor
+
+
+	/**
+	 * Instantiates a new Batch technical status by skill category.
+	 */
+//Constructor
 	public BatchTechnicalStatusBySkillCategory() {
+<<<<<<< HEAD
 			batchByCategory = new ArrayList<>();
 		}
+=======
+		batchByCategory = new ArrayList<>();
+	}
+>>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
 
+	/**
+	 * Gets batch by category.
+	 *
+	 * @return the batch by category
+	 */
 	public ArrayList<QCTSCategory> getBatchByCategory() {
 		return batchByCategory;
 	}
 
+	/**
+	 * Sets batch by category.
+	 *
+	 * @param batchByCategory the batch by category
+	 */
 	public void setBatchByCategory(ArrayList<QCTSCategory> batchByCategory) {
 		this.batchByCategory = batchByCategory;
 	}
 
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,20 +85,14 @@ public class BatchTechnicalStatusBySkillCategory {
 			return false;
 		BatchTechnicalStatusBySkillCategory other = (BatchTechnicalStatusBySkillCategory) obj;
 		if (batchByCategory == null) {
-			if (other.batchByCategory != null)
-				return false;
-		} else if (!batchByCategory.equals(other.batchByCategory))
-			return false;
-		return true;
+			return other.batchByCategory == null;
+		} else return batchByCategory.equals(other.batchByCategory);
 	}
 
 	@Override
 	public String toString() {
 		return "BatchTechnicalStatusBySkillCategory [batchByCategory=" + batchByCategory + "]";
 	}
-	
-	
 
 
-	
 }

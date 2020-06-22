@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Technical status per batch service.
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 @Service
 public class TechnicalStatusPerBatchService {
 
-    private final StoreRetrieveService SRSserv;
+    private final StoreRetrieveService sRSserv;
 
     /**
      * Instantiates a new Technical status per batch service.
@@ -27,7 +28,7 @@ public class TechnicalStatusPerBatchService {
      */
     @Autowired
     public TechnicalStatusPerBatchService(StoreRetrieveService s) {
-        this.SRSserv = s;
+        this.sRSserv = s;
     }
 
     /**
@@ -36,13 +37,12 @@ public class TechnicalStatusPerBatchService {
      * @param id the id
      * @return technical status per batch
      */
-    public TechnicalStatusPerBatch technicalStatusPerBatchTable(int id) {
-        Trainer trainer = SRSserv.getTrainerById(id);
-        TechnicalStatusPerBatch table = new TechnicalStatusPerBatch();
-        ArrayList<String> batchIds = new ArrayList<String>();
+    public List<TechnicalStatusPerBatch> technicalStatusPerBatchTable(int id) {
+        Trainer trainer = sRSserv.getTrainerById(id);
+        ArrayList<String> batchIds = new ArrayList<>();
 
-        ArrayList<String> batchName = new ArrayList<String>();
-        ArrayList<int[]> techStatus = new ArrayList<int[]>();
+        ArrayList<String> batchName = new ArrayList<>();
+        ArrayList<int[]> techStatus = new ArrayList<>();
         for (Batch b : trainer.getBatches()) {
             batchIds.add(b.getBatchId());
             batchName.add(b.getBatchName());
@@ -72,11 +72,24 @@ public class TechnicalStatusPerBatchService {
             techStatus.add(counts);
         } // end batch for loop
 
-        table.setBatchId(batchIds);
-        table.setBatchName(batchName);
-        table.setTechnicalStatus(techStatus);
+
+        List<TechnicalStatusPerBatch> table = generateTSPBTable(batchIds, batchName, techStatus);
         return table;
     }// end of method
+
+    public List<TechnicalStatusPerBatch> generateTSPBTable(ArrayList<String> batchIds, ArrayList<String> batchName, ArrayList<int[]> techStatus) {
+        ArrayList<TechnicalStatusPerBatch> table = new ArrayList<TechnicalStatusPerBatch>();
+
+        for (int i = 0; i < batchIds.size(); i++) {
+            TechnicalStatusPerBatch t = new TechnicalStatusPerBatch();
+            t.setBatchId(batchIds.get(i));
+            t.setBatchName(batchName.get(i));
+            t.setTechnicalStatus(techStatus.get(i));
+            table.add(t);
+        }
+
+        return table;
+    }
 
 } // end class
 

@@ -61,10 +61,10 @@ public class TableController {
      */
 
     @GetMapping(path = "/TechnicalStatusPerBatch")
-    public ResponseEntity<TechnicalStatusPerBatch> getTechnicalStatusPerBatch(@PathVariable int trainerId) {
+    public ResponseEntity<List<TechnicalStatusPerBatch>> getTechnicalStatusPerBatch(@PathVariable int trainerId) {
         log.trace("Getting table data for AssessmentByBatch");
-        TechnicalStatusPerBatch table = this.statusPerBatchService.technicalStatusPerBatchTable(trainerId);
-        if(table == null)
+        List<TechnicalStatusPerBatch> table = this.statusPerBatchService.technicalStatusPerBatchTable(trainerId);
+        if (table == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(this.statusPerBatchService.technicalStatusPerBatchTable(trainerId));
     }

@@ -1,16 +1,15 @@
 package com.revature.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.revature.beans.Assessment;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.tables.AssessmentByBatch;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Assessment by batch service.
@@ -62,8 +61,8 @@ public class AssessmentByBatchService {
 	    			Float assessScore=a.getAverage();
     				Float rawScore=Float.valueOf(a.getScoreWeight());
     				String type=a.getType();
-    				assessScore=(assessScore/100)*rawScore; //Convert AssessScore into suitable form
-    				aScores.add(assessScore);
+
+					aScores.add(assessScore);
     				rawScores.add(rawScore);
     				typeForScore.add(type);
 	    		}
@@ -102,21 +101,21 @@ public class AssessmentByBatchService {
     		
 	  		String type=typeForScore.get(i);
     		if (type.contains("Exam")) {
-    			numeratorExam+=aScores.get(i);
-    			denominatorExam+=rawScores.get(i);
-    		}else if (type.contains("Verbal")) {
-    			numeratorVerbal+=aScores.get(i);
-    			denominatorVerbal+=rawScores.get(i);
-    		}else if (type.contains("Presentation")) {
-    			numeratorPresentation+=aScores.get(i);
-    			denominatorPresentation+=rawScores.get(i);
-    		}else if (type.contains("Project")) {
-    			numeratorProject+=aScores.get(i);
-    			denominatorProject+=rawScores.get(i);
-    		}else {
-    			numeratorOther+=aScores.get(i);
-    			denominatorOther+=rawScores.get(i);
-    		}
+				numeratorExam += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorExam += rawScores.get(i);
+			}else if (type.contains("Verbal")) {
+				numeratorVerbal += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorVerbal += rawScores.get(i);
+			}else if (type.contains("Presentation")) {
+				numeratorPresentation += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorPresentation += rawScores.get(i);
+			}else if (type.contains("Project")) {
+				numeratorProject += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorProject += rawScores.get(i);
+			}else {
+				numeratorOther += (aScores.get(i) / 100) * rawScores.get(i);
+				denominatorOther += rawScores.get(i);
+			}
     	}
     	float averageExam=0;
     	float averageVerbal=0;

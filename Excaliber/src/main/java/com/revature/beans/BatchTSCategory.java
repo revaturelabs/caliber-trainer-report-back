@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class BatchTSCategory {
     private String batchName;
     private QCTSScore score;
-
     /**
      * Instantiates a new Batch ts category.
      */
     public BatchTSCategory() {
+        batchName = "";
         this.score = new QCTSScore();
     }
 

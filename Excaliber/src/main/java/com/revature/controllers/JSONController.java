@@ -66,6 +66,7 @@ public class JSONController {
             //give trainer the batches
             trainer.setBatches(batches);
             //if trainer created
+            SRSserv.addEntireTrainer(trainer);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("NOT VALID JSON");
         }

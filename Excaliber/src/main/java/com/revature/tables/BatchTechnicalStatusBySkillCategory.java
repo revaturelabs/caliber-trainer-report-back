@@ -1,9 +1,5 @@
 package com.revature.tables;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
->>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
 import com.revature.beans.QCTSCategory;
 
 import java.util.ArrayList;
@@ -40,13 +36,8 @@ public class BatchTechnicalStatusBySkillCategory {
 	 */
 //Constructor
 	public BatchTechnicalStatusBySkillCategory() {
-<<<<<<< HEAD
-			batchByCategory = new ArrayList<>();
-		}
-=======
 		batchByCategory = new ArrayList<>();
 	}
->>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
 
 	/**
 	 * Gets batch by category.

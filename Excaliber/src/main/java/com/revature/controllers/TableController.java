@@ -1,11 +1,6 @@
 package com.revature.controllers;
 
-<<<<<<< HEAD
-import com.revature.services.BatchTechnicalStatusBySkillCategoryService;
-import com.revature.services.TableService;
-=======
 import com.revature.services.*;
->>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
 import com.revature.tables.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,11 +121,6 @@ public class TableController {
      * @param trainerId the trainer id
      * @return technical status by week table data
      */
-<<<<<<< HEAD
-    @RequestMapping(path = "/BatchTechnicalStatus")
-    public ResponseEntity<BatchTechnicalStatusBySkillCategoryService> getBatchTechnicalStatus(@PathVariable int trainer_id) {
-        return ResponseEntity.ok(this.tServ.batchTechnicalStatusTable(trainer_id));
-=======
     @GetMapping(path = "/TechnicalStatusByWeek")
     public ResponseEntity<List<TechnicalStatusByWeek>> getTechnicalStatusByWeek(@PathVariable int trainerId) {
         log.info("Getting TechnicalStatusByWeek");
@@ -138,7 +128,6 @@ public class TableController {
         if(table == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(table);
->>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
     }
 
     /**

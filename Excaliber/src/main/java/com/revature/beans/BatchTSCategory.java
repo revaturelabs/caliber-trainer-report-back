@@ -8,18 +8,11 @@ import java.util.ArrayList;
 public class BatchTSCategory {
     private String batchName;
     private QCTSScore score;
-<<<<<<< HEAD
-=======
-
->>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
     /**
      * Instantiates a new Batch ts category.
      */
     public BatchTSCategory() {
-<<<<<<< HEAD
         batchName = "";
-=======
->>>>>>> 852a0e786aa85b3b0c48c42b8956716a34e54a30
         this.score = new QCTSScore();
     }
 

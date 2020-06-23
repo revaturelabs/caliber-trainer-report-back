@@ -57,7 +57,7 @@
           "createdOn": null,
           "lastUpdated": null,
           "categories": [
-            "JavaScript"
+            "python"
           ]
         },
         {
@@ -204,7 +204,7 @@
           "weekNumber": 3,
           "batchId": "Ix2x2UAB",
           "assessmentCategory": 12,
-          "skillCategory": "JavaScript",
+          "skillCategory": "python",
           "assignmentDate": null,
           "average": 71.35
         },
@@ -216,7 +216,7 @@
           "weekNumber": 3,
           "batchId": "Ix2x2UAB",
           "assessmentCategory": 12,
-          "skillCategory": "JavaScript",
+          "skillCategory": "python",
           "assignmentDate": null,
           "average": 80.58
         },
@@ -382,7 +382,7 @@
           "createdOn": null,
           "lastUpdated": null,
           "categories": [
-            "JavaScript"
+            "python"
           ]
         },
         {
@@ -492,7 +492,7 @@
           "weekNumber": 3,
           "batchId": "2rUNwAAM",
           "assessmentCategory": 12,
-          "skillCategory": "JavaScript",
+          "skillCategory": "python",
           "assignmentDate": null,
           "average": 79.52
         },
@@ -604,7 +604,7 @@
           "createdOn": null,
           "lastUpdated": null,
           "categories": [
-            "JavaScript"
+            "python"
           ]
         },
         {
@@ -762,7 +762,7 @@
           "weekNumber": 1,
           "batchId": "2rgIVAAY",
           "assessmentCategory": 12,
-          "skillCategory": "JavaScript",
+          "skillCategory": "python",
           "assignmentDate": null,
           "average": 80.38
         },
@@ -960,7 +960,7 @@
           "lastUpdated": null,
           "categories": [
             "Java",
-            "JavaScript"
+            "python"
           ]
         },
         {
@@ -991,7 +991,7 @@
           "lastUpdated": null,
           "categories": [
             "Servlet",
-            "JVM"
+            "JAVA"
           ]
         },
         {
@@ -1006,7 +1006,7 @@
           "createdOn": null,
           "lastUpdated": null,
           "categories": [
-            "JVM"
+            "JAVA"
           ]
         },
         {
@@ -1196,7 +1196,7 @@
           "weekNumber": 5,
           "batchId": "2ehKRAAY",
           "assessmentCategory": 12,
-          "skillCategory": "JavaScript",
+          "skillCategory": "python",
           "assignmentDate": null,
           "average": 83.17
         },
@@ -1244,7 +1244,7 @@
           "weekNumber": 7,
           "batchId": "2ehKRAAY",
           "assessmentCategory": 15081,
-          "skillCategory": "JVM",
+          "skillCategory": "JAVA",
           "assignmentDate": null,
           "average": 72.32
         },
@@ -1268,7 +1268,7 @@
           "weekNumber": 8,
           "batchId": "2ehKRAAY",
           "assessmentCategory": 15081,
-          "skillCategory": "JVM",
+          "skillCategory": "JAVA",
           "assignmentDate": null,
           "average": 72.56
         },
@@ -1280,7 +1280,7 @@
           "weekNumber": 8,
           "batchId": "2ehKRAAY",
           "assessmentCategory": 15081,
-          "skillCategory": "JVM",
+          "skillCategory": "JAVA",
           "assignmentDate": null,
           "average": 72.06
         },

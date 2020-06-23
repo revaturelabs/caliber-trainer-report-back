@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import static com.revature.utils.ParseJSON.*;
 public class JSONController {
 
     private final StoreRetrieveService SRSserv;
-
+    private final Logger log = Logger.getLogger(JSONController.class);
     /**
      * Instantiates a new Json controller.
      *
@@ -55,6 +56,8 @@ public class JSONController {
      */
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity add(@RequestBody String payload) {
+        log.trace("Adding JSON to DB using POST");
+        log.debug("payload = " + payload);
         //set the JSON to be parsed
         setJson(payload);
         Trainer trainer = null;
@@ -68,6 +71,7 @@ public class JSONController {
             //if trainer created
             SRSserv.addEntireTrainer(trainer);
         } catch (Exception e) {
+            log.error(e.toString());
             return ResponseEntity.badRequest().body("NOT VALID JSON");
         }
         return ResponseEntity.ok().build();

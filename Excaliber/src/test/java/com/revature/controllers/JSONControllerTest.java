@@ -1,11 +1,13 @@
 package com.revature.controllers;
 
+import com.revature.utils.ParseJSON;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
@@ -46,11 +48,23 @@ class JSONControllerTest {
 
 
     @Test
-    public void storeTrainerShouldReturnTrainerNotNull() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/JSONController"))
-                .andExpect(status().isOk())
-                .andDo(document("JSONController/"));
+    void storeTrainerWith200() throws Exception {
+        String requestBody = ParseJSON.readDataFromFileString("data.json");
+        System.out.println(requestBody);
+        this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andExpect(status().isOk()).andDo(document("JSONController/"));
+    }
 
+    @Test
+    void storeTrainerWith400() throws Exception {
+        String requestBody = ParseJSON.readDataFromFileString("bad_data.json");
+        System.out.println(requestBody);
+        this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andExpect(status().isBadRequest()).andDo(document("JSONController/bad"));
     }
 
 }

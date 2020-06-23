@@ -241,6 +241,32 @@ public class ParseJSON {
     }
 
     /**
+     * Read data from file boolean.
+     *
+     * @param fileName the file name
+     * @return boolean boolean
+     */
+    public static String readDataFromFileString(String fileName) {
+        String out = "";
+        ClassLoader classLoader = ParseJSON.class.getClassLoader();
+        File file;
+        try {
+            file = new File(classLoader.getResource(fileName).getFile());
+            //File is found
+            log.debug("File Found: " + file.exists());
+            try {
+                out = new String(Files.readAllBytes(file.toPath()));
+            } catch (IOException e) {
+                log.error(e.toString());
+            }
+        } catch (NullPointerException e) {
+            log.error(e.toString());
+        }
+
+        return out;
+    }
+
+    /**
      * Sets json to be parsed.
      *
      * @param json the json
@@ -250,8 +276,6 @@ public class ParseJSON {
         ParseJSON.json = json;
     }
 
-    public static String readDataFromFileString(String s) {
-    }
 
     /**
      * gets all the batch id from the JSON

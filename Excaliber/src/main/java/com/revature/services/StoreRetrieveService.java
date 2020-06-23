@@ -221,7 +221,16 @@ public class StoreRetrieveService {
 			for (Batch b: t.getBatches()) {
 				for (Week w:b.getWeeks()) {
 					for (Assessment a:w.getAssessments()) {
-						categories.add(a.getSkillCategory());
+						boolean haveIt=false;
+						Category cat=a.getSkillCategory();
+						for (Category c: categories) {
+							if (cat.getId()==c.getId()) {
+								haveIt=true;
+							}
+						}
+						if(!haveIt) {
+							categories.add(a.getSkillCategory());
+							}
 					}
 				}
 			}

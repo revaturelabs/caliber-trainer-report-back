@@ -1,0 +1,345 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: StoreRetrieveService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: StoreRetrieveService (com.revature.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StoreRetrieveService</td>
+<td class="coverageStat">
+  <span class="percent">
+    7.7%
+  </span>
+  <span class="absValue">
+    (1/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    13.3%
+  </span>
+  <span class="absValue">
+    (8/ 60)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$0Kn6J76a</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$2ezyHr7n</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$8HsHXFIw</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$dqjt52Wj</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$FotF4Uc5</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$gTq969hr</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$h7B28eLa</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$HyRC4mph</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$sZzsEuLr</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$whCiZRde</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$WYj3VasP</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$xoMLrbkp</td>
+  </tr>
+  <tr>
+    <td class="name">StoreRetrieveService$MockitoMock$1329545800$auxiliary$zT27Ig7P</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    7.7%
+  </span>
+  <span class="absValue">
+    (1/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    13.3%
+  </span>
+  <span class="absValue">
+    (8/ 60)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.*;
+<i>4</i>&nbsp;import com.revature.data.*;
+<i>5</i>&nbsp;import org.apache.log4j.Logger;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.stereotype.Service;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.ArrayList;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;import java.util.Optional;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * The type Store retrieve service.
+<i>16</i>&nbsp; */
+<i>17</i>&nbsp;@Service
+<i>18</i>&nbsp;public class StoreRetrieveService {
+<i>19</i>&nbsp;    private final AssessmentDAO aDao;
+<i>20</i>&nbsp;    private final BatchDAO bDao;
+<i>21</i>&nbsp;    private final CategoryDAO cDao;
+<i>22</i>&nbsp;    private final TrainerDAO tDao;
+<i>23</i>&nbsp;    private final WeekDAO wDao;
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;    private final Logger log = Logger.getLogger(StoreRetrieveService.class);</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    /**
+<i>28</i>&nbsp;     * Instantiates a new Store retrieve service.
+<i>29</i>&nbsp;     *
+<i>30</i>&nbsp;     * @param a the a
+<i>31</i>&nbsp;     * @param b the b
+<i>32</i>&nbsp;     * @param c the c
+<i>33</i>&nbsp;     * @param t the t
+<i>34</i>&nbsp;     * @param w the w
+<i>35</i>&nbsp;     */
+<i>36</i>&nbsp;    @Autowired
+<b class="fc"><i>37</i>&nbsp;    public StoreRetrieveService(AssessmentDAO a, BatchDAO b, CategoryDAO c, TrainerDAO t, WeekDAO w) {</b>
+<b class="fc"><i>38</i>&nbsp;        aDao = a;</b>
+<b class="fc"><i>39</i>&nbsp;        bDao = b;</b>
+<b class="fc"><i>40</i>&nbsp;        cDao = c;</b>
+<b class="fc"><i>41</i>&nbsp;        tDao = t;</b>
+<b class="fc"><i>42</i>&nbsp;        wDao = w;</b>
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    /**
+<i>47</i>&nbsp;     * Add category integer.
+<i>48</i>&nbsp;     *
+<i>49</i>&nbsp;     * @param c the c
+<i>50</i>&nbsp;     * @return the integer
+<i>51</i>&nbsp;     */
+<i>52</i>&nbsp;//Store methods-basic
+<i>53</i>&nbsp;    public Integer addCategory(Category c) {
+<b class="nc"><i>54</i>&nbsp;        Category category = getCategoryByName(c.getName());</b>
+<b class="nc"><i>55</i>&nbsp;        if (category != null) {</b>
+<b class="nc"><i>56</i>&nbsp;            log.debug(&quot;Found&quot; + c.getName() + category);</b>
+<b class="nc"><i>57</i>&nbsp;            return category.getId();</b>
+<i>58</i>&nbsp;        }
+<b class="nc"><i>59</i>&nbsp;        log.error(&quot;Did not Find&quot; + c.getName());</b>
+<b class="nc"><i>60</i>&nbsp;        return cDao.save(c).getId();</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    /**
+<i>64</i>&nbsp;     * Add assessment integer.
+<i>65</i>&nbsp;     *
+<i>66</i>&nbsp;     * @param a the a
+<i>67</i>&nbsp;     * @return the integer
+<i>68</i>&nbsp;     */
+<i>69</i>&nbsp;    public Integer addAssessment(Assessment a) {
+<b class="nc"><i>70</i>&nbsp;        return aDao.save(a).getId();</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    /**
+<i>74</i>&nbsp;     * Add week integer.
+<i>75</i>&nbsp;     *
+<i>76</i>&nbsp;     * @param w the w
+<i>77</i>&nbsp;     * @return the integer
+<i>78</i>&nbsp;     */
+<i>79</i>&nbsp;    public Integer addWeek(Week w) {
+<b class="nc"><i>80</i>&nbsp;        return wDao.save(w).getId();</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    /**
+<i>84</i>&nbsp;     * Add batch integer.
+<i>85</i>&nbsp;     *
+<i>86</i>&nbsp;     * @param b the b
+<i>87</i>&nbsp;     * @return the integer
+<i>88</i>&nbsp;     */
+<i>89</i>&nbsp;    public Integer addBatch(Batch b) {
+<b class="nc"><i>90</i>&nbsp;        return bDao.save(b).getId();</b>
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    /**
+<i>94</i>&nbsp;     * Add trainer integer.
+<i>95</i>&nbsp;     *
+<i>96</i>&nbsp;     * @param t the t
+<i>97</i>&nbsp;     * @return the integer
+<i>98</i>&nbsp;     */
+<i>99</i>&nbsp;    public Integer addTrainer(Trainer t) {
+<b class="nc"><i>100</i>&nbsp;        return tDao.save(t).getTrainerId();</b>
+<i>101</i>&nbsp;    }
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    /**
+<i>104</i>&nbsp;     * Add entire trainer trainer.
+<i>105</i>&nbsp;     *
+<i>106</i>&nbsp;     * @param t the t
+<i>107</i>&nbsp;     * @return the trainer
+<i>108</i>&nbsp;     */
+<i>109</i>&nbsp;//Store method-entire trainer object
+<i>110</i>&nbsp;    public Trainer addEntireTrainer(Trainer t) {
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;
+<b class="nc"><i>113</i>&nbsp;        List&lt;Batch&gt; batches = new ArrayList&lt;&gt;();</b>
+<i>114</i>&nbsp;
+<b class="nc"><i>115</i>&nbsp;        for (Batch batch : t.getBatches()) {</b>
+<b class="nc"><i>116</i>&nbsp;            List&lt;Week&gt; weeks = new ArrayList&lt;&gt;();</b>
+<i>117</i>&nbsp;
+<b class="nc"><i>118</i>&nbsp;            for (Week week : batch.getWeeks()) {</b>
+<i>119</i>&nbsp;
+<b class="nc"><i>120</i>&nbsp;                List&lt;Assessment&gt; assessments = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>121</i>&nbsp;                List&lt;Category&gt; categories = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>122</i>&nbsp;                for (Assessment a : week.getAssessments()) {</b>
+<i>123</i>&nbsp;
+<b class="nc"><i>124</i>&nbsp;                    Category c = a.getSkillCategory();</b>
+<b class="nc"><i>125</i>&nbsp;                    c.setId(addCategory(c));</b>
+<b class="nc"><i>126</i>&nbsp;                    a.setSkillCategory(c);</b>
+<b class="nc"><i>127</i>&nbsp;                    a.setId(addAssessment(a));</b>
+<b class="nc"><i>128</i>&nbsp;                    assessments.add(a);</b>
+<b class="nc"><i>129</i>&nbsp;                }</b>
+<b class="nc"><i>130</i>&nbsp;                week.setAssessments(assessments);</b>
+<i>131</i>&nbsp;
+<b class="nc"><i>132</i>&nbsp;                for (Category c : week.getCategories()) {</b>
+<b class="nc"><i>133</i>&nbsp;                    c.setId(addCategory(c));</b>
+<b class="nc"><i>134</i>&nbsp;                    categories.add(c);</b>
+<b class="nc"><i>135</i>&nbsp;                }</b>
+<b class="nc"><i>136</i>&nbsp;                week.setCategories(categories);</b>
+<b class="nc"><i>137</i>&nbsp;                week.setId(addWeek(week));</b>
+<b class="nc"><i>138</i>&nbsp;                weeks.add(week);</b>
+<i>139</i>&nbsp;
+<b class="nc"><i>140</i>&nbsp;            }</b>
+<b class="nc"><i>141</i>&nbsp;            batch.setWeeks(weeks);</b>
+<b class="nc"><i>142</i>&nbsp;            batch.setId(addBatch(batch));</b>
+<b class="nc"><i>143</i>&nbsp;            batches.add(batch);</b>
+<b class="nc"><i>144</i>&nbsp;        }</b>
+<i>145</i>&nbsp;
+<b class="nc"><i>146</i>&nbsp;        t.setBatches(batches);</b>
+<b class="nc"><i>147</i>&nbsp;        t.setId(addTrainer(t));</b>
+<b class="nc"><i>148</i>&nbsp;        return t;</b>
+<i>149</i>&nbsp;    }
+<i>150</i>&nbsp;
+<i>151</i>&nbsp;    /**
+<i>152</i>&nbsp;     * Gets trainer by id.
+<i>153</i>&nbsp;     *
+<i>154</i>&nbsp;     * @param id the id
+<i>155</i>&nbsp;     * @return the trainer by id
+<i>156</i>&nbsp;     */
+<i>157</i>&nbsp;    public Trainer getTrainerById(Integer id) {
+<b class="nc"><i>158</i>&nbsp;        Optional&lt;Trainer&gt; trainer = tDao.findById(id);</b>
+<b class="nc"><i>159</i>&nbsp;        if (trainer.isPresent())</b>
+<b class="nc"><i>160</i>&nbsp;            return trainer.get();</b>
+<i>161</i>&nbsp;        else
+<b class="nc"><i>162</i>&nbsp;            return null;</b>
+<i>163</i>&nbsp;    }
+<i>164</i>&nbsp;
+<i>165</i>&nbsp;    /**
+<i>166</i>&nbsp;     * Gets trainer by id.
+<i>167</i>&nbsp;     *
+<i>168</i>&nbsp;     * @param id the id
+<i>169</i>&nbsp;     * @return the trainer by id
+<i>170</i>&nbsp;     */
+<i>171</i>&nbsp;    public Trainer getJustTrainerById(Integer id) {
+<b class="nc"><i>172</i>&nbsp;        Optional&lt;Trainer&gt; trainer = tDao.findById(id);</b>
+<b class="nc"><i>173</i>&nbsp;        if (trainer.isPresent())</b>
+<b class="nc"><i>174</i>&nbsp;            return trainer.get();</b>
+<i>175</i>&nbsp;        else
+<b class="nc"><i>176</i>&nbsp;            return null;</b>
+<i>177</i>&nbsp;    }
+<i>178</i>&nbsp;
+<i>179</i>&nbsp;    /**
+<i>180</i>&nbsp;     * Gets trainer by id.
+<i>181</i>&nbsp;     *
+<i>182</i>&nbsp;     * @param id the id
+<i>183</i>&nbsp;     * @return the trainer by id
+<i>184</i>&nbsp;     */
+<i>185</i>&nbsp;    public List&lt;Trainer&gt; getTrainers() {
+<b class="nc"><i>186</i>&nbsp;        List&lt;Trainer&gt; trainers = tDao.findAll();</b>
+<b class="nc"><i>187</i>&nbsp;        return trainers;</b>
+<i>188</i>&nbsp;    }
+<i>189</i>&nbsp;
+<i>190</i>&nbsp;    /**
+<i>191</i>&nbsp;     * get Category By Name
+<i>192</i>&nbsp;     *
+<i>193</i>&nbsp;     * @param name name of the Category
+<i>194</i>&nbsp;     * @return Category
+<i>195</i>&nbsp;     */
+<i>196</i>&nbsp;    private Category getCategoryByName(String name) {
+<b class="nc"><i>197</i>&nbsp;        return cDao.findCategoryByName(name);</b>
+<i>198</i>&nbsp;    }
+<i>199</i>&nbsp;
+<i>200</i>&nbsp;    /**
+<i>201</i>&nbsp;     * Gets all category
+<i>202</i>&nbsp;     *
+<i>203</i>&nbsp;     * @return all categories
+<i>204</i>&nbsp;     */
+<i>205</i>&nbsp;    public List&lt;Category&gt; getAllCategories() {
+<b class="nc"><i>206</i>&nbsp;        return cDao.findAll();</b>
+<i>207</i>&nbsp;    }
+<i>208</i>&nbsp;
+<i>209</i>&nbsp;	public List&lt;Assessment&gt; getAllAssessments() {
+<i>210</i>&nbsp;		// TODO Auto-generated method stub
+<b class="nc"><i>211</i>&nbsp;		return aDao.findAll();</b>
+<i>212</i>&nbsp;	}
+<i>213</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-23 08:11</div>
+</div>
+</body>
+</html>

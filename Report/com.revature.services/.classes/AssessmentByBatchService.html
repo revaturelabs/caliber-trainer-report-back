@@ -1,0 +1,233 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AssessmentByBatchService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AssessmentByBatchService (com.revature.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AssessmentByBatchService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.6%
+  </span>
+  <span class="absValue">
+    (72/ 73)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.Assessment;
+<i>4</i>&nbsp;import com.revature.beans.Batch;
+<i>5</i>&nbsp;import com.revature.beans.Trainer;
+<i>6</i>&nbsp;import com.revature.beans.Week;
+<i>7</i>&nbsp;import com.revature.tables.AssessmentByBatch;
+<i>8</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>9</i>&nbsp;import org.springframework.stereotype.Service;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.util.ArrayList;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * The type Assessment by batch service.
+<i>16</i>&nbsp; */
+<i>17</i>&nbsp;@Service
+<i>18</i>&nbsp;public class AssessmentByBatchService {
+<i>19</i>&nbsp;	private final StoreRetrieveService SRSserv;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;	/**
+<i>22</i>&nbsp;	 * Instantiates a new Assessment by batch service.
+<i>23</i>&nbsp;	 *
+<i>24</i>&nbsp;	 * @param s the s
+<i>25</i>&nbsp;	 */
+<i>26</i>&nbsp;	@Autowired
+<b class="fc"><i>27</i>&nbsp;	public AssessmentByBatchService(StoreRetrieveService s) {</b>
+<b class="fc"><i>28</i>&nbsp;		SRSserv=s;</b>
+<b class="fc"><i>29</i>&nbsp;	}</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;	/**
+<i>32</i>&nbsp;	 * Get abb table list.
+<i>33</i>&nbsp;	 *
+<i>34</i>&nbsp;	 * @param id the id
+<i>35</i>&nbsp;	 * @return the list
+<i>36</i>&nbsp;	 */
+<i>37</i>&nbsp;	public List&lt;AssessmentByBatch&gt; getABBTable (int id){
+<b class="fc"><i>38</i>&nbsp;		Trainer t=SRSserv.getTrainerById(id);</b>
+<b class="fc"><i>39</i>&nbsp;		if (t!=null) {	</b>
+<b class="fc"><i>40</i>&nbsp;			return loopBatches(t.getBatches());</b>
+<i>41</i>&nbsp;		}else {
+<b class="nc"><i>42</i>&nbsp;			return new ArrayList&lt;AssessmentByBatch&gt;();</b>
+<i>43</i>&nbsp;		}
+<i>44</i>&nbsp;		
+<i>45</i>&nbsp;	}
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;	/**
+<i>48</i>&nbsp;	 * Loop batches list.
+<i>49</i>&nbsp;	 *
+<i>50</i>&nbsp;	 * @param batches the batches
+<i>51</i>&nbsp;	 * @return the list
+<i>52</i>&nbsp;	 */
+<i>53</i>&nbsp;	public List&lt;AssessmentByBatch&gt; loopBatches(List&lt;Batch&gt; batches){
+<b class="fc"><i>54</i>&nbsp;		ArrayList&lt;AssessmentByBatch&gt; aBBList=new ArrayList&lt;AssessmentByBatch&gt;();</b>
+<b class="fc"><i>55</i>&nbsp;		for (Batch b:batches) {</b>
+<b class="fc"><i>56</i>&nbsp;			AssessmentByBatch aBB=new AssessmentByBatch();</b>
+<b class="fc"><i>57</i>&nbsp;			aBB.setBatchId(b.getBatchId());</b>
+<b class="fc"><i>58</i>&nbsp;			aBB.setBatchName(b.getBatchName());</b>
+<b class="fc"><i>59</i>&nbsp;			ArrayList&lt;Float&gt; aScores=new ArrayList&lt;Float&gt;();</b>
+<b class="fc"><i>60</i>&nbsp;	    	ArrayList&lt;Float&gt; rawScores=new ArrayList&lt;Float&gt;();</b>
+<b class="fc"><i>61</i>&nbsp;	    	ArrayList&lt;String&gt; typeForScore=new ArrayList&lt;String&gt;();</b>
+<i>62</i>&nbsp;	    	
+<b class="fc"><i>63</i>&nbsp;	     	for (Week w:b.getWeeks()) {</b>
+<b class="fc"><i>64</i>&nbsp;	    		for (Assessment a:w.getAssessments()) {</b>
+<b class="fc"><i>65</i>&nbsp;	    			Float assessScore=a.getAverage();</b>
+<b class="fc"><i>66</i>&nbsp;    				Float rawScore=Float.valueOf(a.getScoreWeight());</b>
+<b class="fc"><i>67</i>&nbsp;    				String type=a.getType();</b>
+<i>68</i>&nbsp;
+<b class="fc"><i>69</i>&nbsp;					aScores.add(assessScore);</b>
+<b class="fc"><i>70</i>&nbsp;    				rawScores.add(rawScore);</b>
+<b class="fc"><i>71</i>&nbsp;    				typeForScore.add(type);</b>
+<b class="fc"><i>72</i>&nbsp;	    		}</b>
+<b class="fc"><i>73</i>&nbsp;	    	}</b>
+<i>74</i>&nbsp;	     	
+<b class="fc"><i>75</i>&nbsp;	     	float[] average=calculateAverages(aScores, rawScores, typeForScore );</b>
+<b class="fc"><i>76</i>&nbsp;	    	aBB.setAssessmentScores(average);</b>
+<b class="fc"><i>77</i>&nbsp;	    	aBBList.add(aBB);</b>
+<i>78</i>&nbsp;		
+<b class="fc"><i>79</i>&nbsp;		}</b>
+<b class="fc"><i>80</i>&nbsp;		return aBBList;</b>
+<i>81</i>&nbsp;		
+<i>82</i>&nbsp;	}
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;	/**
+<i>85</i>&nbsp;	 * Calculate averages float [ ].
+<i>86</i>&nbsp;	 *
+<i>87</i>&nbsp;	 * @param aScores      the a scores
+<i>88</i>&nbsp;	 * @param rawScores    the raw scores
+<i>89</i>&nbsp;	 * @param typeForScore the type for score
+<i>90</i>&nbsp;	 * @return the float [ ]
+<i>91</i>&nbsp;	 */
+<i>92</i>&nbsp;	public float[] calculateAverages(ArrayList&lt;Float&gt; aScores, ArrayList&lt;Float&gt; rawScores, ArrayList&lt;String&gt; typeForScore ) {
+<b class="fc"><i>93</i>&nbsp;    	float numeratorExam=0;</b>
+<b class="fc"><i>94</i>&nbsp;    	float denominatorExam=0;</b>
+<b class="fc"><i>95</i>&nbsp;    	float numeratorVerbal=0;</b>
+<b class="fc"><i>96</i>&nbsp;    	float denominatorVerbal=0;</b>
+<b class="fc"><i>97</i>&nbsp;    	float numeratorPresentation=0;</b>
+<b class="fc"><i>98</i>&nbsp;    	float denominatorPresentation=0;</b>
+<b class="fc"><i>99</i>&nbsp;    	float numeratorProject=0;</b>
+<b class="fc"><i>100</i>&nbsp;    	float denominatorProject=0;</b>
+<b class="fc"><i>101</i>&nbsp;    	float numeratorOther=0;</b>
+<b class="fc"><i>102</i>&nbsp;    	float denominatorOther=0;</b>
+<i>103</i>&nbsp;    	
+<b class="fc"><i>104</i>&nbsp;    	for (int i=0;i&lt;aScores.size();i++) {</b>
+<i>105</i>&nbsp;    		
+<b class="fc"><i>106</i>&nbsp;	  		String type=typeForScore.get(i);</b>
+<b class="fc"><i>107</i>&nbsp;    		if (type.contains(&quot;Exam&quot;)) {</b>
+<b class="fc"><i>108</i>&nbsp;				numeratorExam += (aScores.get(i) / 100) * rawScores.get(i);</b>
+<b class="fc"><i>109</i>&nbsp;				denominatorExam += rawScores.get(i);</b>
+<b class="fc"><i>110</i>&nbsp;			}else if (type.contains(&quot;Verbal&quot;)) {</b>
+<b class="fc"><i>111</i>&nbsp;				numeratorVerbal += (aScores.get(i) / 100) * rawScores.get(i);</b>
+<b class="fc"><i>112</i>&nbsp;				denominatorVerbal += rawScores.get(i);</b>
+<b class="fc"><i>113</i>&nbsp;			}else if (type.contains(&quot;Presentation&quot;)) {</b>
+<b class="fc"><i>114</i>&nbsp;				numeratorPresentation += (aScores.get(i) / 100) * rawScores.get(i);</b>
+<b class="fc"><i>115</i>&nbsp;				denominatorPresentation += rawScores.get(i);</b>
+<b class="fc"><i>116</i>&nbsp;			}else if (type.contains(&quot;Project&quot;)) {</b>
+<b class="fc"><i>117</i>&nbsp;				numeratorProject += (aScores.get(i) / 100) * rawScores.get(i);</b>
+<b class="fc"><i>118</i>&nbsp;				denominatorProject += rawScores.get(i);</b>
+<i>119</i>&nbsp;			}else {
+<b class="fc"><i>120</i>&nbsp;				numeratorOther += (aScores.get(i) / 100) * rawScores.get(i);</b>
+<b class="fc"><i>121</i>&nbsp;				denominatorOther += rawScores.get(i);</b>
+<i>122</i>&nbsp;			}
+<i>123</i>&nbsp;    	}
+<b class="fc"><i>124</i>&nbsp;    	float averageExam=0;</b>
+<b class="fc"><i>125</i>&nbsp;    	float averageVerbal=0;</b>
+<b class="fc"><i>126</i>&nbsp;    	float averagePresentation=0;</b>
+<b class="fc"><i>127</i>&nbsp;    	float averageProject=0;</b>
+<b class="fc"><i>128</i>&nbsp;    	float averageOther=0;</b>
+<b class="fc"><i>129</i>&nbsp;    	if (denominatorExam!=0) {</b>
+<b class="fc"><i>130</i>&nbsp;    		averageExam=(numeratorExam/denominatorExam)*100;</b>
+<i>131</i>&nbsp;    	}
+<b class="fc"><i>132</i>&nbsp;    	if (denominatorVerbal!=0) {</b>
+<b class="fc"><i>133</i>&nbsp;    		averageVerbal=(numeratorVerbal/denominatorVerbal)*100;</b>
+<i>134</i>&nbsp;    	}
+<b class="fc"><i>135</i>&nbsp;    	if (denominatorPresentation!=0) {</b>
+<b class="fc"><i>136</i>&nbsp;    		averagePresentation=(numeratorPresentation/denominatorPresentation)*100;</b>
+<i>137</i>&nbsp;    	}
+<b class="fc"><i>138</i>&nbsp;    	if (denominatorProject!=0) {</b>
+<b class="fc"><i>139</i>&nbsp;    		averageProject=(numeratorProject/denominatorProject)*100;</b>
+<i>140</i>&nbsp;    	}
+<b class="fc"><i>141</i>&nbsp;    	if (denominatorOther!=0) {</b>
+<b class="fc"><i>142</i>&nbsp;    		averageOther=(numeratorOther/denominatorOther)*100;</b>
+<i>143</i>&nbsp;    	}
+<b class="fc"><i>144</i>&nbsp;    	float[] average= {averageExam, averageVerbal, averagePresentation, averageProject, averageOther};</b>
+<i>145</i>&nbsp;		
+<b class="fc"><i>146</i>&nbsp;    	return average;</b>
+<i>147</i>&nbsp;	}
+<i>148</i>&nbsp;	
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-23 08:11</div>
+</div>
+</body>
+</html>

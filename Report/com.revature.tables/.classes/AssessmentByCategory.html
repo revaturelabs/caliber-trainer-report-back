@@ -1,0 +1,155 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AssessmentByCategory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.tables</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AssessmentByCategory (com.revature.tables)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AssessmentByCategory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90.9%
+  </span>
+  <span class="absValue">
+    (10/ 11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.tables;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.Category;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * The type Assessment by category.
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class AssessmentByCategory {
+<i>12</i>&nbsp;    private String category;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private Float[] average;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    /**
+<i>18</i>&nbsp;     * Instantiates a new Assessment by category.
+<i>19</i>&nbsp;     */
+<i>20</i>&nbsp;//Constructor
+<b class="fc"><i>21</i>&nbsp;    public AssessmentByCategory() {</b>
+<b class="fc"><i>22</i>&nbsp;        category = &quot;&quot;;</b>
+<i>23</i>&nbsp;
+<b class="fc"><i>24</i>&nbsp;        average = new Float[5];</b>
+<b class="fc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    //toString
+<i>28</i>&nbsp;    @Override
+<i>29</i>&nbsp;    public String toString() {
+<b class="nc"><i>30</i>&nbsp;        return &quot;AssessmentByCategory [category=&quot; + category+ &quot;, average=&quot; + average + &quot;]&quot;;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    /**
+<i>34</i>&nbsp;     * Gets categories.
+<i>35</i>&nbsp;     *
+<i>36</i>&nbsp;     * @return the categories
+<i>37</i>&nbsp;     */
+<i>38</i>&nbsp;//Getters and Setters
+<i>39</i>&nbsp;    public String getCategory() {
+<b class="fc"><i>40</i>&nbsp;        return category;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    /**
+<i>44</i>&nbsp;     * Sets categories.
+<i>45</i>&nbsp;     *
+<i>46</i>&nbsp;     * @param categories the categories
+<i>47</i>&nbsp;     */
+<i>48</i>&nbsp;    public void setCategory(String category) {
+<b class="fc"><i>49</i>&nbsp;        this.category = category;</b>
+<b class="fc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    /**
+<i>54</i>&nbsp;     * Gets average.
+<i>55</i>&nbsp;     *
+<i>56</i>&nbsp;     * @return the average
+<i>57</i>&nbsp;     */
+<i>58</i>&nbsp;    public Float[] getAverage() {
+<b class="fc"><i>59</i>&nbsp;        return average;</b>
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    /**
+<i>63</i>&nbsp;     * Sets average.
+<i>64</i>&nbsp;     *
+<i>65</i>&nbsp;     * @param average the average
+<i>66</i>&nbsp;     */
+<i>67</i>&nbsp;    public void setAverage( Float[] average) {
+<b class="fc"><i>68</i>&nbsp;        this.average = average;</b>
+<b class="fc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-23 08:11</div>
+</div>
+</body>
+</html>

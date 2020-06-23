@@ -1,0 +1,174 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: QCTSCategory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.beans</a> ]
+</div>
+
+<h1>Coverage Summary for Class: QCTSCategory (com.revature.beans)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">QCTSCategory</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.beans;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.List;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * The type Qcts category.
+<i>8</i>&nbsp; */
+<i>9</i>&nbsp;public class QCTSCategory {
+<i>10</i>&nbsp;    private String categoryName;
+<i>11</i>&nbsp;    private List&lt;BatchTSCategory&gt; batches;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    /**
+<i>14</i>&nbsp;     * Instantiates a new Qcts category.
+<i>15</i>&nbsp;     */
+<b class="nc"><i>16</i>&nbsp;    public QCTSCategory() {</b>
+<b class="nc"><i>17</i>&nbsp;        categoryName = &quot;&quot;;</b>
+<b class="nc"><i>18</i>&nbsp;        batches = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    /**
+<i>22</i>&nbsp;     * Gets category name.
+<i>23</i>&nbsp;     *
+<i>24</i>&nbsp;     * @return the category name
+<i>25</i>&nbsp;     */
+<i>26</i>&nbsp;    public String getCategoryName() {
+<b class="nc"><i>27</i>&nbsp;        return categoryName;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    /**
+<i>31</i>&nbsp;     * Sets category name.
+<i>32</i>&nbsp;     *
+<i>33</i>&nbsp;     * @param categoryName the category name
+<i>34</i>&nbsp;     */
+<i>35</i>&nbsp;    public void setCategoryName(String categoryName) {
+<b class="nc"><i>36</i>&nbsp;        this.categoryName = categoryName;</b>
+<b class="nc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    /**
+<i>40</i>&nbsp;     * Gets batches.
+<i>41</i>&nbsp;     *
+<i>42</i>&nbsp;     * @return the batches
+<i>43</i>&nbsp;     */
+<i>44</i>&nbsp;    public List&lt;BatchTSCategory&gt; getBatches() {
+<b class="nc"><i>45</i>&nbsp;        return batches;</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    /**
+<i>49</i>&nbsp;     * Sets batches.
+<i>50</i>&nbsp;     *
+<i>51</i>&nbsp;     * @param batches the batches
+<i>52</i>&nbsp;     */
+<i>53</i>&nbsp;    public void setBatches(List&lt;BatchTSCategory&gt; batches) {
+<b class="nc"><i>54</i>&nbsp;        this.batches = batches;</b>
+<b class="nc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    @Override
+<i>58</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>59</i>&nbsp;        final int prime = 31;</b>
+<b class="nc"><i>60</i>&nbsp;        int result = 1;</b>
+<b class="nc"><i>61</i>&nbsp;        result = prime * result + ((batches == null) ? 0 : batches.hashCode());</b>
+<b class="nc"><i>62</i>&nbsp;        result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());</b>
+<b class="nc"><i>63</i>&nbsp;        return result;</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    @Override
+<i>67</i>&nbsp;    public boolean equals(Object obj) {
+<b class="nc"><i>68</i>&nbsp;        if (this == obj)</b>
+<b class="nc"><i>69</i>&nbsp;            return true;</b>
+<b class="nc"><i>70</i>&nbsp;        if (obj == null)</b>
+<b class="nc"><i>71</i>&nbsp;            return false;</b>
+<b class="nc"><i>72</i>&nbsp;        if (getClass() != obj.getClass())</b>
+<b class="nc"><i>73</i>&nbsp;            return false;</b>
+<b class="nc"><i>74</i>&nbsp;        QCTSCategory other = (QCTSCategory) obj;</b>
+<b class="nc"><i>75</i>&nbsp;        if (batches == null) {</b>
+<b class="nc"><i>76</i>&nbsp;            if (other.batches != null)</b>
+<b class="nc"><i>77</i>&nbsp;                return false;</b>
+<b class="nc"><i>78</i>&nbsp;        } else if (!batches.equals(other.batches))</b>
+<b class="nc"><i>79</i>&nbsp;            return false;</b>
+<b class="nc"><i>80</i>&nbsp;        if (categoryName == null) {</b>
+<b class="nc"><i>81</i>&nbsp;            return other.categoryName == null;</b>
+<b class="nc"><i>82</i>&nbsp;        } else return categoryName.equals(other.categoryName);</b>
+<i>83</i>&nbsp;    }
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    @Override
+<i>86</i>&nbsp;    public String toString() {
+<b class="nc"><i>87</i>&nbsp;        return &quot;QCTSCategory [categoryName=&quot; + categoryName + &quot;, batches=&quot; + batches + &quot;]&quot;;</b>
+<i>88</i>&nbsp;    }
+<i>89</i>&nbsp;
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-23 08:11</div>
+</div>
+</body>
+</html>

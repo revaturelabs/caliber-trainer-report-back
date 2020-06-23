@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TrainerController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TrainerController (com.revature.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TrainerController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/ 5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import com.revature.beans.Trainer;
+<i>5</i>&nbsp;import com.revature.services.StoreRetrieveService;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i>8</i>&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+<i>9</i>&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+<i>10</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>11</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.util.List;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;/**
+<i>16</i>&nbsp; * The type Json controller.
+<i>17</i>&nbsp; */
+<i>18</i>&nbsp;@RestController
+<i>19</i>&nbsp;@RequestMapping(path = &quot;/Trainer&quot;)
+<i>20</i>&nbsp;public class TrainerController {
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    private final StoreRetrieveService SRSserv;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Autowired
+<b class="fc"><i>25</i>&nbsp;    public TrainerController(StoreRetrieveService srSserv) {</b>
+<b class="fc"><i>26</i>&nbsp;        SRSserv = srSserv;</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @GetMapping
+<i>30</i>&nbsp;    public ResponseEntity&lt;List&lt;Trainer&gt;&gt; getTrainers() {
+<b class="nc"><i>31</i>&nbsp;        return ResponseEntity.ok(SRSserv.getTrainers());</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @GetMapping(path = &quot;/{trainerId}&quot;)
+<i>35</i>&nbsp;    public ResponseEntity&lt;Trainer&gt; getTrainers(@PathVariable int trainerId) {
+<b class="nc"><i>36</i>&nbsp;        return ResponseEntity.ok(SRSserv.getTrainerById(trainerId));</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-23 08:11</div>
+</div>
+</body>
+</html>

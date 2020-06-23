@@ -1,0 +1,44 @@
+= API Documentation
+
+== Introduction
+
+Spring REST Docs generated documentation.
+
+== TableController API
+
+Collection of CRUD API endpoints used to get information about Trainer and Batch.
+
+=== Get Table data By trainer ID
+
+Obtains a specific trainer registered in the application by its unique identifier.
+
+==== Sample Request
+
+include::{snippets}/1/AssessmentByBatch/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/1/AssessmentByBatch/http-response.adoc[]
+
+==== CURL sample
+
+include::{snippets}/1/AssessmentByBatch/curl-request.adoc[]
+
+==== Path sample
+
+include::{snippets}/1/AssessmentByBatch/path-parameters.adoc[]
+
+=== Get Trainer By ID
+
+Obtains a specific trainer registered in the application by its unique identifier.
+
+==== Sample Request
+
+include::{snippets}/JSONController/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/JSONController/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/JSONController/curl-request.adoc[]

@@ -15,19 +15,19 @@ import java.util.List;
 @Service
 public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresByCategoryAllBatchesService {
 
-	public Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesImplement.class);
+    public static final Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesImplement.class);
 
-	private final StoreRetrieveService SRSserv;
+    private final StoreRetrieveService SRSserv;
 
-	/**
-	 * Instantiates a new Assess scores by category all batches implement.
-	 *
-	 * @param a the a
-	 */
-	@Autowired
-	public AssessScoresByCategoryAllBatchesImplement(StoreRetrieveService s) {
-		this.SRSserv = s;
-	}
+    /**
+     * Instantiates a new Assess scores by category all batches implement.
+     *
+     * @param a the a
+     */
+    @Autowired
+    public AssessScoresByCategoryAllBatchesImplement(StoreRetrieveService s) {
+        this.SRSserv = s;
+    }
 
     /**
      * @param category
@@ -35,40 +35,40 @@ public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresBy
      */
     @Override
     public AssessScoresByCategoryAllBatches getAssessScoresByCategoryAllBatches(Integer id) {
-		Trainer trainer = SRSserv.getTrainerById(id);
-		List<Category> cats;
-		cats = SRSserv.getAllCategories();
-		AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
-		ArrayList<CategoryBatches> categories = new ArrayList<CategoryBatches>();
+        Trainer trainer = SRSserv.getTrainerById(id);
+        List<Category> cats;
+        cats = SRSserv.getCatgeoriesForTrainerAssessments(id);
+        AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
+        ArrayList<CategoryBatches> categories = new ArrayList<>();
 
-		for (Category c : cats) {
-			ArrayList<BatchAssessment> batches = new ArrayList<BatchAssessment>();
-			CategoryBatches catBat = new CategoryBatches();
-			String cat = c.getName();
-			catBat.setCategory(cat);
-        	
-	        for (Batch b : trainer.getBatches()) {
-				ArrayList<Float> assessments = new ArrayList<>();
-				BatchAssessment batch = new BatchAssessment();
-				batch.setBatchName(b.getBatchName());
-				for (Week w : b.getWeeks()) {
-					for (Assessment a : w.getAssessments()) {
-						if (a.getSkillCategory().getName().equalsIgnoreCase(cat)) {
+        for (Category c : cats) {
+            ArrayList<BatchAssessment> batches = new ArrayList<>();
+            CategoryBatches catBat = new CategoryBatches();
+            String cat = c.getName();
+            catBat.setCategory(cat);
 
-							assessments.add(a.getAverage());
-		        			}
-	        		}
-	        	}
-	        	batch.setAssessments(assessments);
-	        	batches.add(batch);
-	        }
-	        catBat.setBatchAssessments(batches);
-	        categories.add(catBat);
+            for (Batch b : trainer.getBatches()) {
+                ArrayList<Float> assessments = new ArrayList<>();
+                BatchAssessment batch = new BatchAssessment();
+                batch.setBatchName(b.getBatchName());
+                for (Week w : b.getWeeks()) {
+                    for (Assessment a : w.getAssessments()) {
+                        if (a.getSkillCategory().getName().equalsIgnoreCase(cat)) {
+
+                            assessments.add(a.getAverage());
+                        }
+                    }
+                }
+                batch.setAssessments(assessments);
+                batches.add(batch);
+            }
+            catBat.setBatchAssessments(batches);
+            categories.add(catBat);
         }
-        
+
         catAll.setCategories(categories);
 
-		return catAll;
+        return catAll;
     }
 
 }

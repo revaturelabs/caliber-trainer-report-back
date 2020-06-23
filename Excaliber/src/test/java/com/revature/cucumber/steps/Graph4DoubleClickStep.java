@@ -44,7 +44,7 @@ public class Graph4DoubleClickStep {
 	@Then("Graph 6 table does not exist with 4")
 	public void graph_6_table_does_not_exist_with_4() {
 		header6NotFound = driver.findElements(By.xpath("//*[@id='graph6Header']")).size() == 0;
-		
+		driver.quit();
 		assertTrue(header4Found && header5NotFound && header6NotFound);
 	}
 }

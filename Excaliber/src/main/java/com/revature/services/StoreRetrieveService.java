@@ -210,4 +210,32 @@ public class StoreRetrieveService {
 		// TODO Auto-generated method stub
 		return aDao.findAll();
 	}
+	
+	public List<Category> getCatgeoriesForTrainerAssessments(int id){
+		Trainer t=getTrainerById(id);
+		ArrayList<Category> categories=new ArrayList<Category>();
+		if (t==null) {
+			log.warn("No trainer found");
+		}else {
+			
+			for (Batch b: t.getBatches()) {
+				for (Week w:b.getWeeks()) {
+					for (Assessment a:w.getAssessments()) {
+						boolean haveIt=false;
+						Category cat=a.getSkillCategory();
+						for (Category c: categories) {
+							if (cat.getId()==c.getId()) {
+								haveIt=true;
+							}
+						}
+						if(!haveIt) {
+							categories.add(a.getSkillCategory());
+							}
+					}
+				}
+			}
+			
+		}
+		return categories;
+	}
 }

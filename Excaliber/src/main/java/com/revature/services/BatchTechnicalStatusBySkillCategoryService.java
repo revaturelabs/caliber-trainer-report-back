@@ -47,7 +47,7 @@ public class BatchTechnicalStatusBySkillCategoryService {
 
 		ArrayList<QCTSCategory> catList = new ArrayList<>();
 
-		List<Category> cat = sRserv.getAllCategories();
+		List<Category> cat = sRserv.getCatgeoriesForTrainerAssessments(id);
 		//Category loop started
 		for (Category ca : cat) {
 			QCTSCategory catego = new QCTSCategory();

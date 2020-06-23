@@ -21,7 +21,7 @@ public class AssessmentByCategoryService {
 		Trainer t = SRSserv.getTrainerById(id);
 		
 		if (t!=null) {
-			List<Category> categories = SRSserv.getAllCategories();
+			List<Category> categories = SRSserv.getCatgeoriesForTrainerAssessments(id);
 			List<Assessment> assessments = getTrainerAssessments(t);
 	
 			ArrayList<ArrayList<Float>> assessScores = new ArrayList<ArrayList<Float>>();

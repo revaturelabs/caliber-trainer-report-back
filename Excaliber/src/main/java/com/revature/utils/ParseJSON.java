@@ -19,7 +19,9 @@ import java.util.List;
  * The type Parse json.
  */
 public class ParseJSON {
+
     private static String json = "";
+
 
     private static final Logger log = Logger.getLogger(ParseJSON.class);
 

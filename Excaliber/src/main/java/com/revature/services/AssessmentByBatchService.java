@@ -35,14 +35,10 @@ public class AssessmentByBatchService {
 	 * @return the list
 	 */
 	public List<AssessmentByBatch> getABBTable (int id){
-		Trainer t=SRSserv.getTrainerById(id);
-		if (t!=null) {	
-			return loopBatches(t.getBatches());
-		}else {
-			return new ArrayList<AssessmentByBatch>();
-		}
-		
-	}
+        Trainer t = SRSserv.getTrainerById(id);
+
+        return loopBatches(t.getBatches());
+    }
 
 	/**
 	 * Loop batches list.

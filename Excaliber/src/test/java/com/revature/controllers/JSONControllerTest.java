@@ -50,7 +50,6 @@ class JSONControllerTest {
     @Test
     void storeTrainerWith200() throws Exception {
         String requestBody = ParseJSON.readDataFromFileString("data.json");
-        System.out.println(requestBody);
         this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))

@@ -1,0 +1,162 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: JSONController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: JSONController (com.revature.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JSONController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88.9%
+  </span>
+  <span class="absValue">
+    (16/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.Batch;
+<i>4</i>&nbsp;import com.revature.beans.Trainer;
+<i>5</i>&nbsp;import com.revature.services.StoreRetrieveService;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i>8</i>&nbsp;import org.springframework.web.bind.annotation.*;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import static com.revature.utils.ParseJSON.*;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * The type Json controller.
+<i>16</i>&nbsp; */
+<i>17</i>&nbsp;@RestController
+<i>18</i>&nbsp;@RequestMapping(path = &quot;/JSONController&quot;)
+<i>19</i>&nbsp;public class JSONController {
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    private final StoreRetrieveService SRSserv;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    /**
+<i>24</i>&nbsp;     * Instantiates a new Json controller.
+<i>25</i>&nbsp;     *
+<i>26</i>&nbsp;     * @param s the s
+<i>27</i>&nbsp;     */
+<i>28</i>&nbsp;    @Autowired
+<b class="fc"><i>29</i>&nbsp;    public JSONController(StoreRetrieveService s) {</b>
+<b class="fc"><i>30</i>&nbsp;        SRSserv = s;</b>
+<b class="fc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    /**
+<i>34</i>&nbsp;     * TODO
+<i>35</i>&nbsp;     *
+<i>36</i>&nbsp;     * @return string response entity
+<i>37</i>&nbsp;     */
+<i>38</i>&nbsp;    @GetMapping
+<i>39</i>&nbsp;    public ResponseEntity&lt;String&gt; getTrainer2() {
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;        Trainer trainer = getTrainer();</b>
+<b class="fc"><i>43</i>&nbsp;        List&lt;Batch&gt; batches = getBatch();</b>
+<b class="fc"><i>44</i>&nbsp;        trainer.setBatches(batches);</b>
+<b class="fc"><i>45</i>&nbsp;        SRSserv.addEntireTrainer(trainer);</b>
+<b class="fc"><i>46</i>&nbsp;        return ResponseEntity.ok().build();</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    /**
+<i>51</i>&nbsp;     * Add trainer boolean.
+<i>52</i>&nbsp;     *
+<i>53</i>&nbsp;     * @param payload JSON body to be stored in db
+<i>54</i>&nbsp;     * @return boolean boolean
+<i>55</i>&nbsp;     */
+<i>56</i>&nbsp;    @PostMapping(consumes = &quot;application/json&quot;, produces = &quot;application/json&quot;)
+<i>57</i>&nbsp;    public ResponseEntity add(@RequestBody String payload) {
+<i>58</i>&nbsp;        //set the JSON to be parsed
+<b class="fc"><i>59</i>&nbsp;        setJson(payload);</b>
+<b class="fc"><i>60</i>&nbsp;        Trainer trainer = null;</b>
+<i>61</i>&nbsp;        try {
+<i>62</i>&nbsp;            //create a trainer from the JSON payload
+<b class="fc"><i>63</i>&nbsp;            trainer = getTrainer();</b>
+<i>64</i>&nbsp;            //get the batch data
+<b class="fc"><i>65</i>&nbsp;            List&lt;Batch&gt; batches = getBatch();</b>
+<i>66</i>&nbsp;            //give trainer the batches
+<b class="fc"><i>67</i>&nbsp;            trainer.setBatches(batches);</b>
+<i>68</i>&nbsp;            //if trainer created
+<b class="fc"><i>69</i>&nbsp;            SRSserv.addEntireTrainer(trainer);</b>
+<b class="nc"><i>70</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>71</i>&nbsp;            return ResponseEntity.badRequest().body(&quot;NOT VALID JSON&quot;);</b>
+<b class="fc"><i>72</i>&nbsp;        }</b>
+<b class="fc"><i>73</i>&nbsp;        return ResponseEntity.ok().build();</b>
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-24 13:32</div>
+</div>
+</body>
+</html>

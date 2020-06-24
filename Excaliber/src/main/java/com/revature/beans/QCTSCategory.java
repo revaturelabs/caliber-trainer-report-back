@@ -15,7 +15,7 @@ public class QCTSCategory {
      */
     public QCTSCategory() {
         categoryName = "";
-        batches = new ArrayList<>();
+        batches = new ArrayList<BatchTSCategory>();
     }
 
     /**

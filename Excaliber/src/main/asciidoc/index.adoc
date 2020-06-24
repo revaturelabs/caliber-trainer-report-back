@@ -2,17 +2,33 @@
 
 == Introduction
 
-Spring REST Docs generated documentation.
+Excaliber REST Docs generated documentation.
+
+== JSONController API
+
+API endpoints used to store trainer.
+
+==== Sample Request
+
+include::{snippets}/JSONController/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/JSONController/http-response.adoc[]
+
+==== CURL sample
+
+include::{snippets}/JSONController/curl-request.adoc[]
 
 == TableController API
 
-Collection of CRUD API endpoints used to get information about Trainer and Batch.
+Collection of CRUD API endpoints used to get information about Table Data.
 
-=== Get Table data By trainer ID
+=== Get Table data
 
-Obtains a specific trainer registered in the application by its unique identifier.
+Obtains a specific table data for a trainer.
 
-==== Sample Request
+==== Sample Request Assessment By Batch
 
 include::{snippets}/1/AssessmentByBatch/http-request.adoc[]
 
@@ -28,17 +44,86 @@ include::{snippets}/1/AssessmentByBatch/curl-request.adoc[]
 
 include::{snippets}/1/AssessmentByBatch/path-parameters.adoc[]
 
-=== Get Trainer By ID
+==== Sample Request Assessment By Category
 
-Obtains a specific trainer registered in the application by its unique identifier.
-
-==== Sample Request
-
-include::{snippets}/JSONController/http-request.adoc[]
+include::{snippets}/1/AssessmentByCategory/http-request.adoc[]
 
 ==== Sample Response
 
-include::{snippets}/JSONController/http-response.adoc[]
+include::{snippets}/1/AssessmentByCategory/http-response.adoc[]
 
 ==== CURL sample
-include::{snippets}/JSONController/curl-request.adoc[]
+
+include::{snippets}/1/AssessmentByCategory/curl-request.adoc[]
+
+==== Path sample
+
+include::{snippets}/1/AssessmentByCategory/path-parameters.adoc[]
+
+==== Sample Request Assess Scores By Category All Batches
+
+include::{snippets}/1/AssessScoresByCategoryAllBatches/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/1/AssessScoresByCategoryAllBatches/http-response.adoc[]
+
+==== CURL sample
+
+include::{snippets}/1/AssessScoresByCategoryAllBatches/curl-request.adoc[]
+
+==== Path sample
+
+include::{snippets}/1/AssessScoresByCategoryAllBatches/path-parameters.adoc[]
+
+==== Sample Request Technical Status By Week
+
+include::{snippets}/1/TechnicalStatusByWeek/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/1/TechnicalStatusByWeek/http-response.adoc[]
+
+==== CURL sample
+
+include::{snippets}/1/TechnicalStatusByWeek/curl-request.adoc[]
+
+==== Path sample
+
+include::{snippets}/1/TechnicalStatusByWeek/path-parameters.adoc[]
+
+==== Sample Request Batch Technical Status By Skill Category
+
+include::{snippets}/1/BatchTechnicalStatusBySkillCategory/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/1/BatchTechnicalStatusBySkillCategory/http-response.adoc[]
+
+==== CURL sample
+
+include::{snippets}/1/BatchTechnicalStatusBySkillCategory/curl-request.adoc[]
+
+==== Path sample
+
+include::{snippets}/1/BatchTechnicalStatusBySkillCategory/path-parameters.adoc[]
+
+==== Sample Request Technical Status PerBatch
+
+include::{snippets}/1/TechnicalStatusPerBatch/http-request.adoc[]
+
+==== Sample Response
+
+include::{snippets}/1/TechnicalStatusPerBatch/http-response.adoc[]
+
+==== CURL sample
+
+include::{snippets}/1/TechnicalStatusPerBatch/curl-request.adoc[]
+
+==== Path sample
+
+include::{snippets}/1/TechnicalStatusPerBatch/path-parameters.adoc[]
+
+
+
+

@@ -1,0 +1,211 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TechnicalStatusByWeekService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TechnicalStatusByWeekService (com.revature.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TechnicalStatusByWeekService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (8/ 64)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.Batch;
+<i>4</i>&nbsp;import com.revature.beans.Category;
+<i>5</i>&nbsp;import com.revature.beans.Trainer;
+<i>6</i>&nbsp;import com.revature.beans.Week;
+<i>7</i>&nbsp;import com.revature.tables.TechnicalStatusByWeek;
+<i>8</i>&nbsp;import org.apache.log4j.Logger;
+<i>9</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>10</i>&nbsp;import org.springframework.stereotype.Service;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.text.DecimalFormat;
+<i>13</i>&nbsp;import java.util.ArrayList;
+<i>14</i>&nbsp;import java.util.List;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;/**
+<i>17</i>&nbsp; * The type Technical status by week service.
+<i>18</i>&nbsp; */
+<i>19</i>&nbsp;@Service
+<i>20</i>&nbsp;public class TechnicalStatusByWeekService {
+<i>21</i>&nbsp;	/**
+<i>22</i>&nbsp;	 * The Log.
+<i>23</i>&nbsp;	 */
+<b class="fc"><i>24</i>&nbsp;	private final Logger log = Logger.getLogger(TechnicalStatusByWeekService.class);</b>
+<i>25</i>&nbsp;	private final StoreRetrieveService sRSserv;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;	/**
+<i>28</i>&nbsp;	 * Instantiates a new Technical status by week service.
+<i>29</i>&nbsp;	 *
+<i>30</i>&nbsp;	 * @param s the s
+<i>31</i>&nbsp;	 */
+<i>32</i>&nbsp;	@Autowired
+<b class="fc"><i>33</i>&nbsp;	public TechnicalStatusByWeekService(StoreRetrieveService s) {</b>
+<b class="fc"><i>34</i>&nbsp;		this.sRSserv = s;</b>
+<b class="fc"><i>35</i>&nbsp;	}</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;	/**
+<i>38</i>&nbsp;	 * Gets table data.
+<i>39</i>&nbsp;	 *
+<i>40</i>&nbsp;	 * @param id the id
+<i>41</i>&nbsp;	 * @return the table data
+<i>42</i>&nbsp;	 */
+<i>43</i>&nbsp;	public List&lt;TechnicalStatusByWeek&gt; getTechnicalStatusByWeek(int id) {
+<b class="fc"><i>44</i>&nbsp;        Trainer trainer = sRSserv.getTrainerById(id);</b>
+<b class="fc"><i>45</i>&nbsp;        List&lt;TechnicalStatusByWeek&gt; dataTransferObject = new ArrayList&lt;&gt;();</b>
+<i>46</i>&nbsp;
+<b class="fc"><i>47</i>&nbsp;        log.info(&quot;TechnicalStatusByWeek_Service: &quot;</b>
+<i>48</i>&nbsp;                + &quot;Getting table data for TechnicalStatusByWeek&quot;);
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;        //for each batch
+<b class="fc"><i>51</i>&nbsp;        for (Batch b : trainer.getBatches()) {</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;            // for each week of that batch
+<b class="nc"><i>54</i>&nbsp;            for (Week w : b.getWeeks()) {</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;                // for each category
+<b class="nc"><i>57</i>&nbsp;                for (Category category : w.getCategories()) {</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;                    // check if category is already in table
+<b class="nc"><i>60</i>&nbsp;                    boolean match = false;</b>
+<b class="nc"><i>61</i>&nbsp;                    for (TechnicalStatusByWeek categoryRow : dataTransferObject) {</b>
+<b class="nc"><i>62</i>&nbsp;                        if (category.getName().equals(categoryRow.getCategory())) { // matching category exists</b>
+<b class="nc"><i>63</i>&nbsp;                            match = true;</b>
+<i>64</i>&nbsp;                            // increment technical status count
+<b class="nc"><i>65</i>&nbsp;                            if (w.getTechnicalStatus() != null) {</b>
+<b class="nc"><i>66</i>&nbsp;                                if (w.getTechnicalStatus().contains(&quot;null&quot;)) {</b>
+<b class="nc"><i>67</i>&nbsp;                                    categoryRow.setNullCount(categoryRow.getNullCount() + 1);</b>
+<b class="nc"><i>68</i>&nbsp;                                } else if (w.getTechnicalStatus().contains(&quot;Poor&quot;)) {</b>
+<b class="nc"><i>69</i>&nbsp;                                    categoryRow.setPoorCount(categoryRow.getPoorCount() + 1);</b>
+<b class="nc"><i>70</i>&nbsp;                                } else if (w.getTechnicalStatus().contains(&quot;Average&quot;)) {</b>
+<b class="nc"><i>71</i>&nbsp;                                    categoryRow.setAverageCount(categoryRow.getAverageCount() + 1);</b>
+<b class="nc"><i>72</i>&nbsp;                                } else if (w.getTechnicalStatus().contains(&quot;Good&quot;)) {</b>
+<b class="nc"><i>73</i>&nbsp;                                    categoryRow.setGoodCount(categoryRow.getGoodCount() + 1);</b>
+<b class="nc"><i>74</i>&nbsp;                                } else if (w.getTechnicalStatus().contains(&quot;Superstar&quot;)) {</b>
+<b class="nc"><i>75</i>&nbsp;                                    categoryRow.setSuperstarCount(categoryRow.getSuperstarCount() + 1);</b>
+<i>76</i>&nbsp;                                }
+<i>77</i>&nbsp;                            }
+<i>78</i>&nbsp;                            break;
+<i>79</i>&nbsp;                        }
+<b class="nc"><i>80</i>&nbsp;                    }</b>
+<i>81</i>&nbsp;                    // check if category match was not found in table
+<b class="nc"><i>82</i>&nbsp;                    if (!match) {</b>
+<b class="nc"><i>83</i>&nbsp;                        TechnicalStatusByWeek newCategoryRow = new TechnicalStatusByWeek();</b>
+<b class="nc"><i>84</i>&nbsp;                        newCategoryRow.setCategory(category.getName());</b>
+<i>85</i>&nbsp;                        // increment technical status count
+<b class="nc"><i>86</i>&nbsp;                        if (w.getTechnicalStatus() != null) {</b>
+<b class="nc"><i>87</i>&nbsp;                            if (w.getTechnicalStatus().contains(&quot;null&quot;)) {</b>
+<b class="nc"><i>88</i>&nbsp;                                newCategoryRow.setNullCount(newCategoryRow.getNullCount() + 1);</b>
+<b class="nc"><i>89</i>&nbsp;                            } else if (w.getTechnicalStatus().contains(&quot;Poor&quot;)) {</b>
+<b class="nc"><i>90</i>&nbsp;                                newCategoryRow.setPoorCount(newCategoryRow.getPoorCount() + 1);</b>
+<b class="nc"><i>91</i>&nbsp;                            } else if (w.getTechnicalStatus().contains(&quot;Average&quot;)) {</b>
+<b class="nc"><i>92</i>&nbsp;                                newCategoryRow.setAverageCount(newCategoryRow.getAverageCount() + 1);</b>
+<b class="nc"><i>93</i>&nbsp;                            } else if (w.getTechnicalStatus().contains(&quot;Good&quot;)) {</b>
+<b class="nc"><i>94</i>&nbsp;                                newCategoryRow.setGoodCount(newCategoryRow.getGoodCount() + 1);</b>
+<b class="nc"><i>95</i>&nbsp;                            } else if (w.getTechnicalStatus().contains(&quot;Superstar&quot;)) {</b>
+<b class="nc"><i>96</i>&nbsp;                                newCategoryRow.setSuperstarCount(newCategoryRow.getSuperstarCount() + 1);</b>
+<i>97</i>&nbsp;                            }
+<i>98</i>&nbsp;                        }
+<b class="nc"><i>99</i>&nbsp;                        dataTransferObject.add(newCategoryRow);</b>
+<i>100</i>&nbsp;                    }
+<b class="nc"><i>101</i>&nbsp;                }</b>
+<b class="nc"><i>102</i>&nbsp;            }</b>
+<b class="nc"><i>103</i>&nbsp;        }</b>
+<i>104</i>&nbsp;        // calculate and set percentages
+<b class="nc"><i>105</i>&nbsp;        for (TechnicalStatusByWeek categoryRow : dataTransferObject) {</b>
+<i>106</i>&nbsp;            // get sum total of data points for current category
+<b class="nc"><i>107</i>&nbsp;            Double totalDataPoints = 0.0;</b>
+<b class="nc"><i>108</i>&nbsp;            totalDataPoints += categoryRow.getNullCount();</b>
+<b class="nc"><i>109</i>&nbsp;            totalDataPoints += categoryRow.getPoorCount();</b>
+<b class="nc"><i>110</i>&nbsp;            totalDataPoints += categoryRow.getAverageCount();</b>
+<b class="nc"><i>111</i>&nbsp;            totalDataPoints += categoryRow.getGoodCount();</b>
+<b class="nc"><i>112</i>&nbsp;            totalDataPoints += categoryRow.getSuperstarCount();</b>
+<i>113</i>&nbsp;            // set averages as technical status count / total data points
+<b class="nc"><i>114</i>&nbsp;            DecimalFormat df = new DecimalFormat(&quot;#.##&quot;); // for formatting to two decimal places</b>
+<b class="nc"><i>115</i>&nbsp;            Double nullPercent = (categoryRow.getNullCount() / totalDataPoints) * 100;</b>
+<b class="nc"><i>116</i>&nbsp;            categoryRow.setNullAvg(Double.parseDouble(df.format(nullPercent))); // set formatted null percent</b>
+<b class="nc"><i>117</i>&nbsp;            Double poorPercent = (categoryRow.getPoorCount() / totalDataPoints) * 100;</b>
+<b class="nc"><i>118</i>&nbsp;            categoryRow.setPoorAvg(Double.parseDouble(df.format(poorPercent))); // set formatted poor percent</b>
+<b class="nc"><i>119</i>&nbsp;            Double averagePercent = (categoryRow.getAverageCount() / totalDataPoints) * 100;</b>
+<b class="nc"><i>120</i>&nbsp;            categoryRow.setAverageAvg(Double.parseDouble(df.format(averagePercent))); // set formatted average percent</b>
+<b class="nc"><i>121</i>&nbsp;            Double goodPercent = (categoryRow.getGoodCount() / totalDataPoints) * 100;</b>
+<b class="nc"><i>122</i>&nbsp;            categoryRow.setGoodAvg(Double.parseDouble(df.format(goodPercent))); // set formatted good percent</b>
+<b class="nc"><i>123</i>&nbsp;            Double superstarPercent = (categoryRow.getSuperstarCount() / totalDataPoints) * 100;</b>
+<b class="nc"><i>124</i>&nbsp;            categoryRow.setSuperstarAvg(Double.parseDouble(df.format(superstarPercent))); // set formatted super star percent</b>
+<b class="nc"><i>125</i>&nbsp;        }</b>
+<b class="nc"><i>126</i>&nbsp;        return dataTransferObject;</b>
+<i>127</i>&nbsp;    }    
+<i>128</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-24 13:32</div>
+</div>
+</body>
+</html>

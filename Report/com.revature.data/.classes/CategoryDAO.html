@@ -1,0 +1,67 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CategoryDAO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CategoryDAO (com.revature.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">CategoryDAO</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.Category;
+<i>4</i>&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+<i>5</i>&nbsp;import org.springframework.stereotype.Repository;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * The interface Category dao.
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;@Repository
+<i>11</i>&nbsp;public interface CategoryDAO extends JpaRepository&lt;Category, Integer&gt; {
+<i>12</i>&nbsp;    /**
+<i>13</i>&nbsp;     * Find category by name category.
+<i>14</i>&nbsp;     *
+<i>15</i>&nbsp;     * @param name the name
+<i>16</i>&nbsp;     * @return the category
+<i>17</i>&nbsp;     */
+<i>18</i>&nbsp;    Category findCategoryByName(String name);
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-24 13:32</div>
+</div>
+</body>
+</html>

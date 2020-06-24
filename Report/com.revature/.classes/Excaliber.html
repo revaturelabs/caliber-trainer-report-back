@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Excaliber</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Excaliber (com.revature)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Excaliber</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/ 5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Excaliber$$EnhancerBySpringCGLIB$$e34eeeb8</td>
+  </tr>
+  <tr>
+    <td class="name">Excaliber$$EnhancerBySpringCGLIB$$e34eeeb8$$FastClassBySpringCGLIB$$d5b2eefc</td>
+  </tr>
+  <tr>
+    <td class="name">Excaliber$$FastClassBySpringCGLIB$$a5852c52</td>
+  </tr>
+  <tr>
+    <td class="name">Excaliber$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (6/ 9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.springframework.boot.SpringApplication;
+<i>4</i>&nbsp;import org.springframework.boot.autoconfigure.SpringBootApplication;
+<i>5</i>&nbsp;import org.springframework.context.annotation.Bean;
+<i>6</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>7</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
+<i>8</i>&nbsp;import org.springframework.web.servlet.config.annotation.CorsRegistry;
+<i>9</i>&nbsp;import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;/**
+<i>12</i>&nbsp; * The type Excaliber.
+<i>13</i>&nbsp; */
+<i>14</i>&nbsp;@SpringBootApplication
+<i>15</i>&nbsp;@RestController
+<b class="fc"><i>16</i>&nbsp;public class Excaliber {</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    /**
+<i>19</i>&nbsp;     * The entry point of application.
+<i>20</i>&nbsp;     *
+<i>21</i>&nbsp;     * @param args the input arguments
+<i>22</i>&nbsp;     */
+<i>23</i>&nbsp;    public static void main(String[] args) {
+<b class="nc"><i>24</i>&nbsp;        SpringApplication.run(Excaliber.class, args);</b>
+<b class="nc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    /**
+<i>28</i>&nbsp;     * Home page used to check if spring is running
+<i>29</i>&nbsp;     *
+<i>30</i>&nbsp;     * @return the string
+<i>31</i>&nbsp;     */
+<i>32</i>&nbsp;    @RequestMapping(&quot;/&quot;)
+<i>33</i>&nbsp;    public String index() {
+<b class="nc"><i>34</i>&nbsp;        return &quot;Greetings from Spring Boot!&quot;;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    /**
+<i>39</i>&nbsp;     * Cors configurer web mvc configurer.
+<i>40</i>&nbsp;     *
+<i>41</i>&nbsp;     * @return the web mvc configurer
+<i>42</i>&nbsp;     */
+<i>43</i>&nbsp;    @Bean
+<i>44</i>&nbsp;    public WebMvcConfigurer corsConfigurer() {
+<b class="fc"><i>45</i>&nbsp;        return new WebMvcConfigurer() {</b>
+<i>46</i>&nbsp;            @Override
+<i>47</i>&nbsp;            public void addCorsMappings(CorsRegistry registry) {
+<b class="fc"><i>48</i>&nbsp;                registry.addMapping(&quot;/**&quot;).allowedMethods(&quot;GET&quot;, &quot;OPTIONS&quot;, &quot;PUT&quot;, &quot;POST&quot;, &quot;PATCH&quot;, &quot;DELETE&quot;)</b>
+<b class="fc"><i>49</i>&nbsp;                        .allowedOrigins(&quot;http://localhost:4200&quot;).allowedHeaders(&quot;*&quot;).allowCredentials(true);</b>
+<b class="fc"><i>50</i>&nbsp;            }</b>
+<i>51</i>&nbsp;        };
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-24 13:32</div>
+</div>
+</body>
+</html>

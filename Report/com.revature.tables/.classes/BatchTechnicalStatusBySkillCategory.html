@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BatchTechnicalStatusBySkillCategory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.revature.tables</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BatchTechnicalStatusBySkillCategory (com.revature.tables)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BatchTechnicalStatusBySkillCategory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (2/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    23.8%
+  </span>
+  <span class="absValue">
+    (5/ 21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.revature.tables;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.revature.beans.QCTSCategory;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/* Batch Technical Status Bean
+<i>8</i>&nbsp;	
+<i>9</i>&nbsp;	***Bean to generate graph for Technical Status per batch according to Category***
+<i>10</i>&nbsp;	*
+<i>11</i>&nbsp;	*User Story: 
+<i>12</i>&nbsp;		• To generate graphical representation of QC Technical Status
+<i>13</i>&nbsp;			per batch according to Category.
+<i>14</i>&nbsp;			
+<i>15</i>&nbsp;	*Objective: 
+<i>16</i>&nbsp;		•Generate the metrics that allows to see how well a trainer is 
+<i>17</i>&nbsp;			performing per batch according to Category.
+<i>18</i>&nbsp;			
+<i>19</i>&nbsp;	*Data-Points:
+<i>20</i>&nbsp;		•Batch ID from Batch
+<i>21</i>&nbsp;		•Batch Name from Batch
+<i>22</i>&nbsp;		•Technical Status from Batch&#39;s QC notes.
+<i>23</i>&nbsp;		•Category from Batch&#39;s QC notes.
+<i>24</i>&nbsp;*/
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;/**
+<i>27</i>&nbsp; * The type Batch technical status by skill category.
+<i>28</i>&nbsp; */
+<i>29</i>&nbsp;public class BatchTechnicalStatusBySkillCategory {
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;	private ArrayList&lt;QCTSCategory&gt; batchByCategory;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;	/**
+<i>35</i>&nbsp;	 * Instantiates a new Batch technical status by skill category.
+<i>36</i>&nbsp;	 */
+<i>37</i>&nbsp;//Constructor
+<b class="fc"><i>38</i>&nbsp;	public BatchTechnicalStatusBySkillCategory() {</b>
+<b class="fc"><i>39</i>&nbsp;		batchByCategory = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>40</i>&nbsp;	}</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;	/**
+<i>43</i>&nbsp;	 * Gets batch by category.
+<i>44</i>&nbsp;	 *
+<i>45</i>&nbsp;	 * @return the batch by category
+<i>46</i>&nbsp;	 */
+<i>47</i>&nbsp;	public ArrayList&lt;QCTSCategory&gt; getBatchByCategory() {
+<b class="nc"><i>48</i>&nbsp;		return batchByCategory;</b>
+<i>49</i>&nbsp;	}
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;	/**
+<i>52</i>&nbsp;	 * Sets batch by category.
+<i>53</i>&nbsp;	 *
+<i>54</i>&nbsp;	 * @param batchByCategory the batch by category
+<i>55</i>&nbsp;	 */
+<i>56</i>&nbsp;	public void setBatchByCategory(ArrayList&lt;QCTSCategory&gt; batchByCategory) {
+<b class="fc"><i>57</i>&nbsp;		this.batchByCategory = batchByCategory;</b>
+<b class="fc"><i>58</i>&nbsp;	}</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;	@Override
+<i>62</i>&nbsp;	public int hashCode() {
+<b class="nc"><i>63</i>&nbsp;		final int prime = 31;</b>
+<b class="nc"><i>64</i>&nbsp;		int result = 1;</b>
+<b class="nc"><i>65</i>&nbsp;		result = prime * result + ((batchByCategory == null) ? 0 : batchByCategory.hashCode());</b>
+<b class="nc"><i>66</i>&nbsp;		return result;</b>
+<i>67</i>&nbsp;	}
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;	@Override
+<i>70</i>&nbsp;	public boolean equals(Object obj) {
+<b class="nc"><i>71</i>&nbsp;		if (this == obj)</b>
+<b class="nc"><i>72</i>&nbsp;			return true;</b>
+<b class="nc"><i>73</i>&nbsp;		if (obj == null)</b>
+<b class="nc"><i>74</i>&nbsp;			return false;</b>
+<b class="nc"><i>75</i>&nbsp;		if (getClass() != obj.getClass())</b>
+<b class="nc"><i>76</i>&nbsp;			return false;</b>
+<b class="nc"><i>77</i>&nbsp;		BatchTechnicalStatusBySkillCategory other = (BatchTechnicalStatusBySkillCategory) obj;</b>
+<b class="nc"><i>78</i>&nbsp;		if (batchByCategory == null) {</b>
+<b class="nc"><i>79</i>&nbsp;			return other.batchByCategory == null;</b>
+<b class="nc"><i>80</i>&nbsp;		} else return batchByCategory.equals(other.batchByCategory);</b>
+<i>81</i>&nbsp;	}
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;	@Override
+<i>84</i>&nbsp;	public String toString() {
+<b class="nc"><i>85</i>&nbsp;		return &quot;BatchTechnicalStatusBySkillCategory [batchByCategory=&quot; + batchByCategory + &quot;]&quot;;</b>
+<i>86</i>&nbsp;	}
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-24 13:32</div>
+</div>
+</body>
+</html>

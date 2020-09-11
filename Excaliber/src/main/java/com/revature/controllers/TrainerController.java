@@ -35,4 +35,9 @@ public class TrainerController {
     public ResponseEntity<Trainer> getTrainers(@PathVariable int trainerId) {
         return ResponseEntity.ok(SRSserv.getTrainerById(trainerId));
     }
+    
+    @GetMapping(path = "/batches/{trainerId}")
+    public ResponseEntity<List<Batch>> getTrainerBatches(@PathVariable int trainerId) {
+    	return ResponseEntity.ok(SRSserv.getBatchesByTrainer(trainerId));
+    }
 }

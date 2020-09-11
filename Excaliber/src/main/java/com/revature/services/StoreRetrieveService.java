@@ -147,6 +147,12 @@ public class StoreRetrieveService {
         t.setId(addTrainer(t));
         return t;
     }
+	
+    public List<Batch> getBatchesByTrainer(Integer id){
+    	Trainer trainer = getTrainerById(id);
+    	List<Batch> batches = trainer.getBatches();
+    	return batches;
+    }
 
     /**
      * Gets trainer by id.

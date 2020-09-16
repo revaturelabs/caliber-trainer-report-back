@@ -2,6 +2,7 @@ package com.revature.services;
 
 import com.revature.controllers.JSONController;
 import com.revature.tables.TechnicalStatusPerBatch;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
+@Disabled
         // to manage the session
 class TechnicalStatusPerBatchServiceTest {
 

@@ -37,7 +37,7 @@ public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresBy
     public AssessScoresByCategoryAllBatches getAssessScoresByCategoryAllBatches(Integer id) {
         Trainer trainer = SRSserv.getTrainerById(id);
         List<Category> cats;
-        cats = SRSserv.getCatgeoriesForTrainerAssessments(id);
+        cats = SRSserv.getAllCategories();
         AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
         ArrayList<CategoryBatches> categories = new ArrayList<>();
 

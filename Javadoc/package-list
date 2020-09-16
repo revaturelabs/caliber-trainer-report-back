@@ -4,5 +4,4 @@ com.revature.controllers
 com.revature.data
 com.revature.services
 com.revature.tables
-com.revature.tests
 com.revature.utils

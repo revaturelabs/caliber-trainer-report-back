@@ -23,12 +23,9 @@
 <h1>Coverage Summary for Class: Assessment (com.revature.beans)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -45,27 +42,43 @@
     100%
   </span>
   <span class="absValue">
-    (1/ 1)
+    (13/ 13)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    69.2%
+    100%
   </span>
   <span class="absValue">
-    (9/ 13)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    67.9%
-  </span>
-  <span class="absValue">
-    (19/ 28)
+    (28/ 28)
   </span>
 </td>
 </tr>
-
+  <tr>
+    <td class="name">Assessment$HibernateProxy$Qd6Ll1UL</td>
+  </tr>
+  <tr>
+    <td class="name">Assessment$HibernateProxy$wpoN04ur</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (28/ 28)
+  </span>
+</td>
+</tr>
 </table>
 
 <br/>
@@ -89,147 +102,145 @@
 <i>15</i>&nbsp;    private Integer scoreWeight; // how much the assessment score matters to the weekly average (raw score)
 <i>16</i>&nbsp;    @Column(name = &quot;type0&quot;)
 <i>17</i>&nbsp;    private String type;
-<i>18</i>&nbsp;    //private Integer weekId;
-<i>19</i>&nbsp;    @Column
-<i>20</i>&nbsp;    private Float average;
-<i>21</i>&nbsp;
-<i>22</i>&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
-<i>23</i>&nbsp;    @JoinColumn(name = &quot;category_id&quot;) //need column name------------------------------------------------
-<i>24</i>&nbsp;    private Category skillCategory;
-<i>25</i>&nbsp;
-<i>26</i>&nbsp;    /**
-<i>27</i>&nbsp;     * Instantiates a new Assessment.
-<i>28</i>&nbsp;     */
-<b class="fc"><i>29</i>&nbsp;    public Assessment() {</b>
-<b class="fc"><i>30</i>&nbsp;        id = 0;</b>
-<b class="fc"><i>31</i>&nbsp;        scoreWeight = 0;</b>
-<b class="fc"><i>32</i>&nbsp;        type = &quot;&quot;;</b>
-<i>33</i>&nbsp;        //weekId = 0;
-<b class="fc"><i>34</i>&nbsp;        average = (float) 0;</b>
-<b class="fc"><i>35</i>&nbsp;        skillCategory = null;</b>
-<b class="fc"><i>36</i>&nbsp;    }</b>
-<i>37</i>&nbsp;
-<i>38</i>&nbsp;    /**
-<i>39</i>&nbsp;     * Instantiates a new Assessment.
-<i>40</i>&nbsp;     *
-<i>41</i>&nbsp;     * @param scoreWeight the score weight
-<i>42</i>&nbsp;     * @param type        the type
-<i>43</i>&nbsp;     * @param average     the average
-<i>44</i>&nbsp;     */
-<b class="nc"><i>45</i>&nbsp;    public Assessment(Integer scoreWeight, String type, Float average) {</b>
-<b class="nc"><i>46</i>&nbsp;        this.scoreWeight = scoreWeight;</b>
-<b class="nc"><i>47</i>&nbsp;        this.type = type;</b>
-<b class="nc"><i>48</i>&nbsp;        this.average = average;</b>
-<b class="nc"><i>49</i>&nbsp;    }</b>
-<i>50</i>&nbsp;
-<i>51</i>&nbsp;
-<i>52</i>&nbsp;    @Override
-<i>53</i>&nbsp;    public String toString() {
-<b class="nc"><i>54</i>&nbsp;        return &quot;Assessment{&quot; +</b>
-<i>55</i>&nbsp;                &quot;id=&quot; + id +
-<i>56</i>&nbsp;                &quot;, scoreWeight=&quot; + scoreWeight +
-<i>57</i>&nbsp;                &quot;, type=&#39;&quot; + type + &#39;\&#39;&#39; +
-<i>58</i>&nbsp;                &quot;, average=&quot; + average +
-<i>59</i>&nbsp;                &quot;, skillCategory=&#39;&quot; + skillCategory + &#39;\&#39;&#39; +
-<i>60</i>&nbsp;                &#39;}&#39;;
-<i>61</i>&nbsp;    }
-<i>62</i>&nbsp;
-<i>63</i>&nbsp;    /**
-<i>64</i>&nbsp;     * Gets skillCategory.
-<i>65</i>&nbsp;     *
-<i>66</i>&nbsp;     * @return Value of skillCategory.
-<i>67</i>&nbsp;     */
-<i>68</i>&nbsp;    public Category getSkillCategory() {
-<b class="nc"><i>69</i>&nbsp;        return skillCategory;</b>
-<i>70</i>&nbsp;    }
-<i>71</i>&nbsp;
-<i>72</i>&nbsp;    /**
-<i>73</i>&nbsp;     * Sets new skillCategory.
-<i>74</i>&nbsp;     *
-<i>75</i>&nbsp;     * @param skillCategory New value of skillCategory.
-<i>76</i>&nbsp;     */
-<i>77</i>&nbsp;    public void setSkillCategory(Category skillCategory) {
-<b class="nc"><i>78</i>&nbsp;        this.skillCategory = skillCategory;</b>
-<b class="nc"><i>79</i>&nbsp;    }</b>
-<i>80</i>&nbsp;
-<i>81</i>&nbsp;    /**
-<i>82</i>&nbsp;     * Gets id.
-<i>83</i>&nbsp;     *
-<i>84</i>&nbsp;     * @return Value of id.
-<i>85</i>&nbsp;     */
-<i>86</i>&nbsp;    public Integer getId() {
-<b class="fc"><i>87</i>&nbsp;        return id;</b>
-<i>88</i>&nbsp;    }
-<i>89</i>&nbsp;
-<i>90</i>&nbsp;    /**
-<i>91</i>&nbsp;     * Sets new id.
-<i>92</i>&nbsp;     *
-<i>93</i>&nbsp;     * @param id New value of id.
-<i>94</i>&nbsp;     */
-<i>95</i>&nbsp;    public void setId(Integer id) {
-<b class="fc"><i>96</i>&nbsp;        this.id = id;</b>
-<b class="fc"><i>97</i>&nbsp;    }</b>
-<i>98</i>&nbsp;
-<i>99</i>&nbsp;    /**
-<i>100</i>&nbsp;     * Gets type.
-<i>101</i>&nbsp;     *
-<i>102</i>&nbsp;     * @return Value of type.
-<i>103</i>&nbsp;     */
-<i>104</i>&nbsp;    public String getType() {
-<b class="fc"><i>105</i>&nbsp;        return type;</b>
-<i>106</i>&nbsp;    }
-<i>107</i>&nbsp;
-<i>108</i>&nbsp;    /**
-<i>109</i>&nbsp;     * Sets new type.
-<i>110</i>&nbsp;     *
-<i>111</i>&nbsp;     * @param type New value of type.
-<i>112</i>&nbsp;     */
-<i>113</i>&nbsp;    public void setType(String type) {
-<b class="fc"><i>114</i>&nbsp;        this.type = type;</b>
-<b class="fc"><i>115</i>&nbsp;    }</b>
-<i>116</i>&nbsp;
-<i>117</i>&nbsp;    /**
-<i>118</i>&nbsp;     * Gets scoreWeight.
-<i>119</i>&nbsp;     *
-<i>120</i>&nbsp;     * @return Value of scoreWeight.
-<i>121</i>&nbsp;     */
-<i>122</i>&nbsp;    public Integer getScoreWeight() {
-<b class="fc"><i>123</i>&nbsp;        return scoreWeight;</b>
-<i>124</i>&nbsp;    }
-<i>125</i>&nbsp;
-<i>126</i>&nbsp;    /**
-<i>127</i>&nbsp;     * Sets new scoreWeight.
-<i>128</i>&nbsp;     *
-<i>129</i>&nbsp;     * @param scoreWeight New value of scoreWeight.
-<i>130</i>&nbsp;     */
-<i>131</i>&nbsp;    public void setScoreWeight(Integer scoreWeight) {
-<b class="fc"><i>132</i>&nbsp;        this.scoreWeight = scoreWeight;</b>
-<b class="fc"><i>133</i>&nbsp;    }</b>
-<i>134</i>&nbsp;
-<i>135</i>&nbsp;    /**
-<i>136</i>&nbsp;     * Gets average.
-<i>137</i>&nbsp;     *
-<i>138</i>&nbsp;     * @return Value of average.
-<i>139</i>&nbsp;     */
-<i>140</i>&nbsp;    public Float getAverage() {
-<b class="fc"><i>141</i>&nbsp;        return average;</b>
-<i>142</i>&nbsp;    }
-<i>143</i>&nbsp;
-<i>144</i>&nbsp;    /**
-<i>145</i>&nbsp;     * Sets new average.
-<i>146</i>&nbsp;     *
-<i>147</i>&nbsp;     * @param average New value of average.
-<i>148</i>&nbsp;     */
-<i>149</i>&nbsp;    public void setAverage(Float average) {
-<b class="fc"><i>150</i>&nbsp;        this.average = average;</b>
-<b class="fc"><i>151</i>&nbsp;    }</b>
-<i>152</i>&nbsp;}
+<i>18</i>&nbsp;    @Column
+<i>19</i>&nbsp;    private Float average;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
+<i>22</i>&nbsp;    @JoinColumn(name = &quot;category_id&quot;)
+<i>23</i>&nbsp;    private Category skillCategory;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    /**
+<i>26</i>&nbsp;     * Instantiates a new Assessment.
+<i>27</i>&nbsp;     */
+<b class="fc"><i>28</i>&nbsp;    public Assessment() {</b>
+<b class="fc"><i>29</i>&nbsp;        id = 0;</b>
+<b class="fc"><i>30</i>&nbsp;        scoreWeight = 0;</b>
+<b class="fc"><i>31</i>&nbsp;        type = &quot;&quot;;</b>
+<b class="fc"><i>32</i>&nbsp;        average = (float) 0;</b>
+<b class="fc"><i>33</i>&nbsp;        skillCategory = null;</b>
+<b class="fc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    /**
+<i>37</i>&nbsp;     * Instantiates a new Assessment.
+<i>38</i>&nbsp;     *
+<i>39</i>&nbsp;     * @param scoreWeight the score weight
+<i>40</i>&nbsp;     * @param type        the type
+<i>41</i>&nbsp;     * @param average     the average
+<i>42</i>&nbsp;     */
+<b class="fc"><i>43</i>&nbsp;    public Assessment(Integer scoreWeight, String type, Float average) {</b>
+<b class="fc"><i>44</i>&nbsp;        this.scoreWeight = scoreWeight;</b>
+<b class="fc"><i>45</i>&nbsp;        this.type = type;</b>
+<b class="fc"><i>46</i>&nbsp;        this.average = average;</b>
+<b class="fc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Override
+<i>51</i>&nbsp;    public String toString() {
+<b class="fc"><i>52</i>&nbsp;        return &quot;Assessment{&quot; +</b>
+<i>53</i>&nbsp;                &quot;id=&quot; + id +
+<i>54</i>&nbsp;                &quot;, scoreWeight=&quot; + scoreWeight +
+<i>55</i>&nbsp;                &quot;, type=&#39;&quot; + type + &#39;\&#39;&#39; +
+<i>56</i>&nbsp;                &quot;, average=&quot; + average +
+<i>57</i>&nbsp;                &quot;, skillCategory=&#39;&quot; + skillCategory + &#39;\&#39;&#39; +
+<i>58</i>&nbsp;                &#39;}&#39;;
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    /**
+<i>62</i>&nbsp;     * Gets skillCategory.
+<i>63</i>&nbsp;     *
+<i>64</i>&nbsp;     * @return Value of skillCategory.
+<i>65</i>&nbsp;     */
+<i>66</i>&nbsp;    public Category getSkillCategory() {
+<b class="fc"><i>67</i>&nbsp;        return skillCategory;</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    /**
+<i>71</i>&nbsp;     * Sets new skillCategory.
+<i>72</i>&nbsp;     *
+<i>73</i>&nbsp;     * @param skillCategory New value of skillCategory.
+<i>74</i>&nbsp;     */
+<i>75</i>&nbsp;    public void setSkillCategory(Category skillCategory) {
+<b class="fc"><i>76</i>&nbsp;        this.skillCategory = skillCategory;</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    /**
+<i>80</i>&nbsp;     * Gets id.
+<i>81</i>&nbsp;     *
+<i>82</i>&nbsp;     * @return Value of id.
+<i>83</i>&nbsp;     */
+<i>84</i>&nbsp;    public Integer getId() {
+<b class="fc"><i>85</i>&nbsp;        return id;</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    /**
+<i>89</i>&nbsp;     * Sets new id.
+<i>90</i>&nbsp;     *
+<i>91</i>&nbsp;     * @param id New value of id.
+<i>92</i>&nbsp;     */
+<i>93</i>&nbsp;    public void setId(Integer id) {
+<b class="fc"><i>94</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    /**
+<i>98</i>&nbsp;     * Gets type.
+<i>99</i>&nbsp;     *
+<i>100</i>&nbsp;     * @return Value of type.
+<i>101</i>&nbsp;     */
+<i>102</i>&nbsp;    public String getType() {
+<b class="fc"><i>103</i>&nbsp;        return type;</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    /**
+<i>107</i>&nbsp;     * Sets new type.
+<i>108</i>&nbsp;     *
+<i>109</i>&nbsp;     * @param type New value of type.
+<i>110</i>&nbsp;     */
+<i>111</i>&nbsp;    public void setType(String type) {
+<b class="fc"><i>112</i>&nbsp;        this.type = type;</b>
+<b class="fc"><i>113</i>&nbsp;    }</b>
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;    /**
+<i>116</i>&nbsp;     * Gets scoreWeight.
+<i>117</i>&nbsp;     *
+<i>118</i>&nbsp;     * @return Value of scoreWeight.
+<i>119</i>&nbsp;     */
+<i>120</i>&nbsp;    public Integer getScoreWeight() {
+<b class="fc"><i>121</i>&nbsp;        return scoreWeight;</b>
+<i>122</i>&nbsp;    }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    /**
+<i>125</i>&nbsp;     * Sets new scoreWeight.
+<i>126</i>&nbsp;     *
+<i>127</i>&nbsp;     * @param scoreWeight New value of scoreWeight.
+<i>128</i>&nbsp;     */
+<i>129</i>&nbsp;    public void setScoreWeight(Integer scoreWeight) {
+<b class="fc"><i>130</i>&nbsp;        this.scoreWeight = scoreWeight;</b>
+<b class="fc"><i>131</i>&nbsp;    }</b>
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    /**
+<i>134</i>&nbsp;     * Gets average.
+<i>135</i>&nbsp;     *
+<i>136</i>&nbsp;     * @return Value of average.
+<i>137</i>&nbsp;     */
+<i>138</i>&nbsp;    public Float getAverage() {
+<b class="fc"><i>139</i>&nbsp;        return average;</b>
+<i>140</i>&nbsp;    }
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;    /**
+<i>143</i>&nbsp;     * Sets new average.
+<i>144</i>&nbsp;     *
+<i>145</i>&nbsp;     * @param average New value of average.
+<i>146</i>&nbsp;     */
+<i>147</i>&nbsp;    public void setAverage(Float average) {
+<b class="fc"><i>148</i>&nbsp;        this.average = average;</b>
+<b class="fc"><i>149</i>&nbsp;    }</b>
+<i>150</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-06-17 15:17</div>
+    <div style="float:right;">generated on 2020-06-24 13:32</div>
 </div>
 </body>
 </html>

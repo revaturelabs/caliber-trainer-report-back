@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.client.RestTemplate;
+
+import com.revature.beans.Batch;
+
 
 import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
@@ -55,5 +59,9 @@ public class TrainerController {
     	
     }
 
-    
+    @GetMapping(path = "/batches/{trainerId}")
+    public ResponseEntity<List<Batch>> getTrainerBatches(@PathVariable int trainerId) {
+    	return ResponseEntity.ok(SRSserv.getBatchesByTrainer(trainerId));
+    }
+
 }

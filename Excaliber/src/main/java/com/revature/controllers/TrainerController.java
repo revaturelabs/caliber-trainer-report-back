@@ -51,12 +51,9 @@ public class TrainerController {
     	HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
     	HttpEntity <String> entity = new HttpEntity<String>(headers);
-    	return restTemplate.exchange("https://swapi.dev/api/people/", HttpMethod.GET, entity, String.class).getBody();
+    	return restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/training/batch/trainers", HttpMethod.GET, entity, String.class).getBody();
     	
     }
-    @Bean
-    public RestTemplate restTemplate() {
-    	return new RestTemplate();
-    }
+
     
 }

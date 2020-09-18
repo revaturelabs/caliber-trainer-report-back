@@ -1,6 +1,7 @@
 package com.revature.cucumber.steps;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
 @RunWith(io.cucumber.junit.Cucumber.class)
@@ -9,8 +10,8 @@ import org.junit.runner.RunWith;
 		}, glue="com.revature.cucumber.steps")
 public class TestRunner {
 	
-	@After
-	static void tearDown() {
+	@AfterClass
+	static public void tearDown() {
 		OverviewStepImpl.browser.quit();
 	}
 }

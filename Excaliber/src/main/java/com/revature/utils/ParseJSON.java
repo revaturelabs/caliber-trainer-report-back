@@ -149,6 +149,7 @@ public class ParseJSON {
                             obj.getJSONObject(i).getString("assessmentType"),
                             Float.valueOf(obj.getJSONObject(i).getString("average"))
                     );
+
                     assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
                     assessments.add(assessment);
                 }

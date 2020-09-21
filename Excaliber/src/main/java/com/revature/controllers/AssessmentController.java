@@ -28,14 +28,14 @@ public class AssessmentController {
     	return restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/assessments?batchId=" + batchId + "&week=" + week, HttpMethod.GET, entity, String.class).getBody();
     }
 	
-	@GetMapping(value = "/assessment/grade/{assessmentId}/{batchId}/{week}")
-	public String getAverageAssessmentGrade(@PathVariable("assessmentId") int assessmentId, @PathVariable("batchId") String batchId, @PathVariable("week") int week) {
+	@GetMapping(value = "/assessment/grade/{assessmentId}")
+	public String getAverageAssessmentGrade(@PathVariable("assessmentId") int assessmentId) {
 		HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
     	HttpEntity <String> entity = new HttpEntity<String>(headers);
     		
     	return restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/average?assessment="
-    	+ assessmentId + "&batch=" + batchId + "&week=" + week, HttpMethod.GET, entity, String.class).getBody();
+    	+ assessmentId, HttpMethod.GET, entity, String.class).getBody();
     
 	}
 }

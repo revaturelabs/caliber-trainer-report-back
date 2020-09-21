@@ -5,10 +5,14 @@ Scenario: User uploads a JSON
 	When i upload a file
 	Then alert is present
 
-Scenario: User navigates to the Calendar view
-	Given I am on the home page
-	When I click the View Batch Calendar NavLink
+Scenario: User navigates to the Calendar view from Hamburger
+	Given I click the Hamburger View Batch Calendar NavLink
 	Then the url should be calendarview
+	
+Scenario: User navigates to the Calendar view from Nav bar
+	Given I return to the homepage
+	When I click the View Batch Calendar NavLink
+	Then the url should also be calendarview
 	
 Scenario: User selects a trainer from the dropdown
 	Given I am on the calendarview page

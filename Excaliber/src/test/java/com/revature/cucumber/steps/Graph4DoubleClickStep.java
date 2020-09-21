@@ -22,7 +22,7 @@ public class Graph4DoubleClickStep {
 	
 	@Given("I am on the Assessment Reports page with graph 4")
 	public void i_am_on_the_Assessment_Reports_page_with_graph_4() {
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 	    driver = new ChromeDriver();
 	    String url = "http://localhost:4200/assessment";
 	    driver.get(url);

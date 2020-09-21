@@ -16,6 +16,7 @@ public class TestRunner {
 	
 	@AfterClass
 	static public void tearDown() {
+		CalendarNavigationStep.driver.quit();
 		OverviewStepImpl.browser.quit();
 		PDFTestImpl.browser.quit();
 	}

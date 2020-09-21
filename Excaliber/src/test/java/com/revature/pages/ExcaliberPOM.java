@@ -29,6 +29,12 @@ public class ExcaliberPOM {
 	@FindBy (xpath= "//*[@id=\"full-calendar\"]/full-calendar/div[2]/div/table/tbody/tr/td/div/div/div/table/tbody/tr[1]/td[1]/div/div[2]/div/a/div/div/div/div")
 	public WebElement event;
 	
+	@FindBy (xpath= "/html/body/app-root/app-main-nav-bar/div[1]/nav/div[3]/div/fa-icon")
+	public WebElement hamburg;
+	
+	@FindBy (xpath="//*[@id=\"demo4\"]")
+	public WebElement hamburgCal;
+	
 	public ExcaliberPOM(WebDriver driver){
 		PageFactory.initElements(driver, this);
 	}

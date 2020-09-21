@@ -57,10 +57,21 @@ public class CalendarNavigationStep {
 
 	}
 
-	@Given("I am on the home page")
-	public void i_am_on_the_home_page() {
+
+	@Given("I click the Hamburger View Batch Calendar NavLink")
+	public void i_click_the_Hamburger_View_Batch_Calendar_NavLink() {
+		excaliber.hamburg.click();
+		excaliber.hamburgCal.click();
+	}
+
+	@Then("the url should be calendarview")
+	public void the_url_should_be_calendarview() {
+		Assert.assertEquals(driver.getCurrentUrl(), "http://localhost:4200/calendarview");
+	}
+	@Given("I return to the homepage")
+	public void i_return_to_the_homepage() {
 		String url = "http://localhost:4200";
-//		driver.get(url);
+		driver.get(url);
 		driver.manage().window().setSize(new Dimension(1200, 990));
 	}
 
@@ -68,10 +79,8 @@ public class CalendarNavigationStep {
 	public void i_click_the_View_Batch_Calendar_NavLink() {
 		excaliber.navLink.click();
 	}
-
-	@Then("the url should be calendarview")
-	public void the_url_should_be_calendarview() {
-
+	@Then("the url should also be calendarview")
+	public void the_url_should_also_be_calendarview() {
 		Assert.assertEquals(driver.getCurrentUrl(), "http://localhost:4200/calendarview");
 	}
 
@@ -85,17 +94,11 @@ public class CalendarNavigationStep {
 
 	@When("I select a trainer from the drop down")
 	public void i_select_a_trainer_from_the_drop_down() {
-//		WebDriverWait wait =new WebDriverWait(driver, 10);
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		WebDriverWait wait =new WebDriverWait(driver, 10);
 		excaliber.select.click();
 		Select sel = new Select(excaliber.select);
 		sel.selectByIndex(0);
-//		wait.until(ExpectedConditions.attributeToBe(excaliber.select, "value", "1"));
+		wait.until(ExpectedConditions.attributeToBe(excaliber.select, "value", "1"));
 		
 	}
 

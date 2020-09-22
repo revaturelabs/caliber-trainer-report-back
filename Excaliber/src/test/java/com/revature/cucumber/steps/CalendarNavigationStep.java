@@ -94,12 +94,10 @@ public class CalendarNavigationStep {
 
 	@When("I select a trainer from the drop down")
 	public void i_select_a_trainer_from_the_drop_down() {
-		WebDriverWait wait =new WebDriverWait(driver, 10);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		excaliber.select.click();
 		Select sel = new Select(excaliber.select);
-		sel.selectByIndex(0);
-		wait.until(ExpectedConditions.attributeToBe(excaliber.select, "value", "1"));
-		
+		sel.selectByIndex(0);		
 	}
 
 	@Then("The select value should be 1")

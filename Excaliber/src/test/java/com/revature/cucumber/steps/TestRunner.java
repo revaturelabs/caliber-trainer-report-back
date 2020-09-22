@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 		"src/test/resources/GraphDoubleClick.feature", 
 		"src/test/resources/OverviewLineGraph.feature", 
 		"src/test/resources/Calendar.feature",
-		"src/test/resources/pdf.feature"
+		"src/test/resources/pdf.feature",
+		"src/test/resources/Caliber.feature"
 		}, 
 		glue= "com.revature.cucumber.steps",
 		tags = "not @ignore")
@@ -19,5 +20,6 @@ public class TestRunner {
 		CalendarNavigationStep.driver.quit();
 		OverviewStepImpl.browser.quit();
 		PDFTestImpl.browser.quit();
+		PullingCaliberDataStepImpl.driver.quit();
 	}
 }

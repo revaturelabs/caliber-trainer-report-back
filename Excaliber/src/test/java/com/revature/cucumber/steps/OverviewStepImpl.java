@@ -79,7 +79,7 @@ public class OverviewStepImpl {
 	}
 	@Then("I should have multiple tables beneath the Assessment line graph")
 	public void i_should_have_multiple_tables_beneath_the_Assessment_line_graph() {
-		WebElement lastTableRow = browser.findElement(By.xpath("/html/body/app-root/div[2]/app-assessment/div/div[2]/app-assessment-batches-trend-category-technical-status/div/div[2]/div[2]/table/tr[14]"));
+		WebElement lastTableRow = browser.findElement(By.xpath("//*[@id=\"graph6Header\"]/div[2]/div[2]/table/tr[14]"));
 		Assertions.assertTrue(lastTableRow.isDisplayed());
 	}
 	
@@ -115,7 +115,7 @@ public class OverviewStepImpl {
 	
 	@Then("I should have multiple tables beneath the QC line graph")
 	public void i_should_have_multiple_tables_beneath_the_QC_line_graph() {
-		WebElement lastTableRow = browser.findElement(By.xpath("/html/body/app-root/div[2]/app-qc/div/div[2]/app-qcbatches-indiv-category-technical-status/div/div[2]/div[2]/div/div[14]/h1"));
+		WebElement lastTableRow = browser.findElement(By.xpath("//*[@id=\"qc-body\"]/div[2]/app-qc-technical-scores-by-category-across-batches/div/div[2]/div[2]/div/div[14]/table/tr[4]"));
 		Assertions.assertTrue(lastTableRow.isDisplayed());
 	}
 

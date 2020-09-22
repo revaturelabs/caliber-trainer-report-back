@@ -35,6 +35,9 @@ public class ExcaliberPOM {
 	@FindBy (xpath="//*[@id=\"demo4\"]")
 	public WebElement hamburgCal;
 	
+	@FindBy (xpath="/html/body/app-root/div[2]/app-home/div/div[3]/app-api-all-trainers/button")
+	public WebElement pullButton;
+	
 	public ExcaliberPOM(WebDriver driver){
 		PageFactory.initElements(driver, this);
 	}

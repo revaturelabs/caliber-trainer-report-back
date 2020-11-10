@@ -46,7 +46,7 @@ public class Excaliber {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedMethods("GET", "OPTIONS", "PUT", "POST", "PATCH", "DELETE")
-                        .allowedOrigins("http://localhost:4200").allowedHeaders("*").allowCredentials(true);
+                        .allowedOrigins("*").allowedHeaders("*").allowCredentials(true); // AssociateS3, should be changed.
             }
         };
     }

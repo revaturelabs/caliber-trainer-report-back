@@ -1,11 +1,13 @@
 package com.revature.controllers;
 
+import com.revature.utils.ParseJSON;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
@@ -23,10 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
+
 class TableControllerTest {
 
     MockMvc mvc;
-
     @BeforeEach
     public void setUp(WebApplicationContext webApplicationContext,
                       RestDocumentationContextProvider restDocumentation) throws Exception {
@@ -34,7 +36,10 @@ class TableControllerTest {
                 .webAppContextSetup(webApplicationContext)
                 .apply(documentationConfiguration(restDocumentation))
                 .build();
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/JSONController"));
+        String requestBody = ParseJSON.readDataFromFileString("data.json");
+        this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody));
     }
 
     @AfterEach
@@ -43,9 +48,9 @@ class TableControllerTest {
 
     @Test
     void getTechnicalStatusPerBatch() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByBatch/", 1))
+        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/TechnicalStatusPerBatch/", 1))
                 .andExpect(status().isOk())
-                .andDo(document("1/AssessmentByBatch/",
+                .andDo(document("1/TechnicalStatusPerBatch/",
                         pathParameters(parameterWithName("trainerId")
                                 .description("Identifier of the trainer to be obtained."))
                 ));
@@ -63,9 +68,9 @@ class TableControllerTest {
 
     @Test
     void getAssessmentByCategory() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByBatch/", 1))
+        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByCategory/", 1))
                 .andExpect(status().isOk())
-                .andDo(document("1/AssessmentByBatch/",
+                .andDo(document("1/AssessmentByCategory/",
                         pathParameters(parameterWithName("trainerId")
                                 .description("Identifier of the trainer to be obtained."))
                 ));
@@ -73,39 +78,31 @@ class TableControllerTest {
 
     @Test
     void getAssessScoresByCategoryAllBatches() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByBatch/", 1))
+        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessScoresByCategoryAllBatches/", 1))
                 .andExpect(status().isOk())
-                .andDo(document("1/AssessmentByBatch/",
+                .andDo(document("1/AssessScoresByCategoryAllBatches/",
                         pathParameters(parameterWithName("trainerId")
                                 .description("Identifier of the trainer to be obtained."))
                 ));
     }
 
-    @Test
-    void getBatchTechnicalStatus() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByBatch/", 1))
-                .andExpect(status().isOk())
-                .andDo(document("1/AssessmentByBatch/",
-                        pathParameters(parameterWithName("trainerId")
-                                .description("Identifier of the trainer to be obtained."))
-                ));
-    }
 
     @Test
     void getTechnicalStatusByWeek() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByBatch/", 1))
+        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/TechnicalStatusByWeek/", 1))
                 .andExpect(status().isOk())
-                .andDo(document("1/AssessmentByBatch/",
+                .andDo(document("1/TechnicalStatusByWeek/",
                         pathParameters(parameterWithName("trainerId")
                                 .description("Identifier of the trainer to be obtained."))
                 ));
     }
 
+
     @Test
-    void testGetAssessmentByBatchShouldBe() throws Exception {
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/AssessmentByBatch/", 1))
+    void testBatchTechnicalStatusBySkillCategory() throws Exception {
+        this.mvc.perform(RestDocumentationRequestBuilders.get("/{trainerId}/BatchTechnicalStatusBySkillCategory/", 1))
                 .andExpect(status().isOk())
-                .andDo(document("1/AssessmentByBatch/",
+                .andDo(document("1/BatchTechnicalStatusBySkillCategory/",
                         pathParameters(parameterWithName("trainerId")
                                 .description("Identifier of the trainer to be obtained."))
                 ));

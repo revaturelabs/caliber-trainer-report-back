@@ -24,3 +24,8 @@ buildNumber.properties
 # eclipse files to ignore
 *.project
 *.classpath
+
+#ignore vscode directory
+.vscode
+
+crawl.log

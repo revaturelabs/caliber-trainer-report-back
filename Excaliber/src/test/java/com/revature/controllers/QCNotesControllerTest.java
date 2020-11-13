@@ -45,7 +45,7 @@ class QCNotesControllerTest {
                 .webAppContextSetup(webApplicationContext)
                 .apply(documentationConfiguration(restDocumentation))
                 .build();
-        this.mvc.perform(RestDocumentationRequestBuilders.get("/QCNote"));
+        // this.mvc.perform(RestDocumentationRequestBuilders.get("/QCNote"));
     }
     
     @AfterEach
@@ -59,14 +59,13 @@ class QCNotesControllerTest {
 		
 		HttpEntity<String> myEntity = new HttpEntity<>("Nice");
 		String response = "Response";
-		ResponseEntity mockResponse = new ResponseEntity<>(HttpStatus.ACCEPTED);
+		ResponseEntity<String> mockResponse = new ResponseEntity<>("Responses",HttpStatus.OK);
+        
+        Mockito.when(restTemplate.exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(Class.class))).thenReturn(mockResponse);
 		
-		
-		Mockito.when(restTemplate.exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(ParameterizedTypeReference.class)).getBody()).thenReturn(response);
-		
-		this.mvc.perform(RestDocumentationRequestBuilders.get("/qcNotes"))
+		this.mvc.perform(RestDocumentationRequestBuilders.get("/QCNote/qcNotes/{id}","TR-1142"))
         .andExpect(status().isOk())
-        .andDo(document("/qcNotes"));
+        .andDo(document("QCNote/qcNotes/TR-1142"));
 	}
 
 }

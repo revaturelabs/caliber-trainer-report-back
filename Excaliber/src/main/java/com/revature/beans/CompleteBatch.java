@@ -3,7 +3,7 @@ package com.revature.beans;
 import java.util.HashSet;
 import java.util.Set;
 
-
+//This class matches the FrontEnd version of batch, used for information transfer
 public class CompleteBatch {
 
 	/*

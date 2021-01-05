@@ -37,5 +37,21 @@ public class CompleteBatchDataControllerTest {
 		assertTrue(resp.getBody().getAssessments().size() > 0);
 	}
 	
+	@Test
+	public void testgetCompleteBatchDataByIdContainsData()
+	{
+		ResponseEntity<CompleteBatch> resp = cont.getCompleteBatchDataById(1);
+		Mockito.verify(cont).getCompleteBatchDataById(1);
+		
+		assertTrue(resp.getBody().getId() > 0);
+		assertTrue(resp.getBody().getBatchId() != "");
+		assertTrue(resp.getBody().getStartDate() != "");
+		assertTrue(resp.getBody().getEndDate() != "");
+		assertTrue(resp.getBody().getSkill() != "");
+		assertTrue(resp.getBody().getLocation() != "");
+		assertTrue(resp.getBody().getType() != "");
+		assertTrue(resp.getBody().getCurrentWeek() > 0);
+	}
+	
 	
 }

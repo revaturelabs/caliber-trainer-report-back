@@ -1,14 +1,23 @@
 package com.revature.controllers;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Batch;
@@ -17,11 +26,9 @@ import com.revature.beans.CompleteBatch;
 @RestController
 @RequestMapping(path = "/Complete/Batch")
 public class CompleteBatchDataController {
-	private BatchController batchCont = new BatchController();
-	private QCNoteController QCCont = new QCNoteController();
-	private AssessmentController assessCont = new AssessmentController();
 	
-	private class PartialBatch
+	
+	private static class PartialBatch
 	{
 		public Integer id;
 		public String batchId;
@@ -31,9 +38,12 @@ public class CompleteBatchDataController {
 		public String location;
 		public String type;
 		public Integer currentWeek;
+		public String name;
+		public Integer goodGrade;
+		public Integer passingGrade;
 	}
 	
-	private class QCNote
+	private static class QCNote
 	{
 		/*
 		 * noteId : number;
@@ -61,7 +71,7 @@ public class CompleteBatchDataController {
 		public String[] categories;
 	}
 	
-	private class AssessmentLocal
+	private static class AssessmentLocal
 	{
 		public Integer assessmentId;
 		public Integer assessmentCategory;
@@ -73,26 +83,68 @@ public class CompleteBatchDataController {
 		public Integer weekNumber;
 	}
 	
+	@Autowired
+	RestTemplate restTemplate;
+	
 	
 	@GetMapping(path = "/{batchId}")
 	public ResponseEntity<CompleteBatch> getCompleteBatchDataById(@PathVariable String batchId)
-	{
-		ObjectMapper mapper = new ObjectMapper();
+	{ 
+		CompleteBatch result = new CompleteBatch();
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		PartialBatch pBatch;
-		String batchJSON = batchCont.getBatchById("" +batchId);
+		QCNote[] qcNotes;
+		AssessmentLocal[] assessLocals;
+		HttpHeaders headers = new HttpHeaders();
+    	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity <String> entity = new HttpEntity<String>(headers);
+		String assessJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/assessments?batchId=" + batchId , HttpMethod.GET, entity, String.class).getBody();
+		String QCJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/qa/notes/batch/"+batchId, HttpMethod.GET, entity, String.class).getBody();
+		String batchJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/training/batch/"+batchId, HttpMethod.GET, entity, String.class).getBody();
 		try {
-			mapper.readValue(batchJSON, PartialBatch.class);
+			pBatch = mapper.readValue(batchJSON, PartialBatch.class);
+			qcNotes = mapper.readValue(QCJSON, QCNote[].class);
+			assessLocals = mapper.readValue(assessJSON, AssessmentLocal[].class);
+			
+			System.out.println(pBatch);
+			System.out.println(qcNotes);
+			System.out.println(assessLocals);
+			
+			result.setBatchId(batchId);
+			
+			result.setCurrentWeek(pBatch.currentWeek);
+			result.setEndDate(pBatch.endDate);
+			result.setId(pBatch.id);
+			result.setLocation(pBatch.location);
+			result.setSkill(pBatch.skill);
+			result.setStartDate(pBatch.startDate);
+			result.setType(pBatch.type);
+			HashSet<Object> QCSet = new HashSet<>();
+			HashSet<Object> assessSet = new HashSet<>();
+			
+			for(QCNote n : qcNotes)
+			{
+				QCSet.add(n);
+			}
+			for(AssessmentLocal a : assessLocals)
+			{
+				assessSet.add(a);
+			}
+			result.setQCNotes(QCSet);
+			result.setAssessments(assessSet);
+			
+			
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
 		}
-		String QCJSON = QCCont.getQCNotesByBatchId(batchId);
 		
-		String assessJSON = assessCont.getAssessmentsByBatchIdAndWeek(""+batchId, 1);
-		return null;
+		return ResponseEntity.ok(result);
 	}
 
 }

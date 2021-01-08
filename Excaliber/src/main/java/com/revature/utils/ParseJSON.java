@@ -52,6 +52,7 @@ public class ParseJSON {
                         obj.getString("endDate"),
                         obj.getString("skill"),
                         obj.getString("location"));
+                System.out.println("JSONObject" + obj);
                 batch.setWeeks(getWeeks(obj));
                 batchSet.add(batch);
             }

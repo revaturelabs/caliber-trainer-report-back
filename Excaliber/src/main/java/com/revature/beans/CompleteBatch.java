@@ -28,6 +28,7 @@ public class CompleteBatch {
 	private String location;
 	private String type;
 	private Integer currentWeek;
+	private String name;
 	
 	//stored in JSON form
 	private Set<Object> QCNotes;
@@ -152,6 +153,16 @@ public class CompleteBatch {
 
 	public void setAssessments(Set<Object> assessments) {
 		this.assessments = assessments;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

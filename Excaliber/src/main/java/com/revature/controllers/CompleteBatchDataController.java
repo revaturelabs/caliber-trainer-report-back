@@ -43,6 +43,22 @@ public class CompleteBatchDataController {
 		public Integer passingGrade;
 	}
 	
+	private static class SkillCategory
+	{
+		public boolean active;
+		public Integer categoryId;
+		public String skillCategory;
+	}
+	
+	private static class QCCategory
+	{
+		public String batchId;
+		public Integer categoryId;
+		public Integer id;
+		public String skillCategory;
+		public Integer week;
+	}
+	
 	private static class QCNote
 	{
 		/*
@@ -68,7 +84,7 @@ public class CompleteBatchDataController {
 		public String type;
 		public String technicalStatus;
 		public String createdOn;
-		public String[] categories;
+		public QCCategory[] categories;
 	}
 	
 	private static class AssessmentLocal
@@ -81,6 +97,8 @@ public class CompleteBatchDataController {
 		public String batchId;
 		public Integer rawScore;
 		public Integer weekNumber;
+		public Double average;
+		public String skillCategory;
 	}
 	
 	@Autowired
@@ -106,15 +124,43 @@ public class CompleteBatchDataController {
 			qcNotes = mapper.readValue(QCJSON, QCNote[].class);
 			assessLocals = mapper.readValue(assessJSON, AssessmentLocal[].class);
 			
-			System.out.println(pBatch);
-			System.out.println(qcNotes);
-			System.out.println(assessLocals);
+			for(QCNote note : qcNotes)
+			{
+				String QCcategoriesJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/qa/category/" 
+						+ batchId + "/" + note.week, HttpMethod.GET, entity, String.class).getBody();
+				if(QCcategoriesJSON != null)
+				{
+					QCCategory[] qcCategories = mapper.readValue(QCcategoriesJSON, QCCategory[].class);
+					note.categories = qcCategories;
+					
+				}
+				else
+				{
+					note.categories = new QCCategory[0];
+				}
+			}
+			
+			for (AssessmentLocal assess : assessLocals)
+			{
+				String assessCategoryJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/category/category/" + assess.assessmentCategory, HttpMethod.GET, entity, String.class).getBody();
+				
+				assess.skillCategory = mapper.readValue(assessCategoryJSON, SkillCategory.class).skillCategory;
+				
+			}
+			
+			for (AssessmentLocal assess : assessLocals)
+			{
+				assess.average = Double.parseDouble(restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/average?assessment="
+				    	+ assess.assessmentId, HttpMethod.GET, entity, String.class).getBody());
+			}
+			
 			
 			result.setBatchId(batchId);
 			
 			result.setCurrentWeek(pBatch.currentWeek);
 			result.setEndDate(pBatch.endDate);
 			result.setId(pBatch.id);
+			result.setName(pBatch.name);
 			result.setLocation(pBatch.location);
 			result.setSkill(pBatch.skill);
 			result.setStartDate(pBatch.startDate);

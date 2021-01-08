@@ -35,14 +35,6 @@ public class CompleteBatchDataControllerTest {
 	@InjectMocks
 	CompleteBatchDataController cont = new CompleteBatchDataController();
 	
-	
-	
-	/*
-	 * String assessJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/assessments?batchId=" + batchId , HttpMethod.GET, entity, String.class).getBody();
-		String QCJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/qa/notes/batch/"+batchId, HttpMethod.GET, entity, String.class).getBody();
-		String batchJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/training/batch/"+batchId, HttpMethod.GET, entity, String.class).getBody();
-	 * */
-	
 	@Test
 	public void testgetCompleteBatchDataByIdContainsQC()
 	{

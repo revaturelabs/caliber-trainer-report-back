@@ -28,10 +28,11 @@ public class CompleteBatch {
 	private String location;
 	private String type;
 	private Integer currentWeek;
+	private String name;
 	
 	//stored in JSON form
-	private Set<String> QCNotes;
-	private Set<String> assessments;
+	private Set<Object> QCNotes;
+	private Set<Object> assessments;
 	
 	
 	public CompleteBatch()
@@ -43,8 +44,8 @@ public class CompleteBatch {
 		location = "";
 		type = "";
 		currentWeek = -1;
-		QCNotes = new HashSet<String>();
-		assessments = new HashSet<String>();
+		QCNotes = new HashSet<Object>();
+		assessments = new HashSet<Object>();
 		
 	}
 
@@ -129,23 +130,39 @@ public class CompleteBatch {
 	}
 
 
-	public Set<String> getQCNotes() {
+	
+
+
+	
+
+
+	public Set<Object> getQCNotes() {
 		return QCNotes;
 	}
 
 
-	public void setQCNotes(Set<String> qCNotes) {
+	public void setQCNotes(Set<Object> qCNotes) {
 		QCNotes = qCNotes;
 	}
 
 
-	public Set<String> getAssessments() {
+	public Set<Object> getAssessments() {
 		return assessments;
 	}
 
 
-	public void setAssessments(Set<String> assessments) {
+	public void setAssessments(Set<Object> assessments) {
 		this.assessments = assessments;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

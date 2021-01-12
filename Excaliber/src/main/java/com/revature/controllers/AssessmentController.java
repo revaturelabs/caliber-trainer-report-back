@@ -16,8 +16,12 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/Assessment")
 public class AssessmentController {
+	private final RestTemplate restTemplate;
+
 	@Autowired
-	RestTemplate restTemplate;
+	public AssessmentController(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+	}
 	
 	@GetMapping(value = "/assessments/{batch}/{week}")
     public String getAssessmentsByBatchIdAndWeek(@PathVariable("batch") String batchId, @PathVariable("week") int week) {

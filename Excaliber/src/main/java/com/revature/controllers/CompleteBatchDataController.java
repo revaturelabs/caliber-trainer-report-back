@@ -101,10 +101,14 @@ public class CompleteBatchDataController {
 		public String skillCategory;
 	}
 	
+	private final RestTemplate restTemplate;
+	
 	@Autowired
-	RestTemplate restTemplate;
-	
-	
+	public CompleteBatchDataController(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+	}
+
+
 	@GetMapping(path = "/{batchId}")
 	public ResponseEntity<CompleteBatch> getCompleteBatchDataById(@PathVariable String batchId)
 	{ 

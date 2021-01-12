@@ -1,6 +1,4 @@
-package com.revature.tables;
-
-import com.revature.beans.QCTSCategory;
+package com.revature.beans;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,8 @@
 package com.revature.controllers;
 
+
 import com.revature.services.*;
-import com.revature.tables.*;
+import com.revature.beans.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

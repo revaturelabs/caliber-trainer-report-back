@@ -1,7 +1,8 @@
 package com.revature.services;
 
+import com.revature.beans.TechnicalStatusPerBatch;
 import com.revature.controllers.JSONController;
-import com.revature.tables.TechnicalStatusPerBatch;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.revature.tables;
+package com.revature.beans;
 
 /**
  * This bean will be used to retrieve the data points necessary

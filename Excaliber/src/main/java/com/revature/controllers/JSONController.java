@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.services.StoreRetrieveService;
+import com.revature.utils.ParseJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,15 +43,18 @@ public class JSONController {
         setJson(payload);
         Trainer trainer = null;
         try {
-            //create a trainer from the JSON payload
-            trainer = getTrainer();
-            //get the batch data
-            List<Batch> batches = getBatch();
-            //give trainer the batches
-            trainer.setBatches(batches);
+//            //create a trainer from the JSON payload
+//            trainer = getTrainer();
+//            //get the batch data
+//            List<Batch> batches = getBatch();
+//            //give trainer the batches
+//            trainer.setBatches(batches);
+            trainer = new ParseJSON(payload).getTrainerUsingJackson();
+            System.out.println(trainer);
             //if trainer created
             SRSserv.addEntireTrainer(trainer);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().body("NOT VALID JSON");
         }
         return ResponseEntity.ok().build();

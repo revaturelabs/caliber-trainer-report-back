@@ -1,5 +1,6 @@
 package com.revature.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.*;
 import org.apache.log4j.Logger;
@@ -56,6 +57,12 @@ public class ParseJSON {
                 System.out.println("JSONObject" + obj);
                 batch.setWeeks(getWeeks(obj));
                 batchSet.add(batch);
+
+                if(batch.getBatchId().equals("2rUNwAAM")){
+                    for(Week w : batch.getWeeks()){
+                        System.out.println(w);
+                    }
+                }
             }
 
         } catch (JSONException e) {
@@ -345,6 +352,11 @@ public class ParseJSON {
                     w = new Week(qcjson.week, qcjson.technicalStatus);
                     w.setBatchId(b.batchId);
 
+                    //correcting for null tech status weeks
+                    if(qcjson.technicalStatus == null){
+                        w.setTechnicalStatus("null");
+                    }
+
                     List<Category> categories = new ArrayList<>();
                     Category cat;
                     for(String c : qcjson.categories){
@@ -373,8 +385,9 @@ public class ParseJSON {
                         assessments.add(ass);
                     }
                     w.setAssessments(assessments);
+                    weeks.add(w);
                 }
-
+                batch.setWeeks(weeks);
 
                 batches.add(batch);
             }

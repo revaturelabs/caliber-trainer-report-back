@@ -17,10 +17,10 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/Category")
 public class CategoryControlller {
 
-	private final RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 	
 	@Autowired
-	public CategoryService(RestTemplate restTemplateParam){
+	public CategoryControlller(RestTemplate restTemplateParam){
         restTemplate = restTemplateParam;
 	}
 

@@ -1,7 +1,7 @@
 package com.revature.services;
 
 import com.revature.beans.*;
-import com.revature.tables.AssessScoresByCategoryAllBatches;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

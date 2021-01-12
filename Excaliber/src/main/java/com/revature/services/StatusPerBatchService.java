@@ -4,9 +4,10 @@ package com.revature.services;
 
 
 import com.revature.beans.Batch;
+import com.revature.beans.TechnicalStatusPerBatch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
-import com.revature.tables.TechnicalStatusPerBatch;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

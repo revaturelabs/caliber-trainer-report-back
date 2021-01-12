@@ -1,7 +1,8 @@
 package com.revature.services;
 
+import com.revature.beans.BatchTechnicalStatusBySkillCategory;
 import com.revature.controllers.JSONController;
-import com.revature.tables.BatchTechnicalStatusBySkillCategory;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

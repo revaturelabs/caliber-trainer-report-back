@@ -2,9 +2,10 @@ package com.revature.services;
 
 import com.revature.beans.Batch;
 import com.revature.beans.Category;
+import com.revature.beans.TechnicalStatusByWeek;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
-import com.revature.tables.TechnicalStatusByWeek;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,11 @@ import java.util.List;
  * The type Technical status by week service.
  */
 @Service
-public class TechnicalStatusByWeekService {
+public class StatusByWeekService {
 	/**
 	 * The Log.
 	 */
-	private final Logger log = Logger.getLogger(TechnicalStatusByWeekService.class);
+	private final Logger log = Logger.getLogger(StatusByWeekService.class);
 	private final StoreRetrieveService sRSserv;
 
 	/**
@@ -30,7 +31,7 @@ public class TechnicalStatusByWeekService {
 	 * @param s the s
 	 */
 	@Autowired
-	public TechnicalStatusByWeekService(StoreRetrieveService s) {
+	public StatusByWeekService(StoreRetrieveService s) {
 		this.sRSserv = s;
 	}
 
@@ -62,20 +63,7 @@ public class TechnicalStatusByWeekService {
                     for (TechnicalStatusByWeek categoryRow : dataTransferObject) {
                         if (category.getName().equals(categoryRow.getCategory())) { // matching category exists
                             match = true;
-                            // increment technical status count
-                            if (w.getTechnicalStatus() != null) {
-                                if (w.getTechnicalStatus().contains("null")) {
-                                    categoryRow.setNullCount(categoryRow.getNullCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Poor")) {
-                                    categoryRow.setPoorCount(categoryRow.getPoorCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Average")) {
-                                    categoryRow.setAverageCount(categoryRow.getAverageCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Good")) {
-                                    categoryRow.setGoodCount(categoryRow.getGoodCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Superstar")) {
-                                    categoryRow.setSuperstarCount(categoryRow.getSuperstarCount() + 1);
-                                }
-                            }
+                            IncrementStatus(w, categoryRow); // increment technical status count
                             break;
                         }
                     }
@@ -83,20 +71,7 @@ public class TechnicalStatusByWeekService {
                     if (!match) {
                         TechnicalStatusByWeek newCategoryRow = new TechnicalStatusByWeek();
                         newCategoryRow.setCategory(category.getName());
-                        // increment technical status count
-                        if (w.getTechnicalStatus() != null) {
-                            if (w.getTechnicalStatus().contains("null")) {
-                                newCategoryRow.setNullCount(newCategoryRow.getNullCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Poor")) {
-                                newCategoryRow.setPoorCount(newCategoryRow.getPoorCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Average")) {
-                                newCategoryRow.setAverageCount(newCategoryRow.getAverageCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Good")) {
-                                newCategoryRow.setGoodCount(newCategoryRow.getGoodCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Superstar")) {
-                                newCategoryRow.setSuperstarCount(newCategoryRow.getSuperstarCount() + 1);
-                            }
-                        }
+                        IncrementStatus(w, newCategoryRow); // increment technical status count
                         dataTransferObject.add(newCategoryRow);
                     }
                 }
@@ -125,5 +100,21 @@ public class TechnicalStatusByWeekService {
             categoryRow.setSuperstarAvg(Double.parseDouble(df.format(superstarPercent))); // set formatted super star percent
         }
         return dataTransferObject;
-    }    
+    }
+	void IncrementStatus(Week w, TechnicalStatusByWeek t) {
+        if (w.getTechnicalStatus() != null) {
+            if (w.getTechnicalStatus().contains("null")) {
+                t.setNullCount(t.getNullCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Poor")) {
+                t.setPoorCount(t.getPoorCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Average")) {
+                t.setAverageCount(t.getAverageCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Good")) {
+                t.setGoodCount(t.getGoodCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Superstar")) {
+                t.setSuperstarCount(t.getSuperstarCount() + 1);
+            }
+        }
+	}
 }
+

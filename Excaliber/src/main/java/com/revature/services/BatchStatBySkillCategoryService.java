@@ -1,7 +1,7 @@
 package com.revature.services;
 
 import com.revature.beans.*;
-import com.revature.tables.BatchTechnicalStatusBySkillCategory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * The type Batch technical status by skill category service.
  */
 @Service
-public class BatchTechnicalStatusBySkillCategoryService {
+public class BatchStatBySkillCategoryService {
 	private final StoreRetrieveService sRserv;
 
 	/**
@@ -29,7 +29,7 @@ public class BatchTechnicalStatusBySkillCategoryService {
 	 *
 	 */
 	@Autowired
-	public BatchTechnicalStatusBySkillCategoryService(StoreRetrieveService v) {
+	public BatchStatBySkillCategoryService(StoreRetrieveService v) {
 		this.sRserv = v;
 	}
 

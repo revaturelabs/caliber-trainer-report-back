@@ -1,6 +1,4 @@
-package com.revature.tables;
-
-import com.revature.beans.Category;
+package com.revature.beans;
 
 import java.util.ArrayList;
 import java.util.List;

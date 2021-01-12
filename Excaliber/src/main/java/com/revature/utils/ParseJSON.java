@@ -57,12 +57,6 @@ public class ParseJSON {
                 System.out.println("JSONObject" + obj);
                 batch.setWeeks(getWeeks(obj));
                 batchSet.add(batch);
-
-                if(batch.getBatchId().equals("2rUNwAAM")){
-                    for(Week w : batch.getWeeks()){
-                        System.out.println(w);
-                    }
-                }
             }
 
         } catch (JSONException e) {
@@ -361,6 +355,7 @@ public class ParseJSON {
                     Category cat;
                     for(String c : qcjson.categories){
                         cat = new Category(c);
+                        categories.add(cat);
                     }
                     w.setCategories(categories);
 

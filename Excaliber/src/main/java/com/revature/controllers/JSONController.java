@@ -40,7 +40,7 @@ public class JSONController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> add(@RequestBody String payload) {
         //set the JSON to be parsed
-        setJson(payload);
+//        setJson(payload);
         Trainer trainer = null;
         try {
             trainer = new ParseJSON(payload).getTrainerUsingJackson();

@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         // to manage the session
 class TechnicalStatusPerBatchServiceTest {
 
-    private final TechnicalStatusPerBatchService tspbServ; // class being tested
+    private final StatusPerBatchService tspbServ; // class being tested
     private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 
     @Autowired
-    public TechnicalStatusPerBatchServiceTest(TechnicalStatusPerBatchService t, JSONController c) {
+    public TechnicalStatusPerBatchServiceTest(StatusPerBatchService t, JSONController c) {
         tspbServ = t;
         jCtrl = c;
     }
@@ -37,7 +37,7 @@ class TechnicalStatusPerBatchServiceTest {
     @Test
     void technicalStatusPerBatchTableTest() throws Exception {
 
-        jCtrl.getTrainer2(); // initialize data
+        //jCtrl.getTrainer2(); // initialize data
 
         // call technicalStatusPerBatchTable() and get returned list
         List<TechnicalStatusPerBatch> result = tspbServ.technicalStatusPerBatchTable(1);

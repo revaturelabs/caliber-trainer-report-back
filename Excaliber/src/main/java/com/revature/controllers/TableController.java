@@ -21,9 +21,9 @@ public class TableController {
 
     private final Logger log = Logger.getLogger(TableController.class);
 
-    private final TechnicalStatusPerBatchService statusPerBatchService;
-    private final TechnicalStatusByWeekService statusByWeekService;
-    private final BatchTechnicalStatusBySkillCategoryService technicalStatusBySkillCategoryService;
+    private final StatusPerBatchService statusPerBatchService;
+    private final StatusByWeekService statusByWeekService;
+    private final BatchStatBySkillCategoryService technicalStatusBySkillCategoryService;
     private final AssessScoresByCategoryAllBatchesService scoresByCategoryService;
     private final AssessmentByCategoryService assessmentByCategoryService;
     private final AssessmentByBatchService assessmentByBatchService;
@@ -37,9 +37,9 @@ public class TableController {
      * @param assessmentByBatchService              the Service for assessmentByBatch
      */
     @Autowired
-    public TableController(TechnicalStatusPerBatchService statusPerBatchService,
-                           TechnicalStatusByWeekService statusByWeekService,
-                           BatchTechnicalStatusBySkillCategoryService technicalStatusBySkillCategoryService,
+    public TableController(StatusPerBatchService statusPerBatchService,
+                           StatusByWeekService statusByWeekService,
+                           BatchStatBySkillCategoryService technicalStatusBySkillCategoryService,
                            AssessScoresByCategoryAllBatchesService scoresByCategoryService,
                            AssessmentByCategoryService assessmentByCategoryService,
                            AssessmentByBatchService assessmentByBatchService) {

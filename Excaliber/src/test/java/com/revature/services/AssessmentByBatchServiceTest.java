@@ -1,10 +1,11 @@
 package com.revature.services;
 
 import com.revature.beans.Assessment;
+import com.revature.beans.AssessmentByBatch;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
-import com.revature.tables.AssessmentByBatch;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

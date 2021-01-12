@@ -1,7 +1,8 @@
 package com.revature.services;
 
+import com.revature.beans.BatchTechnicalStatusBySkillCategory;
 import com.revature.controllers.JSONController;
-import com.revature.tables.BatchTechnicalStatusBySkillCategory;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 		// to manage the session
 class BatchTechnicalStatusByCategoryServiceTest {
 
-	private final BatchTechnicalStatusBySkillCategoryService btsbscServ; // class being tested 
+	private final BatchStatBySkillCategoryService btsbscServ; // class being tested 
 	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 
 	@Autowired
 	public BatchTechnicalStatusByCategoryServiceTest(
-			BatchTechnicalStatusBySkillCategoryService t, JSONController c) {
+			BatchStatBySkillCategoryService t, JSONController c) {
 		btsbscServ = t;
 		jCtrl = c;
 	}
@@ -34,7 +35,7 @@ class BatchTechnicalStatusByCategoryServiceTest {
 	@Test
 	void getTableData() {
 
-		jCtrl.getTrainer2(); // initialize data
+		//jCtrl.getTrainer2(); // initialize data
 
 		// call getTableData() and get returned object
 		BatchTechnicalStatusBySkillCategory result = btsbscServ.getTableData(1);

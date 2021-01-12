@@ -37,7 +37,7 @@ public class JSONController {
      * @return boolean boolean
      */
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity add(@RequestBody String payload) {
+    public ResponseEntity<String> add(@RequestBody String payload) {
         //set the JSON to be parsed
         setJson(payload);
         Trainer trainer = null;

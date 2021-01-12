@@ -16,8 +16,12 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/Assessment")
 public class AssessmentController {
+	private final RestTemplate restTemplate;
+
 	@Autowired
-	RestTemplate restTemplate;
+	public AssessmentController(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+	}
 	
 	@GetMapping(value = "/assessments/{batch}/{week}")
     public String getAssessmentsByBatchIdAndWeek(@PathVariable("batch") String batchId, @PathVariable("week") int week) {
@@ -29,7 +33,7 @@ public class AssessmentController {
     }
 	
 	@GetMapping(value = "/assessment/grade/{assessmentId}")
-	public String getAverageAssessmentGrade(@PathVariable("assessmentId") int assessmentId) {
+	public String getAverageAssessmentGradeById(@PathVariable("assessmentId") int assessmentId) {
 		HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
     	HttpEntity <String> entity = new HttpEntity<String>(headers);

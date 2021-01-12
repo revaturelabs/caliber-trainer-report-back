@@ -15,13 +15,17 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/Category")
-public class CategoryService {
+public class CategoryControlller {
 
-	@Autowired
-	RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 	
+	@Autowired
+	public CategoryService(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+	}
+
 	@GetMapping(value = "/category/{id}")
-    public String getQCNotesByBatchId(@PathVariable("id") int id) {
+    public String getCategoryById(@PathVariable("id") int id) {
     	HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
     	HttpEntity <String> entity = new HttpEntity<String>(headers);

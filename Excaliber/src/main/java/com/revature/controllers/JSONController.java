@@ -31,30 +31,13 @@ public class JSONController {
     }
 
     /**
-     * TODO
-     *
-     * @return string response entity
-     */
-    @GetMapping
-    public ResponseEntity<String> getTrainer2() {
-
-
-        Trainer trainer = getTrainer();
-        List<Batch> batches = getBatch();
-        trainer.setBatches(batches);
-        SRSserv.addEntireTrainer(trainer);
-        return ResponseEntity.ok().build();
-
-    }
-
-    /**
      * Add trainer boolean.
      *
      * @param payload JSON body to be stored in db
      * @return boolean boolean
      */
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity add(@RequestBody String payload) {
+    public ResponseEntity<String> add(@RequestBody String payload) {
         //set the JSON to be parsed
         setJson(payload);
         Trainer trainer = null;

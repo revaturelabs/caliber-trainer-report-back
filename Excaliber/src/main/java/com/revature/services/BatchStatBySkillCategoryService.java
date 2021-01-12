@@ -15,7 +15,7 @@ import java.util.List;
  * The type Batch technical status by skill category service.
  */
 @Service
-public class BatchTechnicalStatusBySkillCategoryService {
+public class BatchStatBySkillCategoryService {
 	private final StoreRetrieveService sRserv;
 
 	/**
@@ -29,7 +29,7 @@ public class BatchTechnicalStatusBySkillCategoryService {
 	 *
 	 */
 	@Autowired
-	public BatchTechnicalStatusBySkillCategoryService(StoreRetrieveService v) {
+	public BatchStatBySkillCategoryService(StoreRetrieveService v) {
 		this.sRserv = v;
 	}
 

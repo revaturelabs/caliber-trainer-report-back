@@ -29,14 +29,14 @@ import com.revature.services.StoreRetrieveService;
 @RestController
 @RequestMapping(path = "/Trainer")
 public class TrainerController {
-	@Autowired
-	RestTemplate restTemplate;
 
     private final StoreRetrieveService SRSserv;
+	private final RestTemplate restTemplate;
 
     @Autowired
-    public TrainerController(StoreRetrieveService srSserv) {
-        SRSserv = srSserv;
+    public TrainerController(StoreRetrieveService srSservParam, RestTemplate restTemplateParam) {
+        SRSserv = srSservParam;
+        restTemplate = restTemplateParam;
     }
 
     @GetMapping

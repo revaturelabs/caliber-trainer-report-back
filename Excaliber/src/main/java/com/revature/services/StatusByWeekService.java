@@ -18,11 +18,11 @@ import java.util.List;
  * The type Technical status by week service.
  */
 @Service
-public class TechnicalStatusByWeekService {
+public class StatusByWeekService {
 	/**
 	 * The Log.
 	 */
-	private final Logger log = Logger.getLogger(TechnicalStatusByWeekService.class);
+	private final Logger log = Logger.getLogger(StatusByWeekService.class);
 	private final StoreRetrieveService sRSserv;
 
 	/**
@@ -31,7 +31,7 @@ public class TechnicalStatusByWeekService {
 	 * @param s the s
 	 */
 	@Autowired
-	public TechnicalStatusByWeekService(StoreRetrieveService s) {
+	public StatusByWeekService(StoreRetrieveService s) {
 		this.sRSserv = s;
 	}
 

@@ -18,7 +18,7 @@ import java.util.List;
  * The type Technical status per batch service.
  */
 @Service
-public class TechnicalStatusPerBatchService {
+public class StatusPerBatchService {
 
     private final StoreRetrieveService sRSserv;
 
@@ -28,7 +28,7 @@ public class TechnicalStatusPerBatchService {
      * @param s the s
      */
     @Autowired
-    public TechnicalStatusPerBatchService(StoreRetrieveService s) {
+    public StatusPerBatchService(StoreRetrieveService s) {
         this.sRSserv = s;
     }
 

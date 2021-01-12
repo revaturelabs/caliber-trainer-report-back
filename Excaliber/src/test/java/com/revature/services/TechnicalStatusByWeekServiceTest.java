@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Disabled
 class TechnicalStatusByWeekServiceTest {
 
-	private final TechnicalStatusByWeekService tsbwServ; // class being tested 
+	private final StatusByWeekService tsbwServ; // class being tested 
 	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 
 	@Autowired
-	public TechnicalStatusByWeekServiceTest(TechnicalStatusByWeekService t, JSONController c) {
+	public TechnicalStatusByWeekServiceTest(StatusByWeekService t, JSONController c) {
 		tsbwServ = t;
 		jCtrl = c;
 	}
@@ -37,7 +37,7 @@ class TechnicalStatusByWeekServiceTest {
 	@Test
 	void getTechnicalStatusByWeekSreviceTest() throws Exception {
 
-		jCtrl.getTrainer2(); // initialize data
+		//jCtrl.getTrainer2(); // initialize data
 
 		// call getTechnicalStatusByWeek() and get returned list
 		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(1);

@@ -64,20 +64,20 @@ public class TechnicalStatusByWeekService {
                         if (category.getName().equals(categoryRow.getCategory())) { // matching category exists
                             match = true;
                             // increment technical status count
-//                            IncrementStatus(w, categoryRow);
-                            if (w.getTechnicalStatus() != null) {
-                                if (w.getTechnicalStatus().contains("null")) {
-                                    categoryRow.setNullCount(categoryRow.getNullCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Poor")) {
-                                    categoryRow.setPoorCount(categoryRow.getPoorCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Average")) {
-                                    categoryRow.setAverageCount(categoryRow.getAverageCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Good")) {
-                                    categoryRow.setGoodCount(categoryRow.getGoodCount() + 1);
-                                } else if (w.getTechnicalStatus().contains("Superstar")) {
-                                    categoryRow.setSuperstarCount(categoryRow.getSuperstarCount() + 1);
-                                }
-                            }
+                            IncrementStatus(w, categoryRow);
+//                            if (w.getTechnicalStatus() != null) {
+//                                if (w.getTechnicalStatus().contains("null")) {
+//                                    categoryRow.setNullCount(categoryRow.getNullCount() + 1);
+//                                } else if (w.getTechnicalStatus().contains("Poor")) {
+//                                    categoryRow.setPoorCount(categoryRow.getPoorCount() + 1);
+//                                } else if (w.getTechnicalStatus().contains("Average")) {
+//                                    categoryRow.setAverageCount(categoryRow.getAverageCount() + 1);
+//                                } else if (w.getTechnicalStatus().contains("Good")) {
+//                                    categoryRow.setGoodCount(categoryRow.getGoodCount() + 1);
+//                                } else if (w.getTechnicalStatus().contains("Superstar")) {
+//                                    categoryRow.setSuperstarCount(categoryRow.getSuperstarCount() + 1);
+//                                }
+//                            }
                             break;
                         }
                     }
@@ -85,21 +85,21 @@ public class TechnicalStatusByWeekService {
                     if (!match) {
                         TechnicalStatusByWeek newCategoryRow = new TechnicalStatusByWeek();
                         newCategoryRow.setCategory(category.getName());
-//                        IncrementStatus(w, newCategoryRow);
+                        IncrementStatus(w, newCategoryRow);
                         // increment technical status count
-                        if (w.getTechnicalStatus() != null) {
-                            if (w.getTechnicalStatus().contains("null")) {
-                                newCategoryRow.setNullCount(newCategoryRow.getNullCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Poor")) {
-                                newCategoryRow.setPoorCount(newCategoryRow.getPoorCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Average")) {
-                                newCategoryRow.setAverageCount(newCategoryRow.getAverageCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Good")) {
-                                newCategoryRow.setGoodCount(newCategoryRow.getGoodCount() + 1);
-                            } else if (w.getTechnicalStatus().contains("Superstar")) {
-                                newCategoryRow.setSuperstarCount(newCategoryRow.getSuperstarCount() + 1);
-                            }
-                        }
+//                        if (w.getTechnicalStatus() != null) {
+//                            if (w.getTechnicalStatus().contains("null")) {
+//                                newCategoryRow.setNullCount(newCategoryRow.getNullCount() + 1);
+//                            } else if (w.getTechnicalStatus().contains("Poor")) {
+//                                newCategoryRow.setPoorCount(newCategoryRow.getPoorCount() + 1);
+//                            } else if (w.getTechnicalStatus().contains("Average")) {
+//                                newCategoryRow.setAverageCount(newCategoryRow.getAverageCount() + 1);
+//                            } else if (w.getTechnicalStatus().contains("Good")) {
+//                                newCategoryRow.setGoodCount(newCategoryRow.getGoodCount() + 1);
+//                            } else if (w.getTechnicalStatus().contains("Superstar")) {
+//                                newCategoryRow.setSuperstarCount(newCategoryRow.getSuperstarCount() + 1);
+//                            }
+//                        }
                         dataTransferObject.add(newCategoryRow);
                     }
                 }
@@ -129,20 +129,20 @@ public class TechnicalStatusByWeekService {
         }
         return dataTransferObject;
     }
-//	static void IncrementStatus(Week w, TechnicalStatusByWeek t) {
-//        if (w.getTechnicalStatus() != null) {
-//            if (w.getTechnicalStatus().contains("null")) {
-//                t.setNullCount(t.getNullCount() + 1);
-//            } else if (w.getTechnicalStatus().contains("Poor")) {
-//                t.setPoorCount(t.getPoorCount() + 1);
-//            } else if (w.getTechnicalStatus().contains("Average")) {
-//                t.setAverageCount(t.getAverageCount() + 1);
-//            } else if (w.getTechnicalStatus().contains("Good")) {
-//                t.setGoodCount(t.getGoodCount() + 1);
-//            } else if (w.getTechnicalStatus().contains("Superstar")) {
-//                t.setSuperstarCount(t.getSuperstarCount() + 1);
-//            }
-//        }
-//	}
+	static void IncrementStatus(Week w, TechnicalStatusByWeek t) {
+        if (w.getTechnicalStatus() != null) {
+            if (w.getTechnicalStatus().contains("null")) {
+                t.setNullCount(t.getNullCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Poor")) {
+                t.setPoorCount(t.getPoorCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Average")) {
+                t.setAverageCount(t.getAverageCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Good")) {
+                t.setGoodCount(t.getGoodCount() + 1);
+            } else if (w.getTechnicalStatus().contains("Superstar")) {
+                t.setSuperstarCount(t.getSuperstarCount() + 1);
+            }
+        }
+	}
 }
 

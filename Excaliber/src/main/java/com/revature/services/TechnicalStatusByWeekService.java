@@ -64,6 +64,7 @@ public class TechnicalStatusByWeekService {
                         if (category.getName().equals(categoryRow.getCategory())) { // matching category exists
                             match = true;
                             // increment technical status count
+//                            IncrementStatus(w, categoryRow);
                             if (w.getTechnicalStatus() != null) {
                                 if (w.getTechnicalStatus().contains("null")) {
                                     categoryRow.setNullCount(categoryRow.getNullCount() + 1);
@@ -84,6 +85,7 @@ public class TechnicalStatusByWeekService {
                     if (!match) {
                         TechnicalStatusByWeek newCategoryRow = new TechnicalStatusByWeek();
                         newCategoryRow.setCategory(category.getName());
+//                        IncrementStatus(w, newCategoryRow);
                         // increment technical status count
                         if (w.getTechnicalStatus() != null) {
                             if (w.getTechnicalStatus().contains("null")) {
@@ -126,5 +128,21 @@ public class TechnicalStatusByWeekService {
             categoryRow.setSuperstarAvg(Double.parseDouble(df.format(superstarPercent))); // set formatted super star percent
         }
         return dataTransferObject;
-    }    
+    }
+//	static void IncrementStatus(Week w, TechnicalStatusByWeek t) {
+//        if (w.getTechnicalStatus() != null) {
+//            if (w.getTechnicalStatus().contains("null")) {
+//                t.setNullCount(t.getNullCount() + 1);
+//            } else if (w.getTechnicalStatus().contains("Poor")) {
+//                t.setPoorCount(t.getPoorCount() + 1);
+//            } else if (w.getTechnicalStatus().contains("Average")) {
+//                t.setAverageCount(t.getAverageCount() + 1);
+//            } else if (w.getTechnicalStatus().contains("Good")) {
+//                t.setGoodCount(t.getGoodCount() + 1);
+//            } else if (w.getTechnicalStatus().contains("Superstar")) {
+//                t.setSuperstarCount(t.getSuperstarCount() + 1);
+//            }
+//        }
+//	}
 }
+

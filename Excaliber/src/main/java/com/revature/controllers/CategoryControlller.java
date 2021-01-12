@@ -17,9 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/Category")
 public class CategoryControlller {
 
-	@Autowired
-	RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 	
+	@Autowired
+	public CategoryService(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+	}
+
 	@GetMapping(value = "/category/{id}")
     public String getCategoryById(@PathVariable("id") int id) {
     	HttpHeaders headers = new HttpHeaders();

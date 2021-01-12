@@ -16,9 +16,13 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/QCNote")
 public class QCNoteController {
-	@Autowired
-	RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
     
+    @Autowired
+    public QCNoteController(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+    }
+
 	@GetMapping(value = "/qcNotes/{id}")
     public String getQCNotesByBatchId(@PathVariable("id") String batchId) {
     	HttpHeaders headers = new HttpHeaders();

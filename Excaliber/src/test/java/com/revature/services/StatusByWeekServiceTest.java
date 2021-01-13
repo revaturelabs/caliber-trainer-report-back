@@ -1,14 +1,23 @@
 package com.revature.services;
 
+import com.revature.beans.Batch;
+import com.revature.beans.Category;
 import com.revature.beans.TechnicalStatusByWeek;
+import com.revature.beans.Trainer;
+import com.revature.beans.Week;
 import com.revature.controllers.JSONController;
 
+import com.revature.services.StatusByWeekService;
+import org.junit.Assert.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import org.mockito.Mock;
+import org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,13 +25,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @Transactional
 @Disabled
-class TechnicalStatusByWeekServiceTest {
+class StatusByWeekServiceTest {
 
 	private final StatusByWeekService tsbwServ; // class being tested 
 	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 
+	@Mock
+	StoreRetrieveService mockServ;
+	
+	
 	@Autowired
-	public TechnicalStatusByWeekServiceTest(StatusByWeekService t, JSONController c) {
+	public StatusByWeekServiceTest(StatusByWeekService t, JSONController c) {
 		tsbwServ = t;
 		jCtrl = c;
 	}
@@ -45,5 +58,25 @@ class TechnicalStatusByWeekServiceTest {
 		// check if returned list contains TechnicalStatusByWeek objects
 		assertTrue(result.get(0) instanceof TechnicalStatusByWeek);
 	}
+	@Test
+	void IncrementStatusTest() throws Exception {
+		Integer id = 1;
+		Trainer trainer = mockServ.getJustTrainerById(id);
+		List<TechnicalStatusByWeek> dataTransferObject = new ArrayList<>();
+		
+		for (Batch b: trainer.getBatches()) {
+			for (Week w : b.getWeeks()) {
+				for(Category category : w.getCategories()) {
+					boolean match = false;
+					for (TechnicalStatusByWeek categoryRow : dataTransferObject) {
+					StatusByWeekService.IncrementStatus(w, categoryRow);
+					break;
+					}
+				}
+			}
+			
+		}
+	}
+
 
 }

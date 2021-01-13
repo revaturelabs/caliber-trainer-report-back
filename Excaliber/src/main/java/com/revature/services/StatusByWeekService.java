@@ -101,7 +101,7 @@ public class StatusByWeekService {
         }
         return dataTransferObject;
     }
-	void IncrementStatus(Week w, TechnicalStatusByWeek t) {
+	static void IncrementStatus(Week w, TechnicalStatusByWeek t) {
         if (w.getTechnicalStatus() != null) {
             if (w.getTechnicalStatus().contains("null")) {
                 t.setNullCount(t.getNullCount() + 1);

@@ -11,12 +11,16 @@ import com.revature.services.StatusByWeekService;
 import org.junit.Assert.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.Mockito.*;
 
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
-@Disabled
+@ExtendWith(MockitoExtension.class)
 class StatusByWeekServiceTest {
 
 	private final StatusByWeekService tsbwServ; // class being tested 
@@ -32,6 +36,7 @@ class StatusByWeekServiceTest {
 
 	@Mock
 	StoreRetrieveService mockServ;
+	
 	
 	
 	@Autowired
@@ -60,8 +65,8 @@ class StatusByWeekServiceTest {
 	}
 	@Test
 	void IncrementStatusTest() throws Exception {
-		Integer id = 1;
-		Trainer trainer = mockServ.getJustTrainerById(id);
+		int id = 1;
+		Trainer trainer = Mockito.mock(Trainer.class);
 		List<TechnicalStatusByWeek> dataTransferObject = new ArrayList<>();
 		
 		for (Batch b: trainer.getBatches()) {

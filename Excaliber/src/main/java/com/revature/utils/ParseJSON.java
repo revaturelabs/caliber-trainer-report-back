@@ -29,6 +29,7 @@ public class ParseJSON {
     public ParseJSON(String jsonString){
         ObjectMapper objectMapper = new ObjectMapper();
         try{
+        	System.out.println(jsonString);
             jsonObject = objectMapper.readValue(jsonString, JSONAsClass.class);
         } catch (Exception e){
             e.printStackTrace();
@@ -142,8 +143,8 @@ public class ParseJSON {
         public String content;
         public String week;
         public String batchId;
-        public Integer associateId;//can be null
-        public Integer employeeId;//can be null
+        public String associateId;//can be null
+        public String employeeId;//can be null
         public String type;
         public String technicalStatus;
         public String createdOn;

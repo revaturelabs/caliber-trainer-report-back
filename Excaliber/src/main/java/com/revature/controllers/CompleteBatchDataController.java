@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Batch;
 import com.revature.beans.CompleteBatch;
+import com.revature.services.BatchService;
 
 @RestController
 @RequestMapping(path = "/Complete/Batch")
@@ -102,88 +103,25 @@ public class CompleteBatchDataController {
 	}
 	
 	private final RestTemplate restTemplate;
-	
+	private final BatchService batchService;
+
 	@Autowired
-	public CompleteBatchDataController(RestTemplate restTemplateParam){
+	public CompleteBatchDataController(RestTemplate restTemplateParam, BatchService batchServiceParam){
         restTemplate = restTemplateParam;
+        batchService = batchServiceParam;
 	}
 
 
 	@GetMapping(path = "/{batchId}")
 	public ResponseEntity<CompleteBatch> getCompleteBatchDataById(@PathVariable String batchId)
 	{ 
-		CompleteBatch result = new CompleteBatch();
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		PartialBatch pBatch;
-		QCNote[] qcNotes;
-		AssessmentLocal[] assessLocals;
-		HttpHeaders headers = new HttpHeaders();
-    	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity <String> entity = new HttpEntity<String>(headers);
-		String assessJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/assessments?batchId=" + batchId , HttpMethod.GET, entity, String.class).getBody();
-		String QCJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/qa/notes/batch/"+batchId, HttpMethod.GET, entity, String.class).getBody();
-		String batchJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/training/batch/"+batchId, HttpMethod.GET, entity, String.class).getBody();
+		
+		CompleteBatch result = new CompleteBatch();
+
 		try {
-			pBatch = mapper.readValue(batchJSON, PartialBatch.class);
-			qcNotes = mapper.readValue(QCJSON, QCNote[].class);
-			assessLocals = mapper.readValue(assessJSON, AssessmentLocal[].class);
-			
-			for(QCNote note : qcNotes)
-			{
-				String QCcategoriesJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/qa/category/" 
-						+ batchId + "/" + note.week, HttpMethod.GET, entity, String.class).getBody();
-				if(QCcategoriesJSON != null)
-				{
-					QCCategory[] qcCategories = mapper.readValue(QCcategoriesJSON, QCCategory[].class);
-					note.categories = qcCategories;
-					
-				}
-				else
-				{
-					note.categories = new QCCategory[0];
-				}
-			}
-			
-			for (AssessmentLocal assess : assessLocals)
-			{
-				String assessCategoryJSON = restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/category/category/" + assess.assessmentCategory, HttpMethod.GET, entity, String.class).getBody();
-				
-				assess.skillCategory = mapper.readValue(assessCategoryJSON, SkillCategory.class).skillCategory;
-				
-			}
-			
-			for (AssessmentLocal assess : assessLocals)
-			{
-				assess.average = Double.parseDouble(restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/average?assessment="
-				    	+ assess.assessmentId, HttpMethod.GET, entity, String.class).getBody());
-			}
-			
-			
-			result.setBatchId(batchId);
-			
-			result.setCurrentWeek(pBatch.currentWeek);
-			result.setEndDate(pBatch.endDate);
-			result.setId(pBatch.id);
-			result.setName(pBatch.name);
-			result.setLocation(pBatch.location);
-			result.setSkill(pBatch.skill);
-			result.setStartDate(pBatch.startDate);
-			result.setType(pBatch.type);
-			HashSet<Object> QCSet = new HashSet<>();
-			HashSet<Object> assessSet = new HashSet<>();
-			
-			for(QCNote n : qcNotes)
-			{
-				QCSet.add(n);
-			}
-			for(AssessmentLocal a : assessLocals)
-			{
-				assessSet.add(a);
-			}
-			result.setQCNotes(QCSet);
-			result.setAssessments(assessSet);
-			
-			
+		    result = batchService.getCompleteBatchDataById(batchId, mapper);
+		
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -193,6 +131,7 @@ public class CompleteBatchDataController {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().build();
 		}
+
 		
 		return ResponseEntity.ok(result);
 	}

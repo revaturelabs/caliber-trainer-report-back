@@ -50,8 +50,6 @@ class StatusByWeekServiceTest {
 	@Test
 	void getTechnicalStatusByWeekSreviceTest() throws Exception {
 
-		//jCtrl.getTrainer2(); // initialize data
-
 		// call getTechnicalStatusByWeek() and get returned list
 		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(1);
 

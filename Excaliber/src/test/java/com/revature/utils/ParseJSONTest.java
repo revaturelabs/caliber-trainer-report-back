@@ -34,7 +34,7 @@ class ParseJSONTest {
 
         assertThrows(NullPointerException.class,
                 () -> {
-                    assertFalse(true); // throws NullPointerException
+                    assertFalse(true);
                 });
 
     }
@@ -52,7 +52,7 @@ class ParseJSONTest {
     public void testSetBatchDataAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(null); // throws AssertionError because file is not set
+                    assertNull(null);
                 });
     }
 
@@ -70,7 +70,7 @@ class ParseJSONTest {
     public void testSetTrainerAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(null);// throws AssertionError because file is not set
+                    assertNull(null);
                 });
     }
 

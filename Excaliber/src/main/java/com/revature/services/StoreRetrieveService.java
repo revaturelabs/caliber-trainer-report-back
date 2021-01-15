@@ -43,15 +43,9 @@ public class StoreRetrieveService {
 
     }
 
-    /**
-     * Add category integer.
-     *
-     * @param c the c
-     * @return the integer
-     */
 //Store methods-basic
     public Integer addCategory(Category c) {
-        Category category = getCategoryByName(c.getName());
+        Category category = cDao.findCategoryByName(c.getName()) ;
         if (category != null) {
             log.debug("Found" + c.getName() + category);
             return category.getId();
@@ -59,53 +53,6 @@ public class StoreRetrieveService {
         log.error("Did not Find" + c.getName());
         return cDao.save(c).getId();
     }
-
-    /**
-     * Add assessment integer.
-     *
-     * @param a the a
-     * @return the integer
-     */
-    public Integer addAssessment(Assessment a) {
-        return aDao.save(a).getId();
-    }
-
-    /**
-     * Add week integer.
-     *
-     * @param w the w
-     * @return the integer
-     */
-    public Integer addWeek(Week w) {
-        return wDao.save(w).getId();
-    }
-
-    /**
-     * Add batch integer.
-     *
-     * @param b the b
-     * @return the integer
-     */
-    public Integer addBatch(Batch b) {
-        return bDao.save(b).getId();
-    }
-
-    /**
-     * Add trainer integer.
-     *
-     * @param t the t
-     * @return the integer
-     */
-    public Integer addTrainer(Trainer t) {
-        return tDao.save(t).getTrainerId();
-    }
-
-    /**
-     * Add entire trainer trainer.
-     *
-     * @param t the t
-     * @return the trainer
-     */
 //Store method-entire trainer object
     public Trainer addEntireTrainer(Trainer t) {
 
@@ -124,8 +71,8 @@ public class StoreRetrieveService {
                     Category c = a.getSkillCategory();
                     c.setId(addCategory(c));
                     a.setSkillCategory(c);
-                    a.setId(addAssessment(a));
-                    assessments.add(a);
+
+                    assessments.add(aDao.save(a));
                 }
                 week.setAssessments(assessments);
 
@@ -134,32 +81,17 @@ public class StoreRetrieveService {
                     categories.add(c);
                 }
                 week.setCategories(categories);
-                week.setId(addWeek(week));
-                weeks.add(week);
+                weeks.add(wDao.save(week));
 
             }
             batch.setWeeks(weeks);
-            batch.setId(addBatch(batch));
-            batches.add(batch);
+            batches.add(bDao.save(batch));
         }
 
         t.setBatches(batches);
-        t.setId(addTrainer(t));
-        return t;
-    }
-	
-    public List<Batch> getBatchesByTrainer(Integer id){
-    	Trainer trainer = getTrainerById(id);
-    	List<Batch> batches = trainer.getBatches();
-    	return batches;
+        return tDao.save(t);
     }
 
-    /**
-     * Gets trainer by id.
-     *
-     * @param id the id
-     * @return the trainer by id
-     */
     public Trainer getTrainerById(Integer id) {
         Optional<Trainer> trainer = tDao.findById(id);
         if (trainer.isPresent())
@@ -168,52 +100,8 @@ public class StoreRetrieveService {
             return null;
     }
 
-    /**
-     * Gets trainer by id.
-     *
-     * @param id the id
-     * @return the trainer by id
-     */
-    public Trainer getJustTrainerById(Integer id) {
-        Optional<Trainer> trainer = tDao.findById(id);
-        if (trainer.isPresent())
-            return trainer.get();
-        else
-            return null;
-    }
-
-    /**
-     * Gets trainer by id.
-     *
-     * @param id the id
-     * @return the trainer by id
-     */
     public List<Trainer> getTrainers() {
         List<Trainer> trainers = tDao.findAll();
         return trainers;
     }
-
-    /**
-     * get Category By Name
-     *
-     * @param name name of the Category
-     * @return Category
-     */
-    private Category getCategoryByName(String name) {
-        return cDao.findCategoryByName(name);
-    }
-
-    /**
-     * Gets all category
-     *
-     * @return all categories
-     */
-    public List<Category> getAllCategories() {
-        return cDao.findAll();
-    }
-
-	public List<Assessment> getAllAssessments() {
-		// TODO Auto-generated method stub
-		return aDao.findAll();
-	}
 }

@@ -1,9 +1,8 @@
 package com.revature.services;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
+import com.revature.data.TrainerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,10 +29,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class BatchService{
 	private final RestTemplate restTemplate;
+	private final TrainerDAO tDao;
 
     @Autowired
-    public BatchService(RestTemplate restTemplateParam){
+    public BatchService(RestTemplate restTemplateParam, TrainerDAO t){
         restTemplate = restTemplateParam;
+		tDao = t;
     }
 		
 	private static class PartialBatch
@@ -170,5 +171,10 @@ public class BatchService{
 
 		return result;
     }
+	public List<Batch> getBatchesByTrainer(Integer id){
+		Optional<Trainer> trainer = tDao.findById(id);
+		List<Batch> batches = trainer.get().getBatches();
+		return batches;
+	}
 
 }

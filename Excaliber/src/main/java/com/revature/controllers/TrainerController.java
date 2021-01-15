@@ -4,6 +4,7 @@ package com.revature.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.revature.services.BatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -31,12 +32,14 @@ import com.revature.services.StoreRetrieveService;
 public class TrainerController {
 
     private final StoreRetrieveService SRSserv;
+    private final BatchService batchService;
 	private final RestTemplate restTemplate;
 
     @Autowired
-    public TrainerController(StoreRetrieveService srSservParam, RestTemplate restTemplateParam) {
+    public TrainerController(StoreRetrieveService srSservParam, RestTemplate restTemplateParam, BatchService b) {
         SRSserv = srSservParam;
         restTemplate = restTemplateParam;
+        batchService = b;
     }
 
     @GetMapping
@@ -60,7 +63,7 @@ public class TrainerController {
 
     @GetMapping(path = "/batches/{trainerId}")
     public ResponseEntity<List<Batch>> getTrainerBatches(@PathVariable int trainerId) {
-    	return ResponseEntity.ok(SRSserv.getBatchesByTrainer(trainerId));
+    	return ResponseEntity.ok(batchService.getBatchesByTrainer(trainerId));
     }
 
 }

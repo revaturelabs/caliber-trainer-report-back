@@ -2,6 +2,7 @@ package com.revature.services;
 
 import com.revature.beans.*;
 
+import com.revature.data.CategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +12,18 @@ import java.util.List;
 @Service
 public class AssessmentByCategoryService {
 	private final StoreRetrieveService SRSserv;
+	private final CategoryDAO cDao;
 	@Autowired
-	public AssessmentByCategoryService(StoreRetrieveService s) {
+	public AssessmentByCategoryService(StoreRetrieveService s, CategoryDAO c) {
 		SRSserv=s;
+		cDao = c;
 	}
 
 	public List<AssessmentByCategory> getABCTable(int id) {
 
 		Trainer t = SRSserv.getTrainerById(id);
 
-		List<Category> categories = SRSserv.getAllCategories();
+		List<Category> categories = cDao.findAll();
 		List<Assessment> assessments = getTrainerAssessments(t);
 
 		ArrayList<ArrayList<Float>> assessScores = new ArrayList<ArrayList<Float>>();

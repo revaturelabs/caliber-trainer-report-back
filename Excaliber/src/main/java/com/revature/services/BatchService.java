@@ -36,6 +36,7 @@ public class BatchService{
         restTemplate = restTemplateParam;
 		tDao = t;
     }
+
 		
 	private static class PartialBatch
 	{

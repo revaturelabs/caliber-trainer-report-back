@@ -64,6 +64,7 @@ public class AssessmentByCategoryService {
 	}
 
 
+
 	public Float[] calculateAverage(int i,ArrayList<ArrayList<Float>> assessScores,ArrayList<ArrayList<Float>> rawScores,ArrayList<ArrayList<String>> typeForScore) {
     	float numeratorExam=0;
     	float denominatorExam=0;

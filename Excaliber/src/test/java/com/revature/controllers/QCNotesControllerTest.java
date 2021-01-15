@@ -1,8 +1,13 @@
 package com.revature.controllers;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
@@ -17,6 +22,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
@@ -27,6 +33,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.revature.Excaliber;
+
 
 
 @SpringBootTest
@@ -36,12 +44,12 @@ class QCNotesControllerTest {
 	MockMvc mvc;
 	
 	@MockBean
-	private static RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 	
     @BeforeEach
     public void setUp(WebApplicationContext webApplicationContext,
                       RestDocumentationContextProvider restDocumentation) throws Exception {
-        this.mvc = MockMvcBuilders
+        mvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .apply(documentationConfiguration(restDocumentation))
                 .build();
@@ -53,7 +61,6 @@ class QCNotesControllerTest {
     }
 
 	@Test
-	
 	void getQCNotesByBatchID() throws Exception{ 
 		
 		
@@ -63,9 +70,22 @@ class QCNotesControllerTest {
         
         Mockito.when(restTemplate.exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(Class.class))).thenReturn(mockResponse);
 		
-		this.mvc.perform(RestDocumentationRequestBuilders.get("/QCNote/qcNotes/{id}","TR-1142"))
+		mvc.perform(RestDocumentationRequestBuilders.get("/QCNote/qcNotes/{id}","SUPER REAL GROUP"))
         .andExpect(status().isOk())
         .andDo(document("QCNote/qcNotes/TR-1142"));
 	}
+	@Test
+	void getCategoryByWeekTest() throws Exception{ 
+	
+		HttpEntity<String> myEntity = new HttpEntity<>("Nice");
+		ResponseEntity<String> mockResponse = new ResponseEntity<>("Responses",HttpStatus.OK);
+		
+		Mockito.when(restTemplate.exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(Class.class))).thenReturn(mockResponse);
+
+		mvc.perform(get("/QCNote/qcNote/{batch}/category/{week}","TR-1142",2))
+        .andExpect(status().isOk());
+		
+	}
+	
 
 }

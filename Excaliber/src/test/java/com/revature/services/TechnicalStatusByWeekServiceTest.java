@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
-@Disabled
+//@Disabled
 class TechnicalStatusByWeekServiceTest {
 
 	private final TechnicalStatusByWeekService tsbwServ; // class being tested 
@@ -43,6 +43,6 @@ class TechnicalStatusByWeekServiceTest {
 
 		// check if returned list contains TechnicalStatusByWeek objects
 		assertTrue(result.get(0) instanceof TechnicalStatusByWeek);
-	}
-
+		}
+	
 }

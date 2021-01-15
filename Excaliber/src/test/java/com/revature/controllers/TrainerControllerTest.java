@@ -57,11 +57,7 @@ class TrainerControllerTest {
     @LocalServerPort 
     private Integer port;
     
-    
-    @Test
-    public void simpleMethod() {
-    	System.out.println("test successful"); 
-    }
+ 
     
     @Test 
     public void getTrainersTest() {
@@ -111,10 +107,8 @@ class TrainerControllerTest {
                 ArgumentMatchers.<Class<String>>any()))
                 .thenReturn(responseEntity);
   
-    
-        String endPointResponse = trainerController.getEndpointTrainers();        
-        System.out.println("End point trainer test");
-        System.out.println(endPointResponse);
+        String endPointResponse = trainerController.getEndpointTrainers();  
+        assertEquals(null, endPointResponse); 
     }
     
     @Test 

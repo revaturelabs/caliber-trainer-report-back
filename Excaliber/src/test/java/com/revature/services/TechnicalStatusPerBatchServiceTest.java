@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
-@Disabled
+
         // to manage the session
 class TechnicalStatusPerBatchServiceTest {
 

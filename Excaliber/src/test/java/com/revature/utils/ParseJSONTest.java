@@ -43,8 +43,8 @@ class ParseJSONTest {
     @Test
     public void testSetBatchDataSize4() {
         String fileName = "data.json";
-        assertNotNull(null);//getBatch());
-        assertEquals(4, 0);//getBatch().size());
+        assertNotNull(null);
+        assertEquals(4, 0);
 
     }
 
@@ -52,7 +52,7 @@ class ParseJSONTest {
     public void testSetBatchDataAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(null);//getBatch()); // throws AssertionError because file is not set
+                    assertNull(null); // throws AssertionError because file is not set
                 });
     }
 

@@ -22,7 +22,7 @@ import com.revature.beans.Batch;
 
 
 import com.revature.beans.Trainer;
-import com.revature.services.StoreRetrieveService;
+import com.revature.services.TrainerService;
 
 /**
  * The type Json controller.
@@ -31,12 +31,12 @@ import com.revature.services.StoreRetrieveService;
 @RequestMapping(path = "/Trainer")
 public class TrainerController {
 
-    private final StoreRetrieveService SRSserv;
+    private final TrainerService SRSserv;
     private final BatchService batchService;
 	private final RestTemplate restTemplate;
 
     @Autowired
-    public TrainerController(StoreRetrieveService srSservParam, RestTemplate restTemplateParam, BatchService b) {
+    public TrainerController(TrainerService srSservParam, RestTemplate restTemplateParam, BatchService b) {
         SRSserv = srSservParam;
         restTemplate = restTemplateParam;
         batchService = b;

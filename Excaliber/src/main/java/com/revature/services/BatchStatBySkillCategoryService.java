@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class BatchStatBySkillCategoryService {
-	private final StoreRetrieveService sRserv;
+	private final TrainerService sRserv;
 	private final CategoryDAO cDao;
 	/**
 	 * Instantiates a new Batch technical status by skill category service.
@@ -30,7 +30,7 @@ public class BatchStatBySkillCategoryService {
 	 *
 	 */
 	@Autowired
-	public BatchStatBySkillCategoryService(StoreRetrieveService v, CategoryDAO c) {
+	public BatchStatBySkillCategoryService(TrainerService v, CategoryDAO c) {
 		this.sRserv = v;
 		cDao = c;
 	}

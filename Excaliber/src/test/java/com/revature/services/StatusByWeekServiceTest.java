@@ -7,18 +7,13 @@ import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.controllers.JSONController;
 
-import com.revature.services.StatusByWeekService;
-import org.junit.Assert.*;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Mockito.*;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
@@ -35,7 +30,7 @@ class StatusByWeekServiceTest {
 	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 
 	@Mock
-	StoreRetrieveService mockServ;
+    TrainerService mockServ;
 	
 	
 	

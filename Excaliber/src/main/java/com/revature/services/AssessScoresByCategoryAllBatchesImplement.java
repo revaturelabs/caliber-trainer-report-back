@@ -18,11 +18,11 @@ public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresBy
 
     public static final Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesImplement.class);
 
-    private final StoreRetrieveService SRSserv;
+    private final TrainerService SRSserv;
     private final CategoryDAO cDao;
 
     @Autowired
-    public AssessScoresByCategoryAllBatchesImplement(StoreRetrieveService s, CategoryDAO c) {
+    public AssessScoresByCategoryAllBatchesImplement(TrainerService s, CategoryDAO c) {
         this.SRSserv = s;
         cDao = c;
     }

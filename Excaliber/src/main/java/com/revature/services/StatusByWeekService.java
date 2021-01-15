@@ -23,7 +23,7 @@ public class StatusByWeekService {
 	 * The Log.
 	 */
 	private final Logger log = Logger.getLogger(StatusByWeekService.class);
-	private final StoreRetrieveService sRSserv;
+	private final TrainerService sRSserv;
 
 	/**
 	 * Instantiates a new Technical status by week service.
@@ -31,7 +31,7 @@ public class StatusByWeekService {
 	 * @param s the s
 	 */
 	@Autowired
-	public StatusByWeekService(StoreRetrieveService s) {
+	public StatusByWeekService(TrainerService s) {
 		this.sRSserv = s;
 	}
 

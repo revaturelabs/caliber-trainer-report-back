@@ -1,16 +1,11 @@
 package com.revature.controllers;
 
-import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
-import com.revature.services.StoreRetrieveService;
+import com.revature.services.TrainerService;
 import com.revature.utils.ParseJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-import static com.revature.utils.ParseJSON.*;
 
 /**
  * The type Json controller.
@@ -19,7 +14,7 @@ import static com.revature.utils.ParseJSON.*;
 @RequestMapping(path = "/JSONController")
 public class JSONController {
 
-    private final StoreRetrieveService SRSserv;
+    private final TrainerService SRSserv;
 
     /**
      * Instantiates a new Json controller.
@@ -27,7 +22,7 @@ public class JSONController {
      * @param s the s
      */
     @Autowired
-    public JSONController(StoreRetrieveService s) {
+    public JSONController(TrainerService s) {
         SRSserv = s;
     }
 

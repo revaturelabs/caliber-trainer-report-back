@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 class AssessmentByBatchServiceTest {
 	static AssessmentByBatchService aBBServ;
 	@Mock
-	StoreRetrieveService mockserv;
+    TrainerService mockserv;
 
 
 	@BeforeEach

@@ -19,7 +19,7 @@ class AssessmentByCategoryServiceTest {
 	static AssessmentByCategoryService aBCServ;
 
 	@Mock
-	StoreRetrieveService mockserv;
+    TrainerService mockserv;
 
 	CategoryDAO cDao;
 

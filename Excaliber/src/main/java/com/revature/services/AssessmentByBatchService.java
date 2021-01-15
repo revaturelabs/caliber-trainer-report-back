@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class AssessmentByBatchService {
-	private final StoreRetrieveService SRSserv;
+	private final TrainerService SRSserv;
 
 	/**
 	 * Instantiates a new Assessment by batch service.
@@ -25,7 +25,7 @@ public class AssessmentByBatchService {
 	 * @param s the s
 	 */
 	@Autowired
-	public AssessmentByBatchService(StoreRetrieveService s) {
+	public AssessmentByBatchService(TrainerService s) {
 		SRSserv=s;
 	}
 

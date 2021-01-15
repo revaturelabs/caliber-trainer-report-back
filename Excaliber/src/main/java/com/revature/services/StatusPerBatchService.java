@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class StatusPerBatchService {
 
-    private final StoreRetrieveService sRSserv;
+    private final TrainerService sRSserv;
 
     /**
      * Instantiates a new Technical status per batch service.
@@ -28,7 +28,7 @@ public class StatusPerBatchService {
      * @param s the s
      */
     @Autowired
-    public StatusPerBatchService(StoreRetrieveService s) {
+    public StatusPerBatchService(TrainerService s) {
         this.sRSserv = s;
     }
 

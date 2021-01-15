@@ -11,10 +11,10 @@ import java.util.List;
 
 @Service
 public class AssessmentByCategoryService {
-	private final StoreRetrieveService SRSserv;
+	private final TrainerService SRSserv;
 	private final CategoryDAO cDao;
 	@Autowired
-	public AssessmentByCategoryService(StoreRetrieveService s, CategoryDAO c) {
+	public AssessmentByCategoryService(TrainerService s, CategoryDAO c) {
 		SRSserv=s;
 		cDao = c;
 	}

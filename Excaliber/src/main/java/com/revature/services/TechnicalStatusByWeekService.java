@@ -49,6 +49,7 @@ public class TechnicalStatusByWeekService {
 
         //for each batch
         for (Batch b : trainer.getBatches()) {
+        	System.out.println(b);
 
             // for each week of that batch
             for (Week w : b.getWeeks()) {

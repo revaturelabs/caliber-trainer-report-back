@@ -169,29 +169,15 @@ public class StoreRetrieveService {
     }
 
     /**
-     * Gets trainer by id.
+     * Gets trainers by id.
      *
-     * @param id the id
-     * @return the trainer by id
-     */
-    public Trainer getJustTrainerById(Integer id) {
-        Optional<Trainer> trainer = tDao.findById(id);
-        if (trainer.isPresent())
-            return trainer.get();
-        else
-            return null;
-    }
-
-    /**
-     * Gets trainer by id.
-     *
-     * @param id the id
-     * @return the trainer by id
+     * @return all trainers
      */
     public List<Trainer> getTrainers() {
         List<Trainer> trainers = tDao.findAll();
         return trainers;
     }
+
 
     /**
      * get Category By Name
@@ -199,7 +185,7 @@ public class StoreRetrieveService {
      * @param name name of the Category
      * @return Category
      */
-    private Category getCategoryByName(String name) {
+    public Category getCategoryByName(String name) {
         return cDao.findCategoryByName(name);
     }
 

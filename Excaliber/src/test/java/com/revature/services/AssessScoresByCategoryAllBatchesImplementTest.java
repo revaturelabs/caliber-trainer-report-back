@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,13 +28,11 @@ import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.tables.AssessScoresByCategoryAllBatches;
 
-@SpringBootTest
-class AssessScoresByCategoryAllBatchesImplementTest {
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.revature.tables.AssessScoresByCategoryAllBatches;
-
+@SpringBootTest
 class AssessScoresByCategoryAllBatchesImplementTest {
 	public AssessScoresByCategoryAllBatchesImplementTest() {
 		
@@ -58,7 +57,7 @@ class AssessScoresByCategoryAllBatchesImplementTest {
     void getAssessScoresByCategoryAllBatchesTestequals() {
     	a = asbcabi.getAssessScoresByCategoryAllBatches(6);
     	b = asbcabi.getAssessScoresByCategoryAllBatches(6);
-    	assertEquals(a,b);
+    	Assert.assertEquals(a.toString(),b.toString());
     }
 
 	Trainer trainer;
@@ -134,7 +133,7 @@ class AssessScoresByCategoryAllBatchesImplementTest {
 		 AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
 		 catAll.setCategories(categories);
 		 
-		 assertEquals(catAll.toString(),asabi.getAssessScoresByCategoryAllBatches(1).toString());
+		 Assert.assertEquals(catAll.toString(),asabi.getAssessScoresByCategoryAllBatches(1).toString());
 	}
 	
 	@Test

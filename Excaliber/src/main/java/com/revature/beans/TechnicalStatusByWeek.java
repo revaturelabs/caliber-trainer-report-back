@@ -1,4 +1,4 @@
-package com.revature.tables;
+package com.revature.beans;
 
 /* Technical Status By Week
 User Story:

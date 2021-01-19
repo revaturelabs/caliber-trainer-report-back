@@ -1,7 +1,8 @@
 package com.revature.services;
 
 import com.revature.beans.*;
-import com.revature.tables.AssessmentByCategory;
+
+import com.revature.data.CategoryDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,12 +19,14 @@ class AssessmentByCategoryServiceTest {
 	static AssessmentByCategoryService aBCServ;
 
 	@Mock
-	StoreRetrieveService mockserv;
+    TrainerService mockserv;
+
+	CategoryDAO cDao;
 
 	@BeforeEach
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-		aBCServ = new AssessmentByCategoryService(mockserv);
+		aBCServ = new AssessmentByCategoryService(mockserv, cDao);
 
 	}
 
@@ -119,13 +122,13 @@ class AssessmentByCategoryServiceTest {
 		Float[] f = {(float) 70, (float) 0, (float) 0, (float) 0, (float) 0};
 		//
 
-		when(mockserv.getAllCategories()).thenReturn(cList);
+		when(cDao.findAll()).thenReturn(cList);
 		when(mockserv.getTrainerById(1)).thenReturn(t);
 		List<AssessmentByCategory> testT = aBCServ.getABCTable(1);
 
 
 		verify(mockserv).getTrainerById(1);
-		verify(mockserv).getAllCategories();
+		verify(cDao).findAll();
 		assertEquals(1, testT.size());
 		assertEquals("test", testT.get(0).getCategory());
 		assertArrayEquals(f, testT.get(0).getAverage());

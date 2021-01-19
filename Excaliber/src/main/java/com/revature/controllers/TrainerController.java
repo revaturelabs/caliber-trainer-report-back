@@ -4,6 +4,7 @@ package com.revature.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.revature.services.BatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +23,7 @@ import com.revature.beans.Batch;
 
 
 import com.revature.beans.Trainer;
-import com.revature.services.StoreRetrieveService;
+import com.revature.services.TrainerService;
 
 /**
  * The type Json controller.
@@ -31,12 +32,18 @@ import com.revature.services.StoreRetrieveService;
 @RequestMapping(path = "/Trainer")
 @Service
 public class TrainerController {
-	@Autowired
-	RestTemplate restTemplate;
-	
+
+    private final TrainerService SRSserv;
+    private final BatchService batchService;
+	private final RestTemplate restTemplate;
+
     @Autowired
-    private StoreRetrieveService SRSserv;
-    	
+    public TrainerController(TrainerService srSservParam, RestTemplate restTemplateParam, BatchService b) {
+        SRSserv = srSservParam;
+        restTemplate = restTemplateParam;
+        batchService = b;
+    }
+
     @GetMapping
     public ResponseEntity<List<Trainer>> getTrainers() {
         return ResponseEntity.ok(SRSserv.getTrainers());
@@ -58,7 +65,8 @@ public class TrainerController {
 
     @GetMapping(path = "/batches/{trainerId}")
     public ResponseEntity<List<Batch>> getTrainerBatches(@PathVariable int trainerId) {
-    	return ResponseEntity.ok(SRSserv.getBatchesByTrainer(trainerId));
+    	return ResponseEntity.ok(batchService.getBatchesByTrainer(trainerId));
     }
 
 }
+

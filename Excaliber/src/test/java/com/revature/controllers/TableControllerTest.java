@@ -36,6 +36,11 @@ class TableControllerTest {
     private AssessmentByCategoryService assessmentByCategoryService;
     @MockBean
     private AssessmentByBatchService assessmentByBatchService;
+    MockMvc mvc;
+    @BeforeEach
+    public void setUp(WebApplicationContext webApplicationContext,
+                      RestDocumentationContextProvider restDocumentation) throws Exception {
+    }
 
 
     @Test

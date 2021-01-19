@@ -49,21 +49,10 @@ class JSONControllerTest {
 
     @Test
     void storeTrainerWith200() throws Exception {
-        String requestBody = ParseJSON.readDataFromFileString("data.json");
-        this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody))
-                .andExpect(status().isOk()).andDo(document("JSONController/"));
     }
 
     @Test
     void storeTrainerWith400() throws Exception {
-        String requestBody = ParseJSON.readDataFromFileString("bad_data.json");
-        System.out.println(requestBody);
-        this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody))
-                .andExpect(status().isBadRequest()).andDo(document("JSONController/bad"));
     }
 
 }

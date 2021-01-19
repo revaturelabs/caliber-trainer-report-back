@@ -14,6 +14,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
+import com.revature.beans.Batch;
+import com.revature.beans.Category;
+import com.revature.beans.TechnicalStatusByWeek;
+import com.revature.beans.Trainer;
+import com.revature.beans.Week;
+import com.revature.controllers.JSONController;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,37 +32,32 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.function.EntityResponse;
 
+import org.mockito.Mock;
+import org.mockito.Mockito;
+
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Transactional
-
 @SpringBootTest(classes=Excaliber.class)
+@ExtendWith(MockitoExtension.class)
+class StatusByWeekServiceTest {
 
-class TechnicalStatusByWeekServiceTest {
+	private final StatusByWeekService tsbwServ; // class being tested 
+	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
 
-	private final TechnicalStatusByWeekService tsbwServ; // class being tested 
-	@MockBean
-	JSONController jCtrl; // for access to getTrainer2() method used for initializing data
+	@Mock
+    TrainerService mockServ;
 	
 	
-	static Trainer trainer;
-
-	static MockMvc mockMvc;
-	@MockBean
-	StoreRetrieveService srs;
-
+	
 	@Autowired
-	public TechnicalStatusByWeekServiceTest(TechnicalStatusByWeekService t) {
+	public StatusByWeekServiceTest(StatusByWeekService t, JSONController c) {
 		tsbwServ = t;
-	
-
 		//mockMvc = MockMvcBuilders.standaloneSetup(TechnicalStatusBy.class).build();
-		
-		
-		
 	}
 	@BeforeAll
 	public static void setUp() {
@@ -100,17 +104,32 @@ class TechnicalStatusByWeekServiceTest {
 
 	@Test
 	void getTechnicalStatusByWeekSreviceTest() throws Exception {
-	
-		ResponseEntity<String> mockResponse = new ResponseEntity<>(trainer.toString(),HttpStatus.OK);
-		Trainer mockresp=trainer;
-		Mockito.when(srs.getTrainerById(296)).thenReturn(trainer);
-	
-	//	jCtrl.getTrainer2(); // initialize data
 		// call getTechnicalStatusByWeek() and get returned list
 		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(296);
 
 		// check if returned list contains TechnicalStatusByWeek objects
 		assertTrue(result.get(0) instanceof TechnicalStatusByWeek);
-		}
+	}
 	
+	@Test
+	void IncrementStatusTest() throws Exception {
+		int id = 1;
+		Trainer trainer = Mockito.mock(Trainer.class);
+		List<TechnicalStatusByWeek> dataTransferObject = new ArrayList<>();
+		
+		for (Batch b: trainer.getBatches()) {
+			for (Week w : b.getWeeks()) {
+				for(Category category : w.getCategories()) {
+					boolean match = false;
+					for (TechnicalStatusByWeek categoryRow : dataTransferObject) {
+					StatusByWeekService.IncrementStatus(w, categoryRow);
+					break;
+					}
+				}
+			}
+			
+		}
+	}
+
+
 }

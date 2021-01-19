@@ -1,6 +1,6 @@
 package com.revature.services;
 
-import com.revature.tables.AssessScoresByCategoryAllBatches;
+import com.revature.beans.AssessScoresByCategoryAllBatches;
 
 /**
  * The interface Assess scores by category all batches service.

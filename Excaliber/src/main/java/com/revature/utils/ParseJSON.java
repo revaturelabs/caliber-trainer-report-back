@@ -1,5 +1,7 @@
 package com.revature.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.*;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -19,286 +21,148 @@ import java.util.List;
  * The type Parse json.
  */
 public class ParseJSON {
-    private static String json = "";
 
-    private static final Logger log = Logger.getLogger(ParseJSON.class);
+    //better ParseJSON
+    JSONAsClass jsonObject;
 
-    /**
-     * Gets all Batch object from the JSON
-     *
-     * @return JSONObject of the batchs
-     * @throws JSONException if parsing ERORR
-     */
-    protected static JSONArray getBatchJSONObject() throws JSONException {
-        return new JSONObject(json).getJSONArray("batches");
-    }
-
-    /**
-     * Loads data from JSON object and creates a set of Batchs
-     *
-     * @return Set<Batch>   batch data
-     */
-    public static List<Batch> getBatch() {
-        assert json != null;
-        List<Batch> batchSet = new ArrayList<>();
-        try {
-            JSONArray batchsJSON = getBatchJSONObject();
-            for (int i = 0; i < batchsJSON.length(); i++) {
-                JSONObject obj = batchsJSON.getJSONObject(i);
-                Batch batch = new Batch(
-                        obj.getString("batchId"),
-                        obj.getString("name"),
-                        obj.getString("startDate"),
-                        obj.getString("endDate"),
-                        obj.getString("skill"),
-                        obj.getString("location"));
-                System.out.println("JSONObject" + obj);
-                batch.setWeeks(getWeeks(obj));
-                batchSet.add(batch);
-            }
-
-        } catch (JSONException e) {
-            log.error(e.toString());
-
+    //parsing with jackson
+    public ParseJSON(String jsonString){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+        	System.out.println(jsonString);
+            jsonObject = objectMapper.readValue(jsonString, JSONAsClass.class);
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        return batchSet;
     }
 
-    /**
-     * Gets week from JSON.
-     *
-     * @param batch the batch JSONObject
-     * @return week weeks in the batch
-     */
-    protected static List<Week> getWeeks(JSONObject batch) {
-        assert json != null;
-        List<Week> weeks = new ArrayList<>();
-        try {
-            log.trace("Getting Week for Batch: " + batch.getString("batchId"));
-            // grab the qcNotes object
-            JSONArray obj = batch.getJSONArray("qcNotes");
-            for (int j = 0; j < obj.length(); j++) {
-                // for each week in qcNotes object load data
-                //create a new week
-                // Week(String weekNumber, String technicalStatus)
-                Week week = new Week(
-                        obj.getJSONObject(j).getString("week"),
-                        obj.getJSONObject(j).getString("technicalStatus")
+    public Trainer getTrainerUsingJackson(){
+        Trainer trainer = null;
+
+        if(jsonObject != null){
+            trainer = new Trainer(
+                    jsonObject.employee.firstName,
+                    jsonObject.employee.lastName,
+                    jsonObject.employee.email
+            );
+
+            //create batch list
+            List<Batch> batches = new ArrayList<>();
+            Batch batch;
+            for(BatchJSON b : jsonObject.batches){
+                batch = new Batch(
+                        b.batchId,
+                        b.name,
+                        b.startDate,
+                        b.endDate,
+                        b.skill,
+                        b.location
                 );
 
-                week.setBatchId(batch.getString("batchId"));
-                log.trace("Week from JSON: " + week);
-                // add assessments to the week
-                List<Assessment> assessments = getAssessmentByBatch(batch, week);
-                log.trace("Adding assessments to the week ... ");
-                week.setAssessments(assessments);
-                log.trace("Assessments adding to the week ");
-                log.trace("Adding categories to the week ... ");
-                week.setCategories(getCategoriesByWeek(obj.getJSONObject(j)));
-                log.trace("Categories adding to the week ");
-                weeks.add(week);
-                log.trace("___________________________________");
-            }
+                //get the weeks
+                List<Week> weeks = new ArrayList<>();
+                Week w;
+                for(QCNotesJSON qcjson : b.qcNotes){
+                    w = new Week(qcjson.week, qcjson.technicalStatus);
+                    w.setBatchId(b.batchId);
 
-        } catch (JSONException e) {
-            log.error(e.toString());
-        }
-        return weeks;
-    }
+                    //correcting for null tech status weeks
+                    if(qcjson.technicalStatus == null){
+                        w.setTechnicalStatus("null");
+                    }
 
-    /**
-     * Gets categories by week in JSON.
-     *
-     * @param week a week from JSONObject
-     * @return categories list of categories in a week
-     * @throws JSONException the json exception
-     */
-    protected static List<Category> getCategoriesByWeek(JSONObject week) throws JSONException {
-        // grab each categories from qcNotes object
-        log.trace("Getting categories for week number:  " + week.getString("week"));
-        // grab each categories from qcNotes object
-        JSONArray categories = week.getJSONArray("categories");
-        List<Category> setCategories = new ArrayList<>();
-        for (int k = 0; k < categories.length(); k++) {
-            //Category(String name)
-            Category category = new Category(categories.getString(k));
-            setCategories.add(category);
-            log.trace("Adding Category => " + category);
-        }
-        return setCategories;
-    }
+                    List<Category> categories = new ArrayList<>();
+                    Category cat;
+                    for(String c : qcjson.categories){
+                        cat = new Category(c);
+                        categories.add(cat);
+                    }
+                    w.setCategories(categories);
 
-    /**
-     * Sets assessment by batch from JSON
-     *
-     * @param batch the batch
-     * @param week week object
-     * @return assessment by batch
-     */
-    protected static List<Assessment> getAssessmentByBatch(JSONObject batch, Week week) {
-        assert json != null;
-        List<Assessment> assessments = new ArrayList<>();
+                    //set the assessments for the week
+                    List<Assessment> assessments = new ArrayList<>();
+                    Assessment ass;
+                    for(AssessmentJSON a : b.assessments){
 
-        try {
+                        //only add this assessment if it was part of the week
+                        if(a.weekNumber != Integer.valueOf(w.getWeekNumber())){
+                            continue;
+                        }
 
+                        ass = new Assessment(
+                                a.rawScore,
+                                a.assessmentType,
+                                a.average
+                        );
+                        Category skillCat = new Category(a.skillCategory);
+                        ass.setSkillCategory(skillCat);
 
-            JSONArray obj = batch.getJSONArray("assessments");
-            for (int i = 0; i < obj.length(); i++) {
-                if (Integer.parseInt(week.getWeekNumber()) == Integer.parseInt(obj.getJSONObject(i).getString("weekNumber"))) {
-                    Assessment assessment = new Assessment(
-                            Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
-                            obj.getJSONObject(i).getString("assessmentType"),
-                            Float.valueOf(obj.getJSONObject(i).getString("average"))
-                    );
-
-                    assessment.setSkillCategory(new Category(obj.getJSONObject(i).getString("skillCategory")));
-                    assessments.add(assessment);
+                        assessments.add(ass);
+                    }
+                    w.setAssessments(assessments);
+                    weeks.add(w);
                 }
+                batch.setWeeks(weeks);
+
+                batches.add(batch);
             }
-        } catch (JSONException e) {
-            log.error(e.toString());
+            trainer.setBatches(batches);
         }
-        return assessments;
-    }
 
-    /**
-     * Gets assessment from JSON.
-     *
-     * @return assessment assessment
-     */
-    protected static List<Assessment> getAssessment() {
-        assert json != null;
-        List<Assessment> assessments = new ArrayList<>();
-
-        try {
-            JSONArray batchsJSON = getBatchJSONObject();
-            for (int j = 0; j < batchsJSON.length(); j++) {
-                JSONArray obj = batchsJSON.getJSONObject(j).getJSONArray("assessments");
-                for (int i = 0; i < obj.length(); i++) {
-                    assessments.add(new Assessment(
-                            Integer.valueOf(obj.getJSONObject(i).getString("rawScore")),
-                            obj.getJSONObject(i).getString("assessmentType"),
-                            Float.valueOf(obj.getJSONObject(i).getString("average"))
-                    ));
-                }
-            }
-
-        } catch (JSONException e) {
-            log.error(e.toString());
-        }
-        return assessments;
-    }
-
-    /**
-     * Gets trainer from JSOn.
-     *
-     * @return trainer trainer
-     */
-    public static Trainer getTrainer() {
-        JSONObject obj;
-        log.debug("New JSON file set");
-        // check if json is null
-        assert json != null;
-
-        Trainer trainer = null;
-        try {
-            obj = new JSONObject(json).getJSONObject("employee");
-            log.trace("Trainer object found in JSON");
-            trainer = new Trainer(obj.get("firstName").toString(), obj.get("lastName").toString(),
-                    obj.get("email").toString());
-            log.trace("Trainer object is now created");
-        } catch (JSONException e) {
-            log.error("Couldn't create Trainer object");
-            log.error(e.toString());
-        }
-        log.debug("Trainer -> " + trainer);
         return trainer;
     }
 
-    /**
-     * Read data from file boolean.
-     *
-     * @param fileName the file name
-     * @return boolean boolean
-     */
-    public static boolean readDataFromFile(String fileName) {
+    //Nested classes for easier JSON parsing with Jackson
 
-        ClassLoader classLoader = ParseJSON.class.getClassLoader();
-        File file;
-        try {
-            file = new File(classLoader.getResource(fileName).getFile());
-            //File is found
-            log.debug("File Found: " + file.exists());
-            try {
-                json = new String(Files.readAllBytes(file.toPath()));
-                return true;
-            } catch (IOException e) {
-                log.error(e.toString());
-            }
-        } catch (NullPointerException e) {
-            log.error(e.toString());
-        }
-
-        return false;
+    private static class JSONAsClass{
+        public TrainerJSON employee;
+        public BatchJSON[] batches;
     }
 
-    /**
-     * Read data from file boolean.
-     *
-     * @param fileName the file name
-     * @return boolean boolean
-     */
-    public static String readDataFromFileString(String fileName) {
-        String out = "";
-        ClassLoader classLoader = ParseJSON.class.getClassLoader();
-        File file;
-        try {
-            file = new File(classLoader.getResource(fileName).getFile());
-            //File is found
-            log.debug("File Found: " + file.exists());
-            try {
-                out = new String(Files.readAllBytes(file.toPath()));
-            } catch (IOException e) {
-                log.error(e.toString());
-            }
-        } catch (NullPointerException e) {
-            log.error(e.toString());
-        }
-
-        return out;
+    private static class TrainerJSON{
+        public String firstName;
+        public String lastName;
+        public String email;
     }
 
-    /**
-     * Sets json to be parsed.
-     *
-     * @param json the json
-     */
-    public static void setJson(String json) {
-        log.debug("New JSON file set");
-        ParseJSON.json = json;
+    private static class BatchJSON{
+        public int id;
+        public String batchId;
+        public String name;
+        public String startDate;
+        public String endDate;
+        public String skill;
+        public String location;
+        public String type;
+        public QCNotesJSON[] qcNotes;
+        public AssessmentJSON[] assessments;
     }
 
+    private static class QCNotesJSON{
+        public int noteId;
+        public String content;
+        public String week;
+        public String batchId;
+        public String associateId;//can be null
+        public String employeeId;//can be null
+        public String type;
+        public String technicalStatus;
+        public String createdOn;
+        public String lastUpdated;
+        public String[] categories;
+    }
 
-    /**
-     * gets all the batch id from the JSON
-     *
-     * @return set of batch ids
-     */
-    protected static List<String> getBatchIds() {
-        log.debug("Calling getBatchIds");
-        assert json != null;
-        List<String> out = new ArrayList<>();
-        JSONArray batchsJSON;
-        try { 
-            batchsJSON = getBatchJSONObject();
-            for (int i = 0; i < batchsJSON.length(); i++) {
-                out.add(batchsJSON.getJSONObject(i).getString("batchId"));
-            }
-        } catch (JSONException e) {
-            log.error(e.toString());
-        }
-
-        return out;
+    private static class AssessmentJSON{
+        public int assessmentId;
+        public int rawScore;
+        public String assessmentTitle;
+        public String assessmentType;
+        public int weekNumber;
+        public String batchId;
+        public int assessmentCategory;
+        public String skillCategory;
+        public String assignmentDate;
+        public float average;
     }
 }
 

@@ -1,7 +1,8 @@
 package com.revature.services;
 
 import com.revature.beans.*;
-import com.revature.tables.BatchTechnicalStatusBySkillCategory;
+
+import com.revature.data.CategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.List;
  * The type Batch technical status by skill category service.
  */
 @Service
-public class BatchTechnicalStatusBySkillCategoryService {
-	private final StoreRetrieveService sRserv;
-
+public class BatchStatBySkillCategoryService {
+	private final TrainerService sRserv;
+	private final CategoryDAO cDao;
 	/**
 	 * Instantiates a new Batch technical status by skill category service.
 	 *
@@ -29,9 +30,11 @@ public class BatchTechnicalStatusBySkillCategoryService {
 	 *
 	 */
 	@Autowired
-	public BatchTechnicalStatusBySkillCategoryService(StoreRetrieveService v) {
+	public BatchStatBySkillCategoryService(TrainerService v, CategoryDAO c) {
 		this.sRserv = v;
+		cDao = c;
 	}
+
 
 	/**
 	 * Gets table data.
@@ -47,7 +50,7 @@ public class BatchTechnicalStatusBySkillCategoryService {
 
         ArrayList<QCTSCategory> catList = new ArrayList<>();
 
-        List<Category> cat = sRserv.getAllCategories();
+        List<Category> cat = cDao.findAll();
         //Category loop started
         for (Category ca : cat) {
             QCTSCategory catego = new QCTSCategory();

@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,17 +29,14 @@ import com.revature.services.StoreRetrieveService;
  */
 @RestController
 @RequestMapping(path = "/Trainer")
+@Service
 public class TrainerController {
 	@Autowired
 	RestTemplate restTemplate;
-
-    private final StoreRetrieveService SRSserv;
-
+	
     @Autowired
-    public TrainerController(StoreRetrieveService srSserv) {
-        SRSserv = srSserv;
-    }
-
+    private StoreRetrieveService SRSserv;
+    	
     @GetMapping
     public ResponseEntity<List<Trainer>> getTrainers() {
         return ResponseEntity.ok(SRSserv.getTrainers());

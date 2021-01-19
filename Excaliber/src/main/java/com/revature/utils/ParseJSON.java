@@ -284,12 +284,12 @@ public class ParseJSON {
      *
      * @return set of batch ids
      */
-    public List<String> getBatchIds() {
+    protected static List<String> getBatchIds() {
         log.debug("Calling getBatchIds");
         assert json != null;
         List<String> out = new ArrayList<>();
         JSONArray batchsJSON;
-        try {
+        try { 
             batchsJSON = getBatchJSONObject();
             for (int i = 0; i < batchsJSON.length(); i++) {
                 out.add(batchsJSON.getJSONObject(i).getString("batchId"));

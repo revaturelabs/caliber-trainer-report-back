@@ -15,7 +15,7 @@ import java.util.List;
 
 import static com.revature.utils.ParseJSON.*;
 import static org.junit.jupiter.api.Assertions.*;
-@Disabled
+
 class ParseJSONTest {
 
 
@@ -32,10 +32,11 @@ class ParseJSONTest {
         // should return false because file is not there
         String fileName = "noFile.json";
 
-        assertThrows(NullPointerException.class,
-                () -> {
-                    assertFalse(readDataFromFile(fileName)); // throws NullPointerException
-                });
+        assertFalse(readDataFromFile(fileName)); // throws NullPointerException
+//
+//        assertThrows(NullPointerException.class,
+//                () -> {
+//                });
 
     }
 
@@ -59,7 +60,7 @@ class ParseJSONTest {
     public void testSetBatchDataAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(getBatch()); // throws AssertionError because file is not set
+                    assertNotNull(getBatch()); // throws AssertionError because file is not set
                 });
     }
 
@@ -71,7 +72,7 @@ class ParseJSONTest {
         String fileName = "data.json";
         readDataFromFile(fileName);
         assertNotNull(getTrainer());
-        assertEquals(expectedTrainer, getTrainer());
+        assertEquals(expectedTrainer.toString(), getTrainer().toString());
     }
 
     @Test
@@ -131,12 +132,26 @@ class ParseJSONTest {
 
     @Test
     public void testSetAssessmentAssertionError() {
-        assertThrows(AssertionError.class,
+        String fileName = "data222.json";
+
+        readDataFromFile(fileName);
+    	assertThrows(AssertionError.class,
                 () -> {
                     assertNull(getAssessment()); // throws AssertionError because file is not set
                 });
     }
+    @Test
+    public void testGetBatchIds() {
 
+        String fileName = "data.json";
+        readDataFromFile(fileName);
+        List<String> ids= getBatchIds();
+        assertNotNull(getBatchIds());
+        assertEquals(ids.size(),getBatchIds().size());
+        
+       
+    }
+    
 
 }
 

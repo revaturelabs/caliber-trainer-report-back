@@ -40,6 +40,7 @@ public class JSONController {
 
 
         Trainer trainer = getTrainer();
+        System.out.println(trainer);
         List<Batch> batches = getBatch();
         trainer.setBatches(batches);
         SRSserv.addEntireTrainer(trainer);

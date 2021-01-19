@@ -4,9 +4,10 @@ package com.revature.services;
 
 
 import com.revature.beans.Batch;
+import com.revature.beans.TechnicalStatusPerBatch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
-import com.revature.tables.TechnicalStatusPerBatch;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,9 @@ import java.util.List;
  * The type Technical status per batch service.
  */
 @Service
-public class TechnicalStatusPerBatchService {
+public class StatusPerBatchService {
 
-    private final StoreRetrieveService sRSserv;
+    private final TrainerService sRSserv;
 
     /**
      * Instantiates a new Technical status per batch service.
@@ -27,7 +28,7 @@ public class TechnicalStatusPerBatchService {
      * @param s the s
      */
     @Autowired
-    public TechnicalStatusPerBatchService(StoreRetrieveService s) {
+    public StatusPerBatchService(TrainerService s) {
         this.sRSserv = s;
     }
 

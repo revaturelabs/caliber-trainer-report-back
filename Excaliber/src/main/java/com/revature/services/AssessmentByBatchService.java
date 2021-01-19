@@ -1,10 +1,11 @@
 package com.revature.services;
 
 import com.revature.beans.Assessment;
+import com.revature.beans.AssessmentByBatch;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
-import com.revature.tables.AssessmentByBatch;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class AssessmentByBatchService {
-	private final StoreRetrieveService SRSserv;
+	private final TrainerService SRSserv;
 
 	/**
 	 * Instantiates a new Assessment by batch service.
@@ -24,7 +25,7 @@ public class AssessmentByBatchService {
 	 * @param s the s
 	 */
 	@Autowired
-	public AssessmentByBatchService(StoreRetrieveService s) {
+	public AssessmentByBatchService(TrainerService s) {
 		SRSserv=s;
 	}
 
@@ -144,3 +145,4 @@ public class AssessmentByBatchService {
 	
 
 }
+

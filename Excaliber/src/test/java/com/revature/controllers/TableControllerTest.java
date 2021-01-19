@@ -32,14 +32,6 @@ class TableControllerTest {
     @BeforeEach
     public void setUp(WebApplicationContext webApplicationContext,
                       RestDocumentationContextProvider restDocumentation) throws Exception {
-        this.mvc = MockMvcBuilders
-                .webAppContextSetup(webApplicationContext)
-                .apply(documentationConfiguration(restDocumentation))
-                .build();
-        String requestBody = ParseJSON.readDataFromFileString("data.json");
-        this.mvc.perform(RestDocumentationRequestBuilders.post("/JSONController")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody));
     }
 
     @AfterEach

@@ -23,7 +23,7 @@ class ParseJSONTest {
     public void testReadDataFromFileTrue() {
         // file is there should return true
         String fileName = "data.json";
-        assertTrue(readDataFromFile(fileName));
+        assertTrue(false);
     }
 
 
@@ -34,7 +34,7 @@ class ParseJSONTest {
 
         assertThrows(NullPointerException.class,
                 () -> {
-                    assertFalse(readDataFromFile(fileName)); // throws NullPointerException
+                    assertFalse(true);
                 });
 
     }
@@ -43,15 +43,8 @@ class ParseJSONTest {
     @Test
     public void testSetBatchDataSize4() {
         String fileName = "data.json";
-        readDataFromFile(fileName);
-        assertNotNull(getBatch());
-        assertEquals(4, getBatch().size());
-
-        for (Batch o : getBatch()) {
-            System.out.println(o.getBatchId());
-            System.out.println(o.getWeeks().size());
-//            assertEquals(10, o.getWeeks().size());
-        }
+        assertNotNull(null);
+        assertEquals(4, 0);
 
     }
 
@@ -59,7 +52,7 @@ class ParseJSONTest {
     public void testSetBatchDataAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(getBatch()); // throws AssertionError because file is not set
+                    assertNull(null);
                 });
     }
 
@@ -69,16 +62,15 @@ class ParseJSONTest {
     public void testSetTrainer() {
         Trainer expectedTrainer = new Trainer("James", "Gosling", "james.gosling@revature.com");
         String fileName = "data.json";
-        readDataFromFile(fileName);
-        assertNotNull(getTrainer());
-        assertEquals(expectedTrainer, getTrainer());
+        assertNotNull(null);
+        assertEquals(expectedTrainer, null);
     }
 
     @Test
     public void testSetTrainerAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(getTrainer()); // throws AssertionError because file is not set
+                    assertNull(null);
                 });
     }
 
@@ -86,55 +78,30 @@ class ParseJSONTest {
 
     @Test
     public void testSetWeek() {
-        String fileName = "data.json";
-        readDataFromFile(fileName);
-        try {
-            JSONArray batchsJSON = getBatchJSONObject();
-            for (int i = 0; i < batchsJSON.length(); i++) {
-                List<Week> weeks = getWeeks(batchsJSON.getJSONObject(i));
-                for (Week week : weeks) {
-                    assertNotNull(week.getWeekNumber());
-                    assertNotNull(week.getWeekNumber());
-                    assertNotNull(week.getBatchId());
-                    assertNotNull(week.getTechnicalStatus());
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        assertTrue(false);
     }
 
     // testing Category
 
     @Test
     void getCategoriesByWeekNotNull() {
-        try {
-            JSONArray batchsJSON = getBatchJSONObject();
-            JSONArray obj = batchsJSON.getJSONObject(1).getJSONArray("qcNotes");
-            assertNotNull(getCategoriesByWeek(obj.getJSONObject(1)));
-            Category category = new Category("SQL");
-            assertEquals(category, getCategoriesByWeek(obj.getJSONObject(1)).get(0));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        assertTrue(false);
     }
 
     // testing Assessment
 
     @Test
     public void testSetAssessment() {
-        String fileName = "data.json";
-        readDataFromFile(fileName);
-        assertNotNull(getAssessment());
-        assertEquals(57, getAssessment().size());
+
+        assertTrue(false);
     }
 
     @Test
     public void testSetAssessmentAssertionError() {
-        assertThrows(AssertionError.class,
-                () -> {
-                    assertNull(getAssessment()); // throws AssertionError because file is not set
-                });
+
+        assertTrue(false);
     }
 
 

@@ -9,9 +9,9 @@
 
     </parent>
     <groupId>com.revature</groupId>
-    <artifactId>Excaliber</artifactId>
+    <artifactId>excaliber</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Excaliber</name>
+    <name>excaliber</name>
     <description></description>
 
     <properties>

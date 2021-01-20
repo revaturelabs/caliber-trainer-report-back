@@ -30,10 +30,6 @@ class AssessmentByCategoryServiceTest {
 
 	}
 
-//    @AfterEach
-//    void tearDown() {
-//    }
-
 	@Test
 	void calculateAverageTest() {
 		ArrayList<Float> aScores = new ArrayList<Float>();

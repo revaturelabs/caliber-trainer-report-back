@@ -19,11 +19,16 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/Batch")
 public class BatchController {
 	
-	@Autowired
-	RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 	
+	@Autowired
+	public BatchController(RestTemplate restTemplateParam){
+        restTemplate = restTemplateParam;
+	}
+    
     @PostMapping(value = "/batches")
     public String getEndpointBatchIdsByTrainerEmail(@RequestBody(required = true) String email) {
+    	System.out.println("Requesting ");
     	email = email.replace("\"", "");
     	HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));

@@ -24,3 +24,12 @@ buildNumber.properties
 # eclipse files to ignore
 *.project
 *.classpath
+<<<<<<< Updated upstream
+
+#ignore vscode directory
+.vscode
+
+crawl.log
+=======
+/.metadata/
+>>>>>>> Stashed changes

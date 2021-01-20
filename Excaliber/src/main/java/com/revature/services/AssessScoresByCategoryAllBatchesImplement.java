@@ -1,7 +1,8 @@
 package com.revature.services;
 
 import com.revature.beans.*;
-import com.revature.tables.AssessScoresByCategoryAllBatches;
+
+import com.revature.data.CategoryDAO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,27 +18,20 @@ public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresBy
 
     public static final Logger log = Logger.getLogger(AssessScoresByCategoryAllBatchesImplement.class);
 
-    private final StoreRetrieveService SRSserv;
+    private final TrainerService SRSserv;
+    private final CategoryDAO cDao;
 
-    /**
-     * Instantiates a new Assess scores by category all batches implement.
-     *
-     * @param a the a
-     */
     @Autowired
-    public AssessScoresByCategoryAllBatchesImplement(StoreRetrieveService s) {
+    public AssessScoresByCategoryAllBatchesImplement(TrainerService s, CategoryDAO c) {
         this.SRSserv = s;
+        cDao = c;
     }
 
-    /**
-     * @param category
-     * @return
-     */
     @Override
     public AssessScoresByCategoryAllBatches getAssessScoresByCategoryAllBatches(Integer id) {
         Trainer trainer = SRSserv.getTrainerById(id);
         List<Category> cats;
-        cats = SRSserv.getAllCategories();
+        cats = cDao.findAll();
         AssessScoresByCategoryAllBatches catAll = new AssessScoresByCategoryAllBatches();
         ArrayList<CategoryBatches> categories = new ArrayList<>();
 
@@ -72,3 +66,4 @@ public class AssessScoresByCategoryAllBatchesImplement implements AssessScoresBy
     }
 
 }
+

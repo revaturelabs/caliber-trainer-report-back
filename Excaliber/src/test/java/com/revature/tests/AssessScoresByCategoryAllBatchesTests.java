@@ -1,7 +1,8 @@
 package com.revature.tests;
 
+import com.revature.beans.AssessScoresByCategoryAllBatches;
 import com.revature.services.AssessScoresByCategoryAllBatchesService;
-import com.revature.tables.AssessScoresByCategoryAllBatches;
+
 import org.junit.jupiter.api.Test;
 
 public class AssessScoresByCategoryAllBatchesTests {

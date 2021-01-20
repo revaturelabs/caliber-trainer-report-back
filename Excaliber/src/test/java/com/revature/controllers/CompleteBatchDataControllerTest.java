@@ -1,9 +1,10 @@
-/*package com.revature.controllers;
+package com.revature.controllers;
 
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -30,9 +31,7 @@ import com.revature.beans.CompleteBatch;
 import com.revature.data.TrainerDAO;
 import com.revature.services.BatchService;
 
-//@ExtendWith(MockitoExtension.class)
-@SpringBootTest
-@ContextConfiguration(classes = Excaliber.class)
-@RunWith(MockitoJUnitRunner.class)
+
+@Disabled
 public class CompleteBatchDataControllerTest {
-}*/
+}

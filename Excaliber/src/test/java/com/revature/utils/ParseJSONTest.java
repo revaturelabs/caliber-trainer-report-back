@@ -16,14 +16,15 @@ import java.util.List;
 import static com.revature.utils.ParseJSON.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 class ParseJSONTest {
 
 
-  /*  @Test
+   @Test
     public void testReadDataFromFileTrue() {
         // file is there should return true
         String fileName = "data.json";
-        assertTrue(false);c
+        assertTrue(false);
     }
 
 
@@ -43,25 +44,6 @@ class ParseJSONTest {
         assertNotNull(null);
         assertEquals(4, 0);
 
-    }
-
-    @Test
-    public void testSetBatchDataAssertionError() {
-        assertThrows(AssertionError.class,
-                () -> {
-                   assertNotNull(getBatch()); // throws AssertionError because file is not set
-                });
-    }
-
-    // testing setTrainer
-
-    @Test
-    public void testSetTrainer() {
-        Trainer expectedTrainer = new Trainer("James", "Gosling", "james.gosling@revature.com");
-        String fileName = "data.json";
-        readDataFromFile(fileName);
-        assertNotNull(getTrainer());
-        assertEquals(expectedTrainer.toString(), getTrainer().toString());
     }
 
     @Test
@@ -95,29 +77,5 @@ class ParseJSONTest {
 
         assertTrue(false);
     }
-
-    @Test
-    public void testSetAssessmentAssertionError() {
-        String fileName = "data222.json";
-
-        readDataFromFile(fileName);
-    	assertThrows(AssertionError.class,
-                () -> {
-                    assertNull(getAssessment()); // throws AssertionError because file is not set
-                });
-    }
-    @Test
-    public void testGetBatchIds() {
-
-        String fileName = "data.json";
-        readDataFromFile(fileName);
-        List<String> ids= getBatchIds();
-        assertNotNull(getBatchIds());
-        assertEquals(ids.size(),getBatchIds().size());
-        
-       
-    }
-    
-*/
 }
 

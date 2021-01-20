@@ -88,7 +88,6 @@ public class BatchControllerTest {
 	@Test
 	public void testgetBatchById() throws Exception {
 		String id ="296";
-		///Batch b= cont.getBatchById(id);
 
 		HttpEntity<String> myEntity = new HttpEntity<>("Nice");
 		String response = "Response";

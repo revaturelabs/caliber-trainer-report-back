@@ -1,14 +1,24 @@
 package com.revature.controllers;
 
+import com.revature.beans.AssessScoresByCategoryAllBatches;
+import com.revature.beans.AssessmentByBatch;
+import com.revature.beans.AssessmentByCategory;
+import com.revature.beans.BatchTechnicalStatusBySkillCategory;
+import com.revature.beans.TechnicalStatusByWeek;
+import com.revature.beans.TechnicalStatusPerBatch;
 import com.revature.services.*;
 import com.revature.tables.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +35,19 @@ class TableControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private TechnicalStatusPerBatchService statusPerBatchService;
+    private StatusPerBatchService statusPerBatchService;
     @MockBean
-    private TechnicalStatusByWeekService statusByWeekService;
+    private StatusByWeekService statusByWeekService;
     @MockBean
-    private BatchTechnicalStatusBySkillCategoryService technicalStatusBySkillCategoryService;
+    private BatchStatBySkillCategoryService technicalStatusBySkillCategoryService;
     @MockBean
     private AssessScoresByCategoryAllBatchesService scoresByCategoryService;
     @MockBean
     private AssessmentByCategoryService assessmentByCategoryService;
     @MockBean
     private AssessmentByBatchService assessmentByBatchService;
-
-
+    MockMvc mvc;
+   
     @Test
     void getTechnicalStatusPerBatch() throws Exception {
         List<TechnicalStatusPerBatch> table = new ArrayList<TechnicalStatusPerBatch>();;

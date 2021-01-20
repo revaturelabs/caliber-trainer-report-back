@@ -7,6 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.revature.beans.TechnicalStatusByWeek;
+
 class TechnicalStatusByWeekTest {
 
 	TechnicalStatusByWeek tsbw = new TechnicalStatusByWeek();

@@ -7,12 +7,12 @@ import com.revature.beans.Category;
 import com.revature.beans.Trainer;
 import com.revature.beans.Week;
 import com.revature.controllers.JSONController;
-import com.revature.tables.TechnicalStatusByWeek;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.stubbing.Answer;
 import com.revature.beans.Batch;
 import com.revature.beans.Category;
@@ -23,44 +23,43 @@ import com.revature.controllers.JSONController;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.function.EntityResponse;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Transactional
-@SpringBootTest(classes=Excaliber.class)
-@ExtendWith(MockitoExtension.class)
+
+@SpringBootTest
+@ContextConfiguration(classes = Excaliber.class)
+@RunWith(MockitoJUnitRunner.class)
 class StatusByWeekServiceTest {
 	@InjectMocks
-	StatusByWeekService tsbwServ; // class being tested 
+	public StatusByWeekService tsbwServ; // class being tested 
 	
 	@Mock
-    TrainerService sRSserv;
+	static TrainerService sRSserv;
 	
 	static Trainer trainer;
 	
-	
-	@Autowired
-	public StatusByWeekServiceTest(StatusByWeekService t) {
-		tsbwServ = t;
-		//mockMvc = MockMvcBuilders.standaloneSetup(TechnicalStatusBy.class).build();
-	}
 	@BeforeAll
 	public static void setUp() {
+		
 		trainer= new Trainer();
 		trainer.setEmail("Email");
 		trainer.setEmployeeId("1");
@@ -94,7 +93,7 @@ class StatusByWeekServiceTest {
 		List<Assessment> asse= new ArrayList<>();
 		asse.add(assess);
 		week.setAssessments(asse);
-		week.setTechnicalStatus("IN progress");
+		week.setTechnicalStatus("null");
 		weeks.add(week);
 		batch.setWeeks(weeks);
 		List<Batch> batches= new ArrayList<>();
@@ -104,8 +103,10 @@ class StatusByWeekServiceTest {
 
 	@Test
 	void getTechnicalStatusByWeekSreviceTest() throws Exception {
-		Mockito.when(sRSserv.getTrainerById(1)).thenReturn(trainer);
+
 		
+		when(sRSserv.getTrainerById(1)).thenReturn(trainer);
+		MockitoAnnotations.initMocks(this);
 		// call getTechnicalStatusByWeek() and get returned list
 		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(1);
 

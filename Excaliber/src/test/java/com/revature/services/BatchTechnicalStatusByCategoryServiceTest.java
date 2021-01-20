@@ -31,21 +31,13 @@ import org.junit.jupiter.api.BeforeEach;
 class BatchTechnicalStatusByCategoryServiceTest {
 
 	@InjectMocks
-	private final BatchStatBySkillCategoryService btsbscServ; // class being tested 
-	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
+	private BatchStatBySkillCategoryService btsbscServ; // class being tested 
 
 	@Mock
 	TrainerService sRserv;
 	@Mock
 	CategoryDAO cDao;
 	
-	@Autowired
-	public BatchTechnicalStatusByCategoryServiceTest(
-			BatchStatBySkillCategoryService t, JSONController c) {
-		btsbscServ = t;
-		jCtrl = c;
-	}
-
 	Trainer trainer;
 	@BeforeEach
     void setUp() {

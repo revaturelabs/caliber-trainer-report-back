@@ -15,15 +15,15 @@ import java.util.List;
 
 import static com.revature.utils.ParseJSON.*;
 import static org.junit.jupiter.api.Assertions.*;
-@Disabled
+
 class ParseJSONTest {
 
 
-    @Test
+  /*  @Test
     public void testReadDataFromFileTrue() {
         // file is there should return true
         String fileName = "data.json";
-        assertTrue(false);
+        assertTrue(false);c
     }
 
 
@@ -32,10 +32,7 @@ class ParseJSONTest {
         // should return false because file is not there
         String fileName = "noFile.json";
 
-        assertThrows(NullPointerException.class,
-                () -> {
-                    assertFalse(true);
-                });
+       // assertFalse(readDataFromFile(fileName)); // throws NullPointerException
 
     }
 
@@ -52,7 +49,7 @@ class ParseJSONTest {
     public void testSetBatchDataAssertionError() {
         assertThrows(AssertionError.class,
                 () -> {
-                    assertNull(null);
+                   assertNotNull(getBatch()); // throws AssertionError because file is not set
                 });
     }
 
@@ -62,8 +59,9 @@ class ParseJSONTest {
     public void testSetTrainer() {
         Trainer expectedTrainer = new Trainer("James", "Gosling", "james.gosling@revature.com");
         String fileName = "data.json";
-        assertNotNull(null);
-        assertEquals(expectedTrainer, null);
+        readDataFromFile(fileName);
+        assertNotNull(getTrainer());
+        assertEquals(expectedTrainer.toString(), getTrainer().toString());
     }
 
     @Test
@@ -100,10 +98,26 @@ class ParseJSONTest {
 
     @Test
     public void testSetAssessmentAssertionError() {
+        String fileName = "data222.json";
 
-        assertTrue(false);
+        readDataFromFile(fileName);
+    	assertThrows(AssertionError.class,
+                () -> {
+                    assertNull(getAssessment()); // throws AssertionError because file is not set
+                });
     }
+    @Test
+    public void testGetBatchIds() {
 
-
+        String fileName = "data.json";
+        readDataFromFile(fileName);
+        List<String> ids= getBatchIds();
+        assertNotNull(getBatchIds());
+        assertEquals(ids.size(),getBatchIds().size());
+        
+       
+    }
+    
+*/
 }
 

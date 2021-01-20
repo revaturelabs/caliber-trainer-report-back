@@ -28,6 +28,7 @@ public class BatchController {
     
     @PostMapping(value = "/batches")
     public String getEndpointBatchIdsByTrainerEmail(@RequestBody(required = true) String email) {
+    	System.out.println("Requesting ");
     	email = email.replace("\"", "");
     	HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));

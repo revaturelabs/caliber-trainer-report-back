@@ -1,19 +1,32 @@
 package com.revature.tables;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.revature.beans.TechnicalStatusByWeek;
+
 class TechnicalStatusByWeekTest {
 
+	TechnicalStatusByWeek tsbw = new TechnicalStatusByWeek();
     @BeforeEach
     void setUp() {
     }
 
     @AfterEach
     void tearDown() {
+    	tsbw = new TechnicalStatusByWeek();
     }
 
+    @Test
+	void getSuperstarCountTest() {
+		tsbw.setSuperstarCount(5);
+		assertEquals(tsbw.getSuperstarCount(),5);
+    }
+    
     @Test
     void getCategory() {
     }
@@ -56,10 +69,8 @@ class TechnicalStatusByWeekTest {
 
     @Test
     void getSuperstarCount() {
-    }
-
-    @Test
-    void setSuperstarCount() {
+    	
+    	
     }
 
     @Test

@@ -22,6 +22,7 @@ public class Excaliber {
      */
     public static void main(String[] args) {
         SpringApplication.run(Excaliber.class, args);
+        
     }
 
     /**

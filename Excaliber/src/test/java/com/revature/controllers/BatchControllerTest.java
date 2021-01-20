@@ -61,7 +61,7 @@ public class BatchControllerTest {
 	@MockBean
 	RestTemplate restTemplate;
 	
-	BatchController cont = new BatchController();
+	BatchController cont = new BatchController(new RestTemplate());
 	
 	   @BeforeEach
 	    public void setUp(WebApplicationContext webApplicationContext,

@@ -26,8 +26,8 @@ import org.springframework.web.client.RestTemplate;
 import com.revature.Excaliber;
 import com.revature.beans.Batch;
 import com.revature.beans.Trainer;
-import com.revature.services.StoreRetrieveService;
-
+import com.revature.services.BatchService;
+import com.revature.services.TrainerService;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,10 @@ class TrainerControllerTest {
 	@InjectMocks 
 	private TrainerController trainerController; 
 	@Mock
-	private StoreRetrieveService SRSserv;
+	private TrainerService SRSserv;
+	
+	@Mock
+	private BatchService batchServ;
 	
 	@Mock
 	RestTemplate restTemplate;
@@ -117,7 +120,7 @@ class TrainerControllerTest {
   	    List<Batch> list = new ArrayList<Batch>();
         Batch batch = new Batch();         
         list.add(batch);   
-    	when(SRSserv.getBatchesByTrainer(id)).thenReturn(list);
+    	when(batchServ.getBatchesByTrainer(id)).thenReturn(list);
     	
     	ResponseEntity<java.util.List<com.revature.beans.Batch>> response = trainerController.getTrainerBatches(id);
           

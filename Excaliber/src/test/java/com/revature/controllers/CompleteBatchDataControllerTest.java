@@ -26,6 +26,8 @@ import static org.mockito.Mockito.mock;
 import com.revature.Excaliber;
 import com.revature.beans.Batch;
 import com.revature.beans.CompleteBatch;
+import com.revature.data.TrainerDAO;
+import com.revature.services.BatchService;
 
 //@ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -33,9 +35,12 @@ import com.revature.beans.CompleteBatch;
 @RunWith(MockitoJUnitRunner.class)
 public class CompleteBatchDataControllerTest {
 	
+	BatchService BS;
+	
 	@Mock
 	RestTemplate restTemplate;
-	
+	@Mock
+	TrainerDAO td;
 	@InjectMocks
 	CompleteBatchDataController cont = new CompleteBatchDataController();
 	
@@ -44,12 +49,11 @@ public class CompleteBatchDataControllerTest {
 	@Test
 	public void testgetCompleteBatchDataByIdContainsQC()
 	{
-		
 		HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity <String> entity = new HttpEntity<String>(headers);
 		restTemplate = mock(RestTemplate.class);
-		cont.restTemplate = restTemplate;
+		//BS.restTemplate = restTemplate;
 		when(restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/evaluation/assessments?batchId=" + "1" , HttpMethod.GET,entity, String.class))
 		.thenReturn(ResponseEntity.ok("[{\"assessmentId\":3737,\"rawScore\":100,\"assessmentTitle\":\"Mock Assessment 1-0\",\"assessmentType\":\"Presentation\",\"weekNumber\":1,\"batchId\":\"TR-1014\",\"assessmentCategory\":25,\"assignmentDate\":null}]"));
 		when(restTemplate.exchange("https://caliber2-mock.revaturelabs.com/mock/qa/notes/batch/"+"1", HttpMethod.GET, entity, String.class))
@@ -71,7 +75,6 @@ public class CompleteBatchDataControllerTest {
 	@Test
 	public void testgetCompleteBatchDataByIdContainsAssessments()
 	{
-		
 		HttpHeaders headers = new HttpHeaders();
     	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity <String> entity = new HttpEntity<String>(headers);

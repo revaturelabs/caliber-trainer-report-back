@@ -31,7 +31,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.function.EntityResponse;
-
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -45,17 +45,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes=Excaliber.class)
 @ExtendWith(MockitoExtension.class)
 class StatusByWeekServiceTest {
-
-	private final StatusByWeekService tsbwServ; // class being tested 
-	private final JSONController jCtrl; // for access to getTrainer2() method used for initializing data
-
-	@Mock
-    TrainerService mockServ;
+	@InjectMocks
+	StatusByWeekService tsbwServ; // class being tested 
 	
+	@Mock
+    TrainerService sRSserv;
+	
+	static Trainer trainer;
 	
 	
 	@Autowired
-	public StatusByWeekServiceTest(StatusByWeekService t, JSONController c) {
+	public StatusByWeekServiceTest(StatusByWeekService t) {
 		tsbwServ = t;
 		//mockMvc = MockMvcBuilders.standaloneSetup(TechnicalStatusBy.class).build();
 	}
@@ -104,8 +104,10 @@ class StatusByWeekServiceTest {
 
 	@Test
 	void getTechnicalStatusByWeekSreviceTest() throws Exception {
+		Mockito.when(sRSserv.getTrainerById(1)).thenReturn(trainer);
+		
 		// call getTechnicalStatusByWeek() and get returned list
-		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(296);
+		List<TechnicalStatusByWeek> result = tsbwServ.getTechnicalStatusByWeek(1);
 
 		// check if returned list contains TechnicalStatusByWeek objects
 		assertTrue(result.get(0) instanceof TechnicalStatusByWeek);

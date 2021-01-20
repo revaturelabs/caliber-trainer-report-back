@@ -20,7 +20,7 @@ class AssessmentByCategoryServiceTest {
 
 	@Mock
     TrainerService mockserv;
-
+	@Mock
 	CategoryDAO cDao;
 
 	@BeforeEach
@@ -120,7 +120,7 @@ class AssessmentByCategoryServiceTest {
 		cList.add(c);
 
 		Float[] f = {(float) 70, (float) 0, (float) 0, (float) 0, (float) 0};
-		//
+		
 
 		when(cDao.findAll()).thenReturn(cList);
 		when(mockserv.getTrainerById(1)).thenReturn(t);
